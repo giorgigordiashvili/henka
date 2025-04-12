@@ -8,10 +8,10 @@ import { Desktop, Mobile } from './ui/Responsive'
 import Typography from './ui/Typography'
 
 const StyledContainer = styled.div`
-  height: calc(100dvh - 78px);
+  height: calc(100vh - 78px);
   position: relative;
   @media (max-width: 1080px) {
-    height: 100dvh;
+    height: 100vh;
   }
 `
 
@@ -28,7 +28,7 @@ const StyledUnionContainer = styled.div`
 const StyledFruitsContainer = styled.div`
   position: absolute;
   width: 100%;
-  height: calc(100dvh - 78px - 167px);
+  height: calc(100vh - 78px - 167px);
   pointer-events: none;
   @media (max-width: 1080px) {
     z-index: 5;
@@ -42,7 +42,7 @@ const StyledContentContainer = styled.div`
   height: 100%;
   align-items: center;
   gap: 32px;
-  height: calc(100dvh - 78px - 167px);
+  height: calc(100vh - 78px - 167px);
 
   @media (max-width: 1080px) {
     display: flex;
