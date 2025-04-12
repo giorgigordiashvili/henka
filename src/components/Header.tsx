@@ -5,10 +5,11 @@ import Image from 'next/image'
 import { useState } from 'react'
 import styled from 'styled-components'
 import LocaleSwitcher from './LocaleSwitcher'
+import Container from './ui/Container'
 import NavigationLink from './ui/NavigationLink'
 
 const StyledContainer = styled.div`
-  padding: 12px 48px;
+  padding: 12px 0px;
   background: #dd2233;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -19,7 +20,7 @@ const StyledContainer = styled.div`
     position: absolute;
     top: 0px;
     z-index: 15;
-    padding: 12px 16px;
+    padding: 12px 0px;
     width: 100%;
     justify-content: space-between;
   }
@@ -123,58 +124,60 @@ export default function Header({
   const [open, setOpen] = useState(false)
   return (
     <>
-      <StyledContainer>
-        <StyledLinksContainer aria-label="Main Navigation">
-          <NavList>
-            <NavigationLink text={dictionary.whereToBuy} href="/" />
-            <NavigationLink text={dictionary.products} href="/" />
-            <NavigationLink text={dictionary.aboutUs} href="/" />
-          </NavList>
-        </StyledLinksContainer>
-        <LogoContainer>
-          <Image width={54} height={54} src="/assets/logo.png" alt="logo" />
-        </LogoContainer>
-        <LogoContainerMobile>
-          <Image width={40} height={40} src="/assets/logo.png" alt="logo" />
-        </LogoContainerMobile>
-        <StyledBurgerContainer
-          onClick={() => setOpen((prev) => !prev)}
-          aria-label="Toggle menu"
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-        >
-          <BurgerIcon />
-        </StyledBurgerContainer>
-        <LocaleSwitcherContainer>
-          <LocaleSwitcher />
-        </LocaleSwitcherContainer>
-      </StyledContainer>
+      <Container>
+        <StyledContainer>
+          <StyledLinksContainer aria-label="Main Navigation">
+            <NavList>
+              <NavigationLink text={dictionary.whereToBuy} href="/" />
+              <NavigationLink text={dictionary.products} href="/" />
+              <NavigationLink text={dictionary.aboutUs} href="/" />
+            </NavList>
+          </StyledLinksContainer>
+          <LogoContainer>
+            <Image width={54} height={54} src="/assets/logo.png" alt="logo" />
+          </LogoContainer>
+          <LogoContainerMobile>
+            <Image width={40} height={40} src="/assets/logo.png" alt="logo" />
+          </LogoContainerMobile>
+          <StyledBurgerContainer
+            onClick={() => setOpen((prev) => !prev)}
+            aria-label="Toggle menu"
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+          >
+            <BurgerIcon />
+          </StyledBurgerContainer>
+          <LocaleSwitcherContainer>
+            <LocaleSwitcher />
+          </LocaleSwitcherContainer>
+        </StyledContainer>
 
-      <MobileMenu
-        $isOpen={open}
-        aria-hidden={!open}
-        id="mobile-menu"
-        inert={!open ? false : undefined}
-      >
-        <MobileNavList>
-          <NavigationLink
-            text={dictionary.whereToBuy}
-            href="/"
-            tabIndex={open ? 0 : -1}
-          />
-          <NavigationLink
-            text={dictionary.products}
-            href="/"
-            tabIndex={open ? 0 : -1}
-          />
-          <NavigationLink
-            text={dictionary.aboutUs}
-            href="/"
-            tabIndex={open ? 0 : -1}
-          />
-        </MobileNavList>
-        <LocaleSwitcher tabIndex={open ? undefined : -1} />
-      </MobileMenu>
+        <MobileMenu
+          $isOpen={open}
+          aria-hidden={!open}
+          id="mobile-menu"
+          inert={!open ? false : undefined}
+        >
+          <MobileNavList>
+            <NavigationLink
+              text={dictionary.whereToBuy}
+              href="/"
+              tabIndex={open ? 0 : -1}
+            />
+            <NavigationLink
+              text={dictionary.products}
+              href="/"
+              tabIndex={open ? 0 : -1}
+            />
+            <NavigationLink
+              text={dictionary.aboutUs}
+              href="/"
+              tabIndex={open ? 0 : -1}
+            />
+          </MobileNavList>
+          <LocaleSwitcher tabIndex={open ? undefined : -1} />
+        </MobileMenu>
+      </Container>
     </>
   )
 }
