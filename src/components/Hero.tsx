@@ -4,11 +4,15 @@ import Image from 'next/image'
 import styled from 'styled-components'
 import Container from './ui/Container'
 import MenuItem from './ui/MenuItem'
+import { Desktop, Mobile } from './ui/Responsive'
 import Typography from './ui/Typography'
 
 const StyledContainer = styled.div`
   height: calc(100dvh - 78px);
   position: relative;
+  @media (max-width: 1080px) {
+    height: 100dvh;
+  }
 `
 
 const StyledUnionContainer = styled.div`
@@ -16,12 +20,19 @@ const StyledUnionContainer = styled.div`
   bottom: 0px;
   width: 100%;
   height: 167px;
+  @media (max-width: 1080px) {
+    height: 42.98px;
+  }
 `
 
 const StyledFruitsContainer = styled.div`
   position: absolute;
   width: 100%;
   height: calc(100dvh - 78px - 167px);
+  pointer-events: none;
+  @media (max-width: 1080px) {
+    z-index: 5;
+  }
 `
 
 const StyledContentContainer = styled.div`
@@ -32,9 +43,11 @@ const StyledContentContainer = styled.div`
   align-items: center;
   gap: 32px;
   height: calc(100dvh - 78px - 167px);
+
   @media (max-width: 1080px) {
     display: flex;
     flex-direction: column;
+    gap: 16px;
   }
 `
 
@@ -42,6 +55,11 @@ const StyledTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  @media (max-width: 1080px) {
+    margin: 0 16px;
+    padding-top: 15px;
+    z-index: 99;
+  }
 `
 
 const StyledTagsContainer = styled.div`
@@ -54,15 +72,27 @@ const StyledBlurWithBottles = styled.div`
   width: 456px;
   height: 456px;
   position: relative;
+  @media (max-width: 1080px) {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+  }
 `
 const StyledBlur = styled.div`
-  background: #fff;
+  background: #ed9098;
   border-radius: 50%;
-  font-size: 250px;
+  z-index: 1;
   height: 456px;
   width: 456px;
-  z-index: -1;
   filter: blur(165px);
+  @media (max-width: 1080px) {
+    width: 343px;
+    height: 402px;
+
+    filter: blur(123px);
+  }
 `
 
 const StyledTagContainer = styled.div`
@@ -100,46 +130,98 @@ export default function Hero({
         <StyledContentContainer>
           <StyledTextContainer>
             <Typography variant="h1">{dictionary.title}</Typography>
-            <Typography variant="mBodytext">{dictionary.subtitle}</Typography>
-            <MenuItem size="M" text={dictionary.button} href="/" />
+            <Desktop>
+              <Typography variant="mBodytext">{dictionary.subtitle}</Typography>
+            </Desktop>
+
+            <Desktop>
+              <MenuItem size="M" text={dictionary.button} href="/" />
+            </Desktop>
           </StyledTextContainer>
 
           <StyledBlurWithBottles>
-            <Image
-              style={{ zIndex: 999 }}
-              src="/assets/bottles-1.png"
-              alt="Bottles"
-              fill
-            />
+            <Desktop>
+              <Image
+                style={{ zIndex: 3 }}
+                src="/assets/bottles-1.png"
+                alt="Bottles"
+                fill
+                objectFit="contain"
+              />
+            </Desktop>
+            <Mobile>
+              <Image
+                style={{ zIndex: 3 }}
+                src="/assets/bottles-1-mobile.png"
+                alt="Bottles"
+                fill
+                objectFit="contain"
+              />
+            </Mobile>
             <StyledBlur />
           </StyledBlurWithBottles>
-          <StyledTagsContainer>
-            <StyledTagContainer>
-              <StyledPercent>100%</StyledPercent>
-              <StyledTagText>ნატურალური ინგრედიენტები</StyledTagText>
-            </StyledTagContainer>
-            <StyledTagContainer>
-              <StyledPercent>50%</StyledPercent>
-              <StyledTagText>დღიური D ვიტამინის დოზა</StyledTagText>
-            </StyledTagContainer>
-            <StyledTagContainer>
-              <StyledPercent>99%</StyledPercent>
-              <StyledTagText>პრობიოტიკებით მდიდარი</StyledTagText>
-            </StyledTagContainer>
-          </StyledTagsContainer>
+          <Mobile>
+            <StyledTextContainer>
+              <Mobile>
+                <Typography variant="mBodytext">
+                  {dictionary.subtitle}
+                </Typography>
+              </Mobile>
+
+              <Mobile>
+                <MenuItem
+                  fullWidth
+                  size="M"
+                  text={dictionary.button}
+                  href="/"
+                />
+              </Mobile>
+            </StyledTextContainer>
+          </Mobile>
+          <Desktop>
+            <StyledTagsContainer>
+              <StyledTagContainer>
+                <StyledPercent>100%</StyledPercent>
+                <StyledTagText>ნატურალური ინგრედიენტები</StyledTagText>
+              </StyledTagContainer>
+              <StyledTagContainer>
+                <StyledPercent>50%</StyledPercent>
+                <StyledTagText>დღიური D ვიტამინის დოზა</StyledTagText>
+              </StyledTagContainer>
+              <StyledTagContainer>
+                <StyledPercent>99%</StyledPercent>
+                <StyledTagText>პრობიოტიკებით მდიდარი</StyledTagText>
+              </StyledTagContainer>
+            </StyledTagsContainer>
+          </Desktop>
           <StyledFruitsContainer>
-            <Image
-              src="/assets/fruits-1.png"
-              alt="Fruits"
-              fill
-              objectFit="contain"
-            />
+            <Desktop>
+              <Image
+                src="/assets/fruits-1.png"
+                alt="Fruits"
+                fill
+                objectFit="contain"
+              />
+            </Desktop>
+            <Mobile>
+              <Image
+                src="/assets/fruits-1-mobile.png"
+                alt="Fruits"
+                fill
+                objectFit="contain"
+              />
+            </Mobile>
           </StyledFruitsContainer>
         </StyledContentContainer>
       </Container>
 
       <StyledUnionContainer>
-        <Image src="/assets/union-1.png" alt="Union" fill />
+        <Desktop>
+          <Image src="/assets/union-1.png" alt="Union" fill />
+        </Desktop>
+        <Mobile>
+          <Image src="/assets/union-1-mobile.png" alt="Union" fill />
+        </Mobile>
       </StyledUnionContainer>
     </StyledContainer>
   )

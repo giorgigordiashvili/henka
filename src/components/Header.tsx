@@ -17,9 +17,7 @@ const StyledContainer = styled.div`
 
   @media (max-width: 1080px) {
     display: flex;
-    position: absolute;
     top: 0px;
-    z-index: 15;
     padding: 12px 0px;
     width: 100%;
     justify-content: space-between;
@@ -92,7 +90,7 @@ const StyledBurgerContainer = styled.button`
 
 const MobileMenu = styled.nav<{ $isOpen: boolean }>`
   position: absolute;
-  top: 0px;
+  top: ${({ $isOpen }) => ($isOpen ? '64px' : '-100%')};
   left: 0;
   right: 0;
   background: #dd2233;
@@ -104,11 +102,9 @@ const MobileMenu = styled.nav<{ $isOpen: boolean }>`
   gap: 24px;
   width: 100%;
   height: 100dvh;
-  transform: ${({ $isOpen }) =>
-    $isOpen ? 'translateY(0)' : 'translateY(-200%)'};
+  z-index: 9999;
   opacity: ${({ $isOpen }) => ($isOpen ? '1' : '0')};
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  z-index: 2;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   @media (min-width: 1081px) {

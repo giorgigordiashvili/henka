@@ -33,11 +33,12 @@ type Props = {
   size: 'S' | 'M'
   text: string
   href: string
+  fullWidth?: boolean
 }
 
-function MenuItem({ size, text, href }: Props) {
+function MenuItem({ size, text, href, fullWidth }: Props) {
   return (
-    <StyledButton size={size}>
+    <StyledButton style={{ width: fullWidth ? '100%' : 'auto' }} size={size}>
       <Link href={href} passHref>
         <Typography variant={size === 'S' ? 'xsBodytext' : 'mBodytext'}>
           {text}
