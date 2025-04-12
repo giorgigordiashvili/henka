@@ -1,6 +1,7 @@
 import AboutUs from '@/components/AboutUs'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
+import Marquee from '@/components/Marquee'
 import Reason from '@/components/Reason'
 import { getDictionary } from '@/get-dictionary'
 import { Locale } from '@/i18n-config'
@@ -18,6 +19,7 @@ export default async function IndexPage(props: {
       <Hero dictionary={dictionary.hero} />
       <AboutUs dictionary={dictionary.about} />
       <Reason dictionary={dictionary.reason} />
+      <Marquee dictionary={dictionary.marquee} />
     </div>
   )
 }

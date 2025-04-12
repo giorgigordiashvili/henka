@@ -17,12 +17,19 @@
     "subtitle": "Henka is a Georgian brand that crafts premium-quality kombucha and functional waters. Our natural and delicious products support immune health, restore energy, and maintain balance. Kombucha is rich in probiotics, while functional water provides vitamin D for overall well-being."
   },
   "reason": {
-    "whyUs": "რატომ კომბუჩა?",
-    "antiBacterial": "ბუნებრივი ანტიბაქტერიული საშუალება",
-    "mentalHealth": "აუმჯობესებს მენტალურ ჯანმრთელობას",
-    "liverFunction": "აძლიერებს ღვიძლს და მის ფუნქციას",
-    "betterBreath": "სასარგებლოა სასუნთქი სისტემისთვის",
-    "sugar": "არეგულირებს შაქრის დონეს ორგანიზმში",
-    "heart": "აძლიერებს გულს და სისხლძარღვებს"
+    "whyUs": "WHY KOMBUCHA?",
+    "antiBacterial": "Natural antibacterial agent",
+    "mentalHealth": "Improves mental health",
+    "liverFunction": "Strengthens the liver and its function",
+    "betterBreath": "Beneficial for the respiratory system",
+    "sugar": "Regulates blood sugar levels",
+    "heart": "Strengthens the heart and blood vessels"
+  },
+  "marquee": {
+    "energy": "enhanced energy",
+    "health": "Natural wellness",
+    "probiotics": "Packed with probiotics",
+    "vitamin": "Daily Vitamin D dose",
+    "ingredients": "fresh ingredients"
   }
 }

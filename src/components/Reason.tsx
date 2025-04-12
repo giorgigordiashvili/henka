@@ -2,7 +2,7 @@
 import { getDictionary } from '@/get-dictionary'
 import Head from 'next/head'
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import styled, { css, keyframes } from 'styled-components'
 import { Desktop, Mobile } from './ui/Responsive'
 import Typography, { H2 } from './ui/Typography'
@@ -14,7 +14,6 @@ const StyledContainer = styled.div`
   text-align: center;
   max-width: 1114px;
   margin: auto;
-  padding-bottom: 1000px;
 `
 
 const StyledItemsGrid = styled.div`
@@ -101,7 +100,7 @@ const StyledImageContainer = styled.div`
 
   position: relative;
   @media (max-width: 1080px) {
-    width: 100vw;
+    width: 100%;
     height: 459px;
   }
 `
@@ -147,7 +146,7 @@ export default function Reason({
   const preloadedRef = useRef(false)
 
   // Calculate threshold based on the start of Reason component with proper positioning
-  const calculateThreshold = () => {
+  const calculateThreshold = useCallback(() => {
     if (!reasonsRef.current) return scrollThreshold
 
     // Get the component's absolute position from the top of the document
@@ -161,10 +160,10 @@ export default function Reason({
 
     setScrollThreshold(calculatedThreshold)
     return calculatedThreshold
-  }
+  }, [scrollThreshold])
 
   // Function to preload the sticky-filled image
-  const preloadStickyFilledImage = () => {
+  const preloadStickyFilledImage = useCallback(() => {
     if (preloadedRef.current || !isDesktop) return
 
     // Create a new image element to preload the image
@@ -177,10 +176,10 @@ export default function Reason({
     }
 
     img.onerror = () => {}
-  }
+  }, [isDesktop])
 
   // Animation function for smooth following with "dragging feet" effect
-  const animateSticky = () => {
+  const animateSticky = useCallback(() => {
     // Only animate on desktop devices
     if (!isDesktop) return
 
@@ -200,7 +199,7 @@ export default function Reason({
 
     // Continue animation loop
     animationRef.current = requestAnimationFrame(animateSticky)
-  }
+  }, [isDesktop])
 
   // Initialize calculation after component is mounted
   useEffect(() => {
@@ -210,7 +209,7 @@ export default function Reason({
     }, 300)
 
     return () => clearTimeout(timer)
-  }, [])
+  }, [calculateThreshold])
 
   useEffect(() => {
     // Check if we're on desktop when component mounts
@@ -311,7 +310,13 @@ export default function Reason({
         animationRef.current = null
       }
     }
-  }, [isDesktop, scrollThreshold])
+  }, [
+    animateSticky,
+    calculateThreshold,
+    isDesktop,
+    preloadStickyFilledImage,
+    scrollThreshold
+  ])
 
   // Set up Intersection Observer for animation
   useEffect(() => {
@@ -333,13 +338,14 @@ export default function Reason({
       }
     )
 
-    if (reasonsRef.current) {
-      observer.observe(reasonsRef.current)
+    const currentRef = reasonsRef.current
+    if (currentRef) {
+      observer.observe(currentRef)
     }
 
     return () => {
-      if (reasonsRef.current) {
-        observer.unobserve(reasonsRef.current)
+      if (currentRef) {
+        observer.unobserve(currentRef)
       }
     }
   }, [isDesktop])
@@ -374,24 +380,24 @@ export default function Reason({
               </StyledReason>
               <StyledReason>
                 <Image
-                  src="/assets/why/1.png"
+                  src="/assets/why/2.png"
                   width={62}
                   height={62}
                   alt="Reason 1"
                 />
                 <Typography variant="sBodytext">
-                  {dictionary.antiBacterial}
+                  {dictionary.mentalHealth}
                 </Typography>
               </StyledReason>
               <StyledReason>
                 <Image
-                  src="/assets/why/1.png"
+                  src="/assets/why/3.png"
                   width={62}
                   height={62}
                   alt="Reason 1"
                 />
                 <Typography variant="sBodytext">
-                  {dictionary.antiBacterial}
+                  {dictionary.liverFunction}
                 </Typography>
               </StyledReason>
             </StyledReasons>
@@ -420,36 +426,32 @@ export default function Reason({
             <StyledReasons isVisible={isInView} fromLeft={false}>
               <StyledReason>
                 <Image
-                  src="/assets/why/1.png"
+                  src="/assets/why/4.png"
                   width={62}
                   height={62}
                   alt="Reason 1"
                 />
                 <Typography variant="sBodytext">
-                  {dictionary.antiBacterial}
+                  {dictionary.betterBreath}
                 </Typography>
               </StyledReason>
               <StyledReason>
                 <Image
-                  src="/assets/why/1.png"
+                  src="/assets/why/5.png"
                   width={62}
                   height={62}
                   alt="Reason 1"
                 />
-                <Typography variant="sBodytext">
-                  {dictionary.antiBacterial}
-                </Typography>
+                <Typography variant="sBodytext">{dictionary.sugar}</Typography>
               </StyledReason>
               <StyledReason>
                 <Image
-                  src="/assets/why/1.png"
+                  src="/assets/why/6.png"
                   width={62}
                   height={62}
                   alt="Reason 1"
                 />
-                <Typography variant="sBodytext">
-                  {dictionary.antiBacterial}
-                </Typography>
+                <Typography variant="sBodytext">{dictionary.heart}</Typography>
               </StyledReason>
             </StyledReasons>
           </StyledItemsGrid>
