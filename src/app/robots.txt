@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /private/
+
+Sitemap: https://admirable-sundae-d79e4a.netlify.app/sitemap.xml
