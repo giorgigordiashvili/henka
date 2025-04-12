@@ -5,8 +5,8 @@ import Container from './Container'
 import { Desktop, Mobile } from './Responsive'
 import Typography, { H2 } from './Typography'
 
-const StyledContainer = styled.div<{ backgroundColor?: string }>`
-  background-color: ${(props) => props.backgroundColor || '#fcfcfc'};
+const StyledContainer = styled.div<{ $backgroundColor?: string }>`
+  background-color: ${(props) => props.$backgroundColor || '#fcfcfc'};
   height: 650px;
 
   @media (max-width: 1080px) {
@@ -25,11 +25,11 @@ const StyledTextContainer = styled.div`
   }
 `
 
-const StyledFlex = styled.div<{ imagePosition?: 'left' | 'right' }>`
+const StyledFlex = styled.div<{ $imagePosition?: 'left' | 'right' }>`
   width: 100%;
   display: flex;
   flex-direction: ${(props) =>
-    props.imagePosition === 'left' ? 'row-reverse' : 'row'};
+    props.$imagePosition === 'left' ? 'row-reverse' : 'row'};
   justify-content: space-between;
   align-items: center;
   @media (max-width: 1080px) {
@@ -73,9 +73,9 @@ export default function TextWithImage({
   className
 }: TextWithImageProps) {
   return (
-    <StyledContainer backgroundColor={backgroundColor} className={className}>
+    <StyledContainer $backgroundColor={backgroundColor} className={className}>
       <Container>
-        <StyledFlex imagePosition={imagePosition}>
+        <StyledFlex $imagePosition={imagePosition}>
           <StyledTextContainer>
             <H2>{title}</H2>
             <Typography variant="mBodytext">{subtitle}</Typography>
