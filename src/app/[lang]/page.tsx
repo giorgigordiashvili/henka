@@ -1,3 +1,4 @@
+import AboutUs from '@/components/AboutUs'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import { getDictionary } from '@/get-dictionary'
@@ -14,6 +15,7 @@ export default async function IndexPage(props: {
     <div>
       <Header dictionary={dictionary.menu} />
       <Hero dictionary={dictionary.hero} />
+      <AboutUs dictionary={dictionary.about} />
     </div>
   )
 }

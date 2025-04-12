@@ -8,6 +8,10 @@ import LocaleSwitcher from './LocaleSwitcher'
 import Container from './ui/Container'
 import NavigationLink from './ui/NavigationLink'
 
+// Static image import
+import CloseIcon from '@/icons/CloseIcon'
+import logoImage from '../../public/assets/logo.png'
+
 const StyledContainer = styled.div`
   padding: 12px 0px;
   background: #dd2233;
@@ -18,7 +22,7 @@ const StyledContainer = styled.div`
   @media (max-width: 1080px) {
     display: flex;
     top: 0px;
-    padding: 12px 0px;
+    padding: 12px 16px;
     width: 100%;
     justify-content: space-between;
   }
@@ -84,13 +88,29 @@ const StyledBurgerContainer = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px;
+    padding: 0px;
+  }
+`
+
+const StyledCloseButton = styled.button`
+  display: none;
+  @media (max-width: 1080px) {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    position: absolute;
+    right: 16px;
+    top: 19px;
   }
 `
 
 const MobileMenu = styled.nav<{ $isOpen: boolean }>`
-  position: absolute;
-  top: ${({ $isOpen }) => ($isOpen ? '64px' : '-100%')};
+  position: fixed;
+  top: ${({ $isOpen }) => ($isOpen ? '0px' : '-100%')};
   left: 0;
   right: 0;
   background: #dd2233;
@@ -130,10 +150,22 @@ export default function Header({
             </NavList>
           </StyledLinksContainer>
           <LogoContainer>
-            <Image width={54} height={54} src="/assets/logo.png" alt="logo" />
+            <Image
+              width={54}
+              height={54}
+              src={logoImage}
+              alt="logo"
+              placeholder="blur"
+            />
           </LogoContainer>
           <LogoContainerMobile>
-            <Image width={40} height={40} src="/assets/logo.png" alt="logo" />
+            <Image
+              width={40}
+              height={40}
+              src={logoImage}
+              alt="logo"
+              placeholder="blur"
+            />
           </LogoContainerMobile>
           <StyledBurgerContainer
             onClick={() => setOpen((prev) => !prev)}
@@ -154,6 +186,9 @@ export default function Header({
           id="mobile-menu"
           inert={!open ? false : undefined}
         >
+          <StyledCloseButton onClick={() => setOpen(false)}>
+            <CloseIcon />
+          </StyledCloseButton>
           <MobileNavList>
             <NavigationLink
               text={dictionary.whereToBuy}

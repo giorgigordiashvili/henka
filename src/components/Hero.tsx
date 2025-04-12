@@ -110,7 +110,10 @@ const StyledPercent = styled.div`
   letter-spacing: 0px;
   line-height: 36px;
   color: #fff;
-  max-width: 88px;
+  width: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 const StyledTagText = styled.div`
@@ -118,6 +121,7 @@ const StyledTagText = styled.div`
   font-size: 20px;
   line-height: 30px;
   max-width: 206px;
+  text-transform: uppercase;
 `
 export default function Hero({
   dictionary
@@ -182,15 +186,15 @@ export default function Hero({
             <StyledTagsContainer>
               <StyledTagContainer>
                 <StyledPercent>100%</StyledPercent>
-                <StyledTagText>ნატურალური ინგრედიენტები</StyledTagText>
+                <StyledTagText>{dictionary.naturalIngredients}</StyledTagText>
               </StyledTagContainer>
               <StyledTagContainer>
                 <StyledPercent>50%</StyledPercent>
-                <StyledTagText>დღიური D ვიტამინის დოზა</StyledTagText>
+                <StyledTagText>{dictionary.vitaminD}</StyledTagText>
               </StyledTagContainer>
               <StyledTagContainer>
                 <StyledPercent>99%</StyledPercent>
-                <StyledTagText>პრობიოტიკებით მდიდარი</StyledTagText>
+                <StyledTagText>{dictionary.probiotics}</StyledTagText>
               </StyledTagContainer>
             </StyledTagsContainer>
           </Desktop>
