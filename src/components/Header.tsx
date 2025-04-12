@@ -150,7 +150,12 @@ export default function Header({
         </LocaleSwitcherContainer>
       </StyledContainer>
 
-      <MobileMenu $isOpen={open} aria-hidden={!open} id="mobile-menu">
+      <MobileMenu
+        $isOpen={open}
+        aria-hidden={!open}
+        id="mobile-menu"
+        inert={!open ? false : undefined}
+      >
         <MobileNavList>
           <NavigationLink text={dictionary.whereToBuy} href="/" />
           <NavigationLink text={dictionary.products} href="/" />
