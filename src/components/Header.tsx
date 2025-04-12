@@ -25,13 +25,31 @@ const StyledContainer = styled.div`
   }
 `
 
-const StyledLinksContainer = styled.div`
+const StyledLinksContainer = styled.nav`
   display: flex;
   gap: 32px;
   align-items: center;
   @media (max-width: 1080px) {
     display: none;
   }
+`
+
+const NavList = styled.ul`
+  display: flex;
+  gap: 32px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+`
+
+const MobileNavList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  align-items: center;
 `
 
 const LogoContainer = styled.div`
@@ -64,11 +82,14 @@ const StyledBurgerContainer = styled.button`
     background: none;
     border: none;
     cursor: pointer;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
   }
 `
 
-const MobileMenu = styled.div<{ $isOpen: boolean }>`
+const MobileMenu = styled.nav<{ $isOpen: boolean }>`
   position: absolute;
   top: 0px;
   left: 0;
@@ -103,10 +124,12 @@ export default function Header({
   return (
     <>
       <StyledContainer>
-        <StyledLinksContainer>
-          <NavigationLink text={dictionary.whereToBuy} href="/" />
-          <NavigationLink text={dictionary.products} href="/" />
-          <NavigationLink text={dictionary.aboutUs} href="/" />
+        <StyledLinksContainer aria-label="Main Navigation">
+          <NavList>
+            <NavigationLink text={dictionary.whereToBuy} href="/" />
+            <NavigationLink text={dictionary.products} href="/" />
+            <NavigationLink text={dictionary.aboutUs} href="/" />
+          </NavList>
         </StyledLinksContainer>
         <LogoContainer>
           <Image width={54} height={54} src="/assets/logo.png" alt="logo" />
@@ -114,7 +137,12 @@ export default function Header({
         <LogoContainerMobile>
           <Image width={40} height={40} src="/assets/logo.png" alt="logo" />
         </LogoContainerMobile>
-        <StyledBurgerContainer onClick={() => setOpen((prev) => !prev)}>
+        <StyledBurgerContainer
+          onClick={() => setOpen((prev) => !prev)}
+          aria-label="Toggle menu"
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+        >
           <BurgerIcon />
         </StyledBurgerContainer>
         <LocaleSwitcherContainer>
@@ -122,10 +150,12 @@ export default function Header({
         </LocaleSwitcherContainer>
       </StyledContainer>
 
-      <MobileMenu $isOpen={open}>
-        <NavigationLink text={dictionary.whereToBuy} href="/" />
-        <NavigationLink text={dictionary.products} href="/" />
-        <NavigationLink text={dictionary.aboutUs} href="/" />
+      <MobileMenu $isOpen={open} aria-hidden={!open} id="mobile-menu">
+        <MobileNavList>
+          <NavigationLink text={dictionary.whereToBuy} href="/" />
+          <NavigationLink text={dictionary.products} href="/" />
+          <NavigationLink text={dictionary.aboutUs} href="/" />
+        </MobileNavList>
         <LocaleSwitcher />
       </MobileMenu>
     </>
