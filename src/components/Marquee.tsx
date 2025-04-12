@@ -88,6 +88,7 @@ const MarqueeItem = styled.div`
   align-items: center;
   gap: 10px;
   margin-right: 135px;
+  text-transform: uppercase;
   @media (max-width: 1080px) {
     margin-right: 48.12px;
   }
@@ -117,23 +118,35 @@ export default function Marquee({
   const contentRef = useRef<HTMLDivElement>(null)
 
   // Create three different marquee arrays with different patterns
-  const marqueeOne: MarqueeItem[] = marqueeTexts.map((text, index) => ({
-    text,
-    image: marqueeImages[index % marqueeImages.length],
-    alt: text
-  }))
+  const marqueeOne: MarqueeItem[] = marqueeTexts
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value)
+    ?.map((text, index) => ({
+      text,
+      image: marqueeImages[index % marqueeImages.length],
+      alt: text
+    }))
 
-  const marqueeTwo: MarqueeItem[] = marqueeTexts.map((text, index) => ({
-    text,
-    image: marqueeImages[(index + 2) % marqueeImages.length],
-    alt: text
-  }))
+  const marqueeTwo: MarqueeItem[] = marqueeTexts
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value)
+    .map((text, index) => ({
+      text,
+      image: marqueeImages[(index + 2) % marqueeImages.length],
+      alt: text
+    }))
 
-  const marqueeThree: MarqueeItem[] = marqueeTexts.map((text, index) => ({
-    text,
-    image: marqueeImages[(index + 4) % marqueeImages.length],
-    alt: text
-  }))
+  const marqueeThree: MarqueeItem[] = marqueeTexts
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value)
+    .map((text, index) => ({
+      text,
+      image: marqueeImages[(index + 4) % marqueeImages.length],
+      alt: text
+    }))
 
   // Calculate how many copies we need based on screen width
   useEffect(() => {

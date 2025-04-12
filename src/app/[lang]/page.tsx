@@ -3,6 +3,8 @@ import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import Marquee from '@/components/Marquee'
 import Reason from '@/components/Reason'
+import VitaminSection from '@/components/VitaminSection'
+import VitaminTags from '@/components/VitaminTags'
 import { getDictionary } from '@/get-dictionary'
 import { Locale } from '@/i18n-config'
 
@@ -20,6 +22,8 @@ export default async function IndexPage(props: {
       <AboutUs dictionary={dictionary.about} />
       <Reason dictionary={dictionary.reason} />
       <Marquee dictionary={dictionary.marquee} />
+      <VitaminSection dictionary={dictionary.vitamin} />
+      <VitaminTags dictionary={dictionary.vitaminTags} />
     </div>
   )
 }

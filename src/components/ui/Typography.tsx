@@ -18,6 +18,10 @@ const H2 = styled.h2`
   font-weight: bold;
   line-height: 48px;
   margin: 0px;
+  @media (max-width: 1080px) {
+    font-size: 24px;
+    line-height: 28px;
+  }
 `
 
 const LBodytext = styled.p`

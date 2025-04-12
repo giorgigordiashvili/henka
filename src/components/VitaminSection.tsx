@@ -2,17 +2,18 @@
 import { getDictionary } from '@/get-dictionary'
 import TextWithImage from './ui/TextWithImage'
 
-export default function AboutUs({
+export default function VitaminSection({
   dictionary
 }: {
-  dictionary: Awaited<ReturnType<typeof getDictionary>>['about']
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['vitamin']
 }) {
   return (
     <TextWithImage
       title={dictionary.title}
-      subtitle={dictionary.subtitle}
-      imageSrc="/assets/about-us.png"
-      imageAlt="About Us"
+      subtitle={dictionary.description}
+      imageSrc="/assets/vitamin.png"
+      imagePosition="left"
+      imageAlt="Vitamin"
       backgroundColor="#fcfcfc"
     />
   )

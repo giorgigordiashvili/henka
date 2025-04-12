@@ -18,46 +18,46 @@ const StyledWhite = styled.div`
   background: #fcfcfc;
 `
 
-export default function Reason({
+export default function VitaminTags({
   dictionary,
   enableStickyEffect = true
 }: {
-  dictionary: Awaited<ReturnType<typeof getDictionary>>['reason']
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['vitaminTags']
   enableStickyEffect?: boolean
 }) {
   // Create left and right tag arrays
   const leftTags: TagItem[] = [
     {
-      text: dictionary.antiBacterial,
-      iconSrc: '/assets/why/1.png',
+      text: dictionary.contains,
+      iconSrc: '/assets/vitamin/1.png',
       iconAlt: 'Anti-Bacterial'
     },
     {
-      text: dictionary.mentalHealth,
-      iconSrc: '/assets/why/2.png',
+      text: dictionary.helps,
+      iconSrc: '/assets/vitamin/2.png',
       iconAlt: 'Mental Health'
     },
     {
-      text: dictionary.liverFunction,
-      iconSrc: '/assets/why/3.png',
+      text: dictionary.recovers,
+      iconSrc: '/assets/vitamin/3.png',
       iconAlt: 'Liver Function'
     }
   ]
 
   const rightTags: TagItem[] = [
     {
-      text: dictionary.betterBreath,
-      iconSrc: '/assets/why/4.png',
+      text: dictionary.healthy,
+      iconSrc: '/assets/vitamin/4.png',
       iconAlt: 'Better Breath'
     },
     {
-      text: dictionary.sugar,
-      iconSrc: '/assets/why/5.png',
+      text: dictionary.bio,
+      iconSrc: '/assets/vitamin/5.png',
       iconAlt: 'Sugar'
     },
     {
-      text: dictionary.heart,
-      iconSrc: '/assets/why/6.png',
+      text: dictionary.balance,
+      iconSrc: '/assets/vitamin/6.png',
       iconAlt: 'Heart'
     }
   ]
@@ -76,16 +76,14 @@ export default function Reason({
       )}
       <StyledWhite>
         <StyledContainer>
-          <H2>{dictionary.whyUs}</H2>
+          <H2>{dictionary.title}</H2>
           <TextWithTags
+            filledImageSrc="/assets/vitamin-filled.png"
+            filledImageMobileSrc="/assets/vitamin-filled-mobile.png"
             leftTags={leftTags}
             rightTags={rightTags}
-            middleImageSrc="/assets/why/middle.png"
+            middleImageSrc="/assets/vitamin-filled.png"
             middleImageAlt="Middle Image"
-            filledImageSrc="/assets/why/sticky-filled.png"
-            filledImageMobileSrc="/assets/why/sticky-filled-mobile.png"
-            stickyImageSrc="/assets/why/sticky.png"
-            enableStickyEffect={enableStickyEffect}
           />
         </StyledContainer>
       </StyledWhite>

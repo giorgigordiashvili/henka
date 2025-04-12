@@ -31,5 +31,21 @@
     "probiotics": "Packed with probiotics",
     "vitamin": "Daily Vitamin D dose",
     "ingredients": "fresh ingredients"
+  },
+  "vitamin": {
+    "title": "The first functional water with Vitamin D by Henka",
+    "description": "Henka's functional water contains Vitamin D3, which helps the body reach its required dose and strengthens your health. Its daily consumption supports the immune system. Henka offers cherry and lemon & lime flavors, making healthy hydration even lighter and more enjoyable.",
+    "list_one": "Supports muscle and bone health",
+    "list_two": "Energizes you throughout the day",
+    "list_three": "Supports natural hydration"
+  },
+  "vitaminTags": {
+    "title": "Vitamin D for your everyday life",
+    "contains": "Contains a high amount of Vitamin D",
+    "helps": "Helps improve the immune system",
+    "recovers": "Restores the body's energy",
+    "healthy": "Beneficial for the respiratory system",
+    "bio": "Crafted with only natural ingredients",
+    "balance": "Helps restore the body's balance"
   }
 }
