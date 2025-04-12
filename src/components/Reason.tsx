@@ -52,7 +52,7 @@ const slideInFromRight = keyframes`
 `
 
 // Apply animation conditionally based on props and only on desktop
-const StyledReasons = styled.div<{ isVisible: boolean; fromLeft?: boolean }>`
+const StyledReasons = styled.div<{ $isVisible: boolean; $fromLeft?: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,9 +67,9 @@ const StyledReasons = styled.div<{ isVisible: boolean; fromLeft?: boolean }>`
   /* Only apply animations on desktop (screens > 1080px) */
   @media (min-width: 1081px) {
     ${(props) =>
-      props.isVisible &&
+      props.$isVisible &&
       css`
-        animation: ${props.fromLeft ? slideInFromLeft : slideInFromRight} 0.8s
+        animation: ${props.$fromLeft ? slideInFromLeft : slideInFromRight} 0.8s
           ease-out forwards;
       `}
   }
@@ -366,7 +366,7 @@ export default function Reason({
         <StyledContainer ref={reasonsRef}>
           <H2>{dictionary.whyUs}</H2>
           <StyledItemsGrid>
-            <StyledReasons isVisible={isInView} fromLeft={true}>
+            <StyledReasons $isVisible={isInView} $fromLeft={true}>
               <StyledReason>
                 <Image
                   src="/assets/why/1.png"
@@ -423,7 +423,7 @@ export default function Reason({
                 />
               </Mobile>
             </StyledImageContainer>
-            <StyledReasons isVisible={isInView} fromLeft={false}>
+            <StyledReasons $isVisible={isInView} $fromLeft={false}>
               <StyledReason>
                 <Image
                   src="/assets/why/4.png"
