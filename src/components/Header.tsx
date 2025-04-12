@@ -157,11 +157,23 @@ export default function Header({
         inert={!open ? false : undefined}
       >
         <MobileNavList>
-          <NavigationLink text={dictionary.whereToBuy} href="/" />
-          <NavigationLink text={dictionary.products} href="/" />
-          <NavigationLink text={dictionary.aboutUs} href="/" />
+          <NavigationLink
+            text={dictionary.whereToBuy}
+            href="/"
+            tabIndex={open ? 0 : -1}
+          />
+          <NavigationLink
+            text={dictionary.products}
+            href="/"
+            tabIndex={open ? 0 : -1}
+          />
+          <NavigationLink
+            text={dictionary.aboutUs}
+            href="/"
+            tabIndex={open ? 0 : -1}
+          />
         </MobileNavList>
-        <LocaleSwitcher />
+        <LocaleSwitcher tabIndex={open ? undefined : -1} />
       </MobileMenu>
     </>
   )

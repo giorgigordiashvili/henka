@@ -68,7 +68,7 @@ const StyledChevronContainer = styled.div<{ $isOpen: boolean }>`
   transition: transform 0.3s ease-in-out;
   transform: ${(props) => (props.$isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
 `
-export default function LocaleSwitcher() {
+export default function LocaleSwitcher({ tabIndex }: { tabIndex?: number }) {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -108,7 +108,7 @@ export default function LocaleSwitcher() {
 
   return (
     <DropdownContainer ref={dropdownRef}>
-      <DropdownButton onClick={() => setIsOpen(!isOpen)}>
+      <DropdownButton onClick={() => setIsOpen(!isOpen)} tabIndex={tabIndex}>
         <Typography variant="mBodytext">{currentLocale}</Typography>
 
         <StyledChevronContainer $isOpen={isOpen}>
@@ -123,6 +123,7 @@ export default function LocaleSwitcher() {
               <Link
                 href={redirectedPathname(locale)}
                 onClick={() => setIsOpen(false)}
+                tabIndex={isOpen ? tabIndex : -1}
               >
                 {locale}
               </Link>

@@ -27,12 +27,13 @@ const StyledLi = styled.li`
 type Props = {
   text: string
   href: string
+  tabIndex?: number
 }
 
-function NavigationLink({ text, href }: Props) {
+function NavigationLink({ text, href, tabIndex }: Props) {
   return (
     <StyledLi>
-      <Link href={href} passHref>
+      <Link href={href} passHref tabIndex={tabIndex}>
         <Typography variant="mBodytext">{text}</Typography>
       </Link>
     </StyledLi>
