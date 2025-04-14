@@ -38,7 +38,8 @@ export function middleware(request: NextRequest) {
     pathname.startsWith('/images/') ||
     pathname.startsWith('/fonts/') ||
     pathname.startsWith('/assets/') ||
-    pathname.startsWith('/admin/') // Also exempt all paths under /admin/
+    pathname.startsWith('/admin/') || // Also exempt all paths under /admin/
+    pathname.startsWith('/.netlify/') // Exempt Netlify functionality paths
   ) {
     return
   }
