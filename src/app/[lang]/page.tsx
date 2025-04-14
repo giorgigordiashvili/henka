@@ -1,20 +1,20 @@
-import AboutUs from "@/components/AboutUs";
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import Marquee from "@/components/Marquee";
-import Reason from "@/components/Reason";
-import VitaminSection from "@/components/VitaminSection";
-import VitaminTags from "@/components/VitaminTags";
-import { getDictionary } from "@/get-dictionary";
-import { Locale } from "@/i18n-config";
-import WhereToBuy from "@/components/WhereToBuy";
+import AboutUs from '@/components/AboutUs'
+import Header from '@/components/Header'
+import Hero from '@/components/Hero'
+import Marquee from '@/components/Marquee'
+import Reason from '@/components/Reason'
+import VitaminSection from '@/components/VitaminSection'
+import VitaminTags from '@/components/VitaminTags'
+import WhereToBuy from '@/components/WhereToBuy'
+import { getDictionary } from '@/get-dictionary'
+import { Locale } from '@/i18n-config'
 
 export default async function IndexPage(props: {
-  params: Promise<{ lang: Locale }>;
+  params: Promise<{ lang: Locale }>
 }) {
-  const { lang } = await props.params;
+  const { lang } = await props.params
 
-  const dictionary = await getDictionary(lang);
+  const dictionary = await getDictionary(lang)
 
   return (
     <div>
@@ -27,5 +27,5 @@ export default async function IndexPage(props: {
       <VitaminTags dictionary={dictionary.vitaminTags} />
       <WhereToBuy dictionary={dictionary.whereToBuy} />
     </div>
-  );
+  )
 }
