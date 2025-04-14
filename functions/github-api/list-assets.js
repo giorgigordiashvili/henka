@@ -1,5 +1,5 @@
 let Octokit
-import 'dotenv/config'
+require('dotenv').config()
 
 // Environment variables
 const GITHUB_ACCESS_TOKEN = process.env.GITHUB_ACCESS_TOKEN
