@@ -10,8 +10,8 @@ exports.handler = async function (event, context) {
   // Set CORS headers
   const headers = {
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
   }
 
   // Handle OPTIONS request (preflight)
@@ -20,6 +20,17 @@ exports.handler = async function (event, context) {
       statusCode: 200,
       headers,
       body: JSON.stringify({ message: 'CORS preflight successful' })
+    }
+  }
+
+  // Check HTTP method
+  if (event.httpMethod !== 'POST') {
+    return {
+      statusCode: 405,
+      headers,
+      body: JSON.stringify({
+        error: 'Method not allowed. Only POST requests are supported.'
+      })
     }
   }
 
@@ -34,7 +45,18 @@ exports.handler = async function (event, context) {
 
   try {
     // Parse request body
-    const payload = JSON.parse(event.body)
+    let payload
+    try {
+      payload = JSON.parse(event.body)
+    } catch (e) {
+      console.error('Error parsing JSON body:', e)
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ error: 'Invalid JSON in request body' })
+      }
+    }
+
     const { filePath, content, commitMessage, imageBase64, fileName } = payload
 
     if (!filePath) {
