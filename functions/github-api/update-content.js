@@ -1,5 +1,5 @@
-import { Octokit } from '@octokit/rest'
-import 'dotenv/config'
+const { Octokit } = require('@octokit/rest')
+require('dotenv').config()
 
 // Environment variables
 const GITHUB_ACCESS_TOKEN = process.env.GITHUB_ACCESS_TOKEN

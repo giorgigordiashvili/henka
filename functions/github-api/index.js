@@ -1,2 +1,2 @@
-// Simple re-export of the update-content handler
-export { handler } from './update-content.js'
+// Re-export the update-content handler using CommonJS
+module.exports = require('./update-content.js')
