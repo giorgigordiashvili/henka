@@ -23,6 +23,18 @@ exports.handler = async function (event, context) {
     }
   }
 
+  // Check HTTP method - allow GET for list-assets
+  if (event.httpMethod !== 'GET') {
+    return {
+      statusCode: 405,
+      headers,
+      body: JSON.stringify({
+        error:
+          'Method not allowed. Only GET requests are supported for listing assets.'
+      })
+    }
+  }
+
   // Check if required environment variables are set
   if (!GITHUB_ACCESS_TOKEN || !GITHUB_REPO_OWNER || !GITHUB_REPO_NAME) {
     return {
