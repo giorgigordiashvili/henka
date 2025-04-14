@@ -1,31 +1,12 @@
-import fs from 'fs'
-import path from 'path'
 import 'server-only'
 import type { Locale } from './i18n-config.ts'
 
-// Use file system to read dictionary files directly in server components
+// We enumerate all dictionaries here for better linting and typescript support
+// We also get the default import for cleaner types
 const dictionaries = {
-  ge: () =>
-    JSON.parse(
-      fs.readFileSync(
-        path.join(process.cwd(), 'public/dictionaries/ge.json'),
-        'utf8'
-      )
-    ),
-  en: () =>
-    JSON.parse(
-      fs.readFileSync(
-        path.join(process.cwd(), 'public/dictionaries/en.json'),
-        'utf8'
-      )
-    ),
-  ru: () =>
-    JSON.parse(
-      fs.readFileSync(
-        path.join(process.cwd(), 'public/dictionaries/ru.json'),
-        'utf8'
-      )
-    )
+  ge: () => import('../dictionaries/ge.json').then((module) => module.default),
+  en: () => import('../dictionaries/en.json').then((module) => module.default),
+  ru: () => import('../dictionaries/ru.json').then((module) => module.default)
 }
 
 export const getDictionary = async (locale: Locale) =>

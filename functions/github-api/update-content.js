@@ -130,6 +130,10 @@ exports.handler = async function (event, context) {
       }
     }
 
+    // Check if this is a dictionary file update that needs to be synced
+    const isDictionaryUpdate = filePath.match(/dictionaries\/(en|ge|ru)\.json$/)
+    let syncResponse = null
+
     // Create or update file
     const response = await octokit.repos.createOrUpdateFileContents({
       owner: GITHUB_REPO_OWNER,
@@ -144,12 +148,61 @@ exports.handler = async function (event, context) {
       }
     })
 
+    // If this is a dictionary update, also update the corresponding file in the other location
+    if (isDictionaryUpdate && !imageBase64) {
+      try {
+        // Determine the alternate path based on which one was updated
+        const altPath = filePath.startsWith('public/')
+          ? filePath.replace('public/', '')
+          : `public/${filePath}`
+
+        // Get the SHA of the alternate file if it exists
+        let altSha
+        try {
+          const altFile = await octokit.repos.getContent({
+            owner: GITHUB_REPO_OWNER,
+            repo: GITHUB_REPO_NAME,
+            path: altPath
+          })
+
+          if (altFile.data && altFile.data.sha) {
+            altSha = altFile.data.sha
+          }
+        } catch (error) {
+          console.log(`Alternate file doesn't exist yet: ${altPath}`)
+        }
+
+        // Update the alternate file
+        syncResponse = await octokit.repos.createOrUpdateFileContents({
+          owner: GITHUB_REPO_OWNER,
+          repo: GITHUB_REPO_NAME,
+          path: altPath,
+          message: `Sync ${altPath} with ${filePath}`,
+          content: contentToUpload,
+          sha: altSha,
+          committer: {
+            name: 'Henka Admin Dashboard',
+            email: 'admin-dashboard@example.com'
+          }
+        })
+      } catch (syncError) {
+        console.error('Error syncing dictionary files:', syncError)
+        // We don't fail the main operation if the sync fails
+      }
+    }
+
     return {
       statusCode: 200,
       headers,
       body: JSON.stringify({
         message: 'File updated successfully',
-        data: response.data
+        data: response.data,
+        syncedFile: syncResponse
+          ? {
+              path: syncResponse.data.content.path,
+              status: 'synced'
+            }
+          : null
       })
     }
   } catch (error) {
