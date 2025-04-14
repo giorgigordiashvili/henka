@@ -32,23 +32,6 @@ const StyledContainer = styled.div`
   overflow: visible;
 `;
 
-const ImageWrapper = styled.div`
-  position: relative;
-  width: 1339px;
-  height: 385px;
-  margin: 0 auto;
-  aspect-ratio: 1338.7412109375 / 385.3496398925781;
-`;
-
-const TextOverlay = styled.div`
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-`;
-
 const Paragraph = styled.p`
   font-family: Helvetica, sans-serif;
   font-weight: 700;
@@ -56,12 +39,61 @@ const Paragraph = styled.p`
   line-height: 120px;
   text-transform: uppercase;
   color: #5c0e15;
-  white-space: pre-line;
+  white-space: nowrap;
   margin: 0;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 `;
 
-// --- Component ---
+const ThreeRowsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+`;
+
+const Row = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+`;
+
+const GingerImage1 = styled(Image)`
+  width: 121px;
+  height: 121px;
+  transform: rotate(25.05deg);
+`;
+
+const PineberryImage1 = styled(Image)`
+  width: 121px;
+  height: 121px;
+  transform: rotate(37.55deg);
+`;
+
+const LeafImage1 = styled(Image)`
+  width: 115px;
+  height: 115px;
+  transform: rotate(265deg);
+`;
+
+const LeafImage2 = styled(Image)`
+  width: 115px;
+  height: 115px;
+  transform: rotate(0deg);
+`;
+
+const PineberryImage2 = styled(Image)`
+  width: 121px;
+  height: 121px;
+  transform: rotate(37.55deg);
+`;
+
+const GingerImage2 = styled(Image)`
+  width: 121px;
+  height: 121px;
+  transform: rotate(27.01deg);
+`;
+
+// Fruits component
 export default function Fruits({
   dictionary,
   enableStickyEffect = true,
@@ -86,18 +118,55 @@ export default function Fruits({
           top: enableStickyEffect ? "20px" : undefined,
         }}
       >
-        <ImageWrapper>
-          <Image
-            src="/assets/marquee/Fruits.png"
-            alt="Fruits background"
-            fill
-            style={{ objectFit: "contain" }}
-            priority={enableStickyEffect}
-          />
-          <TextOverlay>
+        <ThreeRowsContainer>
+          <Row>
+            <GingerImage1
+              src="/assets/marquee/ginger.png"
+              width={121}
+              height={121}
+              alt=""
+            />
             <Paragraph>{dictionary.paragraph}</Paragraph>
-          </TextOverlay>
-        </ImageWrapper>
+            <PineberryImage1
+              src="/assets/marquee/pineberry.png"
+              width={121}
+              height={121}
+              alt=""
+            />
+          </Row>
+
+          <Row>
+            <LeafImage1
+              src="/assets/marquee/leaf.png"
+              width={115}
+              height={115}
+              alt=""
+            />
+            <Paragraph>{dictionary.paragraph2}</Paragraph>
+            <LeafImage2
+              src="/assets/marquee/leaf.png"
+              width={115}
+              height={115}
+              alt=""
+            />
+          </Row>
+
+          <Row>
+            <PineberryImage2
+              src="/assets/marquee/pineberry.png"
+              width={121}
+              height={121}
+              alt=""
+            />
+            <Paragraph>{dictionary.paragraph3}</Paragraph>
+            <GingerImage2
+              src="/assets/marquee/ginger.png"
+              width={121}
+              height={121}
+              alt=""
+            />
+          </Row>
+        </ThreeRowsContainer>
       </StyledContainer>
     </StyledWhite>
   );
