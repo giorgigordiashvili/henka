@@ -90,13 +90,24 @@ const StyledInfo = styled.div`
 const StyledHenka = styled.div`
   width: 656px;
   @media (max-width: 1080px) {
+    position: relative;
     width: fit-content;
     min-width: 343px;
     width: 100%;
     height: auto;
     display: flex;
     justify-content: center;
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
   }
+`;
+
+const StyledMainContainer = styled.div`
+  background-color: #fff;
+  width: 100%;
 `;
 
 export default function WhereToBuy({
@@ -105,145 +116,151 @@ export default function WhereToBuy({
   dictionary: Awaited<ReturnType<typeof getDictionary>>["whereToBuy"];
 }) {
   return (
-    <StyledContainer>
-      <StyledBio>
-        <StyledLocations>
-          <Typography variant="lBodytext">{dictionary.title}</Typography>
-          <StyledBranches>
-            <StyledBranch1>
-              <StyledShop>
+    <StyledMainContainer>
+      <StyledContainer>
+        <StyledBio>
+          <StyledLocations>
+            <Typography variant="lBodytext">{dictionary.title}</Typography>
+            <StyledBranches>
+              <StyledBranch1>
+                <StyledShop>
+                  <Image
+                    src="/assets/whereToBuy/location.svg"
+                    alt="henka"
+                    width={24}
+                    height={24}
+                  />
+                  <Typography variant="mBodytext">
+                    {dictionary.goodwill}
+                  </Typography>
+                </StyledShop>
+                <StyledShop>
+                  <Image
+                    src="/assets/whereToBuy/location.svg"
+                    alt="henka"
+                    width={24}
+                    height={24}
+                  />
+                  <Typography variant="mBodytext">
+                    {dictionary.agrohub}
+                  </Typography>
+                </StyledShop>
+                <StyledShop>
+                  <Image
+                    src="/assets/whereToBuy/location.svg"
+                    alt="henka"
+                    width={24}
+                    height={24}
+                  />
+                  <Typography variant="mBodytext">
+                    {dictionary.europroduct}
+                  </Typography>
+                </StyledShop>
+                <StyledShop>
+                  <Image
+                    src="/assets/whereToBuy/location.svg"
+                    alt="henka"
+                    width={24}
+                    height={24}
+                  />{" "}
+                  <Typography variant="mBodytext">
+                    {dictionary.fresco}
+                  </Typography>
+                </StyledShop>
+              </StyledBranch1>
+              <StyledBranch2>
+                <StyledShop>
+                  <Image
+                    src="/assets/whereToBuy/location.svg"
+                    alt="henka"
+                    width={24}
+                    height={24}
+                  />
+                  <Typography variant="mBodytext">{dictionary.spar}</Typography>
+                </StyledShop>
+                <StyledShop>
+                  <Image
+                    src="/assets/whereToBuy/location.svg"
+                    alt="henka"
+                    width={24}
+                    height={24}
+                  />
+                  <Typography variant="mBodytext">
+                    {dictionary.universam}
+                  </Typography>
+                </StyledShop>
+                <StyledShop>
+                  <Image
+                    src="/assets/whereToBuy/location.svg"
+                    alt="henka"
+                    width={24}
+                    height={24}
+                  />{" "}
+                  <Typography variant="mBodytext">
+                    {dictionary.gulfstore}
+                  </Typography>
+                </StyledShop>
+                <StyledShop>
+                  <Image
+                    src="/assets/whereToBuy/location.svg"
+                    alt="henka"
+                    width={24}
+                    height={24}
+                  />
+                  <Typography variant="mBodytext">
+                    {dictionary.oneprice}
+                  </Typography>
+                </StyledShop>
+              </StyledBranch2>
+            </StyledBranches>
+          </StyledLocations>
+          <StyledContact>
+            <Typography variant="lBodytext">{dictionary.contact}</Typography>
+            <StyledContactInfos>
+              <StyledInfo>
                 <Image
-                  src="/assets/whereToBuy/location.svg"
-                  alt="henka"
+                  src="/assets/whereToBuy/mail.svg"
+                  alt="mail"
                   width={24}
                   height={24}
                 />
-                <Typography variant="mBodytext">
-                  {dictionary.goodwill}
-                </Typography>
-              </StyledShop>
-              <StyledShop>
-                <Image
-                  src="/assets/whereToBuy/location.svg"
-                  alt="henka"
-                  width={24}
-                  height={24}
-                />
-                <Typography variant="mBodytext">
-                  {dictionary.agrohub}
-                </Typography>
-              </StyledShop>
-              <StyledShop>
-                <Image
-                  src="/assets/whereToBuy/location.svg"
-                  alt="henka"
-                  width={24}
-                  height={24}
-                />
-                <Typography variant="mBodytext">
-                  {dictionary.europroduct}
-                </Typography>
-              </StyledShop>
-              <StyledShop>
-                <Image
-                  src="/assets/whereToBuy/location.svg"
-                  alt="henka"
-                  width={24}
-                  height={24}
-                />{" "}
-                <Typography variant="mBodytext">{dictionary.fresco}</Typography>
-              </StyledShop>
-            </StyledBranch1>
-            <StyledBranch2>
-              <StyledShop>
-                <Image
-                  src="/assets/whereToBuy/location.svg"
-                  alt="henka"
-                  width={24}
-                  height={24}
-                />
-                <Typography variant="mBodytext">{dictionary.spar}</Typography>
-              </StyledShop>
-              <StyledShop>
-                <Image
-                  src="/assets/whereToBuy/location.svg"
-                  alt="henka"
-                  width={24}
-                  height={24}
-                />
-                <Typography variant="mBodytext">
-                  {dictionary.universam}
-                </Typography>
-              </StyledShop>
-              <StyledShop>
-                <Image
-                  src="/assets/whereToBuy/location.svg"
-                  alt="henka"
-                  width={24}
-                  height={24}
-                />{" "}
-                <Typography variant="mBodytext">
-                  {dictionary.gulfstore}
-                </Typography>
-              </StyledShop>
-              <StyledShop>
-                <Image
-                  src="/assets/whereToBuy/location.svg"
-                  alt="henka"
-                  width={24}
-                  height={24}
-                />
-                <Typography variant="mBodytext">
-                  {dictionary.oneprice}
-                </Typography>
-              </StyledShop>
-            </StyledBranch2>
-          </StyledBranches>
-        </StyledLocations>
-        <StyledContact>
-          <Typography variant="lBodytext">{dictionary.contact}</Typography>
-          <StyledContactInfos>
-            <StyledInfo>
-              <Image
-                src="/assets/whereToBuy/mail.svg"
-                alt="mail"
-                width={24}
-                height={24}
-              />
-              <Typography variant="mBodytext">{dictionary.mail}</Typography>
-            </StyledInfo>
+                <Typography variant="mBodytext">{dictionary.mail}</Typography>
+              </StyledInfo>
 
-            <StyledInfo>
-              <Image
-                src="/assets/whereToBuy/location.svg"
-                alt="mail"
-                width={24}
-                height={24}
-              />
-              <Typography variant="mBodytext">{dictionary.location}</Typography>
-            </StyledInfo>
+              <StyledInfo>
+                <Image
+                  src="/assets/whereToBuy/location.svg"
+                  alt="mail"
+                  width={24}
+                  height={24}
+                />
+                <Typography variant="mBodytext">
+                  {dictionary.location}
+                </Typography>
+              </StyledInfo>
 
-            <StyledInfo>
-              <Image
-                src="/assets/whereToBuy/phone.svg"
-                alt="mail"
-                width={24}
-                height={24}
-              />
-              <Typography variant="mBodytext">{dictionary.number}</Typography>
-            </StyledInfo>
-          </StyledContactInfos>
-        </StyledContact>
-      </StyledBio>
-      <StyledHenka>
-        <Image
-          src="/assets/whereToBuy/henkaImage.png"
-          alt="henka"
-          width={656}
-          height={650}
-          style={{ objectFit: "contain" }}
-        />
-      </StyledHenka>
-    </StyledContainer>
+              <StyledInfo>
+                <Image
+                  src="/assets/whereToBuy/phone.svg"
+                  alt="mail"
+                  width={24}
+                  height={24}
+                />
+                <Typography variant="mBodytext">{dictionary.number}</Typography>
+              </StyledInfo>
+            </StyledContactInfos>
+          </StyledContact>
+        </StyledBio>
+        <StyledHenka>
+          <Image
+            src="/assets/whereToBuy/henkaImage.png"
+            alt="henka"
+            width={656}
+            height={650}
+            style={{ objectFit: "contain" }}
+          />
+        </StyledHenka>
+      </StyledContainer>
+    </StyledMainContainer>
   );
 }
