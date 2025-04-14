@@ -355,9 +355,16 @@ document.addEventListener('DOMContentLoaded', () => {
       imagesGrid.innerHTML = '<div class="loading">Loading images...</div>'
 
       const response = await fetch(
-        `/.netlify/functions/github-api/list-assets?folder=${encodeURIComponent(
-          folderPath
-        )}`
+        `/.netlify/functions/github-api/list-assets`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            folder: folderPath
+          })
+        }
       )
 
       if (!response.ok) {

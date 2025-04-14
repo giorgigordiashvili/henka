@@ -23,14 +23,14 @@ exports.handler = async function (event, context) {
     }
   }
 
-  // Check HTTP method - allow GET for list-assets
-  if (event.httpMethod !== 'GET') {
+  // Check HTTP method - allow both GET and POST for list-assets
+  if (event.httpMethod !== 'GET' && event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
       headers,
       body: JSON.stringify({
         error:
-          'Method not allowed. Only GET requests are supported for listing assets.'
+          'Method not allowed. Only GET and POST requests are supported for listing assets.'
       })
     }
   }
@@ -45,8 +45,15 @@ exports.handler = async function (event, context) {
   }
 
   try {
-    // Parse query string parameters
-    const folderPath = event.queryStringParameters?.folder || 'public/assets'
+    // Get folder path from query params (GET) or request body (POST)
+    let folderPath
+
+    if (event.httpMethod === 'GET') {
+      folderPath = event.queryStringParameters?.folder || 'public/assets'
+    } else if (event.httpMethod === 'POST') {
+      const requestBody = JSON.parse(event.body || '{}')
+      folderPath = requestBody.folder || 'public/assets'
+    }
 
     // Initialize Octokit
     const octokit = new Octokit({
