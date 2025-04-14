@@ -33,6 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Netlify Identity Authentication
   if (window.netlifyIdentity) {
+    // Check for existing user session immediately
+    const currentUser = window.netlifyIdentity.currentUser()
+    if (currentUser) {
+      showDashboard()
+    }
+
     window.netlifyIdentity.on('init', (user) => {
       if (user) {
         // User is logged in, show dashboard
@@ -479,96 +485,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Image upload form
   imageUploadForm.addEventListener('submit', handleImageUpload)
-
-  // Export language data
-  document
-    .getElementById('export-en')
-    .addEventListener('click', () => exportLanguage('en'))
-  document
-    .getElementById('export-ge')
-    .addEventListener('click', () => exportLanguage('ge'))
-  document
-    .getElementById('export-ru')
-    .addEventListener('click', () => exportLanguage('ru'))
-
-  // Import language data
-  document
-    .getElementById('import-file')
-    .addEventListener('click', importLanguage)
-
-  // Export language data to JSON
-  function exportLanguage(lang) {
-    if (!languageData[lang]) {
-      showToast(`${lang.toUpperCase()} language data not loaded yet`, 'warning')
-      return
-    }
-
-    const dataStr = JSON.stringify(languageData[lang], null, 2)
-    const dataUri =
-      'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr)
-
-    const exportLink = document.createElement('a')
-    exportLink.setAttribute('href', dataUri)
-    exportLink.setAttribute('download', `${lang}.json`)
-    document.body.appendChild(exportLink)
-    exportLink.click()
-    document.body.removeChild(exportLink)
-  }
-
-  // Import language data from JSON
-  async function importLanguage() {
-    const importLang = document.getElementById('import-language').value
-    const importContent = document.getElementById('import-content').value
-
-    if (!importContent) {
-      showToast('Please paste JSON content to import', 'warning')
-      return
-    }
-
-    try {
-      // Parse the JSON to validate
-      const parsedData = JSON.parse(importContent)
-
-      // Save to GitHub via serverless function using relative path for production
-      const response = await fetch(
-        '/.netlify/functions/github-api/update-content',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            filePath: `dictionaries/${importLang}.json`,
-            content: JSON.stringify(parsedData, null, 2),
-            commitMessage: `Update ${importLang} language file via import`
-          })
-        }
-      )
-
-      if (!response.ok) {
-        const error = await response.json()
-        throw new Error(error.error || 'Failed to import language data')
-      }
-
-      // Update cache
-      languageData[importLang] = parsedData
-
-      // Show success message
-      showToast(
-        `${importLang.toUpperCase()} language data imported successfully`,
-        'success'
-      )
-
-      // Clear import area
-      document.getElementById('import-content').value = ''
-
-      // Refresh form if current language matches imported language
-      if (languageSelector.value === importLang) {
-        updateFormFields()
-      }
-    } catch (error) {
-      console.error('Error importing language data:', error)
-      showToast(`Error importing language data: ${error.message}`, 'error')
-    }
-  }
 })
