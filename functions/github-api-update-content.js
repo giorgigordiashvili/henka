@@ -1,0 +1,127 @@
+import { Octokit } from '@octokit/rest'
+import 'dotenv/config'
+
+// Environment variables
+const GITHUB_ACCESS_TOKEN = process.env.GITHUB_ACCESS_TOKEN
+const GITHUB_REPO_OWNER = process.env.GITHUB_REPO_OWNER
+const GITHUB_REPO_NAME = process.env.GITHUB_REPO_NAME
+
+exports.handler = async function (event, context) {
+  // Set CORS headers
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+  }
+
+  // Handle OPTIONS request (preflight)
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({ message: 'CORS preflight successful' })
+    }
+  }
+
+  // Check if required environment variables are set
+  if (!GITHUB_ACCESS_TOKEN || !GITHUB_REPO_OWNER || !GITHUB_REPO_NAME) {
+    return {
+      statusCode: 500,
+      headers,
+      body: JSON.stringify({ error: 'Missing GitHub environment variables' })
+    }
+  }
+
+  try {
+    // Parse request body
+    const payload = JSON.parse(event.body)
+    const { filePath, content, commitMessage, imageBase64, fileName } = payload
+
+    if (!filePath) {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ error: 'Missing filePath parameter' })
+      }
+    }
+
+    // Initialize Octokit
+    const octokit = new Octokit({
+      auth: GITHUB_ACCESS_TOKEN
+    })
+
+    let sha
+    let existingFile
+
+    // Try to get the existing file to get its SHA
+    try {
+      existingFile = await octokit.repos.getContent({
+        owner: GITHUB_REPO_OWNER,
+        repo: GITHUB_REPO_NAME,
+        path: filePath
+      })
+
+      if (existingFile.data && existingFile.data.sha) {
+        sha = existingFile.data.sha
+      }
+    } catch (error) {
+      // File doesn't exist yet, which is fine for new files
+      console.log(`File doesn't exist yet: ${filePath}`)
+    }
+
+    // Determine content to upload
+    let contentToUpload
+    let contentType
+
+    if (imageBase64) {
+      // This is an image upload
+      contentToUpload = imageBase64
+      contentType = 'base64'
+    } else if (content) {
+      // This is a text content update
+      contentToUpload = Buffer.from(content).toString('base64')
+      contentType = 'base64'
+    } else {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({
+          error: 'Missing content or imageBase64 parameter'
+        })
+      }
+    }
+
+    // Create or update file
+    const response = await octokit.repos.createOrUpdateFileContents({
+      owner: GITHUB_REPO_OWNER,
+      repo: GITHUB_REPO_NAME,
+      path: filePath,
+      message: commitMessage || `Update ${filePath}`,
+      content: contentToUpload,
+      sha: sha,
+      committer: {
+        name: 'Henka Admin Dashboard',
+        email: 'admin-dashboard@example.com'
+      }
+    })
+
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({
+        message: 'File updated successfully',
+        data: response.data
+      })
+    }
+  } catch (error) {
+    console.error('Error updating content:', error)
+
+    return {
+      statusCode: 500,
+      headers,
+      body: JSON.stringify({
+        error: error.message || 'Error updating content'
+      })
+    }
+  }
+}

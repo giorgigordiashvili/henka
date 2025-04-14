@@ -1,12 +1,20 @@
 import 'server-only'
 import type { Locale } from './i18n-config.ts'
 
-// We enumerate all dictionaries here for better linting and typescript support
-// We also get the default import for cleaner types
+// Fetch dictionaries from public folder instead of importing them
 const dictionaries = {
-  ge: () => import('../dictionaries/ge.json').then((module) => module.default),
-  en: () => import('../dictionaries/en.json').then((module) => module.default),
-  ru: () => import('../dictionaries/ru.json').then((module) => module.default)
+  ge: () =>
+    fetch(`${process.env.NEXT_PUBLIC_URL || ''}/dictionaries/ge.json`).then(
+      (res) => res.json()
+    ),
+  en: () =>
+    fetch(`${process.env.NEXT_PUBLIC_URL || ''}/dictionaries/en.json`).then(
+      (res) => res.json()
+    ),
+  ru: () =>
+    fetch(`${process.env.NEXT_PUBLIC_URL || ''}/dictionaries/ru.json`).then(
+      (res) => res.json()
+    )
 }
 
 export const getDictionary = async (locale: Locale) =>
