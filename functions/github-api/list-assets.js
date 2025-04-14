@@ -1,4 +1,4 @@
-import { Octokit } from '@octokit/rest'
+let Octokit
 import 'dotenv/config'
 
 // Environment variables
@@ -8,6 +8,23 @@ const GITHUB_REPO_NAME = process.env.GITHUB_REPO_NAME
 
 exports.handler = async function (event, context) {
   // Set CORS headers
+
+  try {
+    const { Octokit: OctokitImport } = await import('@octokit/rest')
+    Octokit = OctokitImport
+  } catch (error) {
+    console.error('Error importing Octokit:', error)
+    return {
+      statusCode: 500,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
+      },
+      body: JSON.stringify({ error: 'Failed to initialize GitHub API client' })
+    }
+  }
+
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
