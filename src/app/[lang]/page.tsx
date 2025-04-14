@@ -5,6 +5,7 @@ import Marquee from '@/components/Marquee'
 import Reason from '@/components/Reason'
 import VitaminSection from '@/components/VitaminSection'
 import VitaminTags from '@/components/VitaminTags'
+import WhereToBuy from '@/components/WhereToBuy'
 import { getDictionary } from '@/get-dictionary'
 import { Locale } from '@/i18n-config'
 
@@ -24,6 +25,7 @@ export default async function IndexPage(props: {
       <Marquee dictionary={dictionary.marquee} />
       <VitaminSection dictionary={dictionary.vitamin} />
       <VitaminTags dictionary={dictionary.vitaminTags} />
+      <WhereToBuy dictionary={dictionary.whereToBuy} />
     </div>
   )
 }
