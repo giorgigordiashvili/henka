@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     try {
-      // Save to GitHub via serverless function
+      // Save to GitHub via serverless function - using relative path that works in both dev and production
       const response = await fetch(
         '/.netlify/functions/github-api/update-content',
         {
@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const base64Image = await fileToBase64(imageFile)
       const base64Data = base64Image.split(',')[1] // Remove the data URL prefix
 
-      // Save image to GitHub via serverless function
+      // Save image to GitHub via serverless function using relative path for production
       const response = await fetch(
         '/.netlify/functions/github-api/update-content',
         {
@@ -529,7 +529,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Parse the JSON to validate
       const parsedData = JSON.parse(importContent)
 
-      // Save to GitHub via serverless function
+      // Save to GitHub via serverless function using relative path for production
       const response = await fetch(
         '/.netlify/functions/github-api/update-content',
         {
