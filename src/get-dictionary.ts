@@ -1,19 +1,30 @@
+import fs from 'fs'
+import path from 'path'
 import 'server-only'
 import type { Locale } from './i18n-config.ts'
 
-// Fetch dictionaries from public folder instead of importing them
+// Use file system to read dictionary files directly in server components
 const dictionaries = {
   ge: () =>
-    fetch(`${process.env.NEXT_PUBLIC_URL || ''}/dictionaries/ge.json`).then(
-      (res) => res.json()
+    JSON.parse(
+      fs.readFileSync(
+        path.join(process.cwd(), 'public/dictionaries/ge.json'),
+        'utf8'
+      )
     ),
   en: () =>
-    fetch(`${process.env.NEXT_PUBLIC_URL || ''}/dictionaries/en.json`).then(
-      (res) => res.json()
+    JSON.parse(
+      fs.readFileSync(
+        path.join(process.cwd(), 'public/dictionaries/en.json'),
+        'utf8'
+      )
     ),
   ru: () =>
-    fetch(`${process.env.NEXT_PUBLIC_URL || ''}/dictionaries/ru.json`).then(
-      (res) => res.json()
+    JSON.parse(
+      fs.readFileSync(
+        path.join(process.cwd(), 'public/dictionaries/ru.json'),
+        'utf8'
+      )
     )
 }
 
