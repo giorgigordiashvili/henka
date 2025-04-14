@@ -1,0 +1,51 @@
+{
+  "menu": {
+    "whereToBuy": "WHERE TO BUY",
+    "products": "PRODUCTS",
+    "aboutUs": "ABOUT US"
+  },
+  "hero": {
+    "title": "Natural wellness and energy in one bottle",
+    "subtitle": "Rich in probiotics, vitamins, and minerals – it empowers you and nourishes your body!",
+    "button": "Learn More",
+    "naturalIngredients": "FRESH INGREDIENTS",
+    "vitaminD": "DAILY VITAMIN D DOSE",
+    "probiotics": "PACKED WITH PROBIOTICS"
+  },
+  "about": {
+    "title": "ABOUT US",
+    "subtitle": "Henka is a Georgian brand that crafts premium-quality kombucha and functional waters. Our natural and delicious products support immune health, restore energy, and maintain balance. Kombucha is rich in probiotics, while functional water provides vitamin D for overall well-being."
+  },
+  "reason": {
+    "whyUs": "WHY KOMBUCHA?",
+    "antiBacterial": "Natural antibacterial agent",
+    "mentalHealth": "Improves mental health",
+    "liverFunction": "Strengthens the liver and its function",
+    "betterBreath": "Beneficial for the respiratory system",
+    "sugar": "Regulates blood sugar levels",
+    "heart": "Strengthens the heart and blood vessels"
+  },
+  "marquee": {
+    "energy": "enhanced energy",
+    "health": "Natural wellness",
+    "probiotics": "Packed with probiotics",
+    "vitamin": "Daily Vitamin D dose",
+    "ingredients": "fresh ingredients"
+  },
+  "vitamin": {
+    "title": "The first functional water with Vitamin D by Henka",
+    "description": "Henka's functional water contains Vitamin D3, which helps the body reach its required dose and strengthens your health. Its daily consumption supports the immune system. Henka offers cherry and lemon & lime flavors, making healthy hydration even lighter and more enjoyable.",
+    "list_one": "Supports muscle and bone health",
+    "list_two": "Energizes you throughout the day",
+    "list_three": "Supports natural hydration"
+  },
+  "vitaminTags": {
+    "title": "Vitamin D for your everyday life",
+    "contains": "Contains a high amount of Vitamin D",
+    "helps": "Helps improve the immune system",
+    "recovers": "Restores the body's energy",
+    "healthy": "Beneficial for the respiratory system",
+    "bio": "Crafted with only natural ingredients",
+    "balance": "Helps restore the body's balance"
+  }
+}

@@ -39,7 +39,8 @@ export function middleware(request: NextRequest) {
     pathname.startsWith('/fonts/') ||
     pathname.startsWith('/assets/') ||
     pathname.startsWith('/admin/') || // Also exempt all paths under /admin/
-    pathname.startsWith('/.netlify/') // Exempt Netlify functionality paths
+    pathname.startsWith('/.netlify/') || // Exempt Netlify functionality paths
+    pathname.startsWith('/dictionaries/') // Exempt dictionaries folder
   ) {
     return
   }
@@ -65,6 +66,8 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Matcher ignoring `/_next/`, `/api/`, and `/admin`
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|admin).*)']
+  // Matcher ignoring `/_next/`, `/api/`, `/admin`, `/.netlify/`, and `/dictionaries/`
+  matcher: [
+    '/((?!api|_next/static|_next/image|favicon.ico|admin|.netlify|dictionaries).*)'
+  ]
 }
