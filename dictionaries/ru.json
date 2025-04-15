@@ -62,5 +62,11 @@
     "mail": "giorgi.jirkvalidze@hbc.ge",
     "location": "Мцхетский Район, Село Мисакцели",
     "number": "+995 577-15-45-01"
+  },
+  "footer": {
+    "whereToBuy": "Где купить",
+    "products": "Продукты",
+    "aboutUs": "О нас",
+    "copyright": "@@2025 Все Права Защищены"
   }
 }
