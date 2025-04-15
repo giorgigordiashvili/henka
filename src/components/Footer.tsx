@@ -9,7 +9,6 @@ import Image from "next/image";
 import { Desktop, Mobile } from "./ui/Responsive";
 import Typography from "./ui/Typography";
 
-
 type Props = {
   dictionary: Awaited<ReturnType<typeof getDictionary>>["footer"];
 };
@@ -99,7 +98,7 @@ const LogoWrapper = styled.div`
 `;
 
 const WhiteLine = styled.div`
-  width: 100vw;
+  width: 100%;
   margin-left: calc(-50vw + 50%);
   border: 1px solid #ffffff;
 `;
