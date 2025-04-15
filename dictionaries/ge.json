@@ -62,5 +62,11 @@
     "mail": "giorgi.jirkvalidze@hbc.ge",
     "location": "მცხეთის რ-ნი, სოფ. მისაქციელი.",
     "number": "+995 577-15-45-01"
+  },
+  "footer": {
+    "whereToBuy": "სად შევიძინო",
+    "products": "პროდუქტები",
+    "aboutUs": "ჩვენს შესახებ",
+    "copyright": "@2025 ყველა უფლება დაცულია"
   }
 }

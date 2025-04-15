@@ -8,6 +8,7 @@ import VitaminTags from '@/components/VitaminTags'
 import WhereToBuy from '@/components/WhereToBuy'
 import { getDictionary } from '@/get-dictionary'
 import { Locale } from '@/i18n-config'
+import Footer from '@/components/Footer'
 
 export default async function IndexPage(props: {
   params: Promise<{ lang: Locale }>
@@ -26,6 +27,7 @@ export default async function IndexPage(props: {
       <VitaminSection dictionary={dictionary.vitamin} />
       <VitaminTags dictionary={dictionary.vitaminTags} />
       <WhereToBuy dictionary={dictionary.whereToBuy} />
+      <Footer dictionary={dictionary.footer} />
     </div>
   )
 }
