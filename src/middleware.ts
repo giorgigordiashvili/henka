@@ -31,12 +31,16 @@ export function middleware(request: NextRequest) {
       '/manifest.json',
       '/favicon.ico',
       '/robots.txt',
-      '/sitemap.xml'
+      '/sitemap.xml',
+      '/admin' // Add admin to the exempted paths
       // Add other files in `public` as needed
     ].includes(pathname) ||
     pathname.startsWith('/images/') ||
     pathname.startsWith('/fonts/') ||
-    pathname.startsWith('/assets/')
+    pathname.startsWith('/assets/') ||
+    pathname.startsWith('/admin/') || // Also exempt all paths under /admin/
+    pathname.startsWith('/.netlify/') || // Exempt Netlify functionality paths
+    pathname.startsWith('/dictionaries/') // Exempt dictionaries folder
   ) {
     return
   }
@@ -62,6 +66,8 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Matcher ignoring `/_next/` and `/api/`
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)']
+  // Matcher ignoring `/_next/`, `/api/`, `/admin`, `/.netlify/`, and `/dictionaries/`
+  matcher: [
+    '/((?!api|_next/static|_next/image|favicon.ico|admin|.netlify|dictionaries|assets).*)'
+  ]
 }

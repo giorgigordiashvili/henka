@@ -48,14 +48,6 @@
     "bio": "Crafted with only natural ingredients",
     "balance": "Helps restore the body's balance"
   },
-  "slider": {
-    "title": "DISCOVER THE FLAVORS OF OUR PRODUCTS",
-    "kombucha": "KOMBUCHA",
-    "water": "WATER",
-    "bottleTypeCherry": "CHERRY & LIME",
-    "bottleTypeGinger": "PASSION FRUIT & GINGER",
-    "bottleTypeRasp": "RASPBERRY & CORIANDER"
-  },
   "whereToBuy": {
     "title": "WHERE TO BUY",
     "goodwill": "Goodwill",
@@ -70,11 +62,5 @@
     "mail": "giorgi.jirkvalidze@hbc.ge",
     "location": "Mtskheta District, Misaktsieli Village",
     "number": "+995 577-15-45-01"
-  },
-  "footer": {
-    "whereToBuy": "WHERE TO BUY",
-    "products": "PRODUCTS",
-    "aboutUs": "ABOUT US",
-    "copyright": "@2025 All Rights Reserved"
   }
 }
