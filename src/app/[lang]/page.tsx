@@ -8,6 +8,10 @@ import VitaminSection from "@/components/VitaminSection";
 import VitaminTags from "@/components/VitaminTags";
 import { getDictionary } from "@/get-dictionary";
 import { Locale } from "@/i18n-config";
+import Slider from "@/components/Slider";
+import AboutUs from '@/components/AboutUs';
+import Footer from '@/components/Footer';
+
 export default async function IndexPage(props: {
   params: Promise<{ lang: Locale }>;
 }) {
@@ -25,6 +29,9 @@ export default async function IndexPage(props: {
       <VitaminSection dictionary={dictionary.vitamin} />
       <VitaminTags dictionary={dictionary.vitaminTags} />
       <Fruits dictionary={dictionary.fruits} enableStickyEffect={true} />
+      <Slider dictionary={dictionary.slider} />
+      <WhereToBuy dictionary={dictionary.whereToBuy} />
+      <Footer dictionary={dictionary.footer} />
     </div>
   );
 }

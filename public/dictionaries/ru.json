@@ -48,25 +48,6 @@
     "bio": "Создано только из натуральных ингредиентов",
     "balance": "Помогает восстановить баланс тела"
   },
-  "fruits": {
-    "paragraph": "Хенка – Здоровье с",
-    "paragraph2": "натуральными",
-    "paragraph3": "ингредиентами"
-  },
-  "fruits1": {
-    "paragraph": "Хенка – ",
-    "paragraph2": "Здоровье с",
-    "paragraph3": "натуральными",
-    "paragraph4": "ингредиентами"
-  },
-  "slider": {
-    "title": "ОТКРОЙТЕ ДЛЯ СЕБЯ ВКУСЫ НАШИХ ПРОДУКТОВ",
-    "kombucha": "КОМБУЧА",
-    "water": "ВОДА",
-    "bottleTypeCherry": "ВИ́ШНЯ И ЛАЙМ",
-    "bottleTypeGinger": "МАРАКУ́ЙЯ И ИМБИ́РЬ",
-    "bottleTypeRasp": "МАЛИ́НА И КИНЗА́"
-  },
   "whereToBuy": {
     "title": "ГДЕ КУПИТЬ",
     "goodwill": "Добрая воля",
@@ -81,11 +62,5 @@
     "mail": "giorgi.jirkvalidze@hbc.ge",
     "location": "Мцхетский Район, Село Мисакцели",
     "number": "+995 577-15-45-01"
-  },
-  "footer": {
-    "whereToBuy": "Где купить",
-    "products": "Продукты",
-    "aboutUs": "О нас",
-    "copyright": "@@2025 Все Права Защищены"
   }
 }
