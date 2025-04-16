@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Henka Admin Dashboard</title>
+    <!-- Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="admin-header">
+        <h1>Henka Admin Dashboard</h1>
+        <div class="user-controls">
+          <div data-netlify-identity-button></div>
+        </div>
+      </header>
+
+      <main class="admin-content">
+        <div class="login-message">
+          Please log in to access the admin dashboard
+        </div>
+
+        <div class="dashboard-container" style="display: none">
+          <nav class="sidebar">
+            <ul>
+              <li>
+                <a href="#" data-section="content-editor" class="active"
+                  >Content Editor</a
+                >
+              </li>
+              <li>
+                <a href="#" data-section="image-manager">Image Manager</a>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="main-panel">
+            <!-- Content Editor Section -->
+            <section id="content-editor" class="panel-section active">
+              <h2>Content Editor</h2>
+              <div class="language-selector">
+                <label for="language">Select Language:</label>
+                <select id="language">
+                  <option value="en">English</option>
+                  <option value="ge">Georgian</option>
+                  <option value="ru">Russian</option>
+                </select>
+              </div>
+
+              <div class="section-selector">
+                <label for="section">Select Section:</label>
+                <select id="section">
+                  <option value="menu">Menu</option>
+                  <option value="hero">Hero</option>
+                  <option value="about">About Us</option>
+                  <option value="reason">Why Kombucha</option>
+                  <option value="marquee">Marquee</option>
+                  <option value="vitamin">Vitamin</option>
+                  <option value="vitaminTags">Vitamin Tags</option>
+                </select>
+              </div>
+
+              <div class="content-form">
+                <div id="form-fields">
+                  <!-- Dynamic form fields will be populated here -->
+                </div>
+
+                <div class="form-actions">
+                  <button id="save-content" class="primary-button">
+                    Save Changes
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <!-- Image Manager Section -->
+            <section id="image-manager" class="panel-section">
+              <h2>Image Manager</h2>
+
+              <div class="image-browser">
+                <h3>Browse Existing Images</h3>
+                <div class="folder-navigation">
+                  <div class="folder-path" id="current-folder-path">
+                    public/assets
+                  </div>
+                  <button id="parent-folder" class="secondary-button">
+                    Parent Folder
+                  </button>
+                </div>
+
+                <div class="folders-container" id="folders-container">
+                  <!-- Folders will be populated here -->
+                  <div class="loading">Loading folders...</div>
+                </div>
+
+                <div class="images-grid" id="images-grid">
+                  <!-- Images will be populated here -->
+                  <div class="loading">Loading images...</div>
+                </div>
+              </div>
+
+              <div class="image-upload">
+                <h3>Upload New Image</h3>
+                <form id="image-upload-form">
+                  <div class="form-group">
+                    <label for="image-path">Image Destination:</label>
+                    <select id="image-path">
+                      <option value="assets">Main Assets</option>
+                      <option value="assets/marquee">Marquee Images</option>
+                      <option value="assets/vitamin">Vitamin Images</option>
+                      <option value="assets/why">Why Kombucha Images</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="image-file">Select Image:</label>
+                    <input type="file" id="image-file" accept="image/*" />
+                  </div>
+                  <div class="form-group">
+                    <label for="image-name"
+                      >Image Name (without extension):</label
+                    >
+                    <input
+                      type="text"
+                      id="image-name"
+                      placeholder="e.g., new-bottle"
+                    />
+                  </div>
+                  <button type="submit" class="primary-button">
+                    Upload Image
+                  </button>
+                </form>
+              </div>
+
+              <div class="image-preview">
+                <h3>Image Preview</h3>
+                <div id="preview-container"></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </main>
+
+      <div class="toast" id="toast-notification">
+        <div class="toast-content"></div>
+      </div>
+    </div>
+
+    <script src="admin.js"></script>
+  </body>
+</html>
