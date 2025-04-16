@@ -1,8 +1,9 @@
 'use client'
+import { getDictionary } from '@/get-dictionary'
 import { useRef, useState } from 'react'
 import styled from 'styled-components'
 import 'swiper/css'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react'
 import Typography from './ui/Typography'
 
 const StyledContainer = styled.div`
@@ -105,12 +106,14 @@ const BottleImage = styled.div`
   &.active img {
     width: 164px;
     height: 450px;
+    object-fit: contain;
   }
 
   &.side img {
     width: 120px;
     height: 336px;
     opacity: 0.8;
+    object-fit: contain;
   }
 `
 
@@ -120,47 +123,43 @@ const FlavorsDisplay = styled.div`
   font-weight: bold;
 `
 
-export default function KombuchaSlider({
-  dictionary = {
-    title: 'Kombucha Collection',
-    product: 'Natural & Healthy',
-    bottleTypeCherry: 'Cherry & Lime',
-    bottleTypeGinger: 'Passion & Ginger',
-    bottleTypeRasp: 'Raspberry & Grapefruit'
-  }
+export default function Slider({
+  dictionary
+}: {
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['slider']
 }) {
   const [activeIndex, setActiveIndex] = useState(1)
-  const swiperRef = useRef(null)
+  const swiperRef = useRef<SwiperRef | null>(null)
 
   const bottles = [
     {
       src: '/assets/slider/raspKombucha.png',
       alt: 'Raspberry Kombucha',
-      flavor: dictionary.bottleTypeRasp || 'Raspberry & Grapefruit'
+      flavor: dictionary.bottleTypeRasp
     },
     {
       src: '/assets/slider/cherryKombucha.png',
       alt: 'Cherry Kombucha',
-      flavor: dictionary.bottleTypeCherry || 'Cherry & Lime'
+      flavor: dictionary.bottleTypeCherry
     },
     {
       src: '/assets/slider/gingerKombucha.png',
       alt: 'Ginger Kombucha',
-      flavor: dictionary.bottleTypeGinger || 'Passion & Ginger'
+      flavor: dictionary.bottleTypeGinger
     }
   ]
 
   const slidesData = [...bottles, ...bottles, ...bottles]
 
   const handlePrev = () => {
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slidePrev()
+    if (swiperRef.current) {
+      swiperRef?.current?.swiper?.slidePrev()
     }
   }
 
   const handleNext = () => {
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slideNext()
+    if (swiperRef.current) {
+      swiperRef.current?.swiper?.slideNext()
     }
   }
 
@@ -175,7 +174,6 @@ export default function KombuchaSlider({
             <Typography variant="mBodytext">{dictionary.kombucha}</Typography>
           </StyledProduct>
           <StyledProduct>
-            {' '}
             <Typography variant="mBodytext">{dictionary.water}</Typography>
           </StyledProduct>
         </StyledProducts>
@@ -192,9 +190,9 @@ export default function KombuchaSlider({
               <path
                 d="M13.867 26.1402L1.72656 13.9998L13.867 1.85938"
                 stroke="#5C0E15"
-                stroke-width="1.82106"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.82106"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </PrevButton>
@@ -209,9 +207,9 @@ export default function KombuchaSlider({
               <path
                 d="M1.14083 26.1402L13.2812 13.9998L1.14083 1.85938"
                 stroke="#5C0E15"
-                stroke-width="1.82106"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.82106"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </NextButton>

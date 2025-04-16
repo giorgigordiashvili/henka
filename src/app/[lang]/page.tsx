@@ -1,5 +1,6 @@
 import AboutUs from '@/components/AboutUs'
 import Footer from '@/components/Footer'
+import Fruits from '@/components/Fruits'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import Marquee from '@/components/Marquee'
@@ -27,6 +28,7 @@ export default async function IndexPage(props: {
       <Marquee dictionary={dictionary.marquee} />
       <VitaminSection dictionary={dictionary.vitamin} />
       <VitaminTags dictionary={dictionary.vitaminTags} />
+      <Fruits dictionary={dictionary.fruits} enableStickyEffect={true} />
       <Slider dictionary={dictionary.slider} />
       <WhereToBuy dictionary={dictionary.whereToBuy} />
       <Footer dictionary={dictionary.footer} />
