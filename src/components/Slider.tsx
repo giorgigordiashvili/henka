@@ -153,13 +153,13 @@ export default function Slider({
 
   const handlePrev = () => {
     if (swiperRef.current) {
-      swiperRef.current?.swiper.slidePrev()
+      swiperRef?.current?.swiper?.slidePrev()
     }
   }
 
   const handleNext = () => {
     if (swiperRef.current) {
-      swiperRef.current?.swiper.slideNext()
+      swiperRef.current?.swiper?.slideNext()
     }
   }
 
