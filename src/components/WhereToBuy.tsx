@@ -12,7 +12,7 @@ const StyledContainer = styled.div`
   align-items: center;
   gap: 32px;
   padding: 54px 45px;
-  background-color: #fff;
+  background-color: rgb(252 252 252);
   width: 100%;
   max-width: 1334px;
     margin: auto;
@@ -106,7 +106,7 @@ const StyledHenka = styled.div`
 `;
 
 const StyledMainContainer = styled.div`
-  background-color: #fff;
+  background-color: rgb(252 252 252);
   width: 100%;
 `;
 
