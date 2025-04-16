@@ -1,10 +1,9 @@
-"use client";
-import React, { useState, useRef } from "react";
-import { getDictionary } from "@/get-dictionary";
-import Typography from "./ui/Typography";
-import styled from "styled-components";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
+'use client'
+import { useRef, useState } from 'react'
+import styled from 'styled-components'
+import 'swiper/css'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import Typography from './ui/Typography'
 
 const StyledContainer = styled.div`
   background-color: rgb(239 153 161);
@@ -12,7 +11,7 @@ const StyledContainer = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
-`;
+`
 
 const StyledBox = styled.div`
   color: rgba(92, 14, 21, 1);
@@ -22,13 +21,13 @@ const StyledBox = styled.div`
   flex-direction: column;
   gap: 20px;
   align-items: center;
-`;
+`
 
 const StyledTitle = styled.div`
   text-align: center;
   margin-bottom: 10px;
   width: 656px;
-`;
+`
 
 const StyledProduct = styled.div`
   text-align: center;
@@ -37,18 +36,18 @@ const StyledProduct = styled.div`
   &:hover {
     text-decoration: underline;
   }
-`;
+`
 
 const StyledProducts = styled.div`
   display: flex;
   gap: 20px;
-`;
+`
 
 const SwiperWrapper = styled.div`
   width: 100%;
   max-width: 600px;
   position: relative;
-`;
+`
 
 const StyledSwiper = styled(Swiper)`
   .swiper-slide {
@@ -57,7 +56,7 @@ const StyledSwiper = styled(Swiper)`
     align-items: center;
     transition: all 0.3s ease;
   }
-`;
+`
 
 const NavButton = styled.button`
   position: absolute;
@@ -81,15 +80,15 @@ const NavButton = styled.button`
     width: 15px;
     height: 28px;
   }
-`;
+`
 
 const PrevButton = styled(NavButton)`
   left: 150px;
-`;
+`
 
 const NextButton = styled(NavButton)`
   right: 150px;
-`;
+`
 
 const BottleImage = styled.div`
   display: flex;
@@ -113,57 +112,57 @@ const BottleImage = styled.div`
     height: 336px;
     opacity: 0.8;
   }
-`;
+`
 
 const FlavorsDisplay = styled.div`
   text-align: center;
   margin-top: 20px;
   font-weight: bold;
-`;
+`
 
 export default function KombuchaSlider({
   dictionary = {
-    title: "Kombucha Collection",
-    product: "Natural & Healthy",
-    bottleTypeCherry: "Cherry & Lime",
-    bottleTypeGinger: "Passion & Ginger",
-    bottleTypeRasp: "Raspberry & Grapefruit",
-  },
+    title: 'Kombucha Collection',
+    product: 'Natural & Healthy',
+    bottleTypeCherry: 'Cherry & Lime',
+    bottleTypeGinger: 'Passion & Ginger',
+    bottleTypeRasp: 'Raspberry & Grapefruit'
+  }
 }) {
-  const [activeIndex, setActiveIndex] = useState(1);
-  const swiperRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(1)
+  const swiperRef = useRef(null)
 
   const bottles = [
     {
-      src: "/assets/slider/raspKombucha.png",
-      alt: "Raspberry Kombucha",
-      flavor: dictionary.bottleTypeRasp || "Raspberry & Grapefruit",
+      src: '/assets/slider/raspKombucha.png',
+      alt: 'Raspberry Kombucha',
+      flavor: dictionary.bottleTypeRasp || 'Raspberry & Grapefruit'
     },
     {
-      src: "/assets/slider/cherryKombucha.png",
-      alt: "Cherry Kombucha",
-      flavor: dictionary.bottleTypeCherry || "Cherry & Lime",
+      src: '/assets/slider/cherryKombucha.png',
+      alt: 'Cherry Kombucha',
+      flavor: dictionary.bottleTypeCherry || 'Cherry & Lime'
     },
     {
-      src: "/assets/slider/gingerKombucha.png",
-      alt: "Ginger Kombucha",
-      flavor: dictionary.bottleTypeGinger || "Passion & Ginger",
-    },
-  ];
+      src: '/assets/slider/gingerKombucha.png',
+      alt: 'Ginger Kombucha',
+      flavor: dictionary.bottleTypeGinger || 'Passion & Ginger'
+    }
+  ]
 
-  const slidesData = [...bottles, ...bottles, ...bottles];
+  const slidesData = [...bottles, ...bottles, ...bottles]
 
   const handlePrev = () => {
     if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slidePrev();
+      swiperRef.current.swiper.slidePrev()
     }
-  };
+  }
 
   const handleNext = () => {
     if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slideNext();
+      swiperRef.current.swiper.slideNext()
     }
-  };
+  }
 
   return (
     <StyledContainer>
@@ -176,7 +175,7 @@ export default function KombuchaSlider({
             <Typography variant="mBodytext">{dictionary.kombucha}</Typography>
           </StyledProduct>
           <StyledProduct>
-            {" "}
+            {' '}
             <Typography variant="mBodytext">{dictionary.water}</Typography>
           </StyledProduct>
         </StyledProducts>
@@ -223,14 +222,14 @@ export default function KombuchaSlider({
             centeredSlides={true}
             loop={true}
             onSlideChange={(swiper) => {
-              setActiveIndex(swiper.realIndex);
+              setActiveIndex(swiper.realIndex)
             }}
             initialSlide={1}
           >
             {slidesData.map((bottle, index) => (
               <SwiperSlide key={index}>
                 {({ isActive }) => (
-                  <BottleImage className={isActive ? "active" : "side"}>
+                  <BottleImage className={isActive ? 'active' : 'side'}>
                     <img src={bottle.src} alt={bottle.alt} />
                   </BottleImage>
                 )}
@@ -247,5 +246,5 @@ export default function KombuchaSlider({
         </FlavorsDisplay>
       </StyledBox>
     </StyledContainer>
-  );
+  )
 }
