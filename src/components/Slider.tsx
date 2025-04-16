@@ -6,13 +6,19 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { getDictionary } from "@/get-dictionary";
 
-const StyledContainer = styled.div`
-  background-color: rgb(239 153 161);
+const StyledContainer = styled.div<{ bgColor: string }>`
+  background-color: ${({ bgColor }) => bgColor};
   padding: 60px 20px;
   display: flex;
   justify-content: center;
   position: relative;
 `;
+
+const backgroundColors = [
+  "rgb(239 153 161)", // Raspberry
+  "rgb(239 153 161)", // Cherry
+  "rgb(241 216 115", // Ginger
+];
 
 const StyledBox = styled.div`
   color: rgba(92, 14, 21, 1);
@@ -164,7 +170,9 @@ export default function Slider({
   };
 
   return (
-    <StyledContainer>
+    <StyledContainer
+      bgColor={backgroundColors[activeIndex % backgroundColors.length]}
+    >
       <StyledBox>
         <StyledTitle>
           <Typography variant="h2">{dictionary.title}</Typography>
