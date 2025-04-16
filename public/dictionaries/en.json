@@ -1,6 +1,6 @@
 {
   "menu": {
-    "whereToBuy": "WHERE TO BUY",
+    "whereToBuy": "WHERE TO",
     "products": "PRODUCTS",
     "aboutUs": "ABOUT US"
   },
@@ -57,7 +57,6 @@
     "paragraph": "Henka–",
     "paragraph2": " Health with",
     "paragraph3": "natural",
-
     "paragraph4": "ingredients"
   },
   "slider": {
