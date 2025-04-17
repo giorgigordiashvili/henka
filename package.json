@@ -13,6 +13,7 @@
     "@octokit/rest": "^21.1.1",
     "@tanstack/react-query": "^5.74.3",
     "dotenv-safe": "^9.1.0",
+    "framer-motion": "^12.7.4",
     "negotiator": "^1.0.0",
     "netlify-identity-widget": "^1.9.2",
     "next": "15.3.0",
