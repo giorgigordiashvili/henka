@@ -9,6 +9,7 @@ export default function AboutUs({
 }) {
   return (
     <TextWithImage
+      id="aboutUs"
       title={dictionary.title}
       subtitle={dictionary.subtitle}
       imageSrc="/assets/about-us.png"

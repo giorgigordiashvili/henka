@@ -1,7 +1,7 @@
 "use client";
 import { getDictionary } from "@/get-dictionary";
 import Image from "next/image";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Container from "./ui/Container";
 import MenuItem from "./ui/MenuItem";
 import { Desktop, Mobile } from "./ui/Responsive";
@@ -25,11 +25,21 @@ const StyledUnionContainer = styled.div`
   }
 `;
 
+const bounceAnimation = keyframes`
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+`;
+
 const StyledFruitsContainer = styled.div`
   position: absolute;
   width: 100%;
   height: calc(100vh - 78px - 167px);
   pointer-events: none;
+  animation: ${bounceAnimation} 3s ease-in-out infinite;
   @media (max-width: 1080px) {
     z-index: 5;
   }

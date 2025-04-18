@@ -1,8 +1,17 @@
 "use client";
 import { getDictionary } from "@/get-dictionary";
 import Image from "next/image";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Desktop, Mobile } from "./ui/Responsive";
+
+const bounceAnimation = keyframes`
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+`;
 
 const DesktopContainer = styled.div`
   @media (max-width: 1300px) {
@@ -100,26 +109,38 @@ const MobileRow = styled.div`
 
 const GingerImage1 = styled(Image)`
   transform: rotate(25.05deg);
+  animation: ${bounceAnimation} 3s ease-in-out infinite;
+  animation-delay: 1s;
 `;
 
 const GingerImage2 = styled(Image)`
   transform: rotate(27.01deg);
+  animation: ${bounceAnimation} 3s ease-in-out infinite;
+  animation-delay: 1s;
 `;
 
 const PineberryImage1 = styled(Image)`
   transform: rotate(37.55deg);
+  animation: ${bounceAnimation} 3s ease-in-out infinite;
+  animation-delay: 1s;
 `;
 
 const PineberryImage2 = styled(Image)`
   transform: rotate(37.55deg);
+  animation: ${bounceAnimation} 3s ease-in-out infinite;
+  animation-delay: 1s;
 `;
 
 const LeafImage1 = styled(Image)`
   transform: rotate(265deg);
+  animation: ${bounceAnimation} 3s ease-in-out infinite;
+  animation-delay: 1s;
 `;
 
 const LeafImage2 = styled(Image)`
   transform: rotate(0deg);
+  animation: ${bounceAnimation} 3s ease-in-out infinite;
+  animation-delay: 1s;
 `;
 
 const StyledUnionContainerBottom = styled.div`

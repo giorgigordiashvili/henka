@@ -258,7 +258,7 @@ export default function Slider({
   }, [activeIndex]);
 
   return (
-    <StyledContainer style={{ backgroundColor: backgroundColor }}>
+    <StyledContainer id="products" style={{ backgroundColor: backgroundColor }}>
       <BackgroundLayer
         key={`${activeIndex}-${animationDirection}`} // Key changes when direction changes
         initial={{

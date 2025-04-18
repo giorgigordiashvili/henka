@@ -1,8 +1,7 @@
 "use client";
 import { getDictionary } from "@/get-dictionary";
-import React from "react";
-import styled from "styled-components";
 import Image from "next/image";
+import styled from "styled-components";
 import Typography from "./ui/Typography";
 
 const StyledContainer = styled.div`
@@ -116,7 +115,7 @@ export default function WhereToBuy({
   dictionary: Awaited<ReturnType<typeof getDictionary>>["whereToBuy"];
 }) {
   return (
-    <StyledMainContainer>
+    <StyledMainContainer id="whereToBuy">
       <StyledContainer>
         <StyledBio>
           <StyledLocations>

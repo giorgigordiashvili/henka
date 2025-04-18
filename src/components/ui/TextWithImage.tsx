@@ -49,6 +49,7 @@ const StyledImageContainer = styled.div`
 `;
 
 interface TextWithImageProps {
+  id?: string;
   title: string;
   subtitle: string;
   imageSrc: string;
@@ -61,6 +62,7 @@ interface TextWithImageProps {
 }
 
 export default function TextWithImage({
+  id,
   title,
   subtitle,
   imageSrc,
@@ -72,7 +74,7 @@ export default function TextWithImage({
   className,
 }: TextWithImageProps) {
   return (
-    <StyledContainer $backgroundColor={backgroundColor} className={className}>
+    <StyledContainer id={id} $backgroundColor={backgroundColor} className={className}>
       <Container>
         <StyledFlex $imagePosition={imagePosition}>
           <StyledTextContainer>

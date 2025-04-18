@@ -28,12 +28,29 @@ type Props = {
   text: string;
   href: string;
   tabIndex?: number;
+  scrollTo?: string;
+  onLinkClick?: () => void; // Added callback for mobile menu closing
 };
 
-function NavigationLink({ text, href, tabIndex }: Props) {
+function NavigationLink({ text, href, tabIndex, scrollTo, onLinkClick }: Props) {
+  const handleClick = (e: React.MouseEvent) => {
+    if (scrollTo) {
+      e.preventDefault();
+      const element = document.getElementById(scrollTo);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+
+    // Call the onLinkClick callback if it exists
+    if (onLinkClick) {
+      onLinkClick();
+    }
+  };
+
   return (
     <StyledLi>
-      <Link href={href} passHref tabIndex={tabIndex}>
+      <Link href={href} passHref tabIndex={tabIndex} onClick={handleClick}>
         <Typography variant="mBodytext">{text}</Typography>
       </Link>
     </StyledLi>

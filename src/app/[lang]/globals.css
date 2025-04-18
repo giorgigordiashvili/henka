@@ -12,6 +12,11 @@
   font-style: normal;
 }
 
+/* Adding smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Helvetica", sans-serif;
   background: #dd2233;

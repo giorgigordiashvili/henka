@@ -140,15 +140,21 @@ export default function Header({
   dictionary: Awaited<ReturnType<typeof getDictionary>>["menu"];
 }) {
   const [open, setOpen] = useState(false);
+
+  // Handler to close mobile menu
+  const closeMobileMenu = () => {
+    setOpen(false);
+  };
+
   return (
     <>
       <Container>
         <StyledContainer>
           <StyledLinksContainer aria-label="Main Navigation">
             <NavList>
-              <NavigationLink text={dictionary.whereToBuy} href="/" />
-              <NavigationLink text={dictionary.products} href="/" />
-              <NavigationLink text={dictionary.aboutUs} href="/" />
+              <NavigationLink text={dictionary.whereToBuy} href="/" scrollTo="whereToBuy" />
+              <NavigationLink text={dictionary.products} href="/" scrollTo="products" />
+              <NavigationLink text={dictionary.aboutUs} href="/" scrollTo="aboutUs" />
             </NavList>
           </StyledLinksContainer>
           <LogoContainer>
@@ -180,9 +186,27 @@ export default function Header({
             <CloseIcon />
           </StyledCloseButton>
           <MobileNavList>
-            <NavigationLink text={dictionary.whereToBuy} href="/" tabIndex={open ? 0 : -1} />
-            <NavigationLink text={dictionary.products} href="/" tabIndex={open ? 0 : -1} />
-            <NavigationLink text={dictionary.aboutUs} href="/" tabIndex={open ? 0 : -1} />
+            <NavigationLink
+              text={dictionary.whereToBuy}
+              href="/"
+              scrollTo="whereToBuy"
+              tabIndex={open ? 0 : -1}
+              onLinkClick={closeMobileMenu}
+            />
+            <NavigationLink
+              text={dictionary.products}
+              href="/"
+              scrollTo="products"
+              tabIndex={open ? 0 : -1}
+              onLinkClick={closeMobileMenu}
+            />
+            <NavigationLink
+              text={dictionary.aboutUs}
+              href="/"
+              scrollTo="aboutUs"
+              tabIndex={open ? 0 : -1}
+              onLinkClick={closeMobileMenu}
+            />
           </MobileNavList>
           <LocaleSwitcher tabIndex={open ? undefined : -1} />
         </MobileMenu>

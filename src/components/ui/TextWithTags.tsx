@@ -41,29 +41,18 @@ const slideInFromRight = keyframes`
 `;
 
 // Apply animation conditionally based on props and only on desktop
-const StyledReasons = styled.div<{ $isVisible: boolean; $fromLeft?: boolean }>`
+const StyledReasons = styled.div<{ $fromLeft?: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   gap: 64px;
-  opacity: 0;
   @media (max-width: 1080px) {
     gap: 32px;
     justify-content: flex-start;
     align-items: flex-start;
-
     text-align: left;
-  }
-
-  /* Only apply animations on desktop (screens > 1080px) */
-  @media (min-width: 1081px) {
-    ${(props) =>
-      props.$isVisible &&
-      css`
-        animation: ${props.$fromLeft ? slideInFromLeft : slideInFromRight} 0.8s ease-out forwards;
-      `}
   }
 
   /* Make elements visible immediately on mobile without animation */
@@ -72,18 +61,32 @@ const StyledReasons = styled.div<{ $isVisible: boolean; $fromLeft?: boolean }>`
   }
 `;
 
-const StyledReason = styled.div`
+// Animation for individual items that will follow scroll
+const StyledReason = styled.div<{ $isVisible: boolean; $fromLeft?: boolean; $index: number }>`
   display: flex;
   flex-direction: column;
   font-weight: 700;
   align-items: center;
   gap: 12px;
+  opacity: 0;
+
   @media (max-width: 1080px) {
     flex-direction: row;
     gap: 20px;
     text-align: left;
     margin-left: 16px;
     justify-content: flex-start;
+    opacity: 1; /* Always visible on mobile */
+  }
+
+  /* Only apply animations on desktop (screens > 1080px) */
+  @media (min-width: 1081px) {
+    ${(props) =>
+      props.$isVisible &&
+      css`
+        animation: ${props.$fromLeft ? slideInFromLeft : slideInFromRight} 0.8s ease-out forwards;
+        animation-delay: ${props.$index * 0.2}s; /* Stagger animations based on index */
+      `}
   }
 `;
 
@@ -369,9 +372,14 @@ export default function TextWithTags({
   return (
     <div className={className} ref={reasonsRef}>
       <StyledItemsGrid>
-        <StyledReasons $isVisible={isInView} $fromLeft={true}>
+        <StyledReasons $fromLeft={true}>
           {leftTags.map((tag, index) => (
-            <StyledReason key={`left-tag-${index}`}>
+            <StyledReason
+              key={`left-tag-${index}`}
+              $isVisible={isInView}
+              $fromLeft={true}
+              $index={index}
+            >
               <Image src={tag.iconSrc} width={62} height={62} alt={tag.iconAlt} />
               <Typography variant="sBodytext">{tag.text}</Typography>
             </StyledReason>
@@ -395,9 +403,14 @@ export default function TextWithTags({
             />
           </Mobile>
         </StyledImageContainer>
-        <StyledReasons $isVisible={isInView} $fromLeft={false}>
+        <StyledReasons $fromLeft={false}>
           {rightTags.map((tag, index) => (
-            <StyledReason key={`right-tag-${index}`}>
+            <StyledReason
+              key={`right-tag-${index}`}
+              $isVisible={isInView}
+              $fromLeft={false}
+              $index={index}
+            >
               <Image src={tag.iconSrc} width={62} height={62} alt={tag.iconAlt} />
               <Typography variant="sBodytext">{tag.text}</Typography>
             </StyledReason>
