@@ -1,13 +1,13 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
-import Typography from "./ui/Typography";
-import styled from "styled-components";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css/effect-creative";
-import "swiper/css";
 import { getDictionary } from "@/get-dictionary";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import styled from "styled-components";
+import "swiper/css";
+import "swiper/css/effect-creative";
+import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
+import Typography from "./ui/Typography";
 
 const StyledContainer = styled(motion.div)`
   padding: 60px 20px;
@@ -135,11 +135,7 @@ const CircleBackground = styled.div`
   transform: translateX(-50%);
   border-radius: 50%;
   z-index: 0;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
   filter: blur(85px);
 `;
 
@@ -189,7 +185,7 @@ const FlavorsDisplay = styled.div`
   }
 `;
 
-const BackgroundLayer = styled(motion.div)`
+const BackgroundLayer = styled(motion.div)<{ animationDirection: string }>`
   position: absolute;
   top: 0;
   left: 0;
@@ -207,7 +203,7 @@ export default function Slider({
   dictionary: Awaited<ReturnType<typeof getDictionary>>["slider"];
 }) {
   const [activeIndex, setActiveIndex] = useState(1);
-  const swiperRef = useRef(null);
+  const swiperRef = useRef<SwiperRef | null>(null);
   const [backgroundColor, setBackgroundColor] = useState(backgroundColors[1]);
   const [animationDirection, setAnimationDirection] = useState("left"); // Default direction
 
@@ -328,12 +324,7 @@ export default function Slider({
               <SwiperSlide key={index}>
                 {({ isActive }) => (
                   <BottleImage className={isActive ? "active" : "side"}>
-                    <Image
-                      src={bottle.src}
-                      alt={bottle.alt}
-                      width={164}
-                      height={450}
-                    />
+                    <Image src={bottle.src} alt={bottle.alt} width={164} height={450} />
                   </BottleImage>
                 )}
               </SwiperSlide>
@@ -343,8 +334,7 @@ export default function Slider({
 
         <FlavorsDisplay>
           <Typography variant="lBodytext">
-            {activeIndex !== undefined &&
-              bottles[activeIndex % bottles.length]?.flavor}
+            {activeIndex !== undefined && bottles[activeIndex % bottles.length]?.flavor}
           </Typography>
         </FlavorsDisplay>
       </StyledBox>

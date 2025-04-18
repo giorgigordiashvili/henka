@@ -1,12 +1,6 @@
-import { SVGProps } from 'react'
+import { SVGProps } from "react";
 const SecondUnion = (props: SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={1445}
-    height={167}
-    fill="none"
-    {...props}
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" width={1445} height={167} fill="none" {...props}>
     <path
       fill="#FCFCFC"
       fillRule="evenodd"
@@ -14,5 +8,5 @@ const SecondUnion = (props: SVGProps<SVGSVGElement>) => (
       clipRule="evenodd"
     />
   </svg>
-)
-export default SecondUnion
+);
+export default SecondUnion;

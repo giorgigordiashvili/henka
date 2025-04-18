@@ -1,16 +1,16 @@
-'use client'
-import { getDictionary } from '@/get-dictionary'
-import BurgerIcon from '@/icons/BurgerIcon'
-import Image from 'next/image'
-import { useState } from 'react'
-import styled from 'styled-components'
-import LocaleSwitcher from './LocaleSwitcher'
-import Container from './ui/Container'
-import NavigationLink from './ui/NavigationLink'
+"use client";
+import { getDictionary } from "@/get-dictionary";
+import BurgerIcon from "@/icons/BurgerIcon";
+import Image from "next/image";
+import { useState } from "react";
+import styled from "styled-components";
+import LocaleSwitcher from "./LocaleSwitcher";
+import Container from "./ui/Container";
+import NavigationLink from "./ui/NavigationLink";
 
 // Static image import
-import CloseIcon from '@/icons/CloseIcon'
-import logoImage from '../../public/assets/logo.png'
+import CloseIcon from "@/icons/CloseIcon";
+import logoImage from "../../public/assets/logo.png";
 
 const StyledContainer = styled.div`
   padding: 12px 0px;
@@ -26,7 +26,7 @@ const StyledContainer = styled.div`
     width: 100%;
     justify-content: space-between;
   }
-`
+`;
 
 const StyledLinksContainer = styled.nav`
   display: flex;
@@ -35,7 +35,7 @@ const StyledLinksContainer = styled.nav`
   @media (max-width: 1080px) {
     display: none;
   }
-`
+`;
 
 const NavList = styled.ul`
   display: flex;
@@ -43,7 +43,7 @@ const NavList = styled.ul`
   padding: 0;
   margin: 0;
   list-style: none;
-`
+`;
 
 const MobileNavList = styled.ul`
   display: flex;
@@ -53,7 +53,7 @@ const MobileNavList = styled.ul`
   margin: 0;
   list-style: none;
   align-items: center;
-`
+`;
 
 const LogoContainer = styled.div`
   display: flex;
@@ -61,7 +61,7 @@ const LogoContainer = styled.div`
   @media (max-width: 1080px) {
     display: none;
   }
-`
+`;
 
 const LogoContainerMobile = styled.div`
   display: none;
@@ -69,7 +69,7 @@ const LogoContainerMobile = styled.div`
   @media (max-width: 1080px) {
     display: flex;
   }
-`
+`;
 
 const LocaleSwitcherContainer = styled.div`
   display: flex;
@@ -77,7 +77,7 @@ const LocaleSwitcherContainer = styled.div`
   @media (max-width: 1080px) {
     display: none;
   }
-`
+`;
 
 const StyledBurgerContainer = styled.button`
   display: none;
@@ -90,7 +90,7 @@ const StyledBurgerContainer = styled.button`
     justify-content: center;
     padding: 0px;
   }
-`
+`;
 
 const StyledCloseButton = styled.button`
   display: none;
@@ -106,11 +106,11 @@ const StyledCloseButton = styled.button`
     right: 16px;
     top: 19px;
   }
-`
+`;
 
 const MobileMenu = styled.nav<{ $isOpen: boolean }>`
   position: fixed;
-  top: ${({ $isOpen }) => ($isOpen ? '0px' : '-100%')};
+  top: ${({ $isOpen }) => ($isOpen ? "0px" : "-100%")};
   left: 0;
   right: 0;
   background: #dd2233;
@@ -123,21 +123,23 @@ const MobileMenu = styled.nav<{ $isOpen: boolean }>`
   width: 100%;
   height: 100dvh;
   z-index: 9999;
-  opacity: ${({ $isOpen }) => ($isOpen ? '1' : '0')};
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: ${({ $isOpen }) => ($isOpen ? "1" : "0")};
+  transition:
+    transform 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   @media (min-width: 1081px) {
     display: none;
   }
-`
+`;
 
 export default function Header({
-  dictionary
+  dictionary,
 }: {
-  dictionary: Awaited<ReturnType<typeof getDictionary>>['menu']
+  dictionary: Awaited<ReturnType<typeof getDictionary>>["menu"];
 }) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   return (
     <>
       <Container>
@@ -150,22 +152,10 @@ export default function Header({
             </NavList>
           </StyledLinksContainer>
           <LogoContainer>
-            <Image
-              width={54}
-              height={54}
-              src={logoImage}
-              alt="logo"
-              placeholder="blur"
-            />
+            <Image width={54} height={54} src={logoImage} alt="logo" placeholder="blur" />
           </LogoContainer>
           <LogoContainerMobile>
-            <Image
-              width={40}
-              height={40}
-              src={logoImage}
-              alt="logo"
-              placeholder="blur"
-            />
+            <Image width={40} height={40} src={logoImage} alt="logo" placeholder="blur" />
           </LogoContainerMobile>
           <StyledBurgerContainer
             onClick={() => setOpen((prev) => !prev)}
@@ -190,25 +180,13 @@ export default function Header({
             <CloseIcon />
           </StyledCloseButton>
           <MobileNavList>
-            <NavigationLink
-              text={dictionary.whereToBuy}
-              href="/"
-              tabIndex={open ? 0 : -1}
-            />
-            <NavigationLink
-              text={dictionary.products}
-              href="/"
-              tabIndex={open ? 0 : -1}
-            />
-            <NavigationLink
-              text={dictionary.aboutUs}
-              href="/"
-              tabIndex={open ? 0 : -1}
-            />
+            <NavigationLink text={dictionary.whereToBuy} href="/" tabIndex={open ? 0 : -1} />
+            <NavigationLink text={dictionary.products} href="/" tabIndex={open ? 0 : -1} />
+            <NavigationLink text={dictionary.aboutUs} href="/" tabIndex={open ? 0 : -1} />
           </MobileNavList>
           <LocaleSwitcher tabIndex={open ? undefined : -1} />
         </MobileMenu>
       </Container>
     </>
-  )
+  );
 }

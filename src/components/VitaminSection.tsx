@@ -1,11 +1,11 @@
-'use client'
-import { getDictionary } from '@/get-dictionary'
-import TextWithImage from './ui/TextWithImage'
+"use client";
+import { getDictionary } from "@/get-dictionary";
+import TextWithImage from "./ui/TextWithImage";
 
 export default function VitaminSection({
-  dictionary
+  dictionary,
 }: {
-  dictionary: Awaited<ReturnType<typeof getDictionary>>['vitamin']
+  dictionary: Awaited<ReturnType<typeof getDictionary>>["vitamin"];
 }) {
   return (
     <TextWithImage
@@ -16,5 +16,5 @@ export default function VitaminSection({
       imageAlt="Vitamin"
       backgroundColor="#fcfcfc"
     />
-  )
+  );
 }

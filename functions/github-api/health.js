@@ -1,14 +1,14 @@
-exports.handler = async function (event, context) {
+exports.handler = async function () {
   return {
     statusCode: 200,
     headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
     },
     body: JSON.stringify({
-      status: 'ok',
-      message: 'Henka Admin API is running',
-      timestamp: new Date().toISOString()
-    })
-  }
-}
+      status: "ok",
+      message: "Henka Admin API is running",
+      timestamp: new Date().toISOString(),
+    }),
+  };
+};

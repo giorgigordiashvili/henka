@@ -172,12 +172,7 @@ export default function Fruits({
         <DesktopContainer>
           <ThreeRowsContainer>
             <Row>
-              <GingerImage1
-                src="/assets/marquee/ginger.png"
-                width={121}
-                height={121}
-                alt=""
-              />
+              <GingerImage1 src="/assets/marquee/ginger.png" width={121} height={121} alt="" />
               <Paragraph>{dictionary.paragraph}</Paragraph>
               <PineberryImage1
                 src="/assets/marquee/pineberry.png"
@@ -187,19 +182,9 @@ export default function Fruits({
               />
             </Row>
             <Row>
-              <LeafImage1
-                src="/assets/marquee/leaf.png"
-                width={115}
-                height={115}
-                alt=""
-              />
+              <LeafImage1 src="/assets/marquee/leaf.png" width={115} height={115} alt="" />
               <Paragraph>{dictionary.paragraph2}</Paragraph>
-              <LeafImage2
-                src="/assets/marquee/leaf.png"
-                width={115}
-                height={115}
-                alt=""
-              />
+              <LeafImage2 src="/assets/marquee/leaf.png" width={115} height={115} alt="" />
             </Row>
             <Row>
               <PineberryImage2
@@ -209,12 +194,7 @@ export default function Fruits({
                 alt=""
               />
               <Paragraph>{dictionary.paragraph3}</Paragraph>
-              <GingerImage2
-                src="/assets/marquee/ginger.png"
-                width={121}
-                height={121}
-                alt=""
-              />
+              <GingerImage2 src="/assets/marquee/ginger.png" width={121} height={121} alt="" />
             </Row>
           </ThreeRowsContainer>
         </DesktopContainer>
@@ -222,35 +202,15 @@ export default function Fruits({
         <MobileContainer>
           <MobileLayoutContainer>
             <MobileRow>
-              <GingerImage1
-                src="/assets/marquee/ginger.png"
-                width={45}
-                height={45}
-                alt=""
-              />
+              <GingerImage1 src="/assets/marquee/ginger.png" width={45} height={45} alt="" />
               <Paragraph>{fruits1.paragraph}</Paragraph>
-              <PineberryImage1
-                src="/assets/marquee/pineberry.png"
-                width={45}
-                height={45}
-                alt=""
-              />
+              <PineberryImage1 src="/assets/marquee/pineberry.png" width={45} height={45} alt="" />
             </MobileRow>
             <Paragraph>{fruits1.paragraph2}</Paragraph>
             <MobileRow>
-              <LeafImage1
-                src="/assets/marquee/leaf.png"
-                width={45}
-                height={45}
-                alt=""
-              />
+              <LeafImage1 src="/assets/marquee/leaf.png" width={45} height={45} alt="" />
               <Paragraph>{fruits1.paragraph3}</Paragraph>
-              <LeafImage2
-                src="/assets/marquee/leaf.png"
-                width={45}
-                height={45}
-                alt=""
-              />
+              <LeafImage2 src="/assets/marquee/leaf.png" width={45} height={45} alt="" />
             </MobileRow>
             <Paragraph>{fruits1.paragraph4}</Paragraph>
           </MobileLayoutContainer>

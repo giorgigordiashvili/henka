@@ -1,11 +1,11 @@
-'use client'
-import { getDictionary } from '@/get-dictionary'
-import TextWithImage from './ui/TextWithImage'
+"use client";
+import { getDictionary } from "@/get-dictionary";
+import TextWithImage from "./ui/TextWithImage";
 
 export default function AboutUs({
-  dictionary
+  dictionary,
 }: {
-  dictionary: Awaited<ReturnType<typeof getDictionary>>['about']
+  dictionary: Awaited<ReturnType<typeof getDictionary>>["about"];
 }) {
   return (
     <TextWithImage
@@ -15,5 +15,5 @@ export default function AboutUs({
       imageAlt="About Us"
       backgroundColor="#fcfcfc"
     />
-  )
+  );
 }

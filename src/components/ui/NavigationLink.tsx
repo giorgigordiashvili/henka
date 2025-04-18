@@ -1,7 +1,7 @@
-'use client'
-import Link from 'next/link'
-import styled from 'styled-components'
-import Typography from './Typography'
+"use client";
+import Link from "next/link";
+import styled from "styled-components";
+import Typography from "./Typography";
 
 const StyledLi = styled.li`
   list-style: none;
@@ -15,7 +15,7 @@ const StyledLi = styled.li`
     text-decoration: none;
     color: #fcfcfc;
     text-transform: uppercase;
-    font-feature-settings: 'case';
+    font-feature-settings: "case";
   }
 
   &:hover {
@@ -23,12 +23,12 @@ const StyledLi = styled.li`
       color: rgba(252, 252, 252, 0.7);
     }
   }
-`
+`;
 type Props = {
-  text: string
-  href: string
-  tabIndex?: number
-}
+  text: string;
+  href: string;
+  tabIndex?: number;
+};
 
 function NavigationLink({ text, href, tabIndex }: Props) {
   return (
@@ -37,7 +37,7 @@ function NavigationLink({ text, href, tabIndex }: Props) {
         <Typography variant="mBodytext">{text}</Typography>
       </Link>
     </StyledLi>
-  )
+  );
 }
 
-export default NavigationLink
+export default NavigationLink;
