@@ -1,11 +1,11 @@
-'use client'
-import { getDictionary } from '@/get-dictionary'
-import Image from 'next/image'
-import styled from 'styled-components'
-import Container from './ui/Container'
-import MenuItem from './ui/MenuItem'
-import { Desktop, Mobile } from './ui/Responsive'
-import Typography from './ui/Typography'
+"use client";
+import { getDictionary } from "@/get-dictionary";
+import Image from "next/image";
+import styled from "styled-components";
+import Container from "./ui/Container";
+import MenuItem from "./ui/MenuItem";
+import { Desktop, Mobile } from "./ui/Responsive";
+import Typography from "./ui/Typography";
 
 const StyledContainer = styled.div`
   height: calc(100vh - 78px);
@@ -13,7 +13,7 @@ const StyledContainer = styled.div`
   @media (max-width: 1080px) {
     height: 100vh;
   }
-`
+`;
 
 const StyledUnionContainer = styled.div`
   position: absolute;
@@ -23,7 +23,7 @@ const StyledUnionContainer = styled.div`
   @media (max-width: 1080px) {
     height: 42.98px;
   }
-`
+`;
 
 const StyledFruitsContainer = styled.div`
   position: absolute;
@@ -33,7 +33,7 @@ const StyledFruitsContainer = styled.div`
   @media (max-width: 1080px) {
     z-index: 5;
   }
-`
+`;
 
 const StyledContentContainer = styled.div`
   position: relative;
@@ -49,7 +49,7 @@ const StyledContentContainer = styled.div`
     flex-direction: column;
     gap: 16px;
   }
-`
+`;
 
 const StyledTextContainer = styled.div`
   display: flex;
@@ -60,13 +60,13 @@ const StyledTextContainer = styled.div`
     padding-top: 15px;
     z-index: 99;
   }
-`
+`;
 
 const StyledTagsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 44px;
-`
+`;
 
 const StyledBlurWithBottles = styled.div`
   width: 456px;
@@ -79,7 +79,7 @@ const StyledBlurWithBottles = styled.div`
     align-items: center;
     height: auto;
   }
-`
+`;
 const StyledBlur = styled.div`
   background: #ed9098;
   border-radius: 50%;
@@ -93,13 +93,13 @@ const StyledBlur = styled.div`
 
     filter: blur(123px);
   }
-`
+`;
 
 const StyledTagContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 9px;
-`
+`;
 
 const StyledPercent = styled.div`
   background: rgba(239, 153, 161, 1);
@@ -114,7 +114,7 @@ const StyledPercent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
 const StyledTagText = styled.div`
   font-weight: 700;
@@ -122,11 +122,11 @@ const StyledTagText = styled.div`
   line-height: 30px;
   max-width: 206px;
   text-transform: uppercase;
-`
+`;
 export default function Hero({
-  dictionary
+  dictionary,
 }: {
-  dictionary: Awaited<ReturnType<typeof getDictionary>>['hero']
+  dictionary: Awaited<ReturnType<typeof getDictionary>>["hero"];
 }) {
   return (
     <StyledContainer>
@@ -167,18 +167,11 @@ export default function Hero({
           <Mobile>
             <StyledTextContainer>
               <Mobile>
-                <Typography variant="mBodytext">
-                  {dictionary.subtitle}
-                </Typography>
+                <Typography variant="mBodytext">{dictionary.subtitle}</Typography>
               </Mobile>
 
               <Mobile>
-                <MenuItem
-                  fullWidth
-                  size="M"
-                  text={dictionary.button}
-                  href="/"
-                />
+                <MenuItem fullWidth size="M" text={dictionary.button} href="/" />
               </Mobile>
             </StyledTextContainer>
           </Mobile>
@@ -200,20 +193,10 @@ export default function Hero({
           </Desktop>
           <StyledFruitsContainer>
             <Desktop>
-              <Image
-                src="/assets/fruits-1.png"
-                alt="Fruits"
-                fill
-                objectFit="contain"
-              />
+              <Image src="/assets/fruits-1.png" alt="Fruits" fill objectFit="contain" />
             </Desktop>
             <Mobile>
-              <Image
-                src="/assets/fruits-1-mobile.png"
-                alt="Fruits"
-                fill
-                objectFit="contain"
-              />
+              <Image src="/assets/fruits-1-mobile.png" alt="Fruits" fill objectFit="contain" />
             </Mobile>
           </StyledFruitsContainer>
         </StyledContentContainer>
@@ -228,5 +211,5 @@ export default function Hero({
         </Mobile>
       </StyledUnionContainer>
     </StyledContainer>
-  )
+  );
 }

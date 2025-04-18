@@ -1,0 +1,23 @@
+# Build artifacts
+.next/
+out/
+build/
+dist/
+
+# Node modules
+node_modules/
+
+# Netlify files
+netlify/
+.netlify/
+
+# Generated files
+next-env.d.ts
+
+# Package files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Public assets
+public/assets/

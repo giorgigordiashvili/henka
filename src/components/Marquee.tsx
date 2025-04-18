@@ -1,14 +1,14 @@
-'use client'
-import { getDictionary } from '@/get-dictionary'
-import Image from 'next/image'
-import React, { useEffect, useRef, useState } from 'react'
-import styled, { keyframes } from 'styled-components'
-import { Desktop, Mobile } from './ui/Responsive'
+"use client";
+import { getDictionary } from "@/get-dictionary";
+import Image from "next/image";
+import React, { useEffect, useRef, useState } from "react";
+import styled, { keyframes } from "styled-components";
+import { Desktop, Mobile } from "./ui/Responsive";
 
 interface MarqueeItem {
-  text: string
-  image: string
-  alt: string
+  text: string;
+  image: string;
+  alt: string;
 }
 
 const StyledContainer = styled.div`
@@ -22,7 +22,7 @@ const StyledContainer = styled.div`
   @media (max-width: 1080px) {
     height: 373.98px;
   }
-`
+`;
 
 const StyledUnionContainer = styled.div`
   position: absolute;
@@ -34,7 +34,7 @@ const StyledUnionContainer = styled.div`
   @media (max-width: 1080px) {
     height: 42.98px;
   }
-`
+`;
 
 const StyledBottomUnionContainer = styled.div`
   position: absolute;
@@ -44,7 +44,7 @@ const StyledBottomUnionContainer = styled.div`
   @media (max-width: 1080px) {
     height: 42.98px;
   }
-`
+`;
 
 const marqueeAnimation = keyframes`
   0% {
@@ -53,7 +53,7 @@ const marqueeAnimation = keyframes`
   100% {
     transform: translateX(-50%);
   }
-`
+`;
 
 const StyledText = styled.div`
   height: 479px;
@@ -62,7 +62,7 @@ const StyledText = styled.div`
   font-weight: 700;
   letter-spacing: 0;
   color: #5c0e15;
-  font-feature-settings: 'case';
+  font-feature-settings: "case";
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,14 +74,14 @@ const StyledText = styled.div`
     font-size: 32.09px;
     line-height: 37px;
   }
-`
+`;
 
 const MarqueeContent = styled.div`
   display: flex;
   align-items: center;
   animation: ${marqueeAnimation} 30s linear infinite;
   padding-right: 50px;
-`
+`;
 
 const MarqueeItem = styled.div`
   display: flex;
@@ -92,30 +92,30 @@ const MarqueeItem = styled.div`
   @media (max-width: 1080px) {
     margin-right: 48.12px;
   }
-`
+`;
 
 export default function Marquee({
-  dictionary
+  dictionary,
 }: {
-  dictionary: Awaited<ReturnType<typeof getDictionary>>['marquee']
+  dictionary: Awaited<ReturnType<typeof getDictionary>>["marquee"];
 }) {
   const marqueeTexts = [
     dictionary.energy,
     dictionary.health,
     dictionary.ingredients,
     dictionary.probiotics,
-    dictionary.vitamin
-  ]
+    dictionary.vitamin,
+  ];
 
   const marqueeImages = [
-    '/assets/marquee/blueberry.png',
-    '/assets/marquee/leaf.png',
-    '/assets/marquee/ginger.png',
-    '/assets/marquee/passion.png',
-    '/assets/marquee/pineberry.png'
-  ]
-  const [duplicated, setDuplicated] = useState(1)
-  const contentRef = useRef<HTMLDivElement>(null)
+    "/assets/marquee/blueberry.png",
+    "/assets/marquee/leaf.png",
+    "/assets/marquee/ginger.png",
+    "/assets/marquee/passion.png",
+    "/assets/marquee/pineberry.png",
+  ];
+  const [duplicated, setDuplicated] = useState(1);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   // Create three different marquee arrays with different patterns
   const marqueeOne: MarqueeItem[] = marqueeTexts
@@ -125,8 +125,8 @@ export default function Marquee({
     ?.map((text, index) => ({
       text,
       image: marqueeImages[index % marqueeImages.length],
-      alt: text
-    }))
+      alt: text,
+    }));
 
   const marqueeTwo: MarqueeItem[] = marqueeTexts
     .map((value) => ({ value, sort: Math.random() }))
@@ -135,8 +135,8 @@ export default function Marquee({
     .map((text, index) => ({
       text,
       image: marqueeImages[(index + 2) % marqueeImages.length],
-      alt: text
-    }))
+      alt: text,
+    }));
 
   const marqueeThree: MarqueeItem[] = marqueeTexts
     .map((value) => ({ value, sort: Math.random() }))
@@ -145,26 +145,26 @@ export default function Marquee({
     .map((text, index) => ({
       text,
       image: marqueeImages[(index + 4) % marqueeImages.length],
-      alt: text
-    }))
+      alt: text,
+    }));
 
   // Calculate how many copies we need based on screen width
   useEffect(() => {
     const calculateDuplication = () => {
-      const screenWidth = window.innerWidth
+      const screenWidth = window.innerWidth;
       // We need at least 2 copies for the infinite effect to work smoothly
       // For wider screens, we might need more copies
-      const copies = Math.max(2, Math.ceil(screenWidth / 1200) + 1)
-      setDuplicated(copies)
-    }
+      const copies = Math.max(2, Math.ceil(screenWidth / 1200) + 1);
+      setDuplicated(copies);
+    };
 
-    calculateDuplication()
-    window.addEventListener('resize', calculateDuplication)
+    calculateDuplication();
+    window.addEventListener("resize", calculateDuplication);
 
     return () => {
-      window.removeEventListener('resize', calculateDuplication)
-    }
-  }, [])
+      window.removeEventListener("resize", calculateDuplication);
+    };
+  }, []);
 
   return (
     <StyledContainer>
@@ -192,12 +192,7 @@ export default function Marquee({
                 {marqueeOne.map((item, itemIndex) => (
                   <MarqueeItem key={`${index}-${itemIndex}`}>
                     <span>{item.text}</span>
-                    <Image
-                      width={115}
-                      height={115}
-                      alt={item.alt}
-                      src={item.image}
-                    />
+                    <Image width={115} height={115} alt={item.alt} src={item.image} />
                   </MarqueeItem>
                 ))}
               </React.Fragment>
@@ -209,12 +204,7 @@ export default function Marquee({
               <React.Fragment key={index}>
                 {marqueeTwo.map((item, itemIndex) => (
                   <MarqueeItem key={`${index}-${itemIndex}`}>
-                    <Image
-                      width={115}
-                      height={115}
-                      alt={item.alt}
-                      src={item.image}
-                    />
+                    <Image width={115} height={115} alt={item.alt} src={item.image} />
                     <span>{item.text}</span>
                   </MarqueeItem>
                 ))}
@@ -226,12 +216,7 @@ export default function Marquee({
               <React.Fragment key={index}>
                 {marqueeThree.map((item, itemIndex) => (
                   <MarqueeItem key={`${index}-${itemIndex}`}>
-                    <Image
-                      width={115}
-                      height={115}
-                      alt={item.alt}
-                      src={item.image}
-                    />
+                    <Image width={115} height={115} alt={item.alt} src={item.image} />
                     <span>{item.text}</span>
                   </MarqueeItem>
                 ))}
@@ -246,12 +231,7 @@ export default function Marquee({
                 {marqueeOne.map((item, itemIndex) => (
                   <MarqueeItem key={`${index}-${itemIndex}`}>
                     <span>{item.text}</span>
-                    <Image
-                      width={41}
-                      height={41}
-                      alt={item.alt}
-                      src={item.image}
-                    />
+                    <Image width={41} height={41} alt={item.alt} src={item.image} />
                   </MarqueeItem>
                 ))}
               </React.Fragment>
@@ -263,12 +243,7 @@ export default function Marquee({
               <React.Fragment key={index}>
                 {marqueeTwo.map((item, itemIndex) => (
                   <MarqueeItem key={`${index}-${itemIndex}`}>
-                    <Image
-                      width={41}
-                      height={41}
-                      alt={item.alt}
-                      src={item.image}
-                    />
+                    <Image width={41} height={41} alt={item.alt} src={item.image} />
                     <span>{item.text}</span>
                   </MarqueeItem>
                 ))}
@@ -282,12 +257,7 @@ export default function Marquee({
                   <MarqueeItem key={`${index}-${itemIndex}`}>
                     <span>{item.text}</span>
 
-                    <Image
-                      width={41}
-                      height={41}
-                      alt={item.alt}
-                      src={item.image}
-                    />
+                    <Image width={41} height={41} alt={item.alt} src={item.image} />
                   </MarqueeItem>
                 ))}
               </React.Fragment>
@@ -296,5 +266,5 @@ export default function Marquee({
         </Mobile>
       </StyledText>
     </StyledContainer>
-  )
+  );
 }

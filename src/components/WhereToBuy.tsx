@@ -124,92 +124,38 @@ export default function WhereToBuy({
             <StyledBranches>
               <StyledBranch1>
                 <StyledShop>
-                  <Image
-                    src="/assets/whereToBuy/location.svg"
-                    alt="henka"
-                    width={24}
-                    height={24}
-                  />
-                  <Typography variant="mBodytext">
-                    {dictionary.goodwill}
-                  </Typography>
+                  <Image src="/assets/whereToBuy/location.svg" alt="henka" width={24} height={24} />
+                  <Typography variant="mBodytext">{dictionary.goodwill}</Typography>
                 </StyledShop>
                 <StyledShop>
-                  <Image
-                    src="/assets/whereToBuy/location.svg"
-                    alt="henka"
-                    width={24}
-                    height={24}
-                  />
-                  <Typography variant="mBodytext">
-                    {dictionary.agrohub}
-                  </Typography>
+                  <Image src="/assets/whereToBuy/location.svg" alt="henka" width={24} height={24} />
+                  <Typography variant="mBodytext">{dictionary.agrohub}</Typography>
                 </StyledShop>
                 <StyledShop>
-                  <Image
-                    src="/assets/whereToBuy/location.svg"
-                    alt="henka"
-                    width={24}
-                    height={24}
-                  />
-                  <Typography variant="mBodytext">
-                    {dictionary.europroduct}
-                  </Typography>
+                  <Image src="/assets/whereToBuy/location.svg" alt="henka" width={24} height={24} />
+                  <Typography variant="mBodytext">{dictionary.europroduct}</Typography>
                 </StyledShop>
                 <StyledShop>
-                  <Image
-                    src="/assets/whereToBuy/location.svg"
-                    alt="henka"
-                    width={24}
-                    height={24}
-                  />{" "}
-                  <Typography variant="mBodytext">
-                    {dictionary.fresco}
-                  </Typography>
+                  <Image src="/assets/whereToBuy/location.svg" alt="henka" width={24} height={24} />{" "}
+                  <Typography variant="mBodytext">{dictionary.fresco}</Typography>
                 </StyledShop>
               </StyledBranch1>
               <StyledBranch2>
                 <StyledShop>
-                  <Image
-                    src="/assets/whereToBuy/location.svg"
-                    alt="henka"
-                    width={24}
-                    height={24}
-                  />
+                  <Image src="/assets/whereToBuy/location.svg" alt="henka" width={24} height={24} />
                   <Typography variant="mBodytext">{dictionary.spar}</Typography>
                 </StyledShop>
                 <StyledShop>
-                  <Image
-                    src="/assets/whereToBuy/location.svg"
-                    alt="henka"
-                    width={24}
-                    height={24}
-                  />
-                  <Typography variant="mBodytext">
-                    {dictionary.universam}
-                  </Typography>
+                  <Image src="/assets/whereToBuy/location.svg" alt="henka" width={24} height={24} />
+                  <Typography variant="mBodytext">{dictionary.universam}</Typography>
                 </StyledShop>
                 <StyledShop>
-                  <Image
-                    src="/assets/whereToBuy/location.svg"
-                    alt="henka"
-                    width={24}
-                    height={24}
-                  />{" "}
-                  <Typography variant="mBodytext">
-                    {dictionary.gulfstore}
-                  </Typography>
+                  <Image src="/assets/whereToBuy/location.svg" alt="henka" width={24} height={24} />{" "}
+                  <Typography variant="mBodytext">{dictionary.gulfstore}</Typography>
                 </StyledShop>
                 <StyledShop>
-                  <Image
-                    src="/assets/whereToBuy/location.svg"
-                    alt="henka"
-                    width={24}
-                    height={24}
-                  />
-                  <Typography variant="mBodytext">
-                    {dictionary.oneprice}
-                  </Typography>
+                  <Image src="/assets/whereToBuy/location.svg" alt="henka" width={24} height={24} />
+                  <Typography variant="mBodytext">{dictionary.oneprice}</Typography>
                 </StyledShop>
               </StyledBranch2>
             </StyledBranches>
@@ -218,34 +164,17 @@ export default function WhereToBuy({
             <Typography variant="lBodytext">{dictionary.contact}</Typography>
             <StyledContactInfos>
               <StyledInfo>
-                <Image
-                  src="/assets/whereToBuy/mail.svg"
-                  alt="mail"
-                  width={24}
-                  height={24}
-                />
+                <Image src="/assets/whereToBuy/mail.svg" alt="mail" width={24} height={24} />
                 <Typography variant="mBodytext">{dictionary.mail}</Typography>
               </StyledInfo>
 
               <StyledInfo>
-                <Image
-                  src="/assets/whereToBuy/location.svg"
-                  alt="mail"
-                  width={24}
-                  height={24}
-                />
-                <Typography variant="mBodytext">
-                  {dictionary.location}
-                </Typography>
+                <Image src="/assets/whereToBuy/location.svg" alt="mail" width={24} height={24} />
+                <Typography variant="mBodytext">{dictionary.location}</Typography>
               </StyledInfo>
 
               <StyledInfo>
-                <Image
-                  src="/assets/whereToBuy/phone.svg"
-                  alt="mail"
-                  width={24}
-                  height={24}
-                />
+                <Image src="/assets/whereToBuy/phone.svg" alt="mail" width={24} height={24} />
                 <Typography variant="mBodytext">{dictionary.number}</Typography>
               </StyledInfo>
             </StyledContactInfos>

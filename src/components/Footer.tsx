@@ -133,33 +133,12 @@ const Footer = ({ dictionary }: Props) => {
             </LinkWrapper>
           </NavigationWrapper>
           <LogoWrapper>
-            <Image
-              width={60}
-              height={60}
-              src={logoImage}
-              alt="logo"
-              placeholder="blur"
-            />
+            <Image width={60} height={60} src={logoImage} alt="logo" placeholder="blur" />
           </LogoWrapper>
           <SocialsWrapper>
-            <Image
-              src="/assets/footer/instagram.png"
-              width={28}
-              height={28}
-              alt="Instagram"
-            />
-            <Image
-              src="/assets/footer/tiktok.png"
-              width={28}
-              height={28}
-              alt="TikTok"
-            />
-            <Image
-              src="/assets/footer/facebook.png"
-              width={28}
-              height={28}
-              alt="Facebook"
-            />
+            <Image src="/assets/footer/instagram.png" width={28} height={28} alt="Instagram" />
+            <Image src="/assets/footer/tiktok.png" width={28} height={28} alt="TikTok" />
+            <Image src="/assets/footer/facebook.png" width={28} height={28} alt="Facebook" />
           </SocialsWrapper>
         </NavSocialsWrapper>
         <WhiteLine />
