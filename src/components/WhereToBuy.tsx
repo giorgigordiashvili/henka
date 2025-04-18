@@ -42,6 +42,9 @@ const StyledBranches = styled.div`
   @media (max-width: 1080px) {
     gap: 42px;
   }
+  @media (max-width: 390px) {
+    gap: 16px;
+  }
 `;
 
 const StyledContactInfos = styled.div`
@@ -54,7 +57,9 @@ const StyledBranch1 = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  width: 173px;
+  @media (max-width: 1080px) {
+    width: auto;
+  }
 `;
 
 const StyledBranch2 = styled.div`
@@ -77,6 +82,7 @@ const StyledBio = styled.div`
   padding: 87px 0;
   @media (max-width: 1080px) {
     padding: 12px 0;
+    width: calc(100% - 36px);
   }
 `;
 
@@ -88,12 +94,13 @@ const StyledInfo = styled.div`
 
 const StyledHenka = styled.div`
   width: 656px;
+  height: 650px;
+  position: relative;
+
   @media (max-width: 1080px) {
-    position: relative;
     width: fit-content;
-    min-width: 343px;
-    width: 100%;
-    height: auto;
+    width: calc(100% - 36px);
+    height: 335px;
     display: flex;
     justify-content: center;
     img {
@@ -183,8 +190,7 @@ export default function WhereToBuy({
           <Image
             src="/assets/whereToBuy/henkaImage.png"
             alt="henka"
-            width={656}
-            height={650}
+            fill
             style={{ objectFit: "contain" }}
           />
         </StyledHenka>

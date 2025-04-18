@@ -12,6 +12,12 @@ const StyledContainer = styled.div`
   text-align: center;
   max-width: 1114px;
   margin: auto;
+  @media (max-width: 1080px) {
+    h2 {
+      font-feature-settings: "case";
+      text-align: center;
+    }
+  }
 `;
 
 const StyledWhite = styled.div`

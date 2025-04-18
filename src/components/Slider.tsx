@@ -134,16 +134,17 @@ const CircleBackground = styled.div`
   width: 456px;
   height: 456px;
   position: absolute;
-  top: 269px;
+  top: 70%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   border-radius: 50%;
   z-index: 0;
   background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
   filter: blur(85px);
   @media (max-width: 1080px) {
-    width: 100%;
-    height: 720px;
+    top: 50%;
+    width: calc(100% - 32px);
+    height: 200px;
   }
 `;
 

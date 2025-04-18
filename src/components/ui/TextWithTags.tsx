@@ -95,8 +95,11 @@ const StyledImageContainer = styled.div`
   height: 610px;
   position: relative;
   @media (max-width: 1080px) {
-    width: 100%;
+    width: calc(100% - 32px);
     height: 459px;
+    margin: auto;
+    border-radius: 16px;
+    overflow: hidden;
   }
 `;
 
@@ -398,7 +401,7 @@ export default function TextWithTags({
             <Image
               src={filledImageMobileSrc}
               fill
-              objectFit="contain"
+              objectFit="cover"
               alt={`${middleImageAlt} Mobile`}
             />
           </Mobile>

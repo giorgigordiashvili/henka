@@ -21,6 +21,10 @@ const StyledTextContainer = styled.div`
   flex-direction: column;
   gap: 20px;
   @media (max-width: 1080px) {
+    h2 {
+      font-feature-settings: "case";
+      text-align: center;
+    }
     max-width: calc(100vw - 32px);
   }
 `;
