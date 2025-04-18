@@ -48,6 +48,25 @@
     "bio": "შეიცავს მხოლოდ ბუნებრივ ინგრედიენტებს",
     "balance": "ამყარებს სხეულის ბალანსს"
   },
+  "fruits": {
+    "paragraph": "ჰენკა-ჯანმრთელობა",
+    "paragraph2": "ბუნებრივი",
+    "paragraph3": "ინგრედიენტებით"
+  },
+  "fruits1": {
+    "paragraph": "ჰენკა-",
+    "paragraph2": "ჯანმრთელობა",
+    "paragraph3": "ბუნებრივი",
+    "paragraph4": "ინგრედიენტებით"
+  },
+  "slider": {
+    "title": "აღმოაჩინეთ ჩვენი პროდუქტების გემოები",
+    "kombucha": "კომბუჩა",
+    "water": "წყალი",
+    "bottleTypeCherry": "ალუბალი & ლაიმი",
+    "bottleTypeGinger": "მარაკუია & ჯინჯერი",
+    "bottleTypeRasp": "ჟოლო & ქინძი"
+  },
   "whereToBuy": {
     "title": "სად შევიძინო?",
     "goodwill": "გუდვილი",
@@ -62,5 +81,11 @@
     "mail": "giorgi.jirkvalidze@hbc.ge",
     "location": "მცხეთის რ-ნი, სოფ. მისაქციელი.",
     "number": "+995 577-15-45-01"
+  },
+  "footer": {
+    "whereToBuy": "სად შევიძინო",
+    "products": "პროდუქტები",
+    "aboutUs": "ჩვენს შესახებ",
+    "copyright": "@2025 ყველა უფლება დაცულია"
   }
 }
