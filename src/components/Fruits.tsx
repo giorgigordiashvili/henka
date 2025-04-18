@@ -1,7 +1,8 @@
 "use client";
-import styled from "styled-components";
-import Image from "next/image";
 import { getDictionary } from "@/get-dictionary";
+import Image from "next/image";
+import styled from "styled-components";
+import { Desktop, Mobile } from "./ui/Responsive";
 
 const DesktopContainer = styled.div`
   @media (max-width: 1300px) {
@@ -36,12 +37,15 @@ const StyledUnionContainer = styled.div`
 `;
 
 const StyledContainer = styled.div`
-  padding: 188px 0;
-  padding-bottom: 59px;
+  padding-top: 167px;
+  height: 568px;
   background: #e7dfee;
   text-align: center;
   margin: 0 auto;
   overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   @media (max-width: 1300px) {
     padding: 50px 0;
@@ -118,6 +122,19 @@ const LeafImage2 = styled(Image)`
   transform: rotate(0deg);
 `;
 
+const StyledUnionContainerBottom = styled.div`
+  position: absolute;
+  bottom: -167px;
+  left: 0px;
+  width: 100%;
+  height: 167px;
+  z-index: 9;
+  @media (max-width: 1080px) {
+    height: 22.96px;
+    bottom: -21.96px;
+  }
+`;
+
 export default function Fruits({
   dictionary,
   enableStickyEffect = true,
@@ -155,13 +172,22 @@ export default function Fruits({
   return (
     <StyledWhite>
       <StyledUnionContainer>
-        <DesktopContainer>
+        <Desktop>
           <Image src="/assets/union-2.png" alt="Union" fill />
-        </DesktopContainer>
-        <MobileContainer>
+        </Desktop>
+        <Mobile>
           <Image src="/assets/union-2-mobile.png" alt="Union" fill />
-        </MobileContainer>
+        </Mobile>
       </StyledUnionContainer>
+
+      <StyledUnionContainerBottom>
+        <Desktop>
+          <Image src="/assets/union-3.png" alt="Union" fill />
+        </Desktop>
+        <Mobile>
+          <Image src="/assets/union-3-mobile.png" alt="Union" fill />
+        </Mobile>
+      </StyledUnionContainerBottom>
 
       <StyledContainer
         style={{

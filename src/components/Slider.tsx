@@ -10,11 +10,15 @@ import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import Typography from "./ui/Typography";
 
 const StyledContainer = styled(motion.div)`
-  padding: 60px 20px;
+  padding: 140px 20px;
+  padding-top: 229px;
   display: flex;
   justify-content: center;
   position: relative;
   transition: background-color 0.6s ease;
+  @media (max-width: 1080px) {
+    padding: 60px 20px;
+  }
 `;
 
 const backgroundColors = [
@@ -115,14 +119,14 @@ const NavButton = styled.button`
 const PrevButton = styled(NavButton)`
   left: 150px;
   @media (max-width: 1080px) {
-    left: 120px;
+    left: calc((100% - 160px) / 2);
   }
 `;
 
 const NextButton = styled(NavButton)`
   right: 150px;
   @media (max-width: 1080px) {
-    right: 120px;
+    right: calc((100% - 160px) / 2);
   }
 `;
 
@@ -137,6 +141,10 @@ const CircleBackground = styled.div`
   z-index: 0;
   background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
   filter: blur(85px);
+  @media (max-width: 1080px) {
+    width: 100%;
+    height: 720px;
+  }
 `;
 
 const BottleImage = styled.div`
@@ -152,24 +160,28 @@ const BottleImage = styled.div`
     object-fit: contain;
   }
 
-  &.active img {
-    width: 164px;
-    height: 450px;
+  &.active img,
+  &.active span {
+    width: 164px !important;
+    height: 450px !important;
   }
 
-  &.side img {
-    width: 120px;
-    height: 336px;
+  &.side img,
+  &.side span {
+    width: 120px !important;
+    height: 336px !important;
   }
 
   @media (max-width: 1080px) {
-    &.active img {
-      width: 160px;
-      height: 443px;
+    &.active img,
+    &.active span {
+      width: 160px !important;
+      height: 443px !important;
     }
-    &.side img {
-      width: 86px;
-      height: 242px;
+    &.side img,
+    &.side span {
+      width: 86px !important;
+      height: 242px !important;
     }
   }
 `;

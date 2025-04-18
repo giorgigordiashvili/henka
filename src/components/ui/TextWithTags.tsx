@@ -100,10 +100,11 @@ const StyledImageContainer = styled.div`
 const StickyContainer = styled.div<{ y: number }>`
   width: 280px;
   height: 600px;
-  top: 50%;
+  top: calc((100vh - 600px) / 2 - 60px);
   position: fixed;
   left: 50%;
-  transform: translate(-53%, -50%);
+  z-index: 99;
+  transform: translate(-53%, 0px);
   transition: transform 0.05s linear;
 `;
 
@@ -167,7 +168,8 @@ export default function TextWithTags({
 
     // Set threshold to component start plus adjustment for viewport height
     // This ensures consistent threshold calculation across different screen sizes
-    const calculatedThreshold = componentStart + 225 - (window.innerHeight - 600) / 2;
+    const calculatedThreshold = componentStart + 150 - (window.innerHeight - 600) / 2;
+    console.log(calculatedThreshold);
 
     setScrollThreshold(calculatedThreshold);
     return calculatedThreshold;
