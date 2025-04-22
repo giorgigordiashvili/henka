@@ -36,7 +36,7 @@ const StyledUnionContainer = styled.div`
 
 const BottomFooter = styled.div`
   padding-top: 35px;
-  padding-bottom: 40px;
+  padding-bottom: 41px;
   display: flex;
   flex-direction: column;
   gap: 36px;
