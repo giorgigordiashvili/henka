@@ -10,7 +10,7 @@ const StyledContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 32px;
-  padding: 54px 45px;
+  padding: 54px 48px 0 48px;
   background-color: rgb(252 252 252);
   width: 100%;
   max-width: 1334px;
