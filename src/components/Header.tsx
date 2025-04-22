@@ -129,6 +129,9 @@ const MobileMenu = styled.nav<{ $isOpen: boolean }>`
     opacity 0.3s ease-in-out;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
+  @media (max-width: 1080px) {
+    gap: 35px;
+  }
   @media (min-width: 1081px) {
     display: none;
   }
