@@ -14,13 +14,13 @@ const StyledContainer = styled.div`
   background-color: rgb(252 252 252);
   width: 100%;
   max-width: 1334px;
-    margin: auto;
-      @media (max-width: 1080px) {
+  margin: auto;
+  @media (max-width: 1080px) {
     display: grid;
-grid-template-columns: minmax(350px, 1fr);
+    grid-template-columns: minmax(350px, 1fr);
     padding: 52px 18px;
+    gap: 64px;
   }
-}
 `;
 
 const StyledLocations = styled.div`
