@@ -10,7 +10,7 @@ import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import Typography from "./ui/Typography";
 
 const StyledContainer = styled(motion.div)`
-  padding: 140px 20px;
+  padding: 140px 0 139px 0;
   padding-top: 229px;
   display: flex;
   justify-content: center;
