@@ -106,13 +106,16 @@ const StyledHenka = styled.div`
   @media (max-width: 1080px) {
     width: fit-content;
     width: calc(100% - 36px);
+    width: 100%;
+    object-fit: cover;
+    inset: 0px;
+    color: transparent;
     height: 335px;
     display: flex;
     justify-content: center;
     img {
       width: 100%;
       height: 335px;
-      object-fit: contain;
     }
   }
 `;
@@ -193,12 +196,7 @@ export default function WhereToBuy({
           </StyledContact>
         </StyledBio>
         <StyledHenka>
-          <Image
-            src="/assets/whereToBuy/henkaImage.png"
-            alt="henka"
-            fill
-            style={{ objectFit: "contain" }}
-          />
+          <Image src="/assets/whereToBuy/henkaImage.png" alt="henka" fill />
         </StyledHenka>
       </StyledContainer>
     </StyledMainContainer>
