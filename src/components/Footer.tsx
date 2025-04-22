@@ -64,7 +64,6 @@ const NavigationWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-
   @media (max-width: 1080px) {
     flex-direction: column;
     gap: 16px;
@@ -123,13 +122,13 @@ const Footer = ({ dictionary }: Props) => {
         <NavSocialsWrapper>
           <NavigationWrapper>
             <LinkWrapper>
-              <NavigationLink text={dictionary.whereToBuy} href="/" />
+              <NavigationLink isSmallOnMobile text={dictionary.whereToBuy} href="/" />
             </LinkWrapper>
             <LinkWrapper>
-              <NavigationLink text={dictionary.products} href="/" />
+              <NavigationLink isSmallOnMobile text={dictionary.products} href="/" />
             </LinkWrapper>
             <LinkWrapper>
-              <NavigationLink text={dictionary.aboutUs} href="/" />
+              <NavigationLink isSmallOnMobile text={dictionary.aboutUs} href="/" />
             </LinkWrapper>
           </NavigationWrapper>
           <LogoWrapper>
