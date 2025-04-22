@@ -47,7 +47,7 @@ const StyledImageContainer = styled.div`
   @media (max-width: 1080px) {
     position: relative;
     width: calc(100vw - 32px);
-    height: 343px;
+    height: 335px;
     margin: auto;
   }
 `;
