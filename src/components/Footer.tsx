@@ -145,7 +145,7 @@ const Footer = ({ dictionary }: Props) => {
         </NavSocialsWrapper>
         <WhiteLine />
         <CopyrightWrapper>
-          <Typography variant="xsBodytext">{dictionary.copyright}</Typography>
+          <Typography variant="sBodytext">{dictionary.copyright}</Typography>
         </CopyrightWrapper>
       </BottomFooter>
     </FooterContainer>
