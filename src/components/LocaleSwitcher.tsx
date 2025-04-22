@@ -23,7 +23,7 @@ const DropdownButton = styled.button`
   font-family: Helvetica, Arial, sans-serif;
   font-size: 16px;
   text-transform: uppercase;
-  gap: 3px;
+  gap: 4px;
   &:hover {
     color: rgba(252, 252, 252, 0.7);
   }

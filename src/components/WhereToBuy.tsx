@@ -13,7 +13,7 @@ const StyledContainer = styled.div`
   padding: 54px 48px 0 48px;
   background-color: rgb(252 252 252);
   width: 100%;
-  max-width: 1334px;
+  max-width: 1344px;
   margin: auto;
   @media (max-width: 1080px) {
     display: grid;
