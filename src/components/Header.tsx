@@ -48,7 +48,7 @@ const NavList = styled.ul`
 const MobileNavList = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -132,6 +132,7 @@ const MobileMenu = styled.nav<{ $isOpen: boolean }>`
   @media (max-width: 1080px) {
     gap: 35px;
   }
+
   @media (min-width: 1081px) {
     display: none;
   }
