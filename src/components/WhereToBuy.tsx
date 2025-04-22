@@ -51,6 +51,9 @@ const StyledContactInfos = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  @media (max-width: 1080px) {
+    gap: 24px;
+  }
 `;
 
 const StyledBranch1 = styled.div`
@@ -59,6 +62,7 @@ const StyledBranch1 = styled.div`
   gap: 12px;
   @media (max-width: 1080px) {
     width: auto;
+    gap: 24px;
   }
 `;
 
@@ -66,6 +70,9 @@ const StyledBranch2 = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  @media (max-width: 1080px) {
+    gap: 24px;
+  }
 `;
 
 const StyledShop = styled.div`
