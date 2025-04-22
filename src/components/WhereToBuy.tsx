@@ -96,7 +96,6 @@ const StyledHenka = styled.div`
   width: 656px;
   height: 650px;
   position: relative;
-
   @media (max-width: 1080px) {
     width: fit-content;
     width: calc(100% - 36px);
@@ -105,7 +104,7 @@ const StyledHenka = styled.div`
     justify-content: center;
     img {
       width: 100%;
-      height: auto;
+      height: 335px;
       object-fit: contain;
     }
   }
