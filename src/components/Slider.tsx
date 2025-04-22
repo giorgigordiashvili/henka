@@ -17,7 +17,7 @@ const StyledContainer = styled(motion.div)`
   position: relative;
   transition: background-color 0.6s ease;
   @media (max-width: 1080px) {
-    padding: 60px 20px;
+    padding: 50px 0 54px 0;
   }
 `;
 
