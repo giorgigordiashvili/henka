@@ -77,6 +77,10 @@ const StyledReason = styled.div<{ $isVisible: boolean; $fromLeft?: boolean; $ind
     margin-left: 16px;
     justify-content: flex-start;
     opacity: 1; /* Always visible on mobile */
+    img {
+      width: 40px;
+      height: 40px;
+    }
   }
 
   /* Only apply animations on desktop (screens > 1080px) */
