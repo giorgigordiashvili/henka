@@ -14,6 +14,7 @@ const StyledItemsGrid = styled.div`
     display: flex;
     flex-direction: column;
     grid-gap: 45px;
+    padding-top: 45px;
   }
 `;
 
