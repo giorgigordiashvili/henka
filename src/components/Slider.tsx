@@ -8,6 +8,7 @@ import "swiper/css";
 import "swiper/css/effect-creative";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import Typography from "./ui/Typography";
+import { Desktop, Mobile } from "./ui/Responsive";
 
 const StyledContainer = styled(motion.div)`
   padding: 140px 0 139px 0;
@@ -355,13 +356,20 @@ export default function Slider({
             onClick={() => switchProductType("kombucha")}
             style={{ textDecoration: activeProductType === "kombucha" ? "underline" : "none" }}
           >
-            <Typography variant="mBodytext">{dictionary.kombucha}</Typography>
+            <Desktop>
+              <Typography variant="mBodytext">{dictionary.kombucha}</Typography>
+            </Desktop>
+            <Mobile>
+              <Typography variant="xsBodytext">{dictionary.kombucha}</Typography>
+            </Mobile>
           </StyledProduct>
-          <StyledProduct
-            onClick={() => switchProductType("water")}
-            style={{ textDecoration: activeProductType === "water" ? "underline" : "none" }}
-          >
-            <Typography variant="mBodytext">{dictionary.water}</Typography>
+          <StyledProduct onClick={() => switchType("water")}>
+            <Desktop>
+              <Typography variant="mBodytext">{dictionary.water}</Typography>
+            </Desktop>
+            <Mobile>
+              <Typography variant="xsBodytext">{dictionary.water}</Typography>
+            </Mobile>
           </StyledProduct>
         </StyledProducts>
 
