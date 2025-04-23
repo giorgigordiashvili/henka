@@ -147,6 +147,11 @@ export default function Slider({
       alt: "Ginger Kombucha",
       flavor: dictionary.bottleTypeGinger,
     },
+    {
+      src: "assets/slider/limeKombucha.png",
+      alt: "Blueberry Lime",
+      flavor: dictionary.bottleTypeLime,
+    },
   ];
 
   const slidesData = [...bottles, ...bottles, ...bottles];

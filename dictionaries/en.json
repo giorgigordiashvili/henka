@@ -54,7 +54,8 @@
     "water": "WATER",
     "bottleTypeCherry": "CHERRY & LIME",
     "bottleTypeGinger": "PASSION FRUIT & GINGER",
-    "bottleTypeRasp": "RASPBERRY & CORIANDER"
+    "bottleTypeRasp": "RASPBERRY & CORIANDER",
+    "bottleTypeLime": "BLUEBERRY & LIME"
   },
   "whereToBuy": {
     "title": "WHERE TO BUY",
