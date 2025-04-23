@@ -125,14 +125,12 @@ const NavButton = styled.button`
 const PrevButton = styled(NavButton)`
   left: 150px;
   @media (max-width: 1080px) {
-    left: calc((100% - 160px) / 2);
   }
 `;
 
 const NextButton = styled(NavButton)`
   right: 150px;
   @media (max-width: 1080px) {
-    right: calc((100% - 160px) / 2);
   }
 `;
 
@@ -164,7 +162,7 @@ const BottleImage = styled.div`
   z-index: 2;
   img {
     transition: all 0.3s ease;
-    object-fit: contain;
+    object-fit: cover;
   }
 
   &.active img,
@@ -445,10 +443,18 @@ export default function Slider({
         </SwiperWrapper>
 
         <FlavorsDisplay>
-          <Typography variant="lBodytext">
-            {activeIndex !== undefined &&
-              currentBottles[activeIndex % currentBottles.length]?.flavor}
-          </Typography>
+          <Desktop>
+            <Typography variant="lBodytext">
+              {activeIndex !== undefined &&
+                currentBottles[activeIndex % currentBottles.length]?.flavor}
+            </Typography>
+          </Desktop>
+          <Mobile>
+            <Typography variant="xsBodytext">
+              {activeIndex !== undefined &&
+                currentBottles[activeIndex % currentBottles.length]?.flavor}
+            </Typography>
+          </Mobile>
         </FlavorsDisplay>
       </StyledBox>
     </StyledContainer>
