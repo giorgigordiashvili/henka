@@ -36,7 +36,7 @@ const StyledBox = styled.div`
   max-width: 800px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
   align-items: center;
   position: relative;
   z-index: 1;
@@ -74,6 +74,7 @@ const StyledProducts = styled.div`
   display: flex;
   gap: 20px;
   @media (max-width: 1080px) {
+    margin-bottom: 2px;
   }
 `;
 
