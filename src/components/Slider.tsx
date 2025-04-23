@@ -324,7 +324,7 @@ export default function Slider({
   useEffect(() => {
     const idx = activeIndex % currentBottles.length;
     setBackgroundColor(currentBottles[idx].color);
-  }, [activeIndex, activeProductType]);
+  }, [activeIndex, activeProductType, currentBottles]);
 
   return (
     <StyledContainer id="products" style={{ backgroundColor }}>
