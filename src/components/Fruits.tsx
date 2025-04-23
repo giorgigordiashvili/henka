@@ -47,7 +47,6 @@ const StyledUnionContainer = styled.div`
 
 const StyledContainer = styled.div`
   padding-top: 167px;
-  height: 568px;
   background: #e7dfee;
   text-align: center;
   margin: 0 auto;
@@ -55,10 +54,10 @@ const StyledContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
+  height: 600px;
   @media (max-width: 1300px) {
-    padding: 50px 0;
-    padding-bottom: 20px;
+    padding: 61px 0 48px 0;
+    height: auto;
   }
 `;
 
