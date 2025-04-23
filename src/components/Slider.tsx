@@ -25,6 +25,9 @@ const backgroundColors = [
   "rgb(232 106 118)", // Raspberry
   "rgb(239 153 161)", // Cherry
   "rgb(241 216 115)", // Ginger
+  "rgb(191 217 246)", // Lime
+  "rgb(185 191 115)", // Lime & lemon water
+  "rgb(252 233 235)", // Cherry water
 ];
 
 const StyledBox = styled.div`
@@ -57,6 +60,7 @@ const StyledProduct = styled.div`
   text-align: center;
   font-weight: 700;
   text-transform: uppercase;
+  cursor: pointer;
   &:hover {
     text-decoration: underline;
   }
@@ -210,6 +214,32 @@ const BackgroundLayer = styled(motion.div)<{ animationDirection: string }>`
   backface-visibility: hidden;
 `;
 
+// Utility function to convert RGB to hue for filter
+const getHueFromRGB = (rgb: string): number => {
+  const [r, g, b] = rgb
+    .replace("rgb(", "")
+    .replace(")", "")
+    .split(",")
+    .map((val) => parseInt(val.trim()) / 255);
+
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  let hue = 0;
+
+  if (max === min) return 0;
+
+  if (max === r) {
+    hue = (g - b) / (max - min);
+  } else if (max === g) {
+    hue = 2 + (b - r) / (max - min);
+  } else {
+    hue = 4 + (r - g) / (max - min);
+  }
+
+  hue *= 60;
+  return hue < 0 ? hue + 360 : hue;
+};
+
 export default function Slider({
   dictionary,
 }: {
@@ -218,27 +248,57 @@ export default function Slider({
   const [activeIndex, setActiveIndex] = useState(1);
   const swiperRef = useRef<SwiperRef | null>(null);
   const [backgroundColor, setBackgroundColor] = useState(backgroundColors[1]);
-  const [animationDirection, setAnimationDirection] = useState("left"); // Default direction
+  const [animationDirection, setAnimationDirection] = useState("left");
+  const [activeProductType, setActiveProductType] = useState("kombucha");
 
-  const bottles = [
+  const kombuchaBottles = [
     {
       src: "/assets/slider/raspKombucha.png",
       alt: "Raspberry Kombucha",
       flavor: dictionary.bottleTypeRasp,
+      color: backgroundColors[0], // Raspberry
     },
     {
       src: "/assets/slider/cherryKombucha.png",
       alt: "Cherry Kombucha",
       flavor: dictionary.bottleTypeCherry,
+      color: backgroundColors[1], // Cherry
     },
     {
       src: "/assets/slider/gingerKombucha.png",
       alt: "Ginger Kombucha",
       flavor: dictionary.bottleTypeGinger,
+      color: backgroundColors[2], // Ginger
+    },
+    {
+      src: "/assets/slider/limeKombucha.png",
+      alt: "Blueberry Lime",
+      flavor: dictionary.bottleTypeLime,
+      color: backgroundColors[3], // Lime
     },
   ];
 
-  const slidesData = [...bottles, ...bottles, ...bottles];
+  const waterBottles = [
+    {
+      src: "/assets/slider/cherryWaterKombucha.png",
+      alt: "Cherry Water Kombucha",
+      flavor: dictionary.bottleTypeCherryWater,
+      color: backgroundColors[5], // Cherry water
+    },
+    {
+      src: "/assets/slider/limeWaterKombucha.png",
+      alt: "Lime Water Kombucha",
+      flavor: dictionary.bottleTypeLimeWater,
+      color: backgroundColors[4], // Lime & lemon water
+    },
+  ];
+
+  const currentBottles = activeProductType === "kombucha" ? kombuchaBottles : waterBottles;
+
+  const slidesData =
+    activeProductType === "kombucha"
+      ? [...kombuchaBottles, ...kombuchaBottles, ...kombuchaBottles]
+      : waterBottles;
 
   const handlePrev = () => {
     setAnimationDirection("left");
@@ -254,14 +314,25 @@ export default function Slider({
     }
   };
 
+  const switchProductType = (type: string) => {
+    setActiveProductType(type);
+    setTimeout(() => {
+      if (swiperRef.current && swiperRef.current.swiper) {
+        swiperRef.current.swiper.slideToLoop(0);
+        setActiveIndex(0);
+      }
+    }, 0);
+  };
+
   useEffect(() => {
-    setBackgroundColor(backgroundColors[activeIndex % backgroundColors.length]);
-  }, [activeIndex]);
+    const colorIndex = activeIndex % currentBottles.length;
+    setBackgroundColor(currentBottles[colorIndex].color);
+  }, [activeIndex, activeProductType, currentBottles]);
 
   return (
     <StyledContainer id="products" style={{ backgroundColor: backgroundColor }}>
       <BackgroundLayer
-        key={`${activeIndex}-${animationDirection}`} // Key changes when direction changes
+        key={`${activeIndex}-${animationDirection}-${activeProductType}`}
         initial={{
           rotateY: animationDirection === "right" ? -90 : 90,
         }}
@@ -279,10 +350,16 @@ export default function Slider({
           <Typography variant="h2">{dictionary.title}</Typography>
         </StyledTitle>
         <StyledProducts>
-          <StyledProduct>
+          <StyledProduct
+            onClick={() => switchProductType("kombucha")}
+            style={{ textDecoration: activeProductType === "kombucha" ? "underline" : "none" }}
+          >
             <Typography variant="mBodytext">{dictionary.kombucha}</Typography>
           </StyledProduct>
-          <StyledProduct>
+          <StyledProduct
+            onClick={() => switchProductType("water")}
+            style={{ textDecoration: activeProductType === "water" ? "underline" : "none" }}
+          >
             <Typography variant="mBodytext">{dictionary.water}</Typography>
           </StyledProduct>
         </StyledProducts>
@@ -325,19 +402,32 @@ export default function Slider({
           <StyledSwiper
             ref={swiperRef}
             spaceBetween={10}
-            slidesPerView={3}
+            slidesPerView={activeProductType === "kombucha" ? 3 : 1}
             centeredSlides={true}
             loop={true}
             onSlideChange={(swiper) => {
               setActiveIndex(swiper.realIndex);
             }}
-            initialSlide={1}
+            initialSlide={activeProductType === "kombucha" ? 1 : 0}
+            key={`swiper-${activeProductType}`}
           >
             {slidesData.map((bottle, index) => (
-              <SwiperSlide key={index}>
+              <SwiperSlide key={`${activeProductType}-${index}`}>
                 {({ isActive }) => (
-                  <BottleImage className={isActive ? "active" : "side"}>
-                    <Image src={bottle.src} alt={bottle.alt} width={164} height={450} />
+                  <BottleImage
+                    className={isActive || activeProductType === "water" ? "active" : "side"}
+                  >
+                    <Image
+                      src={bottle.src}
+                      alt={bottle.alt}
+                      width={164}
+                      height={450}
+                      style={{
+                        filter: `brightness(1.2) sepia(1) hue-rotate(${getHueFromRGB(
+                          bottle.color
+                        )}deg) saturate(1.5)`,
+                      }}
+                    />
                   </BottleImage>
                 )}
               </SwiperSlide>
@@ -347,7 +437,8 @@ export default function Slider({
 
         <FlavorsDisplay>
           <Typography variant="lBodytext">
-            {activeIndex !== undefined && bottles[activeIndex % bottles.length]?.flavor}
+            {activeIndex !== undefined &&
+              currentBottles[activeIndex % currentBottles.length]?.flavor}
           </Typography>
         </FlavorsDisplay>
       </StyledBox>

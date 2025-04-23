@@ -65,7 +65,10 @@
     "water": "ВОДА",
     "bottleTypeCherry": "ВИ́ШНЯ И ЛАЙМ",
     "bottleTypeGinger": "МАРАКУ́ЙЯ И ИМБИ́РЬ",
-    "bottleTypeRasp": "МАЛИ́НА И КИНЗА́"
+    "bottleTypeRasp": "МАЛИ́НА И КИНЗА́",
+    "bottleTypeLime": "ЧЕРНИКА & ЛАЙМ",
+    "bottleTypeCherryWater": "ВИШНЯ",
+    "bottleTypeLimeWater": "ЛИМОН & ЛАЙМ"
   },
   "whereToBuy": {
     "title": "ГДЕ КУПИТЬ",
