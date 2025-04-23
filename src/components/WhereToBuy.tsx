@@ -18,7 +18,7 @@ const StyledContainer = styled.div`
   @media (max-width: 1080px) {
     display: grid;
     grid-template-columns: minmax(350px, 1fr);
-    padding: 52px 18px;
+    padding: 52px 18px 42px 18px;
     gap: 64px;
   }
 `;
