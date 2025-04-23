@@ -10,17 +10,17 @@ const StyledContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 32px;
-  padding: 54px 45px;
+  padding: 54px 48px 0 48px;
   background-color: rgb(252 252 252);
   width: 100%;
-  max-width: 1334px;
-    margin: auto;
-      @media (max-width: 1080px) {
+  max-width: 1344px;
+  margin: auto;
+  @media (max-width: 1080px) {
     display: grid;
-grid-template-columns: minmax(350px, 1fr);
+    grid-template-columns: minmax(350px, 1fr);
     padding: 52px 18px;
+    gap: 64px;
   }
-}
 `;
 
 const StyledLocations = styled.div`
@@ -51,6 +51,9 @@ const StyledContactInfos = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  @media (max-width: 1080px) {
+    gap: 24px;
+  }
 `;
 
 const StyledBranch1 = styled.div`
@@ -59,6 +62,7 @@ const StyledBranch1 = styled.div`
   gap: 12px;
   @media (max-width: 1080px) {
     width: auto;
+    gap: 24px;
   }
 `;
 
@@ -66,6 +70,9 @@ const StyledBranch2 = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  @media (max-width: 1080px) {
+    gap: 24px;
+  }
 `;
 
 const StyledShop = styled.div`
@@ -96,17 +103,19 @@ const StyledHenka = styled.div`
   width: 656px;
   height: 650px;
   position: relative;
-
   @media (max-width: 1080px) {
     width: fit-content;
     width: calc(100% - 36px);
+    width: 100%;
+    object-fit: cover;
+    inset: 0px;
+    color: transparent;
     height: 335px;
     display: flex;
     justify-content: center;
     img {
       width: 100%;
-      height: auto;
-      object-fit: contain;
+      height: 335px;
     }
   }
 `;
@@ -187,12 +196,7 @@ export default function WhereToBuy({
           </StyledContact>
         </StyledBio>
         <StyledHenka>
-          <Image
-            src="/assets/whereToBuy/henkaImage.png"
-            alt="henka"
-            fill
-            style={{ objectFit: "contain" }}
-          />
+          <Image src="/assets/whereToBuy/henkaImage.png" alt="henka" fill />
         </StyledHenka>
       </StyledContainer>
     </StyledMainContainer>

@@ -36,10 +36,13 @@ const StyledUnionContainer = styled.div`
 
 const BottomFooter = styled.div`
   padding-top: 35px;
-  padding-bottom: 40px;
+  padding-bottom: 41px;
   display: flex;
   flex-direction: column;
   gap: 36px;
+  @media (max-width: 1080px) {
+    padding: 32px 0;
+  }
 `;
 
 const NavSocialsWrapper = styled.div`
@@ -64,7 +67,6 @@ const NavigationWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-
   @media (max-width: 1080px) {
     flex-direction: column;
     gap: 16px;
@@ -123,13 +125,13 @@ const Footer = ({ dictionary }: Props) => {
         <NavSocialsWrapper>
           <NavigationWrapper>
             <LinkWrapper>
-              <NavigationLink text={dictionary.whereToBuy} href="/" />
+              <NavigationLink isSmallOnMobile text={dictionary.whereToBuy} href="/" />
             </LinkWrapper>
             <LinkWrapper>
-              <NavigationLink text={dictionary.products} href="/" />
+              <NavigationLink isSmallOnMobile text={dictionary.products} href="/" />
             </LinkWrapper>
             <LinkWrapper>
-              <NavigationLink text={dictionary.aboutUs} href="/" />
+              <NavigationLink isSmallOnMobile text={dictionary.aboutUs} href="/" />
             </LinkWrapper>
           </NavigationWrapper>
           <LogoWrapper>
@@ -143,7 +145,7 @@ const Footer = ({ dictionary }: Props) => {
         </NavSocialsWrapper>
         <WhiteLine />
         <CopyrightWrapper>
-          <Typography variant="xsBodytext">{dictionary.copyright}</Typography>
+          <Typography variant="sBodytext">{dictionary.copyright}</Typography>
         </CopyrightWrapper>
       </BottomFooter>
     </FooterContainer>

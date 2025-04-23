@@ -38,6 +38,7 @@ const StyledFlex = styled.div<{ $imagePosition?: "left" | "right" }>`
   @media (max-width: 1080px) {
     flex-direction: column;
     gap: 28px;
+    padding-top: 43px;
   }
 `;
 
@@ -47,7 +48,7 @@ const StyledImageContainer = styled.div`
   @media (max-width: 1080px) {
     position: relative;
     width: calc(100vw - 32px);
-    height: 343px;
+    height: 335px;
     margin: auto;
   }
 `;

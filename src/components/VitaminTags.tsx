@@ -12,6 +12,9 @@ const StyledContainer = styled.div`
   text-align: center;
   max-width: 1114px;
   margin: auto;
+  @media (max-width: 1080px) {
+    padding: 62px 0 40px 0;
+  }
 `;
 
 const StyledWhite = styled.div`
