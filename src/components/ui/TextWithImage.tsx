@@ -16,10 +16,11 @@ const StyledContainer = styled.div<{ $backgroundColor?: string }>`
 
 const StyledTextContainer = styled.div`
   color: rgba(92, 14, 21, 1);
-  max-width: 541px;
+  max-width: 656px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+
   @media (max-width: 1080px) {
     h2 {
       font-feature-settings: "case";
@@ -58,6 +59,7 @@ const StyledFlex = styled.div<{ $imagePosition?: "left" | "right" }>`
   display: flex;
   flex-direction: ${(props) => (props.$imagePosition === "left" ? "row-reverse" : "row")};
   justify-content: space-between;
+  gap: 32px;
   align-items: center;
   @media (max-width: 1080px) {
     flex-direction: column;
