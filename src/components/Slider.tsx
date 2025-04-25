@@ -8,16 +8,18 @@ import "swiper/css";
 import "swiper/css/effect-creative";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import Typography from "./ui/Typography";
+import { Desktop, Mobile } from "./ui/Responsive";
 
 const StyledContainer = styled(motion.div)`
-  padding: 140px 0 139px 0;
+  padding: 140px 0 139px;
   padding-top: 229px;
   display: flex;
   justify-content: center;
   position: relative;
   transition: background-color 0.6s ease;
+
   @media (max-width: 1080px) {
-    padding: 73px 0 54px 0;
+    padding: 73px 0 54px;
   }
 `;
 
@@ -36,10 +38,11 @@ const StyledBox = styled.div`
   max-width: 800px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
   align-items: center;
   position: relative;
   z-index: 1;
+
   @media (max-width: 1080px) {
     gap: 16px;
   }
@@ -49,10 +52,19 @@ const StyledTitle = styled.div`
   text-align: center;
   width: 656px;
   text-transform: uppercase;
+
   @media (max-width: 1080px) {
-    text-wrap: wrap;
     width: 343px;
     font-size: 24px;
+  }
+`;
+
+const StyledProducts = styled.div`
+  display: flex;
+  gap: 20px;
+
+  @media (max-width: 1080px) {
+    margin-bottom: 2px;
   }
 `;
 
@@ -61,19 +73,13 @@ const StyledProduct = styled.div`
   font-weight: 700;
   text-transform: uppercase;
   cursor: pointer;
+
   &:hover {
     text-decoration: underline;
   }
 
   @media (max-width: 768px) {
     font-size: 14px;
-  }
-`;
-
-const StyledProducts = styled.div`
-  display: flex;
-  gap: 20px;
-  @media (max-width: 1080px) {
   }
 `;
 
@@ -102,9 +108,6 @@ const NavButton = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   &:focus {
     outline: none;
@@ -113,6 +116,7 @@ const NavButton = styled.button`
   svg {
     width: 12.14px;
     height: 24.28px;
+
     @media (max-width: 1080px) {
       width: 6px;
       height: 12px;
@@ -120,17 +124,20 @@ const NavButton = styled.button`
   }
 `;
 
+// Desktop offsets
 const PrevButton = styled(NavButton)`
-  left: 150px;
+  left: 170px;
+
   @media (max-width: 1080px) {
-    left: calc((100% - 160px) / 2);
+    left: calc(50% - 80px - 1px);
   }
 `;
 
 const NextButton = styled(NavButton)`
   right: 150px;
+
   @media (max-width: 1080px) {
-    right: calc((100% - 160px) / 2);
+    right: calc(50% - 80px - 33px);
   }
 `;
 
@@ -145,6 +152,7 @@ const CircleBackground = styled.div`
   z-index: 0;
   background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
   filter: blur(85px);
+
   @media (max-width: 1080px) {
     top: 50%;
     width: calc(100% - 32px);
@@ -160,9 +168,10 @@ const BottleImage = styled.div`
   transition: all 0.3s ease;
   position: relative;
   z-index: 2;
+
   img {
     transition: all 0.3s ease;
-    object-fit: contain;
+    object-fit: cover;
   }
 
   &.active img,
@@ -214,7 +223,6 @@ const BackgroundLayer = styled(motion.div)<{ animationDirection: string }>`
   backface-visibility: hidden;
 `;
 
-// Utility function to convert RGB to hue for filter
 const getHueFromRGB = (rgb: string): number => {
   const [r, g, b] = rgb
     .replace("rgb(", "")
@@ -226,18 +234,15 @@ const getHueFromRGB = (rgb: string): number => {
   const min = Math.min(r, g, b);
   let hue = 0;
 
-  if (max === min) return 0;
+  if (max !== min) {
+    if (max === r) hue = (g - b) / (max - min);
+    else if (max === g) hue = 2 + (b - r) / (max - min);
+    else hue = 4 + (r - g) / (max - min);
 
-  if (max === r) {
-    hue = (g - b) / (max - min);
-  } else if (max === g) {
-    hue = 2 + (b - r) / (max - min);
-  } else {
-    hue = 4 + (r - g) / (max - min);
+    hue = hue * 60;
+    if (hue < 0) hue += 360;
   }
-
-  hue *= 60;
-  return hue < 0 ? hue + 360 : hue;
+  return hue;
 };
 
 export default function Slider({
@@ -256,45 +261,44 @@ export default function Slider({
       src: "/assets/slider/raspKombucha.png",
       alt: "Raspberry Kombucha",
       flavor: dictionary.bottleTypeRasp,
-      color: backgroundColors[0], // Raspberry
+      color: backgroundColors[0],
     },
     {
       src: "/assets/slider/cherryKombucha.png",
       alt: "Cherry Kombucha",
       flavor: dictionary.bottleTypeCherry,
-      color: backgroundColors[1], // Cherry
+      color: backgroundColors[1],
     },
     {
       src: "/assets/slider/gingerKombucha.png",
       alt: "Ginger Kombucha",
       flavor: dictionary.bottleTypeGinger,
-      color: backgroundColors[2], // Ginger
+      color: backgroundColors[2],
     },
     {
       src: "/assets/slider/limeKombucha.png",
       alt: "Blueberry Lime",
       flavor: dictionary.bottleTypeLime,
-      color: backgroundColors[3], // Lime
+      color: backgroundColors[3],
     },
   ];
 
   const waterBottles = [
     {
       src: "/assets/slider/cherryWaterKombucha.png",
-      alt: "Cherry Water Kombucha",
+      alt: "Cherry Water",
       flavor: dictionary.bottleTypeCherryWater,
-      color: backgroundColors[5], // Cherry water
+      color: backgroundColors[5],
     },
     {
       src: "/assets/slider/limeWaterKombucha.png",
-      alt: "Lime Water Kombucha",
+      alt: "Lime Water",
       flavor: dictionary.bottleTypeLimeWater,
-      color: backgroundColors[4], // Lime & lemon water
+      color: backgroundColors[4],
     },
   ];
 
   const currentBottles = activeProductType === "kombucha" ? kombuchaBottles : waterBottles;
-
   const slidesData =
     activeProductType === "kombucha"
       ? [...kombuchaBottles, ...kombuchaBottles, ...kombuchaBottles]
@@ -302,117 +306,106 @@ export default function Slider({
 
   const handlePrev = () => {
     setAnimationDirection("left");
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slidePrev();
-    }
+    swiperRef.current?.swiper.slidePrev();
   };
-
   const handleNext = () => {
     setAnimationDirection("right");
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slideNext();
-    }
+    swiperRef.current?.swiper.slideNext();
   };
 
-  const switchProductType = (type: string) => {
+  const switchProductType = (type: "kombucha" | "water") => {
     setActiveProductType(type);
     setTimeout(() => {
-      if (swiperRef.current && swiperRef.current.swiper) {
-        swiperRef.current.swiper.slideToLoop(0);
-        setActiveIndex(0);
-      }
+      swiperRef.current?.swiper.slideToLoop(0);
+      setActiveIndex(0);
     }, 0);
   };
 
   useEffect(() => {
-    const colorIndex = activeIndex % currentBottles.length;
-    setBackgroundColor(currentBottles[colorIndex].color);
+    const idx = activeIndex % currentBottles.length;
+    setBackgroundColor(currentBottles[idx].color);
   }, [activeIndex, activeProductType, currentBottles]);
 
   return (
-    <StyledContainer id="products" style={{ backgroundColor: backgroundColor }}>
+    <StyledContainer id="products" style={{ backgroundColor }}>
       <BackgroundLayer
         key={`${activeIndex}-${animationDirection}-${activeProductType}`}
-        initial={{
-          rotateY: animationDirection === "right" ? -90 : 90,
-        }}
-        animate={{
-          rotateY: 0,
-        }}
+        initial={{ rotateY: animationDirection === "right" ? -90 : 90 }}
+        animate={{ rotateY: 0 }}
         transition={{ duration: 0.6, ease: "easeInOut" }}
-        style={{ backgroundColor: backgroundColor }}
+        style={{ backgroundColor }}
         animationDirection={animationDirection}
       />
+
       <CircleBackground />
 
       <StyledBox>
         <StyledTitle>
           <Typography variant="h2">{dictionary.title}</Typography>
         </StyledTitle>
+
         <StyledProducts>
           <StyledProduct
             onClick={() => switchProductType("kombucha")}
             style={{ textDecoration: activeProductType === "kombucha" ? "underline" : "none" }}
           >
-            <Typography variant="mBodytext">{dictionary.kombucha}</Typography>
+            <Desktop>
+              <Typography variant="mBodytext">{dictionary.kombucha}</Typography>
+            </Desktop>
+            <Mobile>
+              <Typography variant="xsBodytext">{dictionary.kombucha}</Typography>
+            </Mobile>
           </StyledProduct>
           <StyledProduct
             onClick={() => switchProductType("water")}
             style={{ textDecoration: activeProductType === "water" ? "underline" : "none" }}
           >
-            <Typography variant="mBodytext">{dictionary.water}</Typography>
+            <Desktop>
+              <Typography variant="mBodytext">{dictionary.water}</Typography>
+            </Desktop>
+            <Mobile>
+              <Typography variant="xsBodytext">{dictionary.water}</Typography>
+            </Mobile>
           </StyledProduct>
         </StyledProducts>
 
         <SwiperWrapper>
           <PrevButton onClick={handlePrev}>
-            <svg
-              width="12.14"
-              height="24.28"
-              viewBox="0 0 15 28"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg viewBox="0 0 15 28" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
-                d="M13.867 26.1402L1.72656 13.9998L13.867 1.85938"
+                d="M13.867 26.14L1.7266 13.9998L13.867 1.85938"
                 stroke="#5C0E15"
-                strokeWidth="1.82106"
+                strokeWidth="1.82"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
             </svg>
           </PrevButton>
+
           <NextButton onClick={handleNext}>
-            <svg
-              width="12.14"
-              height="24.28"
-              viewBox="0 0 15 28"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg viewBox="0 0 15 28" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
-                d="M1.14083 26.1402L13.2812 13.9998L1.14083 1.85938"
+                d="M1.1408 26.14L13.2812 13.9998L1.1408 1.85938"
                 stroke="#5C0E15"
-                strokeWidth="1.82106"
+                strokeWidth="1.82"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
             </svg>
           </NextButton>
+
           <StyledSwiper
             ref={swiperRef}
             spaceBetween={10}
             slidesPerView={activeProductType === "kombucha" ? 3 : 1}
-            centeredSlides={true}
-            loop={true}
-            onSlideChange={(swiper) => {
-              setActiveIndex(swiper.realIndex);
-            }}
+            centeredSlides
+            loop
+            onSlideChange={(s) => setActiveIndex(s.realIndex)}
             initialSlide={activeProductType === "kombucha" ? 1 : 0}
             key={`swiper-${activeProductType}`}
           >
-            {slidesData.map((bottle, index) => (
-              <SwiperSlide key={`${activeProductType}-${index}`}>
+            {slidesData.map((bottle, i) => (
+              <SwiperSlide key={i}>
                 {({ isActive }) => (
                   <BottleImage
                     className={isActive || activeProductType === "water" ? "active" : "side"}
@@ -423,9 +416,7 @@ export default function Slider({
                       width={164}
                       height={450}
                       style={{
-                        filter: `brightness(1.2) sepia(1) hue-rotate(${getHueFromRGB(
-                          bottle.color
-                        )}deg) saturate(1.5)`,
+                        filter: `brightness(1.2) sepia(1) hue-rotate(${getHueFromRGB(bottle.color)}deg) saturate(1.5)`,
                       }}
                     />
                   </BottleImage>
@@ -436,10 +427,16 @@ export default function Slider({
         </SwiperWrapper>
 
         <FlavorsDisplay>
-          <Typography variant="lBodytext">
-            {activeIndex !== undefined &&
-              currentBottles[activeIndex % currentBottles.length]?.flavor}
-          </Typography>
+          <Desktop>
+            <Typography variant="lBodytext">
+              {currentBottles[activeIndex % currentBottles.length]?.flavor}
+            </Typography>
+          </Desktop>
+          <Mobile>
+            <Typography variant="xsBodytext">
+              {currentBottles[activeIndex % currentBottles.length]?.flavor}
+            </Typography>
+          </Mobile>
         </FlavorsDisplay>
       </StyledBox>
     </StyledContainer>
