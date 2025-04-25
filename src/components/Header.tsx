@@ -13,7 +13,7 @@ import logoImage from "../../public/assets/logo.png";
 
 const StyledColor = styled.div<{ $visible: boolean; $sticky: boolean }>`
   padding: 12px 0px;
-  z-index: 99999;
+  z-index: 9998; /* Reduced to be lower than mobile menu */
   position: ${(props) => (props.$sticky ? "fixed" : "fixed")};
   align-items: center;
   top: 0;
@@ -28,7 +28,6 @@ const StyledColor = styled.div<{ $visible: boolean; $sticky: boolean }>`
     padding: 12px 16px;
     width: 100%;
     max-width: 100%;
-
     justify-content: space-between;
   }
 `;
@@ -142,11 +141,14 @@ const MobileMenu = styled.nav<{ $isOpen: boolean }>`
   gap: 24px;
   width: 100%;
   height: 100dvh;
-  z-index: 9999;
+  z-index: 9999; /* Higher than header */
   opacity: ${({ $isOpen }) => ($isOpen ? "1" : "0")};
+  visibility: ${({ $isOpen }) => ($isOpen ? "visible" : "hidden")};
   transition:
     transform 0.3s ease-in-out,
-    opacity 0.3s ease-in-out;
+    opacity 0.3s ease-in-out,
+    visibility 0.3s ease-in-out;
+  transform: translateY(${({ $isOpen }) => ($isOpen ? "0" : "-100%")});
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 1080px) {
@@ -172,6 +174,35 @@ export default function Header({
   const closeMobileMenu = () => {
     setOpen(false);
   };
+
+  // Toggle mobile menu
+  const toggleMobileMenu = () => {
+    setOpen((prev) => !prev);
+  };
+
+  // Toggle body scroll when mobile menu state changes
+  useEffect(() => {
+    if (open) {
+      // Disable scrolling when menu is open
+      document.body.style.overflow = "hidden";
+      // Save the current scroll position
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+      document.body.style.top = `-${window.scrollY}px`;
+    } else {
+      // Enable scrolling when menu is closed
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+
+      // Restore scroll position
+      const scrollY = document.body.style.top;
+      if (scrollY) {
+        document.body.style.top = "";
+        window.scrollTo(0, parseInt(scrollY || "0") * -1);
+      }
+    }
+  }, [open]);
 
   // Handle scroll events
   useEffect(() => {
@@ -200,7 +231,7 @@ export default function Header({
     };
 
     // Add event listener
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && !open) {
       window.addEventListener("scroll", controlNavbar);
 
       // Cleanup
@@ -208,7 +239,8 @@ export default function Header({
         window.removeEventListener("scroll", controlNavbar);
       };
     }
-  }, [lastScrollY]);
+    return undefined;
+  }, [lastScrollY, open]);
 
   return (
     <StyledColor $visible={visible} $sticky={sticky}>
@@ -227,7 +259,7 @@ export default function Header({
           <Image width={40} height={40} src={logoImage} alt="logo" placeholder="blur" />
         </LogoContainerMobile>
         <StyledBurgerContainer
-          onClick={() => setOpen((prev) => !prev)}
+          onClick={toggleMobileMenu}
           aria-label="Toggle menu"
           aria-expanded={open}
           aria-controls="mobile-menu"
