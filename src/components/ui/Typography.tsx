@@ -7,6 +7,7 @@ const H1 = styled.h1`
   font-weight: bold;
   line-height: 64px;
   margin: 0px;
+  font-feature-settings: "case";
   @media (max-width: 1080px) {
     font-size: 28px;
     line-height: 36px;

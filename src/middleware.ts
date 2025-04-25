@@ -3,22 +3,13 @@ import { NextResponse } from "next/server";
 
 import { i18n } from "./i18n-config";
 
-import { match as matchLocale } from "@formatjs/intl-localematcher";
-import Negotiator from "negotiator";
+// We're removing locale detection logic and always using "ge"
+// import { match as matchLocale } from "@formatjs/intl-localematcher";
+// import Negotiator from "negotiator";
 
-function getLocale(request: NextRequest): string | undefined {
-  // Negotiator expects plain object so we need to transform headers
-  const negotiatorHeaders: Record<string, string> = {};
-  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
-
-  // @ts-expect-error rules
-  const locales: string[] = i18n.locales;
-
-  const languages = new Negotiator({ headers: negotiatorHeaders }).languages(locales);
-
-  const locale = matchLocale(languages, locales, i18n.defaultLocale);
-
-  return locale;
+// Simplified function that always returns the default locale "ge"
+function getLocale(): string {
+  return i18n.defaultLocale; // Always returns "ge"
 }
 
 export function middleware(request: NextRequest) {
@@ -50,10 +41,10 @@ export function middleware(request: NextRequest) {
 
   // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
-    const locale = getLocale(request);
+    const locale = getLocale(); // Now always returns "ge"
 
     // e.g. incoming request is /products
-    // The new URL is now /en-US/products
+    // The new URL is now /ge/products
     return NextResponse.redirect(
       new URL(`/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`, request.url)
     );

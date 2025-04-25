@@ -7,8 +7,8 @@ import styled from "styled-components";
 import "swiper/css";
 import "swiper/css/effect-creative";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
-import Typography from "./ui/Typography";
 import { Desktop, Mobile } from "./ui/Responsive";
+import Typography from "./ui/Typography";
 
 const StyledContainer = styled(motion.div)`
   padding: 140px 0 139px;
@@ -54,7 +54,7 @@ const StyledTitle = styled.div`
   text-transform: uppercase;
 
   @media (max-width: 1080px) {
-    width: 343px;
+    width: 100%;
     font-size: 24px;
   }
 `;

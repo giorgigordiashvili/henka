@@ -8,9 +8,12 @@ import { Desktop, Mobile } from "./ui/Responsive";
 import Typography from "./ui/Typography";
 
 const StyledContainer = styled.div`
-  height: calc(100vh - 78px);
+  height: 100vh;
   position: relative;
+  margin-top: 142px;
   @media (max-width: 1080px) {
+    height: 130vh;
+    margin-top: 64px;
   }
 `;
 
@@ -47,10 +50,10 @@ const StyledFruitsContainer = styled.div`
 const StyledContentContainer = styled.div`
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 427fr 425fr 427fr;
   height: 100%;
   align-items: center;
-  gap: 32px;
+  gap: 20px;
   height: calc(100vh - 78px - 167px);
 
   @media (max-width: 1080px) {
@@ -64,10 +67,11 @@ const StyledTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  z-index: 99;
+
   @media (max-width: 1080px) {
     margin: 0 16px;
     padding-top: 15px;
-    z-index: 99;
   }
 `;
 
@@ -90,17 +94,22 @@ const StyledBlurWithBottles = styled.div`
   }
 `;
 const StyledBlur = styled.div`
-  background: #ed9098;
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 50%;
   z-index: 1;
-  height: 456px;
-  width: 456px;
-  filter: blur(165px);
+  height: 200px;
+  width: 200px;
+  filter: blur(100px);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   @media (max-width: 1080px) {
     width: 343px;
-    height: 402px;
+    height: 343px;
 
-    filter: blur(123px);
+    position: relative;
+    filter: blur(100px);
   }
 `;
 
@@ -148,7 +157,17 @@ export default function Hero({
             </Desktop>
 
             <Desktop>
-              <MenuItem size="M" text={dictionary.button} href="/" />
+              <MenuItem
+                fullWidth={false}
+                size="M"
+                text={dictionary.button}
+                onClick={() => {
+                  const element = document.getElementById("aboutUs");
+                  if (element) {
+                    element.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+              />
             </Desktop>
           </StyledTextContainer>
 
@@ -180,7 +199,17 @@ export default function Hero({
               </Mobile>
 
               <Mobile>
-                <MenuItem fullWidth size="M" text={dictionary.button} href="/" />
+                <MenuItem
+                  fullWidth
+                  size="M"
+                  text={dictionary.button}
+                  onClick={() => {
+                    const element = document.getElementById("aboutUs");
+                    if (element) {
+                      element.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
+                />
               </Mobile>
             </StyledTextContainer>
           </Mobile>

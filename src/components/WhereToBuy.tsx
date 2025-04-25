@@ -3,8 +3,8 @@
 import { getDictionary } from "@/get-dictionary";
 import Image from "next/image";
 import styled from "styled-components";
-import Typography from "./ui/Typography";
 import { Desktop, Mobile } from "./ui/Responsive";
+import Typography from "./ui/Typography";
 
 type WhereToBuyProps = {
   dictionary: Awaited<ReturnType<typeof getDictionary>>["whereToBuy"];
@@ -29,7 +29,7 @@ const StyledContainer = styled.div`
 
   @media (max-width: 1080px) {
     display: grid;
-    grid-template-columns: minmax(340px, 1fr);
+    grid-template-columns: minmax(320px, 1fr);
     padding: 52px 18px 42px 18px;
     gap: 64px;
   }
@@ -52,7 +52,9 @@ const StyledLocations = styled.div`
   display: flex;
   flex-direction: column;
   gap: 28px;
-  text-align: center;
+  @media (max-width: 1080px) {
+    text-align: center;
+  }
 `;
 
 const StyledBranches = styled.div`
@@ -105,7 +107,9 @@ const StyledContact = styled.div`
   display: flex;
   flex-direction: column;
   gap: 28px;
-  text-align: center;
+  @media (max-width: 1080px) {
+    text-align: center;
+  }
 `;
 
 const StyledContactInfos = styled.div`
@@ -128,17 +132,14 @@ const StyledHenka = styled.div`
   width: 656px;
   height: 650px;
   position: relative;
-
+  border-radius: 20px;
+  overflow: hidden;
   @media (max-width: 1080px) {
-    width: 100%;
+    width: calc(100vw - 36px);
     height: 335px;
     display: flex;
-    justify-content: center;
 
-    img {
-      width: 100%;
-      height: 335px;
-    }
+    justify-content: center;
   }
 `;
 
@@ -302,7 +303,7 @@ export default function WhereToBuy({ dictionary }: WhereToBuyProps) {
           </StyledContact>
         </StyledBio>
         <StyledHenka>
-          <Image src="/assets/whereToBuy/henkaImage.png" alt="henka" fill />
+          <Image objectFit="cover" src="/assets/whereToBuy/henkaImage.png" alt="henka" fill />
         </StyledHenka>
       </StyledContainer>
     </StyledMainContainer>

@@ -2,28 +2,48 @@
 import { getDictionary } from "@/get-dictionary";
 import BurgerIcon from "@/icons/BurgerIcon";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import LocaleSwitcher from "./LocaleSwitcher";
-import Container from "./ui/Container";
 import NavigationLink from "./ui/NavigationLink";
 
 // Static image import
 import CloseIcon from "@/icons/CloseIcon";
 import logoImage from "../../public/assets/logo.png";
 
-const StyledContainer = styled.div`
+const StyledColor = styled.div<{ $visible: boolean; $sticky: boolean }>`
   padding: 12px 0px;
-  background: #dd2233;
+  z-index: 99999;
+  position: ${(props) => (props.$sticky ? "fixed" : "fixed")};
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #dc2233;
+  width: 100%;
+  transform: translateY(${(props) => (props.$sticky && !props.$visible ? "-100%" : "0")});
+  transition: transform 0.3s ease-in-out;
+  @media (max-width: 1080px) {
+    display: flex;
+    padding: 12px 16px;
+    width: 100%;
+    max-width: 100%;
+
+    justify-content: space-between;
+  }
+`;
+const StyledContainer = styled.div<{ $visible: boolean; $sticky: boolean }>`
+  max-width: 1344px;
+  margin: auto;
+
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-
   @media (max-width: 1080px) {
     display: flex;
-    top: 0px;
-    padding: 12px 16px;
     width: 100%;
+    max-width: 100%;
+
     justify-content: space-between;
   }
 `;
@@ -110,7 +130,7 @@ const StyledCloseButton = styled.button`
 
 const MobileMenu = styled.nav<{ $isOpen: boolean }>`
   position: fixed;
-  top: ${({ $isOpen }) => ($isOpen ? "0px" : "-100%")};
+  top: ${({ $isOpen }) => ($isOpen ? "0px" : "-100vh")};
   left: 0;
   right: 0;
   background: #dd2233;
@@ -144,77 +164,115 @@ export default function Header({
   dictionary: Awaited<ReturnType<typeof getDictionary>>["menu"];
 }) {
   const [open, setOpen] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [sticky, setSticky] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   // Handler to close mobile menu
   const closeMobileMenu = () => {
     setOpen(false);
   };
 
-  return (
-    <>
-      <Container>
-        <StyledContainer>
-          <StyledLinksContainer aria-label="Main Navigation">
-            <NavList>
-              <NavigationLink text={dictionary.whereToBuy} href="/" scrollTo="whereToBuy" />
-              <NavigationLink text={dictionary.products} href="/" scrollTo="products" />
-              <NavigationLink text={dictionary.aboutUs} href="/" scrollTo="aboutUs" />
-            </NavList>
-          </StyledLinksContainer>
-          <LogoContainer>
-            <Image width={54} height={54} src={logoImage} alt="logo" placeholder="blur" />
-          </LogoContainer>
-          <LogoContainerMobile>
-            <Image width={40} height={40} src={logoImage} alt="logo" placeholder="blur" />
-          </LogoContainerMobile>
-          <StyledBurgerContainer
-            onClick={() => setOpen((prev) => !prev)}
-            aria-label="Toggle menu"
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-          >
-            <BurgerIcon />
-          </StyledBurgerContainer>
-          <LocaleSwitcherContainer>
-            <LocaleSwitcher />
-          </LocaleSwitcherContainer>
-        </StyledContainer>
+  // Handle scroll events
+  useEffect(() => {
+    const controlNavbar = () => {
+      if (typeof window !== "undefined") {
+        // Set sticky state when scrolled beyond a threshold (e.g., 50px)
+        const shouldBeSticky = window.scrollY > 78;
+        setSticky(shouldBeSticky);
 
-        <MobileMenu
-          $isOpen={open}
-          aria-hidden={!open}
-          id="mobile-menu"
-          inert={!open ? false : undefined}
+        // Hide header on scroll down, show on scroll up
+        if (shouldBeSticky) {
+          if (window.scrollY > lastScrollY) {
+            // Scrolling down
+            setVisible(false);
+          } else {
+            // Scrolling up
+            setVisible(true);
+          }
+        } else {
+          setVisible(true);
+        }
+
+        // Update last scroll position
+        setLastScrollY(window.scrollY);
+      }
+    };
+
+    // Add event listener
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", controlNavbar);
+
+      // Cleanup
+      return () => {
+        window.removeEventListener("scroll", controlNavbar);
+      };
+    }
+  }, [lastScrollY]);
+
+  return (
+    <StyledColor $visible={visible} $sticky={sticky}>
+      <StyledContainer $visible={visible} $sticky={sticky}>
+        <StyledLinksContainer aria-label="Main Navigation">
+          <NavList>
+            <NavigationLink text={dictionary.whereToBuy} href="/" scrollTo="whereToBuy" />
+            <NavigationLink text={dictionary.products} href="/" scrollTo="products" />
+            <NavigationLink text={dictionary.aboutUs} href="/" scrollTo="aboutUs" />
+          </NavList>
+        </StyledLinksContainer>
+        <LogoContainer>
+          <Image width={54} height={54} src={logoImage} alt="logo" placeholder="blur" />
+        </LogoContainer>
+        <LogoContainerMobile>
+          <Image width={40} height={40} src={logoImage} alt="logo" placeholder="blur" />
+        </LogoContainerMobile>
+        <StyledBurgerContainer
+          onClick={() => setOpen((prev) => !prev)}
+          aria-label="Toggle menu"
+          aria-expanded={open}
+          aria-controls="mobile-menu"
         >
-          <StyledCloseButton onClick={() => setOpen(false)}>
-            <CloseIcon />
-          </StyledCloseButton>
-          <MobileNavList>
-            <NavigationLink
-              text={dictionary.whereToBuy}
-              href="/"
-              scrollTo="whereToBuy"
-              tabIndex={open ? 0 : -1}
-              onLinkClick={closeMobileMenu}
-            />
-            <NavigationLink
-              text={dictionary.products}
-              href="/"
-              scrollTo="products"
-              tabIndex={open ? 0 : -1}
-              onLinkClick={closeMobileMenu}
-            />
-            <NavigationLink
-              text={dictionary.aboutUs}
-              href="/"
-              scrollTo="aboutUs"
-              tabIndex={open ? 0 : -1}
-              onLinkClick={closeMobileMenu}
-            />
-          </MobileNavList>
-          <LocaleSwitcher tabIndex={open ? undefined : -1} />
-        </MobileMenu>
-      </Container>
-    </>
+          <BurgerIcon />
+        </StyledBurgerContainer>
+        <LocaleSwitcherContainer>
+          <LocaleSwitcher />
+        </LocaleSwitcherContainer>
+      </StyledContainer>
+
+      <MobileMenu
+        $isOpen={open}
+        aria-hidden={!open}
+        id="mobile-menu"
+        inert={!open ? false : undefined}
+      >
+        <StyledCloseButton onClick={() => setOpen(false)}>
+          <CloseIcon />
+        </StyledCloseButton>
+        <MobileNavList>
+          <NavigationLink
+            text={dictionary.whereToBuy}
+            href="/"
+            scrollTo="whereToBuy"
+            tabIndex={open ? 0 : -1}
+            onLinkClick={closeMobileMenu}
+          />
+          <NavigationLink
+            text={dictionary.products}
+            href="/"
+            scrollTo="products"
+            tabIndex={open ? 0 : -1}
+            onLinkClick={closeMobileMenu}
+          />
+          <NavigationLink
+            text={dictionary.aboutUs}
+            href="/"
+            scrollTo="aboutUs"
+            tabIndex={open ? 0 : -1}
+            onLinkClick={closeMobileMenu}
+          />
+        </MobileNavList>
+        <LocaleSwitcher tabIndex={open ? undefined : -1} />
+      </MobileMenu>
+    </StyledColor>
   );
 }

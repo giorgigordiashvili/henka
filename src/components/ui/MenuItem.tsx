@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import styled from "styled-components";
 import Typography from "./Typography";
 
@@ -16,32 +15,31 @@ const StyledButton = styled.div<{ size: "S" | "M" }>`
   background-color: #fff;
   border: 1px solid #fff;
   cursor: pointer;
+  text-decoration: none;
+  color: #5c0e15;
+  font-feature-settings: "case";
   transition: all 0.3s ease-in-out;
-  a {
-    text-decoration: none;
-    color: #5c0e15;
-    font-feature-settings: "case";
-  }
+
   &:hover {
     background: transparent;
-    a {
-      color: #fff;
-    }
+    color: #fff;
   }
 `;
 type Props = {
   size: "S" | "M";
   text: string;
-  href: string;
   fullWidth?: boolean;
+  onClick?: () => void;
 };
 
-function MenuItem({ size, text, href, fullWidth }: Props) {
+function MenuItem({ size, text, fullWidth, onClick }: Props) {
   return (
-    <StyledButton style={{ width: fullWidth ? "100%" : "auto" }} size={size}>
-      <Link href={href} passHref>
-        <Typography variant={size === "S" ? "xsBodytext" : "mBodytext"}>{text}</Typography>
-      </Link>
+    <StyledButton
+      onClick={onClick}
+      style={{ width: fullWidth ? "100%" : "fit-content" }}
+      size={size}
+    >
+      <Typography variant={size === "S" ? "xsBodytext" : "mBodytext"}>{text}</Typography>
     </StyledButton>
   );
 }

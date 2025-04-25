@@ -130,10 +130,16 @@ export default function TextWithImage({
           </StyledTextContainer>
           <StyledImageContainer>
             <Desktop>
-              <Image src={imageSrc} alt={imageAlt} width={imageWidth} height={imageHeight} />
+              <Image
+                src={imageSrc}
+                alt={imageAlt}
+                width={imageWidth}
+                height={imageHeight}
+                objectFit="cover"
+              />
             </Desktop>
             <Mobile>
-              <Image src={imageSrc} alt={imageAlt} fill />
+              <Image src={imageSrc} alt={imageAlt} fill objectFit="cover" />
             </Mobile>
           </StyledImageContainer>
         </StyledFlex>
