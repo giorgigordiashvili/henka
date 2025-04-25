@@ -11,7 +11,6 @@ const StyledContainer = styled.div`
   height: calc(100vh - 78px);
   position: relative;
   @media (max-width: 1080px) {
-    height: auto;
   }
 `;
 

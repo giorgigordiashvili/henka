@@ -56,7 +56,6 @@ const marqueeAnimation = keyframes`
 `;
 
 const StyledText = styled.div`
-  height: 479px;
   width: 100%;
   font-size: 90px;
   font-weight: 700;
