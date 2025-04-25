@@ -20,8 +20,11 @@ const StyledTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-
+  h2 {
+    text-align: left;
+  }
   @media (max-width: 1080px) {
+    gap: 24px;
     h2 {
       font-feature-settings: "case";
       text-align: center;
