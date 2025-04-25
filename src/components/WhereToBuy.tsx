@@ -44,7 +44,6 @@ const StyledBio = styled.div`
 
   @media (max-width: 1080px) {
     padding: 12px 0;
-    width: calc(100% - 36px);
   }
 `;
 
@@ -138,7 +137,6 @@ const StyledHenka = styled.div`
     width: calc(100vw - 36px);
     height: 335px;
     display: flex;
-
     justify-content: center;
   }
 `;
