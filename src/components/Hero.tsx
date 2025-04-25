@@ -12,7 +12,7 @@ const StyledContainer = styled.div`
   position: relative;
   margin-top: 142px;
   @media (max-width: 1080px) {
-    height: 130vh;
+    height: 120vh;
     margin-top: 64px;
   }
 `;
