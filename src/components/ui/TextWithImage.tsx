@@ -16,10 +16,11 @@ const StyledContainer = styled.div<{ $backgroundColor?: string }>`
 
 const StyledTextContainer = styled.div`
   color: rgba(92, 14, 21, 1);
-  max-width: 541px;
+  max-width: 656px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+
   @media (max-width: 1080px) {
     h2 {
       font-feature-settings: "case";
@@ -29,11 +30,36 @@ const StyledTextContainer = styled.div`
   }
 `;
 
+const StyledList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+const ListItem = styled.li`
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  color: rgba(92, 14, 21, 1);
+`;
+
+const CheckmarkContainer = styled.div`
+  object-fit: cover;
+`;
+
+const ListItemText = styled.div`
+  flex: 1;
+`;
+
 const StyledFlex = styled.div<{ $imagePosition?: "left" | "right" }>`
   width: 100%;
   display: flex;
   flex-direction: ${(props) => (props.$imagePosition === "left" ? "row-reverse" : "row")};
   justify-content: space-between;
+  gap: 32px;
   align-items: center;
   @media (max-width: 1080px) {
     flex-direction: column;
@@ -64,6 +90,7 @@ interface TextWithImageProps {
   backgroundColor?: string;
   imagePosition?: "left" | "right";
   className?: string;
+  listItems?: string[];
 }
 
 export default function TextWithImage({
@@ -77,6 +104,7 @@ export default function TextWithImage({
   backgroundColor,
   imagePosition = "right",
   className,
+  listItems,
 }: TextWithImageProps) {
   return (
     <StyledContainer id={id} $backgroundColor={backgroundColor} className={className}>
@@ -85,6 +113,20 @@ export default function TextWithImage({
           <StyledTextContainer>
             <H2>{title}</H2>
             <Typography variant="mBodytext">{subtitle}</Typography>
+            {listItems && listItems.length > 0 && (
+              <StyledList>
+                {listItems.map((item, index) => (
+                  <ListItem key={index}>
+                    <CheckmarkContainer>
+                      <Image src="/assets/checkmark.svg" alt="Checkmark" width={28} height={28} />
+                    </CheckmarkContainer>
+                    <ListItemText>
+                      <Typography variant="mBodytext">{item}</Typography>
+                    </ListItemText>
+                  </ListItem>
+                ))}
+              </StyledList>
+            )}
           </StyledTextContainer>
           <StyledImageContainer>
             <Desktop>

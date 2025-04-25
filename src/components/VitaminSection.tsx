@@ -7,6 +7,8 @@ export default function VitaminSection({
 }: {
   dictionary: Awaited<ReturnType<typeof getDictionary>>["vitamin"];
 }) {
+  const listItems = [dictionary.list_one, dictionary.list_two, dictionary.list_three];
+
   return (
     <TextWithImage
       title={dictionary.title}
@@ -15,6 +17,7 @@ export default function VitaminSection({
       imagePosition="left"
       imageAlt="Vitamin"
       backgroundColor="#fcfcfc"
+      listItems={listItems}
     />
   );
 }

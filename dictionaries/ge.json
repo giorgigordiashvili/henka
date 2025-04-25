@@ -65,7 +65,10 @@
     "water": "წყალი",
     "bottleTypeCherry": "ალუბალი & ლაიმი",
     "bottleTypeGinger": "მარაკუია & ჯინჯერი",
-    "bottleTypeRasp": "ჟოლო & ქინძი"
+    "bottleTypeRasp": "ჟოლო & ქინძი",
+    "bottleTypeLime": "მოცვი & ლაიმი",
+    "bottleTypeCherryWater": "ალუბალი",
+    "bottleTypeLimeWater": "ლიმონი & ლაიმი"
   },
   "whereToBuy": {
     "title": "სად შევიძინო?",
