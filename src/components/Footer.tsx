@@ -155,8 +155,14 @@ const Footer = ({ dictionary }: Props) => {
           </SocialsWrapper>
         </NavSocialsWrapper>
         <WhiteLine />
+
         <CopyrightWrapper>
-          <Typography variant="sBodytext">{dictionary.copyright}</Typography>
+          <Desktop>
+            <Typography variant="sBodytext">{dictionary.copyright}</Typography>
+          </Desktop>
+          <Mobile>
+            <Typography variant="xsBodytext">{dictionary.copyright}</Typography>
+          </Mobile>
         </CopyrightWrapper>
       </BottomFooter>
     </FooterContainer>
