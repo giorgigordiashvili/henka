@@ -29,7 +29,8 @@ export function middleware(request: NextRequest) {
     pathname.startsWith("/assets/") ||
     pathname.startsWith("/admin/") || // Also exempt all paths under /admin/
     pathname.startsWith("/.netlify/") || // Exempt Netlify functionality paths
-    pathname.startsWith("/dictionaries/") // Exempt dictionaries folder
+    pathname.startsWith("/dictionaries/") || // Exempt dictionaries folder
+    pathname.startsWith("/content/") // Exempt content folder with JSON files
   ) {
     return;
   }
