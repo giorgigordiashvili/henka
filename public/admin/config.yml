@@ -13,7 +13,7 @@ public_folder: "/assets/uploads"
 # Localization settings
 locale: "en"
 i18n:
-  structure: multiple_files
+  structure: single_file
   locales: [en, ge, ru]
   default_locale: en
 
