@@ -1,0 +1,105 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+
+# Publish mode can be editorial_workflow (with drafts and approval) or simple
+publish_mode: editorial_workflow
+
+# Media folder where uploaded images will be stored in the repo
+media_folder: "public/assets/uploads"
+# Public path to the media
+public_folder: "/assets/uploads"
+
+# Localization settings
+locale: "en"
+i18n:
+  structure: multiple_files
+  locales: [en, ge, ru]
+  default_locale: en
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    i18n: true
+    files:
+      - label: "Home Page"
+        name: "home"
+        file: "public/content/home.json"
+        i18n: true
+        fields:
+          - { label: "Hero Title", name: "heroTitle", widget: "string", i18n: true }
+          - { label: "Hero Description", name: "heroDescription", widget: "text", i18n: true }
+          - label: "Hero Button"
+            name: "heroButton"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Text", name: "text", widget: "string", i18n: true }
+              - { label: "URL", name: "url", widget: "string", i18n: true }
+
+          - label: "About Section"
+            name: "about"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Title", name: "title", widget: "string", i18n: true }
+              - { label: "Description", name: "description", widget: "text", i18n: true }
+              - { label: "Image", name: "image", widget: "image", i18n: false }
+
+          - label: "Products"
+            name: "products"
+            widget: "list"
+            i18n: true
+            fields:
+              - { label: "Name", name: "name", widget: "string", i18n: true }
+              - { label: "Description", name: "description", widget: "text", i18n: true }
+              - { label: "Image", name: "image", widget: "image", i18n: false }
+
+          - label: "Where To Buy"
+            name: "whereToBuy"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Title", name: "title", widget: "string", i18n: true }
+              - { label: "Description", name: "description", widget: "text", i18n: true }
+              - label: "Locations"
+                name: "locations"
+                widget: "list"
+                i18n: true
+                fields:
+                  - { label: "Name", name: "name", widget: "string", i18n: true }
+                  - { label: "Address", name: "address", widget: "string", i18n: true }
+                  - { label: "Phone", name: "phone", widget: "string", i18n: true }
+                  - { label: "Email", name: "email", widget: "string", i18n: true }
+
+  - name: "settings"
+    label: "Settings"
+    i18n: true
+    files:
+      - label: "Navigation"
+        name: "navigation"
+        file: "public/content/navigation.json"
+        i18n: true
+        fields:
+          - label: "Menu Items"
+            name: "menu"
+            widget: "list"
+            i18n: true
+            fields:
+              - { label: "Label", name: "label", widget: "string", i18n: true }
+              - { label: "URL", name: "url", widget: "string", i18n: true }
+
+      - label: "Footer"
+        name: "footer"
+        file: "public/content/footer.json"
+        i18n: true
+        fields:
+          - { label: "Copyright Text", name: "copyright", widget: "string", i18n: true }
+          - label: "Social Links"
+            name: "social"
+            widget: "list"
+            i18n: false
+            fields:
+              - { label: "Platform", name: "platform", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+              - { label: "Icon", name: "icon", widget: "image" }

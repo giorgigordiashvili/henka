@@ -1,0 +1,16 @@
+{
+  "menu": [
+    {
+      "label": "Where To Buy",
+      "url": "#whereToBuy"
+    },
+    {
+      "label": "Products",
+      "url": "#products"
+    },
+    {
+      "label": "About Us",
+      "url": "#aboutUs"
+    }
+  ]
+}

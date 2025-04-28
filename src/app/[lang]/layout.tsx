@@ -1,5 +1,6 @@
 import { i18n, type Locale } from "@/i18n-config";
 import StyledComponentsRegistry from "@/lib/registry";
+import Script from "next/script";
 import "./globals.css";
 
 export const metadata = {
@@ -21,8 +22,24 @@ export default async function Root(props: {
 
   return (
     <html lang={params.lang}>
+      <head>
+        <Script src="https://identity.netlify.com/v1/netlify-identity-widget.js" />
+      </head>
       <body>
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        <Script id="netlify-identity-redirect">
+          {`
+          if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+              if (!user) {
+                window.netlifyIdentity.on("login", () => {
+                  document.location.href = "/admin/";
+                });
+              }
+            });
+          }
+        `}
+        </Script>
       </body>
     </html>
   );

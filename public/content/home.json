@@ -1,0 +1,43 @@
+{
+  "heroTitle": "Henka",
+  "heroDescription": "Natural refreshment and energy in one bottle",
+  "heroButton": {
+    "text": "Learn More",
+    "url": "#aboutUs"
+  },
+  "about": {
+    "title": "About Us",
+    "description": "Henka is a Georgian company producing healthy and natural beverages. Our products are made with locally sourced ingredients and traditional recipes.",
+    "image": "/assets/about-us.png"
+  },
+  "products": [
+    {
+      "name": "Kombucha",
+      "description": "Fermented tea with probiotics and natural flavors",
+      "image": "/assets/slider/cherryKombucha.png"
+    },
+    {
+      "name": "Vitamin Water",
+      "description": "Refreshing water infused with vitamins and natural extracts",
+      "image": "/assets/slider/limeWaterKombucha.png"
+    }
+  ],
+  "whereToBuy": {
+    "title": "Where To Buy",
+    "description": "Find our products in these locations",
+    "locations": [
+      {
+        "name": "Goodwill",
+        "address": "Various locations",
+        "phone": "+995 xxx xxx xxx",
+        "email": "info@goodwill.ge"
+      },
+      {
+        "name": "Agrohub",
+        "address": "Various locations",
+        "phone": "+995 xxx xxx xxx",
+        "email": "info@agrohub.ge"
+      }
+    ]
+  }
+}

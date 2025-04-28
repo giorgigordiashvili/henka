@@ -1,0 +1,20 @@
+{
+  "copyright": "© 2025 Henka. All Rights Reserved.",
+  "social": [
+    {
+      "platform": "Instagram",
+      "url": "https://instagram.com/henka",
+      "icon": "/assets/footer/instagram.png"
+    },
+    {
+      "platform": "Facebook",
+      "url": "https://facebook.com/henka",
+      "icon": "/assets/footer/facebook.png"
+    },
+    {
+      "platform": "TikTok",
+      "url": "https://tiktok.com/@henka",
+      "icon": "/assets/footer/tiktok.png"
+    }
+  ]
+}
