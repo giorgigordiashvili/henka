@@ -3,8 +3,8 @@ import StyledComponentsRegistry from "@/lib/registry";
 import "./globals.css";
 
 export const metadata = {
-  title: "i18n within app router - Vercel Examples",
-  description: "How to do i18n in Next.js 15 within app router",
+  title: "ჰენკა",
+  description: "ბუნებრივი სიჯანსაღე და ენერგია ერთ ბოთლში",
 };
 
 export async function generateStaticParams() {
