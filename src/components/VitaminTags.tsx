@@ -19,6 +19,8 @@ const StyledContainer = styled.div`
 
 const StyledWhite = styled.div`
   background: #fcfcfc;
+  width: 100%;
+  overflow: hidden;
 `;
 
 export default function VitaminTags({
@@ -69,7 +71,7 @@ export default function VitaminTags({
     <>
       {enableStickyEffect && (
         <Head>
-          <link rel="preload" href="/assets/why/sticky-filled.png" as="image" type="image/png" />
+          <link rel="preload" href="/assets/vitamin-filled.png" as="image" type="image/png" />
         </Head>
       )}
       <StyledWhite>
@@ -79,9 +81,12 @@ export default function VitaminTags({
             filledImageSrc="/assets/vitamin-filled.png"
             filledImageMobileSrc="/assets/vitamin-filled-mobile.png"
             leftTags={leftTags}
+            middleImageSrc="/assets/vitamin-middle.png"
             rightTags={rightTags}
-            middleImageSrc="/assets/vitamin-filled.png"
             middleImageAlt="Middle Image"
+            enableStickyEffect={enableStickyEffect}
+            enableSlideAnimation={true}
+            uniqueId="vitamin-component"
           />
         </StyledContainer>
       </StyledWhite>

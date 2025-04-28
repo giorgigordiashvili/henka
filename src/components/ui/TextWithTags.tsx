@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
-import styled, { css, keyframes } from "styled-components";
+import styled, { css } from "styled-components";
 import { Desktop, Mobile } from "./Responsive";
 import Typography from "./Typography";
 
@@ -19,42 +19,32 @@ const StyledItemsGrid = styled.div`
   }
 `;
 
-// Create animations for sliding in from left and right
-const slideInFromLeft = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(-100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
-
-const slideInFromRight = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
-
 // Apply animation conditionally based on props and only on desktop
-const StyledReasons = styled.div<{ $fromLeft?: boolean }>`
+const StyledReasons = styled.div<{ $fromLeft?: boolean; $scrollRatio?: number }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   gap: 64px;
+  position: relative;
+
+  @media (min-width: 1081px) {
+    transform: translateX(
+      ${(props) =>
+        props.$fromLeft
+          ? `calc(-100% 1${props.$scrollRatio || 0}%)`
+          : `calc(100% 1${props.$scrollRatio || 0}%)`}
+    );
+    transition: transform 0.05s linear;
+  }
+
   @media (max-width: 1080px) {
     gap: 32px;
     justify-content: flex-start;
     align-items: flex-start;
     text-align: left;
+    transform: none;
   }
 
   /* Make elements visible immediately on mobile without animation */
@@ -64,13 +54,22 @@ const StyledReasons = styled.div<{ $fromLeft?: boolean }>`
 `;
 
 // Animation for individual items that will follow scroll
-const StyledReason = styled.div<{ $isVisible: boolean; $fromLeft?: boolean; $index: number }>`
+const StyledReason = styled.div<{
+  $isVisible: boolean;
+  $fromLeft?: boolean;
+  $index: number;
+  $scrollRatio?: number;
+}>`
   display: flex;
   flex-direction: column;
   font-weight: 700;
   align-items: center;
   gap: 12px;
-  opacity: 0;
+  opacity: 1; /* Always visible, no fade effect */
+  transform: ${(props) =>
+    props.$fromLeft
+      ? "translateX(calc(-100vw - 1114px / 2))"
+      : "translateX(calc(100vw - 1114px / 2))"};
 
   @media (max-width: 1080px) {
     flex-direction: row;
@@ -78,21 +77,31 @@ const StyledReason = styled.div<{ $isVisible: boolean; $fromLeft?: boolean; $ind
     text-align: left;
     margin-left: 16px;
     justify-content: flex-start;
-    opacity: 1; /* Always visible on mobile */
+    visibility: visible; /* Always visible on mobile */
+    transform: translateX(0); /* No transform on mobile */
     img {
       width: 40px;
       height: 40px;
     }
   }
 
-  /* Only apply animations on desktop (screens > 1080px) */
+  /* Only apply animations on desktop (screens > 1081px) */
   @media (min-width: 1081px) {
-    ${(props) =>
-      props.$isVisible &&
-      css`
-        animation: ${props.$fromLeft ? slideInFromLeft : slideInFromRight} 0.8s ease-out forwards;
-        animation-delay: ${props.$index * 0.2}s; /* Stagger animations based on index */
-      `}
+    /* Only make visible and animate when the previous item is complete or it's the first item */
+    ${(props) => {
+      // The threshold percentage for when this tag should appear
+      const threshold = props.$index === 0 ? 15 : props.$index * 25;
+
+      return (
+        props.$scrollRatio &&
+        props.$scrollRatio > threshold &&
+        css`
+          visibility: visible;
+          transform: translateX(0);
+          transition: transform 0.6s ease-out;
+        `
+      );
+    }}
   }
 `;
 
@@ -135,7 +144,9 @@ interface TextWithTagsProps {
   filledImageMobileSrc: string;
   stickyImageSrc?: string; // Optional sticky image
   enableStickyEffect?: boolean;
+  enableSlideAnimation?: boolean; // New prop to control slide animation independently
   className?: string;
+  uniqueId?: string; // Unique ID for multiple instances
 }
 
 export default function TextWithTags({
@@ -147,7 +158,9 @@ export default function TextWithTags({
   filledImageMobileSrc,
   stickyImageSrc,
   enableStickyEffect = false,
+  enableSlideAnimation = true, // Default to true so slides work regardless of sticky effect
   className,
+  uniqueId = "default",
 }: TextWithTagsProps) {
   // Add state to track if we've scrolled past the threshold
   const [passedThreshold, setPassedThreshold] = useState(false);
@@ -165,6 +178,9 @@ export default function TextWithTags({
   const currentPosition = useRef(0);
   const animationRef = useRef<number | null>(null);
 
+  // Add state for tag animation based on scroll position
+  const [tagsScrollRatio, setTagsScrollRatio] = useState(0);
+
   // Check if we're on a desktop device
   const [isDesktop, setIsDesktop] = useState(true);
 
@@ -181,7 +197,6 @@ export default function TextWithTags({
     // Set threshold to component start plus adjustment for viewport height
     // This ensures consistent threshold calculation across different screen sizes
     const calculatedThreshold = componentStart + 50 - (window.innerHeight - 600) / 2;
-    console.log(calculatedThreshold);
 
     setScrollThreshold(calculatedThreshold);
     return calculatedThreshold;
@@ -237,19 +252,13 @@ export default function TextWithTags({
   }, [calculateThreshold]);
 
   useEffect(() => {
-    // Skip all sticky effects if not enabled
-    if (!enableStickyEffect) {
-      setIsInView(true);
-      return;
-    }
-
     // Check if we're on desktop when component mounts
     const checkIfDesktop = () => {
       const isDesktopView = window.innerWidth > 1080;
       setIsDesktop(isDesktopView);
 
-      // Preload the image if we're on desktop
-      if (isDesktopView) {
+      // Preload the image if sticky effect is enabled
+      if (isDesktopView && enableStickyEffect) {
         preloadFilledImage();
       }
     };
@@ -267,62 +276,98 @@ export default function TextWithTags({
     window.addEventListener("resize", handleResize);
 
     const handleScroll = () => {
-      // Check if we've passed the threshold
+      // Check if we've passed the threshold (for sticky effect)
       const scrollPosition = window.scrollY;
       const currentThreshold = scrollThreshold;
 
-      // If we're getting close to the threshold, preload the image
-      if (isDesktop && scrollPosition > currentThreshold - 300) {
-        preloadFilledImage();
-      }
+      // Calculate scroll ratio for tag animation (0-100%) - this happens regardless of sticky effect
+      if (isDesktop && reasonsRef.current && enableSlideAnimation) {
+        // Get component position data
+        const rect = reasonsRef.current.getBoundingClientRect();
+        const componentTop = rect.top + window.scrollY;
+        const componentBottom = componentTop + rect.height;
 
-      // Update target position for sticky with enhanced movement response
-      if (scrollPosition < currentThreshold && isDesktop) {
-        // Calculate distance to threshold for smooth transition
-        const distanceToThreshold = currentThreshold - scrollPosition;
+        // Calculate how far into the component we've scrolled (as a percentage)
+        if (
+          scrollPosition >= componentTop - window.innerHeight &&
+          scrollPosition <= componentBottom
+        ) {
+          // Calculate a percentage (0-100) based on how far we've scrolled into the component
+          // Start animation when component is 100% of viewport height away
+          const startPosition = componentTop - window.innerHeight;
+          const totalScrollDistance = rect.height + window.innerHeight;
+          const currentProgress = scrollPosition - startPosition;
 
-        // Set target position proportional to scroll but less than actual scroll
-        // This ensures the sticky follows the scroll but with a dragging effect
-        // Using a factor less than 1 ensures it never moves more than the scroll
-        const dragFactor = 0.7; // Controls how much it "drags its feet"
-
-        // Apply an easing curve that creates more natural movement
-        // Square root creates a curve that gives more movement early and slows down later
-        targetPosition.current = Math.sqrt(scrollPosition) * dragFactor;
-
-        // For smooth transition near threshold, gradually reduce movement
-        if (distanceToThreshold < 100) {
-          // Scale down movement as we approach threshold (100px to 0px)
-          const transitionFactor = distanceToThreshold / 100;
-          // Decrease the drag factor gradually as we approach threshold
-          const adjustedFactor = dragFactor * (0.2 + transitionFactor * 0.8);
-          targetPosition.current = Math.sqrt(scrollPosition) * adjustedFactor;
-        }
-
-        // Start animation if not already running
-        if (!animationRef.current) {
-          animationRef.current = requestAnimationFrame(animateSticky);
+          // Calculate percentage (0-100) with a maximum of 100
+          const percentage = Math.min(
+            100,
+            Math.max(0, (currentProgress / totalScrollDistance) * 100)
+          );
+          setTagsScrollRatio(percentage);
         }
       }
 
-      // Update state based on scroll position
-      if (scrollPosition >= currentThreshold) {
-        setPassedThreshold(true);
-        // Cancel animation when past threshold
-        if (animationRef.current) {
-          cancelAnimationFrame(animationRef.current);
-          animationRef.current = null;
+      // The following code is only for sticky effect
+      if (enableStickyEffect) {
+        // If we're getting close to the threshold, preload the image
+        if (isDesktop && scrollPosition > currentThreshold - 300) {
+          preloadFilledImage();
         }
-      } else {
-        setPassedThreshold(false);
+
+        // Update target position for sticky with enhanced movement response
+        if (scrollPosition < currentThreshold && isDesktop) {
+          // Calculate distance to threshold for smooth transition
+          const distanceToThreshold = currentThreshold - scrollPosition;
+
+          // Set target position proportional to scroll but less than actual scroll
+          const dragFactor = 0.7; // Controls how much it "drags its feet"
+
+          // Apply an easing curve that creates more natural movement
+          targetPosition.current = Math.sqrt(scrollPosition) * dragFactor;
+
+          // For smooth transition near threshold, gradually reduce movement
+          if (distanceToThreshold < 100) {
+            // Scale down movement as we approach threshold (100px to 0px)
+            const transitionFactor = distanceToThreshold / 100;
+            // Decrease the drag factor gradually as we approach threshold
+            const adjustedFactor = dragFactor * (0.2 + transitionFactor * 0.8);
+            targetPosition.current = Math.sqrt(scrollPosition) * adjustedFactor;
+          }
+
+          // Start animation if not already running
+          if (!animationRef.current) {
+            animationRef.current = requestAnimationFrame(animateSticky);
+          }
+        }
+
+        // Update state based on scroll position
+        if (scrollPosition >= currentThreshold) {
+          setPassedThreshold(true);
+          // Cancel animation when past threshold
+          if (animationRef.current) {
+            cancelAnimationFrame(animationRef.current);
+            animationRef.current = null;
+          }
+        } else {
+          setPassedThreshold(false);
+        }
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    // Use uniqueId in event listener to ensure each component has its own handler
+    const scrollHandler = handleScroll; // Store reference for cleanup
 
-    // Start animation if on desktop
+    // Add new handler
+    window.addEventListener("scroll", scrollHandler, { passive: true });
+
+    // Start sticky animation if on desktop and sticky effect is enabled
     if (isDesktop && enableStickyEffect) {
       animationRef.current = requestAnimationFrame(animateSticky);
+    }
+
+    // Make sure slide animations are always visible if enabled
+    if (enableSlideAnimation && !enableStickyEffect) {
+      setIsInView(true);
     }
 
     // Initial check on mount
@@ -330,7 +375,7 @@ export default function TextWithTags({
 
     // Clean up the event listeners and animation frame
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", scrollHandler);
       window.removeEventListener("resize", handleResize);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
@@ -344,6 +389,8 @@ export default function TextWithTags({
     preloadFilledImage,
     scrollThreshold,
     enableStickyEffect,
+    enableSlideAnimation,
+    uniqueId,
   ]);
 
   // Set up Intersection Observer for animation
@@ -381,13 +428,14 @@ export default function TextWithTags({
   return (
     <div className={className} ref={reasonsRef}>
       <StyledItemsGrid>
-        <StyledReasons $fromLeft={true}>
+        <StyledReasons $fromLeft={true} $scrollRatio={tagsScrollRatio}>
           {leftTags.map((tag, index) => (
             <StyledReason
               key={`left-tag-${index}`}
               $isVisible={isInView}
               $fromLeft={true}
               $index={index}
+              $scrollRatio={tagsScrollRatio}
             >
               <Image src={tag.iconSrc} width={62} height={62} alt={tag.iconAlt} />
               <Typography variant="sBodytext">{tag.text}</Typography>
@@ -412,13 +460,14 @@ export default function TextWithTags({
             />
           </Mobile>
         </StyledImageContainer>
-        <StyledReasons $fromLeft={false}>
+        <StyledReasons $fromLeft={false} $scrollRatio={tagsScrollRatio}>
           {rightTags.map((tag, index) => (
             <StyledReason
               key={`right-tag-${index}`}
               $isVisible={isInView}
               $fromLeft={false}
               $index={index}
+              $scrollRatio={tagsScrollRatio}
             >
               <Image src={tag.iconSrc} width={62} height={62} alt={tag.iconAlt} />
               <Typography variant="sBodytext">{tag.text}</Typography>

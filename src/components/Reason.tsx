@@ -23,6 +23,8 @@ const StyledContainer = styled.div`
 
 const StyledWhite = styled.div`
   background: #fcfcfc;
+  width: 100%;
+  overflow: hidden;
 `;
 
 export default function Reason({
@@ -88,6 +90,7 @@ export default function Reason({
             filledImageMobileSrc="/assets/why/sticky-filled-mobile.png"
             stickyImageSrc="/assets/why/sticky.png"
             enableStickyEffect={enableStickyEffect}
+            uniqueId="reason-component"
           />
         </StyledContainer>
       </StyledWhite>

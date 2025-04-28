@@ -3,12 +3,21 @@ import { getDictionary } from "@/get-dictionary";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import "swiper/css";
 import "swiper/css/effect-creative";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { Desktop, Mobile } from "./ui/Responsive";
 import Typography from "./ui/Typography";
+
+const bounceAnimation = keyframes`
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+`;
 
 const StyledContainer = styled(motion.div)`
   padding: 140px 0 139px;
@@ -35,7 +44,7 @@ const backgroundColors = [
 const StyledBox = styled.div`
   color: rgba(92, 14, 21, 1);
   width: 100%;
-  max-width: 800px;
+  max-width: 1440px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -52,6 +61,7 @@ const StyledTitle = styled.div`
   text-align: center;
   width: 656px;
   text-transform: uppercase;
+  font-feature-settings: "case";
 
   @media (max-width: 1080px) {
     width: 100%;
@@ -72,6 +82,7 @@ const StyledProduct = styled.div`
   text-align: center;
   font-weight: 700;
   text-transform: uppercase;
+  font-feature-settings: "case";
   cursor: pointer;
 
   &:hover {
@@ -160,6 +171,17 @@ const CircleBackground = styled.div`
   }
 `;
 
+const StyledFruitsContainer = styled.div`
+  position: absolute;
+  width: 100%;
+  height: calc(100vh - 78px - 167px);
+  pointer-events: none;
+  animation: ${bounceAnimation} 3s ease-in-out infinite;
+  @media (max-width: 1080px) {
+    z-index: -1;
+  }
+`;
+
 const BottleImage = styled.div`
   display: flex;
   justify-content: center;
@@ -205,6 +227,7 @@ const FlavorsDisplay = styled.div`
   font-weight: bold;
   position: relative;
   z-index: 1;
+  font-feature-settings: "case";
 
   @media (max-width: 1080px) {
     font-size: 14px;
@@ -340,6 +363,14 @@ export default function Slider({
       <CircleBackground />
 
       <StyledBox>
+        <StyledFruitsContainer>
+          <Desktop>
+            <Image src="/assets/fruits-2.png" alt="Fruits" fill objectFit="contain" />
+          </Desktop>
+          <Mobile>
+            <Image src="/assets/fruits-2-mobile.png" alt="Fruits" fill objectFit="contain" />
+          </Mobile>
+        </StyledFruitsContainer>
         <StyledTitle>
           <Typography variant="h2">{dictionary.title}</Typography>
         </StyledTitle>
