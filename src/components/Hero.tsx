@@ -140,6 +140,7 @@ const StyledTagText = styled.div`
   line-height: 30px;
   max-width: 206px;
   text-transform: uppercase;
+  font-feature-settings: "case";
 `;
 export default function Hero({
   dictionary,

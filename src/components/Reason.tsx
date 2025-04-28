@@ -12,12 +12,12 @@ const StyledContainer = styled.div`
   text-align: center;
   max-width: 1114px;
   margin: auto;
+  h2 {
+    font-feature-settings: "case";
+    text-align: center;
+  }
   @media (max-width: 1080px) {
     padding: 62px 0;
-    h2 {
-      font-feature-settings: "case";
-      text-align: center;
-    }
   }
 `;
 

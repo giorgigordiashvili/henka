@@ -30,6 +30,7 @@ const StyledWhite = styled.div`
   background-color: #e7dfee;
   width: 100%;
   position: relative;
+  font-feature-settings: "case";
 `;
 
 const StyledUnionContainer = styled.div`

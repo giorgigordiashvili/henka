@@ -23,6 +23,7 @@ const StyledTextContainer = styled.div`
   gap: 20px;
   h2 {
     text-align: left;
+    font-feature-settings: "case";
   }
   @media (max-width: 1080px) {
     gap: 24px;
