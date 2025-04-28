@@ -20,8 +20,11 @@ const StyledTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-
+  h2 {
+    text-align: left;
+  }
   @media (max-width: 1080px) {
+    gap: 24px;
     h2 {
       font-feature-settings: "case";
       text-align: center;
@@ -64,7 +67,7 @@ const StyledFlex = styled.div<{ $imagePosition?: "left" | "right" }>`
   @media (max-width: 1080px) {
     flex-direction: column;
     gap: 28px;
-    padding-top: 43px;
+    padding-top: 22.88px;
   }
 `;
 

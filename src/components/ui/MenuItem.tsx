@@ -1,6 +1,7 @@
 "use client";
 import styled from "styled-components";
 import Typography from "./Typography";
+import { Desktop, Mobile } from "./Responsive";
 
 const StyledButton = styled.div<{ size: "S" | "M" }>`
   display: flex;
@@ -39,7 +40,12 @@ function MenuItem({ size, text, fullWidth, onClick }: Props) {
       style={{ width: fullWidth ? "100%" : "fit-content" }}
       size={size}
     >
-      <Typography variant={size === "S" ? "xsBodytext" : "mBodytext"}>{text}</Typography>
+      <Desktop>
+        <Typography variant="mBodytext">{text}</Typography>
+      </Desktop>
+      <Mobile>
+        <Typography variant="xsBodytext">{text}</Typography>
+      </Mobile>
     </StyledButton>
   );
 }

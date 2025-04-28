@@ -77,10 +77,6 @@ const LinkWrapper = styled.div`
   a {
     color: #fcfcfc;
     text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 `;
 
@@ -125,13 +121,28 @@ const Footer = ({ dictionary }: Props) => {
         <NavSocialsWrapper>
           <NavigationWrapper>
             <LinkWrapper>
-              <NavigationLink isSmallOnMobile text={dictionary.whereToBuy} href="/" />
+              <NavigationLink
+                isSmallOnMobile
+                text={dictionary.whereToBuy}
+                href="/"
+                scrollTo="whereToBuy"
+              />
             </LinkWrapper>
             <LinkWrapper>
-              <NavigationLink isSmallOnMobile text={dictionary.products} href="/" />
+              <NavigationLink
+                isSmallOnMobile
+                text={dictionary.products}
+                href="/"
+                scrollTo="products"
+              />
             </LinkWrapper>
             <LinkWrapper>
-              <NavigationLink isSmallOnMobile text={dictionary.aboutUs} href="/" />
+              <NavigationLink
+                isSmallOnMobile
+                text={dictionary.aboutUs}
+                href="/"
+                scrollTo="aboutUs"
+              />
             </LinkWrapper>
           </NavigationWrapper>
           <LogoWrapper>

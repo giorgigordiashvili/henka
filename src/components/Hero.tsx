@@ -12,7 +12,7 @@ const StyledContainer = styled.div`
   position: relative;
   margin-top: 142px;
   @media (max-width: 1080px) {
-    height: 130vh;
+    height: 125vh;
     margin-top: 64px;
   }
 `;
@@ -59,7 +59,7 @@ const StyledContentContainer = styled.div`
   @media (max-width: 1080px) {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 23px;
   }
 `;
 

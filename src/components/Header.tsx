@@ -6,14 +6,12 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import LocaleSwitcher from "./LocaleSwitcher";
 import NavigationLink from "./ui/NavigationLink";
-
-// Static image import
 import CloseIcon from "@/icons/CloseIcon";
 import logoImage from "../../public/assets/logo.png";
 
 const StyledColor = styled.div<{ $visible: boolean; $sticky: boolean }>`
   padding: 12px 0px;
-  z-index: 9998; /* Reduced to be lower than mobile menu */
+  z-index: 9998;
   position: ${(props) => (props.$sticky ? "fixed" : "fixed")};
   align-items: center;
   top: 0;
@@ -31,10 +29,10 @@ const StyledColor = styled.div<{ $visible: boolean; $sticky: boolean }>`
     justify-content: space-between;
   }
 `;
+
 const StyledContainer = styled.div<{ $visible: boolean; $sticky: boolean }>`
   max-width: 1344px;
   margin: auto;
-
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
@@ -42,7 +40,6 @@ const StyledContainer = styled.div<{ $visible: boolean; $sticky: boolean }>`
     display: flex;
     width: 100%;
     max-width: 100%;
-
     justify-content: space-between;
   }
 `;
@@ -141,7 +138,7 @@ const MobileMenu = styled.nav<{ $isOpen: boolean }>`
   gap: 24px;
   width: 100%;
   height: 100dvh;
-  z-index: 9999; /* Higher than header */
+  z-index: 9999;
   opacity: ${({ $isOpen }) => ($isOpen ? "1" : "0")};
   visibility: ${({ $isOpen }) => ($isOpen ? "visible" : "hidden")};
   transition:
@@ -150,11 +147,9 @@ const MobileMenu = styled.nav<{ $isOpen: boolean }>`
     visibility 0.3s ease-in-out;
   transform: translateY(${({ $isOpen }) => ($isOpen ? "0" : "-100%")});
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
   @media (max-width: 1080px) {
     gap: 35px;
   }
-
   @media (min-width: 1081px) {
     display: none;
   }
@@ -169,72 +164,66 @@ export default function Header({
   const [visible, setVisible] = useState(true);
   const [sticky, setSticky] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [scrollToAfterClose, setScrollToAfterClose] = useState<string | null>(null);
 
-  // Handler to close mobile menu
-  const closeMobileMenu = () => {
+  const closeMobileMenu = (section: string | null = null) => {
     setOpen(false);
+    if (section) {
+      setScrollToAfterClose(section);
+    }
   };
 
-  // Toggle mobile menu
   const toggleMobileMenu = () => {
     setOpen((prev) => !prev);
   };
 
-  // Toggle body scroll when mobile menu state changes
   useEffect(() => {
     if (open) {
-      // Disable scrolling when menu is open
       document.body.style.overflow = "hidden";
-      // Save the current scroll position
       document.body.style.position = "fixed";
       document.body.style.width = "100%";
       document.body.style.top = `-${window.scrollY}px`;
     } else {
-      // Enable scrolling when menu is closed
       document.body.style.overflow = "";
       document.body.style.position = "";
       document.body.style.width = "";
+      document.body.style.top = "";
 
-      // Restore scroll position
-      const scrollY = document.body.style.top;
-      if (scrollY) {
-        document.body.style.top = "";
-        window.scrollTo(0, parseInt(scrollY || "0") * -1);
+      if (scrollToAfterClose) {
+        const targetElement = document.getElementById(scrollToAfterClose);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: "smooth" });
+        }
+        setScrollToAfterClose(null);
+      } else {
+        const scrollY = document.body.style.top;
+        if (scrollY) {
+          window.scrollTo(0, parseInt(scrollY || "0") * -1);
+        }
       }
     }
-  }, [open]);
+  }, [open, scrollToAfterClose]);
 
-  // Handle scroll events
   useEffect(() => {
     const controlNavbar = () => {
       if (typeof window !== "undefined") {
-        // Set sticky state when scrolled beyond a threshold (e.g., 50px)
         const shouldBeSticky = window.scrollY > 78;
         setSticky(shouldBeSticky);
-
-        // Hide header on scroll down, show on scroll up
         if (shouldBeSticky) {
           if (window.scrollY > lastScrollY) {
-            // Scrolling down
             setVisible(false);
           } else {
-            // Scrolling up
             setVisible(true);
           }
         } else {
           setVisible(true);
         }
-
-        // Update last scroll position
         setLastScrollY(window.scrollY);
       }
     };
 
-    // Add event listener
     if (typeof window !== "undefined" && !open) {
       window.addEventListener("scroll", controlNavbar);
-
-      // Cleanup
       return () => {
         window.removeEventListener("scroll", controlNavbar);
       };
@@ -277,7 +266,7 @@ export default function Header({
         id="mobile-menu"
         inert={!open ? false : undefined}
       >
-        <StyledCloseButton onClick={() => setOpen(false)}>
+        <StyledCloseButton onClick={() => closeMobileMenu()}>
           <CloseIcon />
         </StyledCloseButton>
         <MobileNavList>
@@ -286,21 +275,21 @@ export default function Header({
             href="/"
             scrollTo="whereToBuy"
             tabIndex={open ? 0 : -1}
-            onLinkClick={closeMobileMenu}
+            onLinkClick={() => closeMobileMenu("whereToBuy")}
           />
           <NavigationLink
             text={dictionary.products}
             href="/"
             scrollTo="products"
             tabIndex={open ? 0 : -1}
-            onLinkClick={closeMobileMenu}
+            onLinkClick={() => closeMobileMenu("products")}
           />
           <NavigationLink
             text={dictionary.aboutUs}
             href="/"
             scrollTo="aboutUs"
             tabIndex={open ? 0 : -1}
-            onLinkClick={closeMobileMenu}
+            onLinkClick={() => closeMobileMenu("aboutUs")}
           />
         </MobileNavList>
         <LocaleSwitcher tabIndex={open ? undefined : -1} />
