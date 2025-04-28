@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: main # Branch to update (optional; defaults to master)
+  branch: decap-test # Branch to update (optional; defaults to master)
 
 # Publish mode can be editorial_workflow (with drafts and approval) or simple
 publish_mode: editorial_workflow
