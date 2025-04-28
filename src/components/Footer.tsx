@@ -1,11 +1,10 @@
 "use client";
 
-import React from "react";
 import { getDictionary } from "@/get-dictionary";
-import styled from "styled-components";
-import NavigationLink from "./ui/NavigationLink";
-import logoImage from "../../public/assets/logo.png";
 import Image from "next/image";
+import styled from "styled-components";
+import logoImage from "../../public/assets/logo.png";
+import NavigationLink from "./ui/NavigationLink";
 import { Desktop, Mobile } from "./ui/Responsive";
 import Typography from "./ui/Typography";
 
@@ -57,6 +56,7 @@ const NavSocialsWrapper = styled.div`
   @media (max-width: 1080px) {
     flex-direction: column;
     padding-top: 128px;
+    position: relative;
     gap: 36px;
   }
 `;

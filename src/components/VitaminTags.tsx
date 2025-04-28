@@ -1,11 +1,13 @@
 "use client";
 import { getDictionary } from "@/get-dictionary";
 import Head from "next/head";
+import Image from "next/image";
 import styled from "styled-components";
 import TextWithTags, { TagItem } from "./ui/TextWithTags";
 import { H2 } from "./ui/Typography";
 
 const StyledContainer = styled.div`
+  position: relative;
   padding: 134px 0;
   background: #fcfcfc;
   color: rgba(92, 14, 21, 1);
@@ -21,6 +23,26 @@ const StyledWhite = styled.div`
   background: #fcfcfc;
   width: 100%;
   overflow: hidden;
+`;
+
+const StyledFirstAsterisk = styled.div`
+  position: absolute;
+  top: -11px;
+  right: -216px;
+  z-index: 2;
+  @media (max-width: 1080px) {
+    display: none;
+  }
+`;
+
+const StyledSecondAsterisk = styled.div`
+  position: absolute;
+  bottom: 0px;
+  left: -271px;
+  z-index: 2;
+  @media (max-width: 1080px) {
+    display: none;
+  }
 `;
 
 export default function VitaminTags({
@@ -76,12 +98,30 @@ export default function VitaminTags({
       )}
       <StyledWhite>
         <StyledContainer>
+          <StyledFirstAsterisk>
+            <Image
+              objectFit="contain"
+              width={216}
+              height={216}
+              src="/assets/asterisk-2.png"
+              alt="Decoration"
+            />
+          </StyledFirstAsterisk>
+          <StyledSecondAsterisk>
+            <Image
+              objectFit="contain"
+              width={216}
+              height={216}
+              src="/assets/asterisk-3.png"
+              alt="Decoration"
+            />
+          </StyledSecondAsterisk>
           <H2>{dictionary.title}</H2>
           <TextWithTags
             filledImageSrc="/assets/vitamin-filled.png"
             filledImageMobileSrc="/assets/vitamin-filled-mobile.png"
             leftTags={leftTags}
-            middleImageSrc="/assets/vitamin-middle.png"
+            middleImageSrc="/assets/vitamin-filled.png"
             rightTags={rightTags}
             middleImageAlt="Middle Image"
             enableStickyEffect={enableStickyEffect}

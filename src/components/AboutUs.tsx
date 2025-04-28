@@ -9,6 +9,7 @@ export default function AboutUs({
 }) {
   return (
     <TextWithImage
+      withAsterisks
       id="aboutUs"
       title={dictionary.title}
       subtitle={dictionary.subtitle}

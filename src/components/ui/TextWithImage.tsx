@@ -6,6 +6,7 @@ import { Desktop, Mobile } from "./Responsive";
 import Typography, { H2 } from "./Typography";
 
 const StyledContainer = styled.div<{ $backgroundColor?: string }>`
+  position: relative;
   background-color: ${(props) => props.$backgroundColor || "#fcfcfc"};
   height: 650px;
 
@@ -59,6 +60,7 @@ const ListItemText = styled.div`
 
 const StyledFlex = styled.div<{ $imagePosition?: "left" | "right" }>`
   width: 100%;
+  position: relative;
   display: flex;
   flex-direction: ${(props) => (props.$imagePosition === "left" ? "row-reverse" : "row")};
   justify-content: space-between;
@@ -82,6 +84,36 @@ const StyledImageContainer = styled.div`
   }
 `;
 
+const StyledFirstAsterisk = styled.div`
+  position: absolute;
+  top: -134px;
+  left: -156px;
+  z-index: 2;
+  @media (max-width: 1080px) {
+    display: none;
+  }
+`;
+
+const StyledSecondAsterisk = styled.div`
+  position: absolute;
+  bottom: -134px;
+  left: -156px;
+  z-index: 2;
+  @media (max-width: 1080px) {
+    display: none;
+  }
+`;
+
+const StyledThirdAsterisk = styled.div`
+  position: absolute;
+  bottom: -265px;
+  right: -156px;
+  z-index: 2;
+  @media (max-width: 1080px) {
+    display: none;
+  }
+`;
+
 interface TextWithImageProps {
   id?: string;
   title: string;
@@ -94,6 +126,7 @@ interface TextWithImageProps {
   imagePosition?: "left" | "right";
   className?: string;
   listItems?: string[];
+  withAsterisks?: boolean;
 }
 
 export default function TextWithImage({
@@ -108,11 +141,43 @@ export default function TextWithImage({
   imagePosition = "right",
   className,
   listItems,
+  withAsterisks,
 }: TextWithImageProps) {
   return (
     <StyledContainer id={id} $backgroundColor={backgroundColor} className={className}>
       <Container>
         <StyledFlex $imagePosition={imagePosition}>
+          {withAsterisks && (
+            <>
+              <StyledFirstAsterisk>
+                <Image
+                  objectFit="contain"
+                  width={216}
+                  height={216}
+                  src="/assets/asterisk-1.png"
+                  alt="Decoration"
+                />
+              </StyledFirstAsterisk>
+              <StyledSecondAsterisk>
+                <Image
+                  objectFit="contain"
+                  width={216}
+                  height={216}
+                  src="/assets/asterisk-2.png"
+                  alt="Decoration"
+                />
+              </StyledSecondAsterisk>
+              <StyledThirdAsterisk>
+                <Image
+                  objectFit="contain"
+                  width={216}
+                  height={216}
+                  src="/assets/asterisk-3.png"
+                  alt="Decoration"
+                />
+              </StyledThirdAsterisk>
+            </>
+          )}
           <StyledTextContainer>
             <H2>{title}</H2>
             <Typography variant="mBodytext">{subtitle}</Typography>
