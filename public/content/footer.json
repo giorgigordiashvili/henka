@@ -1,20 +1,18 @@
 {
-  "copyright": "© 2025 Henka. All Rights Reserved.",
-  "social": [
-    {
-      "platform": "Instagram",
-      "url": "https://instagram.com/henka",
-      "icon": "/assets/footer/instagram.png"
-    },
-    {
-      "platform": "Facebook",
-      "url": "https://facebook.com/henka",
-      "icon": "/assets/footer/facebook.png"
-    },
-    {
-      "platform": "TikTok",
-      "url": "https://tiktok.com/@henka",
-      "icon": "/assets/footer/tiktok.png"
-    }
-  ]
+  "en": {
+    "copyright": "dsadsadsadsadsa",
+    "social": [
+      {
+        "platform": "adsdsadasdsdsa",
+        "url": "d321dsadsa",
+        "icon": "/assets/uploads/test.png"
+      }
+    ]
+  },
+  "ge": {
+    "copyright": "dfsfdfd"
+  },
+  "ru": {
+    "copyright": "dsadsaads"
+  }
 }
