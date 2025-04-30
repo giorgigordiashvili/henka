@@ -71,7 +71,7 @@ const StyledTextContainer = styled.div`
 
   @media (max-width: 1080px) {
     margin: 0 16px;
-    padding-top: 15px;
+    padding-top: 25px;
   }
 `;
 
@@ -153,6 +153,7 @@ export default function Hero({
         <StyledContentContainer>
           <StyledTextContainer>
             <Typography variant="h1">{dictionary.title}</Typography>
+
             <Desktop>
               <Typography variant="mBodytext">{dictionary.subtitle}</Typography>
             </Desktop>
@@ -196,7 +197,7 @@ export default function Hero({
           <Mobile>
             <StyledTextContainer>
               <Mobile>
-                <Typography variant="mBodytext">{dictionary.subtitle}</Typography>
+                <Typography variant="sBodytext">{dictionary.subtitle}</Typography>
               </Mobile>
 
               <Mobile>

@@ -42,6 +42,9 @@ const StyledList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  @media (max-width: 1080px) {
+    margin-top: 0;
+  }
 `;
 
 const ListItem = styled.li`
@@ -69,7 +72,6 @@ const StyledFlex = styled.div<{ $imagePosition?: "left" | "right" }>`
   align-items: center;
   @media (max-width: 1080px) {
     flex-direction: column;
-    gap: 28px;
     padding-top: 22.88px;
   }
 `;
@@ -181,7 +183,13 @@ export default function TextWithImage({
           )}
           <StyledTextContainer>
             <H2>{title}</H2>
-            <Typography variant="mBodytext">{subtitle}</Typography>
+            <Desktop>
+              <Typography variant="mBodytext">{subtitle}</Typography>
+            </Desktop>
+            <Mobile>
+              <Typography variant="sBodytext">{subtitle}</Typography>
+            </Mobile>
+
             {listItems && listItems.length > 0 && (
               <StyledList>
                 {listItems.map((item, index) => (
@@ -189,9 +197,16 @@ export default function TextWithImage({
                     <CheckmarkContainer>
                       <Image src="/assets/checkmark.svg" alt="Checkmark" width={28} height={28} />
                     </CheckmarkContainer>
-                    <ListItemText>
-                      <Typography variant="mBodytext">{item}</Typography>
-                    </ListItemText>
+                    <Desktop>
+                      <ListItemText>
+                        <Typography variant="mBodytext">{item}</Typography>
+                      </ListItemText>
+                    </Desktop>
+                    <Mobile>
+                      <ListItemText>
+                        <Typography variant="sBodytext">{item}</Typography>
+                      </ListItemText>
+                    </Mobile>
                   </ListItem>
                 ))}
               </StyledList>

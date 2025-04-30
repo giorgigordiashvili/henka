@@ -43,7 +43,7 @@ const StyledBio = styled.div`
   padding: 87px 0;
 
   @media (max-width: 1080px) {
-    padding: 12px 0;
+    padding: 12px 0 0 0;
   }
 `;
 

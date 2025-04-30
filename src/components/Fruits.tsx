@@ -73,9 +73,9 @@ const Paragraph = styled.p`
   margin: 0;
 
   @media (max-width: 1300px) {
-    font-size: 30px;
-    line-height: 30px;
-    white-space: normal;
+    font-size: 38px;
+    line-height: 100%;
+    white-space: nowrap;
   }
 `;
 
@@ -83,7 +83,6 @@ const ThreeRowsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
 `;
 
 const Row = styled.div`
@@ -96,7 +95,6 @@ const MobileLayoutContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
 `;
 
 const MobileRow = styled.div`

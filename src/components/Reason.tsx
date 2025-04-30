@@ -17,7 +17,7 @@ const StyledContainer = styled.div`
     text-align: center;
   }
   @media (max-width: 1080px) {
-    padding: 62px 0;
+    padding: 62px 0 24px 0;
   }
 `;
 
