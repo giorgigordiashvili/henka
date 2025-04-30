@@ -1,6 +1,5 @@
 "use client";
 import { getDictionary } from "@/get-dictionary";
-import Head from "next/head";
 import Image from "next/image";
 import styled from "styled-components";
 import TextWithTags, { TagItem } from "./ui/TextWithTags";
@@ -100,11 +99,6 @@ export default function VitaminTags({
 
   return (
     <>
-      {enableStickyEffect && (
-        <Head>
-          <link rel="preload" href="/assets/vitamin-filled.png" as="image" type="image/png" />
-        </Head>
-      )}
       <StyledWhite>
         <StyledContainer>
           <StyledFirstAsterisk>

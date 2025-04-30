@@ -1,6 +1,5 @@
 "use client";
 import { getDictionary } from "@/get-dictionary";
-import Head from "next/head";
 import styled from "styled-components";
 import TextWithTags, { TagItem } from "./ui/TextWithTags";
 import { H2 } from "./ui/Typography";
@@ -73,11 +72,6 @@ export default function Reason({
 
   return (
     <>
-      {enableStickyEffect && (
-        <Head>
-          <link rel="preload" href="/assets/why/sticky-filled.png" as="image" type="image/png" />
-        </Head>
-      )}
       <StyledWhite>
         <StyledContainer>
           <H2>{dictionary.whyUs}</H2>

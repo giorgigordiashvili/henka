@@ -118,6 +118,11 @@ const StyledImageContainer = styled.div`
   }
 `;
 
+// Added styled component for the filled image without opacity transition
+const FilledImage = styled(Image)<{ $opacity: number }>`
+  opacity: ${(props) => props.$opacity};
+`;
+
 const StickyContainer = styled.div<{ y: number }>`
   width: 280px;
   height: 600px;
@@ -181,6 +186,9 @@ export default function TextWithTags({
   // Add state for tag animation based on scroll position
   const [tagsScrollRatio, setTagsScrollRatio] = useState(0);
 
+  // Compute the filled image opacity based on threshold
+  const [filledImageOpacity, setFilledImageOpacity] = useState(0);
+
   // Check if we're on a desktop device
   const [isDesktop, setIsDesktop] = useState(true);
 
@@ -204,19 +212,11 @@ export default function TextWithTags({
 
   // Function to preload the filled image
   const preloadFilledImage = useCallback(() => {
-    if (preloadedRef.current || !isDesktop || !filledImageSrc) return;
-
-    // Create a new image element to preload the image
-    const img = new window.Image();
-    img.src = filledImageSrc;
+    if (preloadedRef.current || !isDesktop) return;
 
     // Mark as preloaded once loaded
-    img.onload = () => {
-      preloadedRef.current = true;
-    };
-
-    img.onerror = () => {};
-  }, [isDesktop, filledImageSrc]);
+    preloadedRef.current = true;
+  }, [isDesktop]);
 
   // Animation function for smooth following with "dragging feet" effect
   const animateSticky = useCallback(() => {
@@ -340,6 +340,17 @@ export default function TextWithTags({
           }
         }
 
+        // Update filled image opacity based on scroll position
+        if (isDesktop) {
+          if (scrollPosition >= currentThreshold) {
+            setFilledImageOpacity(1);
+          } else {
+            // Calculate opacity based on proximity to threshold
+            // Start fading in 200px before threshold
+            setFilledImageOpacity(0);
+          }
+        }
+
         // Update state based on scroll position
         if (scrollPosition >= currentThreshold) {
           setPassedThreshold(true);
@@ -386,7 +397,6 @@ export default function TextWithTags({
     animateSticky,
     calculateThreshold,
     isDesktop,
-    preloadFilledImage,
     scrollThreshold,
     enableStickyEffect,
     enableSlideAnimation,
@@ -444,11 +454,15 @@ export default function TextWithTags({
         </StyledReasons>
         <StyledImageContainer>
           <Desktop>
-            <Image
-              src={passedThreshold ? filledImageSrc : middleImageSrc || filledImageSrc}
+            {/* Base image that's always displayed */}
+            <Image src={middleImageSrc} fill objectFit="contain" alt={middleImageAlt} />
+            {/* Filled image overlaid with dynamic opacity */}
+            <FilledImage
+              src={filledImageSrc}
               fill
               objectFit="contain"
               alt={middleImageAlt}
+              $opacity={filledImageOpacity}
             />
           </Desktop>
           <Mobile>
