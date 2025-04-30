@@ -15,15 +15,16 @@ const StyledContainer = styled.div<{ $backgroundColor?: string }>`
   }
 `;
 
-const StyledTextContainer = styled.div`
+const StyledTextContainer = styled.div<{ $imagePosition?: "left" | "right" }>`
   color: rgba(92, 14, 21, 1);
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-width: 541px;
+  max-width: ${(props) => (props.$imagePosition === "left" ? "656px" : "541px")};
   h2 {
     text-align: left;
     font-feature-settings: "case";
+    max-width: ${(props) => (props.$imagePosition === "left" ? "656px" : "541px")};
     @media (max-width: 1080px) {
       max-width: 343px;
       margin: auto;
@@ -185,7 +186,7 @@ export default function TextWithImage({
               </StyledThirdAsterisk>
             </>
           )}
-          <StyledTextContainer>
+          <StyledTextContainer $imagePosition={imagePosition}>
             <H2>{title}</H2>
             <Desktop>
               <Typography variant="mBodytext">{subtitle}</Typography>

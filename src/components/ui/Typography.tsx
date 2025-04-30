@@ -8,6 +8,7 @@ const H1 = styled.h1`
   line-height: 64px;
   margin: 0px;
   font-feature-settings: "case";
+  text-transform: uppercase;
   @media (max-width: 1080px) {
     font-size: 28px;
     line-height: 36px;
@@ -19,6 +20,8 @@ const H2 = styled.h2`
   font-weight: bold;
   line-height: 48px;
   margin: 0px;
+  font-feature-settings: "case";
+  text-transform: uppercase;
   @media (max-width: 1080px) {
     font-size: 24px;
     line-height: 28px;
