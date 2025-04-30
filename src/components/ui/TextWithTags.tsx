@@ -28,7 +28,7 @@ const StyledReasons = styled.div<{ $fromLeft?: boolean; $scrollRatio?: number }>
   text-align: center;
   gap: 64px;
   position: relative;
-
+  max-width: 259px;
   @media (min-width: 1081px) {
     transform: translateX(
       ${(props) =>
