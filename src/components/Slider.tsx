@@ -59,13 +59,14 @@ const StyledBox = styled.div`
 
 const StyledTitle = styled.div`
   text-align: center;
-  width: 656px;
+  max-width: 656px;
   text-transform: uppercase;
   font-feature-settings: "case";
 
   @media (max-width: 1080px) {
     width: 100%;
     font-size: 24px;
+    max-width: 343px;
   }
 `;
 
@@ -84,9 +85,16 @@ const StyledProduct = styled.div`
   text-transform: uppercase;
   font-feature-settings: "case";
   cursor: pointer;
+  position: relative;
 
-  &:hover {
-    text-decoration: underline;
+  &.active::after {
+    content: "";
+    position: absolute;
+    bottom: -2px; /* 2px padding below text */
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(92, 14, 21, 1);
   }
 
   @media (max-width: 768px) {
@@ -378,7 +386,7 @@ export default function Slider({
         <StyledProducts>
           <StyledProduct
             onClick={() => switchProductType("kombucha")}
-            style={{ textDecoration: activeProductType === "kombucha" ? "underline" : "none" }}
+            className={activeProductType === "kombucha" ? "active" : ""}
           >
             <Desktop>
               <Typography variant="mBodytext">{dictionary.kombucha}</Typography>
@@ -389,7 +397,7 @@ export default function Slider({
           </StyledProduct>
           <StyledProduct
             onClick={() => switchProductType("water")}
-            style={{ textDecoration: activeProductType === "water" ? "underline" : "none" }}
+            className={activeProductType === "water" ? "active" : ""}
           >
             <Desktop>
               <Typography variant="mBodytext">{dictionary.water}</Typography>

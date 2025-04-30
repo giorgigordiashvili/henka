@@ -71,12 +71,11 @@ const Paragraph = styled.p`
   color: #5c0e15;
   white-space: nowrap;
   margin: 0;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 
   @media (max-width: 1300px) {
-    font-size: 30px;
-    line-height: 30px;
-    white-space: normal;
+    font-size: 38px;
+    line-height: 100%;
+    white-space: nowrap;
   }
 `;
 
@@ -84,7 +83,6 @@ const ThreeRowsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
 `;
 
 const Row = styled.div`
@@ -97,7 +95,6 @@ const MobileLayoutContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
 `;
 
 const MobileRow = styled.div`

@@ -17,13 +17,17 @@ const StyledContainer = styled.div<{ $backgroundColor?: string }>`
 
 const StyledTextContainer = styled.div`
   color: rgba(92, 14, 21, 1);
-  max-width: 656px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  max-width: 541px;
   h2 {
     text-align: left;
     font-feature-settings: "case";
+    @media (max-width: 1080px) {
+      max-width: 343px;
+      margin: auto;
+    }
   }
   @media (max-width: 1080px) {
     gap: 24px;
@@ -42,6 +46,9 @@ const StyledList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  @media (max-width: 1080px) {
+    margin-top: 0;
+  }
 `;
 
 const ListItem = styled.li`
@@ -64,13 +71,12 @@ const StyledFlex = styled.div<{ $imagePosition?: "left" | "right" }>`
   position: relative;
   display: flex;
   flex-direction: ${(props) => (props.$imagePosition === "left" ? "row-reverse" : "row")};
-  justify-content: space-between;
-  gap: 32px;
+  gap: ${(props) => (props.$imagePosition === "left" ? "32px" : "147px")};
   align-items: center;
   @media (max-width: 1080px) {
     flex-direction: column;
-    gap: 28px;
     padding-top: 22.88px;
+    gap: 28px;
   }
 `;
 
@@ -181,7 +187,13 @@ export default function TextWithImage({
           )}
           <StyledTextContainer>
             <H2>{title}</H2>
-            <Typography variant="mBodytext">{subtitle}</Typography>
+            <Desktop>
+              <Typography variant="mBodytext">{subtitle}</Typography>
+            </Desktop>
+            <Mobile>
+              <Typography variant="sBodytext">{subtitle}</Typography>
+            </Mobile>
+
             {listItems && listItems.length > 0 && (
               <StyledList>
                 {listItems.map((item, index) => (
@@ -189,9 +201,16 @@ export default function TextWithImage({
                     <CheckmarkContainer>
                       <Image src="/assets/checkmark.svg" alt="Checkmark" width={28} height={28} />
                     </CheckmarkContainer>
-                    <ListItemText>
-                      <Typography variant="mBodytext">{item}</Typography>
-                    </ListItemText>
+                    <Desktop>
+                      <ListItemText>
+                        <Typography variant="mBodytext">{item}</Typography>
+                      </ListItemText>
+                    </Desktop>
+                    <Mobile>
+                      <ListItemText>
+                        <Typography variant="sBodytext">{item}</Typography>
+                      </ListItemText>
+                    </Mobile>
                   </ListItem>
                 ))}
               </StyledList>

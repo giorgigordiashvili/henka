@@ -7,6 +7,7 @@ import logoImage from "../../public/assets/logo.png";
 import NavigationLink from "./ui/NavigationLink";
 import { Desktop, Mobile } from "./ui/Responsive";
 import Typography from "./ui/Typography";
+import { useCallback } from "react";
 
 type Props = {
   dictionary: Awaited<ReturnType<typeof getDictionary>>["footer"];
@@ -40,7 +41,7 @@ const BottomFooter = styled.div`
   flex-direction: column;
   gap: 36px;
   @media (max-width: 1080px) {
-    padding: 32px 0;
+    padding: 0 0 32px 0;
   }
 `;
 
@@ -51,12 +52,11 @@ const NavSocialsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-block: 15px;
+  position: relative;
 
   @media (max-width: 1080px) {
     flex-direction: column;
     padding-top: 128px;
-    position: relative;
     gap: 36px;
   }
 `;
@@ -85,13 +85,17 @@ const SocialsWrapper = styled.div`
   gap: 24px;
 `;
 
+// Fixed position for the logo in the center
 const LogoWrapper = styled.div`
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
 
   @media (max-width: 1080px) {
-    transform: translateX(-50%) translateY(-96px);
+    top: 0;
+    transform: translate(-50%, -50%);
   }
 `;
 
@@ -107,6 +111,14 @@ const CopyrightWrapper = styled.div`
 `;
 
 const Footer = ({ dictionary }: Props) => {
+  // Scroll to top function
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
   return (
     <FooterContainer>
       <StyledUnionContainer>
@@ -145,18 +157,23 @@ const Footer = ({ dictionary }: Props) => {
               />
             </LinkWrapper>
           </NavigationWrapper>
-          <LogoWrapper>
+          <LogoWrapper onClick={scrollToTop}>
             <Image width={60} height={60} src={logoImage} alt="logo" placeholder="blur" />
           </LogoWrapper>
           <SocialsWrapper>
-            <Image src="/assets/footer/instagram.png" width={28} height={28} alt="Instagram" />
             <Image src="/assets/footer/tiktok.png" width={28} height={28} alt="TikTok" />
+            <Image src="/assets/footer/instagram.png" width={28} height={28} alt="Instagram" />
             <Image src="/assets/footer/facebook.png" width={28} height={28} alt="Facebook" />
           </SocialsWrapper>
         </NavSocialsWrapper>
         <WhiteLine />
         <CopyrightWrapper>
-          <Typography variant="sBodytext">{dictionary.copyright}</Typography>
+          <Desktop>
+            <Typography variant="sBodytext">{dictionary.copyright}</Typography>
+          </Desktop>
+          <Mobile>
+            <Typography variant="xsBodytext">{dictionary.copyright}</Typography>
+          </Mobile>
         </CopyrightWrapper>
       </BottomFooter>
     </FooterContainer>

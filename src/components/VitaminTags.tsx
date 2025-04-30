@@ -8,7 +8,7 @@ import { H2 } from "./ui/Typography";
 
 const StyledContainer = styled.div`
   position: relative;
-  padding: 134px 0;
+  padding: 134px 0 20px 0;
   background: #fcfcfc;
   color: rgba(92, 14, 21, 1);
   text-align: center;
@@ -17,9 +17,14 @@ const StyledContainer = styled.div`
   h2 {
     font-feature-settings: "case";
     text-align: center;
+    max-width: 656px;
+    margin: auto;
+    @media (max-width: 1080px) {
+      max-width: 343px;
+    }
   }
   @media (max-width: 1080px) {
-    padding: 62px 0 40px 0;
+    padding: 62px 0 14px 0;
   }
 `;
 
@@ -120,7 +125,9 @@ export default function VitaminTags({
               alt="Decoration"
             />
           </StyledSecondAsterisk>
+
           <H2>{dictionary.title}</H2>
+
           <TextWithTags
             filledImageSrc="/assets/vitamin-filled.png"
             filledImageMobileSrc="/assets/vitamin-filled-mobile.png"

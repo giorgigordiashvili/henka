@@ -30,6 +30,7 @@ const LBodytext = styled.p`
   font-size: 24px;
   line-height: 28px;
   margin: 0px;
+  font-feature-settings: "case";
 `;
 
 const MBodytext = styled.p`

@@ -14,7 +14,6 @@ const StyledItemsGrid = styled.div`
     display: flex;
     flex-direction: column;
     grid-gap: 45px;
-    padding-inline: 16px;
     padding-top: 45px;
   }
 `;
@@ -28,7 +27,7 @@ const StyledReasons = styled.div<{ $fromLeft?: boolean; $scrollRatio?: number }>
   text-align: center;
   gap: 64px;
   position: relative;
-
+  max-width: 259px;
   @media (min-width: 1081px) {
     transform: translateX(
       ${(props) =>
@@ -40,6 +39,7 @@ const StyledReasons = styled.div<{ $fromLeft?: boolean; $scrollRatio?: number }>
   }
 
   @media (max-width: 1080px) {
+    max-width: 343px;
     gap: 32px;
     justify-content: flex-start;
     align-items: flex-start;

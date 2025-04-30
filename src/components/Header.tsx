@@ -38,7 +38,7 @@ const StyledContainer = styled.div<{ $visible: boolean; $sticky: boolean }>`
   align-items: center;
   @media (max-width: 1080px) {
     display: flex;
-    width: 100%;
+    width: 100vw;
     max-width: 100%;
     justify-content: space-between;
   }
