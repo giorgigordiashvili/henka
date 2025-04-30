@@ -39,7 +39,7 @@ const DropdownContent = styled.ul<{ $isOpen: boolean }>`
   padding: 8px 0;
   z-index: 1;
   top: 100%;
-  right: 0;
+  left: 0;
   margin-top: 8px;
   list-style: none;
 `;
