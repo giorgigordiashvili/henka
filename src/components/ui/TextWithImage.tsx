@@ -17,7 +17,6 @@ const StyledContainer = styled.div<{ $backgroundColor?: string }>`
 
 const StyledTextContainer = styled.div`
   color: rgba(92, 14, 21, 1);
-  max-width: 656px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -25,6 +24,10 @@ const StyledTextContainer = styled.div`
   h2 {
     text-align: left;
     font-feature-settings: "case";
+    @media (max-width: 1080px) {
+      max-width: 343px;
+      margin: auto;
+    }
   }
   @media (max-width: 1080px) {
     gap: 24px;
@@ -68,12 +71,12 @@ const StyledFlex = styled.div<{ $imagePosition?: "left" | "right" }>`
   position: relative;
   display: flex;
   flex-direction: ${(props) => (props.$imagePosition === "left" ? "row-reverse" : "row")};
-  justify-content: space-between;
-  gap: 147px;
+  gap: ${(props) => (props.$imagePosition === "left" ? "32px" : "147px")};
   align-items: center;
   @media (max-width: 1080px) {
     flex-direction: column;
     padding-top: 22.88px;
+    gap: 28px;
   }
 `;
 

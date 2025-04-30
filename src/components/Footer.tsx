@@ -7,6 +7,7 @@ import logoImage from "../../public/assets/logo.png";
 import NavigationLink from "./ui/NavigationLink";
 import { Desktop, Mobile } from "./ui/Responsive";
 import Typography from "./ui/Typography";
+import { useCallback } from "react";
 
 type Props = {
   dictionary: Awaited<ReturnType<typeof getDictionary>>["footer"];
@@ -51,11 +52,11 @@ const NavSocialsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 
   @media (max-width: 1080px) {
     flex-direction: column;
     padding-top: 128px;
-    position: relative;
     gap: 36px;
   }
 `;
@@ -84,13 +85,17 @@ const SocialsWrapper = styled.div`
   gap: 24px;
 `;
 
+// Fixed position for the logo in the center
 const LogoWrapper = styled.div`
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
 
   @media (max-width: 1080px) {
-    transform: translateX(-50%) translateY(-96px);
+    top: 0;
+    transform: translate(-50%, -50%);
   }
 `;
 
@@ -106,6 +111,14 @@ const CopyrightWrapper = styled.div`
 `;
 
 const Footer = ({ dictionary }: Props) => {
+  // Scroll to top function
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
   return (
     <FooterContainer>
       <StyledUnionContainer>
@@ -144,7 +157,7 @@ const Footer = ({ dictionary }: Props) => {
               />
             </LinkWrapper>
           </NavigationWrapper>
-          <LogoWrapper>
+          <LogoWrapper onClick={scrollToTop}>
             <Image width={60} height={60} src={logoImage} alt="logo" placeholder="blur" />
           </LogoWrapper>
           <SocialsWrapper>
