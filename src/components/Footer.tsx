@@ -40,7 +40,7 @@ const BottomFooter = styled.div`
   flex-direction: column;
   gap: 36px;
   @media (max-width: 1080px) {
-    padding: 32px 0;
+    padding: 0 0 32px 0;
   }
 `;
 
@@ -51,7 +51,6 @@ const NavSocialsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-block: 15px;
 
   @media (max-width: 1080px) {
     flex-direction: column;
