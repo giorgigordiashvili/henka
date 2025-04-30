@@ -21,6 +21,7 @@ const StyledTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  max-width: 541px;
   h2 {
     text-align: left;
     font-feature-settings: "case";
@@ -68,7 +69,7 @@ const StyledFlex = styled.div<{ $imagePosition?: "left" | "right" }>`
   display: flex;
   flex-direction: ${(props) => (props.$imagePosition === "left" ? "row-reverse" : "row")};
   justify-content: space-between;
-  gap: 32px;
+  gap: 147px;
   align-items: center;
   @media (max-width: 1080px) {
     flex-direction: column;

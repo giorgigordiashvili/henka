@@ -39,6 +39,7 @@ const StyledReasons = styled.div<{ $fromLeft?: boolean; $scrollRatio?: number }>
   }
 
   @media (max-width: 1080px) {
+    max-width: 343px;
     gap: 32px;
     justify-content: flex-start;
     align-items: flex-start;

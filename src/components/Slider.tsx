@@ -59,7 +59,7 @@ const StyledBox = styled.div`
 
 const StyledTitle = styled.div`
   text-align: center;
-  width: 656px;
+  max-width: 656px;
   text-transform: uppercase;
   font-feature-settings: "case";
 

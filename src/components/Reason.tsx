@@ -6,7 +6,7 @@ import TextWithTags, { TagItem } from "./ui/TextWithTags";
 import { H2 } from "./ui/Typography";
 
 const StyledContainer = styled.div`
-  padding: 134px 0;
+  padding: 134px 0 78px 0;
   background: #fcfcfc;
   color: rgba(92, 14, 21, 1);
   text-align: center;

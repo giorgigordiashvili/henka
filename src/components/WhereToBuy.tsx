@@ -17,16 +17,13 @@ const StyledMainContainer = styled.div`
 
 const StyledContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  gap: 32px;
-  padding: 54px 48px 0 48px;
+  gap: 279px;
+  padding: 54px 0 0 0;
   background-color: rgb(252 252 252);
   width: 100%;
   max-width: 1344px;
   margin: auto;
-
   @media (max-width: 1080px) {
     display: grid;
     grid-template-columns: minmax(300px, 1fr);

@@ -15,7 +15,7 @@
 /* Adding smooth scrolling behavior */
 html {
   scroll-behavior: smooth;
-  width: 100%;
+  width: 100vw;
   box-sizing: border-box;
   overflow-x: hidden;
 }
@@ -24,6 +24,7 @@ body {
   font-family: "Helvetica", sans-serif;
   background: #dd2233;
   color: #fff;
+  overflow-x: hidden;
 }
 
 /* 1. Use a more-intuitive box-sizing model */
