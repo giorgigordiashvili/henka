@@ -8,7 +8,7 @@ import { H2 } from "./ui/Typography";
 
 const StyledContainer = styled.div`
   position: relative;
-  padding: 134px 0;
+  padding: 134px 0 20px 0;
   background: #fcfcfc;
   color: rgba(92, 14, 21, 1);
   text-align: center;
