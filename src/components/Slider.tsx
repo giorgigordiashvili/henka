@@ -137,12 +137,12 @@ const NavButton = styled.button`
   }
 
   svg {
-    width: 12.14px;
+    width: 24.28px;
     height: 24.28px;
 
     @media (max-width: 1080px) {
-      width: 6px;
-      height: 12px;
+      width: 15px;
+      height: 15px;
     }
   }
 `;
@@ -168,7 +168,7 @@ const CircleBackground = styled.div`
   width: 456px;
   height: 456px;
   position: absolute;
-  top: 70%;
+  top: 62%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50%;

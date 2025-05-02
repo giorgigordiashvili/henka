@@ -55,12 +55,11 @@ const StyledList = styled.ul`
 const ListItem = styled.li`
   display: flex;
   gap: 20px;
-  align-items: center;
   color: rgba(92, 14, 21, 1);
 `;
 
 const CheckmarkContainer = styled.div`
-  object-fit: cover;
+  margin-top: 4px;
 `;
 
 const ListItemText = styled.div`
@@ -200,7 +199,12 @@ export default function TextWithImage({
                 {listItems.map((item, index) => (
                   <ListItem key={index}>
                     <CheckmarkContainer>
-                      <Image src="/assets/checkmark.svg" alt="Checkmark" width={28} height={28} />
+                      <Desktop>
+                        <Image src="/assets/checkmark.svg" alt="Checkmark" width={28} height={28} />
+                      </Desktop>
+                      <Mobile>
+                        <Image src="/assets/checkmark.svg" alt="Checkmark" width={20} height={20} />
+                      </Mobile>
                     </CheckmarkContainer>
                     <Desktop>
                       <ListItemText>

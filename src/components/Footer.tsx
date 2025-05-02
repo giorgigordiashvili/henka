@@ -2,19 +2,19 @@
 
 import { getDictionary } from "@/get-dictionary";
 import Image from "next/image";
+import { useCallback } from "react";
 import styled from "styled-components";
 import logoImage from "../../public/assets/logo.png";
 import NavigationLink from "./ui/NavigationLink";
 import { Desktop, Mobile } from "./ui/Responsive";
 import Typography from "./ui/Typography";
-import { useCallback } from "react";
 
 type Props = {
   dictionary: Awaited<ReturnType<typeof getDictionary>>["footer"];
 };
 
 const FooterContainer = styled.div`
-  height: 305px;
+  height: 372px;
   background-color: #dc2132;
 
   @media (max-width: 768px) {
@@ -101,8 +101,7 @@ const LogoWrapper = styled.div`
 
 const WhiteLine = styled.div`
   width: 100%;
-  margin-left: calc(-50vw + 50%);
-  border: 1px solid #ffffff;
+  border-top: 1px solid #ffffff;
 `;
 
 const CopyrightWrapper = styled.div`

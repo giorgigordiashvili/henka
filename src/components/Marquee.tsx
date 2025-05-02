@@ -1,8 +1,8 @@
 "use client";
 import { getDictionary } from "@/get-dictionary";
 import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
-import styled, { keyframes } from "styled-components";
+import FastMarquee from "react-fast-marquee";
+import styled from "styled-components";
 import { Desktop, Mobile } from "./ui/Responsive";
 
 interface MarqueeItem {
@@ -46,15 +46,6 @@ const StyledBottomUnionContainer = styled.div`
   }
 `;
 
-const marqueeAnimation = keyframes`
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-`;
-
 const StyledText = styled.div`
   width: 100%;
   font-size: 90px;
@@ -65,32 +56,31 @@ const StyledText = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  white-space: nowrap;
-  overflow: hidden;
-  gap: 10px;
+  gap: 70px;
   @media (max-width: 1080px) {
     height: auto;
     font-size: 32.09px;
     line-height: 37px;
+    gap: 30px;
   }
-`;
-
-const MarqueeContent = styled.div`
-  display: flex;
-  align-items: center;
-  animation: ${marqueeAnimation} 30s linear infinite;
-  padding-right: 50px;
 `;
 
 const MarqueeItem = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-right: 135px;
+  gap: 20px;
+  margin-right: 40px; // Slightly reduced margin for more compact layout
   text-transform: uppercase;
   @media (max-width: 1080px) {
-    margin-right: 48.12px;
+    margin-right: 20px;
+    gap: 10px;
   }
+`;
+
+const StyledMobileGap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 `;
 
 export default function Marquee({
@@ -113,57 +103,35 @@ export default function Marquee({
     "/assets/marquee/passion.png",
     "/assets/marquee/pineberry.png",
   ];
-  const [duplicated, setDuplicated] = useState(1);
-  const contentRef = useRef<HTMLDivElement>(null);
 
-  // Create three different marquee arrays with different patterns
-  const marqueeOne: MarqueeItem[] = marqueeTexts
-    .map((value) => ({ value, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ value }) => value)
-    ?.map((text, index) => ({
-      text,
-      image: marqueeImages[index % marqueeImages.length],
-      alt: text,
-    }));
+  // Create three different marquee arrays with carefully controlled patterns
+  // to ensure fruits and words don't match simultaneously across the three lines
+  const marqueeOne: MarqueeItem[] = marqueeTexts.map((text, index) => ({
+    text,
+    image: marqueeImages[index % marqueeImages.length],
+    alt: text,
+  }));
 
-  const marqueeTwo: MarqueeItem[] = marqueeTexts
-    .map((value) => ({ value, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ value }) => value)
-    .map((text, index) => ({
-      text,
-      image: marqueeImages[(index + 2) % marqueeImages.length],
-      alt: text,
-    }));
+  const marqueeTwo: MarqueeItem[] = marqueeTexts.map((text, index) => ({
+    text: marqueeTexts[(index + 2) % marqueeTexts.length], // Offset words by 2
+    image: marqueeImages[index % marqueeImages.length],
+    alt: text,
+  }));
 
-  const marqueeThree: MarqueeItem[] = marqueeTexts
-    .map((value) => ({ value, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ value }) => value)
-    .map((text, index) => ({
-      text,
-      image: marqueeImages[(index + 4) % marqueeImages.length],
-      alt: text,
-    }));
+  const marqueeThree: MarqueeItem[] = marqueeTexts.map((text, index) => ({
+    text: marqueeTexts[(index + 4) % marqueeTexts.length], // Offset words by 4
+    image: marqueeImages[(index + 3) % marqueeImages.length], // Offset images by 3
+    alt: text,
+  }));
 
-  // Calculate how many copies we need based on screen width
-  useEffect(() => {
-    const calculateDuplication = () => {
-      const screenWidth = window.innerWidth;
-      // We need at least 2 copies for the infinite effect to work smoothly
-      // For wider screens, we might need more copies
-      const copies = Math.max(2, Math.ceil(screenWidth / 1200) + 1);
-      setDuplicated(copies);
-    };
+  // Duplicate items to fill any potential gaps
+  const duplicateItems = (items: MarqueeItem[]) => {
+    return [...items, ...items, ...items]; // Triple the items to ensure sufficient content
+  };
 
-    calculateDuplication();
-    window.addEventListener("resize", calculateDuplication);
-
-    return () => {
-      window.removeEventListener("resize", calculateDuplication);
-    };
-  }, []);
+  const duplicatedMarqueeOne = duplicateItems(marqueeOne);
+  const duplicatedMarqueeTwo = duplicateItems(marqueeTwo);
+  const duplicatedMarqueeThree = duplicateItems(marqueeThree);
 
   return (
     <StyledContainer>
@@ -185,83 +153,63 @@ export default function Marquee({
       </StyledBottomUnionContainer>
       <StyledText>
         <Desktop>
-          <MarqueeContent ref={contentRef}>
-            {[...Array(duplicated)].map((_, index) => (
-              <React.Fragment key={index}>
-                {marqueeOne.map((item, itemIndex) => (
-                  <MarqueeItem key={`${index}-${itemIndex}`}>
-                    <span>{item.text}</span>
-                    <Image width={115} height={115} alt={item.alt} src={item.image} />
-                  </MarqueeItem>
-                ))}
-              </React.Fragment>
+          <FastMarquee speed={500} gradient={false} direction="left" pauseOnHover={false}>
+            {duplicatedMarqueeOne.map((item, itemIndex) => (
+              <MarqueeItem key={`row1-${itemIndex}`}>
+                <span>{item.text}</span>
+                <Image width={115} height={115} alt={item.alt} src={item.image} />
+              </MarqueeItem>
             ))}
-          </MarqueeContent>
+          </FastMarquee>
 
-          <MarqueeContent ref={contentRef}>
-            {[...Array(duplicated)].map((_, index) => (
-              <React.Fragment key={index}>
-                {marqueeTwo.map((item, itemIndex) => (
-                  <MarqueeItem key={`${index}-${itemIndex}`}>
-                    <Image width={115} height={115} alt={item.alt} src={item.image} />
-                    <span>{item.text}</span>
-                  </MarqueeItem>
-                ))}
-              </React.Fragment>
+          <FastMarquee speed={500} gradient={false} direction="left" pauseOnHover={false}>
+            {duplicatedMarqueeTwo.map((item, itemIndex) => (
+              <MarqueeItem key={`row2-${itemIndex}`}>
+                <Image width={115} height={115} alt={item.alt} src={item.image} />
+                <span>{item.text}</span>
+              </MarqueeItem>
             ))}
-          </MarqueeContent>
-          <MarqueeContent ref={contentRef}>
-            {[...Array(duplicated)].map((_, index) => (
-              <React.Fragment key={index}>
-                {marqueeThree.map((item, itemIndex) => (
-                  <MarqueeItem key={`${index}-${itemIndex}`}>
-                    <Image width={115} height={115} alt={item.alt} src={item.image} />
-                    <span>{item.text}</span>
-                  </MarqueeItem>
-                ))}
-              </React.Fragment>
+          </FastMarquee>
+
+          <FastMarquee speed={500} gradient={false} direction="left" pauseOnHover={false}>
+            {duplicatedMarqueeThree.map((item, itemIndex) => (
+              <MarqueeItem key={`row3-${itemIndex}`}>
+                <Image width={115} height={115} alt={item.alt} src={item.image} />
+                <span>{item.text}</span>
+              </MarqueeItem>
             ))}
-          </MarqueeContent>
+          </FastMarquee>
         </Desktop>
+
         <Mobile>
-          <MarqueeContent ref={contentRef}>
-            {[...Array(duplicated)].map((_, index) => (
-              <React.Fragment key={index}>
-                {marqueeOne.map((item, itemIndex) => (
-                  <MarqueeItem key={`${index}-${itemIndex}`}>
-                    <span>{item.text}</span>
-                    <Image width={41} height={41} alt={item.alt} src={item.image} />
-                  </MarqueeItem>
-                ))}
-              </React.Fragment>
-            ))}
-          </MarqueeContent>
+          <StyledMobileGap>
+            <FastMarquee speed={500} gradient={false} direction="left" pauseOnHover={false}>
+              {duplicatedMarqueeOne.map((item, itemIndex) => (
+                <MarqueeItem key={`mrow1-${itemIndex}`}>
+                  <span>{item.text}</span>
+                  <Image width={41} height={41} alt={item.alt} src={item.image} />
+                </MarqueeItem>
+              ))}
+            </FastMarquee>
 
-          <MarqueeContent ref={contentRef}>
-            {[...Array(duplicated)].map((_, index) => (
-              <React.Fragment key={index}>
-                {marqueeTwo.map((item, itemIndex) => (
-                  <MarqueeItem key={`${index}-${itemIndex}`}>
-                    <Image width={41} height={41} alt={item.alt} src={item.image} />
-                    <span>{item.text}</span>
-                  </MarqueeItem>
-                ))}
-              </React.Fragment>
-            ))}
-          </MarqueeContent>
-          <MarqueeContent ref={contentRef}>
-            {[...Array(duplicated)].map((_, index) => (
-              <React.Fragment key={index}>
-                {marqueeThree.map((item, itemIndex) => (
-                  <MarqueeItem key={`${index}-${itemIndex}`}>
-                    <span>{item.text}</span>
+            <FastMarquee speed={500} gradient={false} direction="left" pauseOnHover={false}>
+              {duplicatedMarqueeTwo.map((item, itemIndex) => (
+                <MarqueeItem key={`mrow2-${itemIndex}`}>
+                  <Image width={41} height={41} alt={item.alt} src={item.image} />
+                  <span>{item.text}</span>
+                </MarqueeItem>
+              ))}
+            </FastMarquee>
 
-                    <Image width={41} height={41} alt={item.alt} src={item.image} />
-                  </MarqueeItem>
-                ))}
-              </React.Fragment>
-            ))}
-          </MarqueeContent>
+            <FastMarquee speed={500} gradient={false} direction="left" pauseOnHover={false}>
+              {duplicatedMarqueeThree.map((item, itemIndex) => (
+                <MarqueeItem key={`mrow3-${itemIndex}`}>
+                  <span>{item.text}</span>
+                  <Image width={41} height={41} alt={item.alt} src={item.image} />
+                </MarqueeItem>
+              ))}
+            </FastMarquee>
+          </StyledMobileGap>
         </Mobile>
       </StyledText>
     </StyledContainer>

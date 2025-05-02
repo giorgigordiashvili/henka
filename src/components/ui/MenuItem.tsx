@@ -1,7 +1,7 @@
 "use client";
 import styled from "styled-components";
-import Typography from "./Typography";
 import { Desktop, Mobile } from "./Responsive";
+import Typography from "./Typography";
 
 const StyledButton = styled.div<{ size: "S" | "M" }>`
   display: flex;
@@ -19,6 +19,7 @@ const StyledButton = styled.div<{ size: "S" | "M" }>`
   text-decoration: none;
   color: #5c0e15;
   font-feature-settings: "case";
+  text-transform: uppercase;
   transition: all 0.3s ease-in-out;
 
   &:hover {

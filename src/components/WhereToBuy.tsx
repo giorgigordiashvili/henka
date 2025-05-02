@@ -18,7 +18,7 @@ const StyledMainContainer = styled.div`
 const StyledContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 279px;
+  justify-content: space-between;
   padding: 54px 0 0 0;
   background-color: rgb(252 252 252);
   width: 100%;
@@ -71,7 +71,7 @@ const StyledBranches = styled.div`
 const StyledBranch1 = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 22px;
 
   @media (max-width: 1080px) {
     gap: 24px;
@@ -81,7 +81,7 @@ const StyledBranch1 = styled.div`
 const StyledBranch2 = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 22px;
 
   @media (max-width: 1080px) {
     gap: 24px;

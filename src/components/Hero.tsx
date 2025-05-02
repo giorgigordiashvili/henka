@@ -93,10 +93,10 @@ const StyledBlurWithBottles = styled.div`
   position: relative;
   @media (max-width: 1080px) {
     width: 100vw;
+    height: calc((100vw - 32px) / 343 * 389.13);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: auto;
     position: relative;
   }
 `;
@@ -114,7 +114,6 @@ const StyledBlur = styled.div`
   @media (max-width: 1080px) {
     width: 343px;
     height: 343px;
-    position: relative;
     filter: blur(100px);
   }
 `;
