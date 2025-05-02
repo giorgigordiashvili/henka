@@ -74,6 +74,7 @@ const MobileNavList = styled.ul`
 const LogoContainer = styled.div`
   display: flex;
   justify-content: center;
+  cursor: pointer;
   @media (max-width: 1080px) {
     display: none;
   }
@@ -82,6 +83,7 @@ const LogoContainer = styled.div`
 const LogoContainerMobile = styled.div`
   display: none;
   justify-content: center;
+  cursor: pointer;
   @media (max-width: 1080px) {
     display: flex;
   }
@@ -177,6 +179,13 @@ export default function Header({
     setOpen((prev) => !prev);
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
@@ -241,10 +250,10 @@ export default function Header({
             <NavigationLink text={dictionary.aboutUs} href="/" scrollTo="aboutUs" />
           </NavList>
         </StyledLinksContainer>
-        <LogoContainer>
+        <LogoContainer onClick={scrollToTop} role="button" aria-label="Scroll to top">
           <Image width={54} height={54} src={logoImage} alt="logo" placeholder="blur" />
         </LogoContainer>
-        <LogoContainerMobile>
+        <LogoContainerMobile onClick={scrollToTop} role="button" aria-label="Scroll to top">
           <Image width={40} height={40} src={logoImage} alt="logo" placeholder="blur" />
         </LogoContainerMobile>
         <StyledBurgerContainer
