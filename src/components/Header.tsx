@@ -1,13 +1,13 @@
 "use client";
 import { getDictionary } from "@/get-dictionary";
 import BurgerIcon from "@/icons/BurgerIcon";
+import CloseIcon from "@/icons/CloseIcon";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import logoImage from "../../public/assets/logo.png";
 import LocaleSwitcher from "./LocaleSwitcher";
 import NavigationLink from "./ui/NavigationLink";
-import CloseIcon from "@/icons/CloseIcon";
-import logoImage from "../../public/assets/logo.png";
 
 const StyledColor = styled.div<{ $visible: boolean; $sticky: boolean }>`
   padding: 12px 0px;
@@ -17,7 +17,7 @@ const StyledColor = styled.div<{ $visible: boolean; $sticky: boolean }>`
   top: 0;
   left: 0;
   right: 0;
-  background-color: #dc2233;
+  background-color: ${(props) => (props.$sticky ? "#dc2233;" : "transparent")};
   width: 100%;
   transform: translateY(${(props) => (props.$sticky && !props.$visible ? "-100%" : "0")});
   transition: transform 0.3s ease-in-out;

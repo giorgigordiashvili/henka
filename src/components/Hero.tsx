@@ -12,8 +12,9 @@ const StyledContainer = styled.div`
   position: relative;
   margin-top: 142px;
   @media (max-width: 1080px) {
-    height: 125vh;
     margin-top: 64px;
+    height: auto;
+    padding-bottom: 105px;
   }
 `;
 
@@ -44,6 +45,7 @@ const StyledFruitsContainer = styled.div`
   animation: ${bounceAnimation} 3s ease-in-out infinite;
   @media (max-width: 1080px) {
     z-index: 5;
+    height: 100%;
   }
 `;
 
@@ -60,6 +62,7 @@ const StyledContentContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 23px;
+    height: auto;
   }
 `;
 
@@ -91,6 +94,7 @@ const StyledBlurWithBottles = styled.div`
     justify-content: center;
     align-items: center;
     height: auto;
+    position: relative;
   }
 `;
 const StyledBlur = styled.div`
@@ -107,7 +111,6 @@ const StyledBlur = styled.div`
   @media (max-width: 1080px) {
     width: 343px;
     height: 343px;
-
     position: relative;
     filter: blur(100px);
   }
@@ -192,6 +195,12 @@ export default function Hero({
                 objectFit="contain"
               />
             </Mobile>
+
+            <StyledFruitsContainer>
+              <Mobile>
+                <Image src="/assets/fruits-1-mobile.png" alt="Fruits" fill objectFit="contain" />
+              </Mobile>
+            </StyledFruitsContainer>
             <StyledBlur />
           </StyledBlurWithBottles>
           <Mobile>
@@ -235,9 +244,6 @@ export default function Hero({
             <Desktop>
               <Image src="/assets/fruits-1.png" alt="Fruits" fill objectFit="contain" />
             </Desktop>
-            <Mobile>
-              <Image src="/assets/fruits-1-mobile.png" alt="Fruits" fill objectFit="contain" />
-            </Mobile>
           </StyledFruitsContainer>
         </StyledContentContainer>
       </Container>

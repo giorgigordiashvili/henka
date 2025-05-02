@@ -106,6 +106,10 @@ const SwiperWrapper = styled.div`
   width: 100%;
   max-width: 600px;
   position: relative;
+  @media (max-width: 768px) {
+    max-width: 150%;
+    width: 150%;
+  }
 `;
 
 const StyledSwiper = styled(Swiper)`
@@ -182,11 +186,14 @@ const CircleBackground = styled.div`
 const StyledFruitsContainer = styled.div`
   position: absolute;
   width: 100%;
-  height: calc(100vh - 78px - 167px);
+  height: 100%;
   pointer-events: none;
+  top: 107px;
   animation: ${bounceAnimation} 3s ease-in-out infinite;
   @media (max-width: 1080px) {
     z-index: -1;
+    top: 0px;
+    height: 100vh;
   }
 `;
 
@@ -368,17 +375,17 @@ export default function Slider({
         animationDirection={animationDirection}
       />
 
+      <StyledFruitsContainer>
+        <Desktop>
+          <Image src="/assets/fruits-2.png" alt="Fruits" fill objectFit="contain" />
+        </Desktop>
+        <Mobile>
+          <Image src="/assets/fruits-2-mobile.png" alt="Fruits" fill objectFit="contain" />
+        </Mobile>
+      </StyledFruitsContainer>
       <CircleBackground />
 
       <StyledBox>
-        <StyledFruitsContainer>
-          <Desktop>
-            <Image src="/assets/fruits-2.png" alt="Fruits" fill objectFit="contain" />
-          </Desktop>
-          <Mobile>
-            <Image src="/assets/fruits-2-mobile.png" alt="Fruits" fill objectFit="contain" />
-          </Mobile>
-        </StyledFruitsContainer>
         <StyledTitle>
           <Typography variant="h2">{dictionary.title}</Typography>
         </StyledTitle>
