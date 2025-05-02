@@ -47,6 +47,8 @@ const StyledFruitsContainer = styled.div`
   @media (max-width: 1080px) {
     z-index: 5;
     height: 100%;
+    width: 100%;
+    left: 0px;
   }
 `;
 
