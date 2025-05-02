@@ -39,7 +39,8 @@ const bounceAnimation = keyframes`
 
 const StyledFruitsContainer = styled.div`
   position: absolute;
-  width: 100%;
+  width: 1481px;
+  left: -68.5px;
   height: calc(100vh - 78px - 167px);
   pointer-events: none;
   animation: ${bounceAnimation} 3s ease-in-out infinite;
