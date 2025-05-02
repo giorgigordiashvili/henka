@@ -93,8 +93,6 @@ const StyledBlurWithBottles = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: auto;
-    position: relative;
   }
 `;
 const StyledBlur = styled.div`
@@ -111,7 +109,6 @@ const StyledBlur = styled.div`
   @media (max-width: 1080px) {
     width: 343px;
     height: 343px;
-    position: relative;
     filter: blur(100px);
   }
 `;
