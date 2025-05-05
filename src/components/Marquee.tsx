@@ -3,7 +3,7 @@ import { getDictionary } from "@/get-dictionary";
 import Image from "next/image";
 import FastMarquee from "react-fast-marquee";
 import styled from "styled-components";
-import { Desktop, Mobile } from "./ui/Responsive";
+import { Desktop, Mobile, Tablet } from "./ui/Responsive";
 
 interface MarqueeItem {
   text: string;
@@ -58,6 +58,12 @@ const StyledText = styled.div`
   align-items: center;
   gap: 70px;
   @media (max-width: 1366px) {
+    height: auto;
+    font-size: 65.95px;
+    line-height: 37px;
+    gap: 30px;
+  }
+  @media (max-width: 768px) {
     height: auto;
     font-size: 32.09px;
     line-height: 37px;
@@ -180,6 +186,35 @@ export default function Marquee({
             ))}
           </FastMarquee>
         </Desktop>
+
+        <Tablet>
+          <FastMarquee speed={500} gradient={false} direction="left" pauseOnHover={false}>
+            {duplicatedMarqueeOne.map((item, itemIndex) => (
+              <MarqueeItem key={`row1-${itemIndex}`}>
+                <span>{item.text}</span>
+                <Image width={84.27} height={84.27} alt={item.alt} src={item.image} />
+              </MarqueeItem>
+            ))}
+          </FastMarquee>
+
+          <FastMarquee speed={500} gradient={false} direction="left" pauseOnHover={false}>
+            {duplicatedMarqueeTwo.map((item, itemIndex) => (
+              <MarqueeItem key={`row2-${itemIndex}`}>
+                <Image width={84.27} height={84.27} alt={item.alt} src={item.image} />
+                <span>{item.text}</span>
+              </MarqueeItem>
+            ))}
+          </FastMarquee>
+
+          <FastMarquee speed={500} gradient={false} direction="left" pauseOnHover={false}>
+            {duplicatedMarqueeThree.map((item, itemIndex) => (
+              <MarqueeItem key={`row3-${itemIndex}`}>
+                <Image width={84.27} height={84.27} alt={item.alt} src={item.image} />
+                <span>{item.text}</span>
+              </MarqueeItem>
+            ))}
+          </FastMarquee>
+        </Tablet>
 
         <Mobile>
           <StyledMobileGap>

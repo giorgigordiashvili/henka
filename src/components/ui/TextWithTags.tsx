@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import styled, { css } from "styled-components";
-import { Desktop, Mobile } from "./Responsive";
+import { Desktop, Mobile, Tablet } from "./Responsive";
 import Typography from "./Typography";
 
 const StyledItemsGrid = styled.div`
@@ -465,6 +465,14 @@ export default function TextWithTags({
               $opacity={filledImageOpacity}
             />
           </Desktop>
+          <Tablet>
+            <Image
+              src={filledImageMobileSrc}
+              fill
+              objectFit="cover"
+              alt={`${middleImageAlt} Mobile`}
+            />
+          </Tablet>
           <Mobile>
             <Image
               src={filledImageMobileSrc}

@@ -6,7 +6,7 @@ import { useCallback } from "react";
 import styled from "styled-components";
 import logoImage from "../../public/assets/logo.png";
 import NavigationLink from "./ui/NavigationLink";
-import { Desktop, Mobile } from "./ui/Responsive";
+import { Desktop, Mobile, Tablet } from "./ui/Responsive";
 import Typography from "./ui/Typography";
 
 type Props = {
@@ -134,6 +134,7 @@ const Footer = ({ dictionary }: Props) => {
             <LinkWrapper>
               <NavigationLink
                 isSmallOnMobile
+                isSmallOnTablet
                 text={dictionary.whereToBuy}
                 href="/"
                 scrollTo="whereToBuy"
@@ -142,6 +143,7 @@ const Footer = ({ dictionary }: Props) => {
             <LinkWrapper>
               <NavigationLink
                 isSmallOnMobile
+                isSmallOnTablet
                 text={dictionary.products}
                 href="/"
                 scrollTo="products"
@@ -150,6 +152,7 @@ const Footer = ({ dictionary }: Props) => {
             <LinkWrapper>
               <NavigationLink
                 isSmallOnMobile
+                isSmallOnTablet
                 text={dictionary.aboutUs}
                 href="/"
                 scrollTo="aboutUs"
@@ -170,6 +173,9 @@ const Footer = ({ dictionary }: Props) => {
           <Desktop>
             <Typography variant="sBodytext">{dictionary.copyright}</Typography>
           </Desktop>
+          <Tablet>
+            <Typography variant="xsBodytext">{dictionary.copyright}</Typography>
+          </Tablet>
           <Mobile>
             <Typography variant="xsBodytext">{dictionary.copyright}</Typography>
           </Mobile>

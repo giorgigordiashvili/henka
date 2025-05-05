@@ -2,7 +2,7 @@
 import Image from "next/image";
 import styled from "styled-components";
 import Container from "./Container";
-import { Desktop, Mobile } from "./Responsive";
+import { Desktop, Mobile, Tablet } from "./Responsive";
 import Typography, { H2 } from "./Typography";
 
 const StyledContainer = styled.div<{ $backgroundColor?: string }>`
@@ -25,18 +25,19 @@ const StyledTextContainer = styled.div<{ $imagePosition?: "left" | "right" }>`
     text-align: left;
     font-feature-settings: "case";
     max-width: ${(props) => (props.$imagePosition === "left" ? "656px" : "541px")};
-    @media (max-width: 1366px) {
-      max-width: 343px;
-      margin: auto;
-    }
   }
   @media (max-width: 1366px) {
-    gap: 24px;
     h2 {
       font-feature-settings: "case";
-      text-align: center;
     }
+    gap: 11.56px;
     max-width: calc(100vw - 32px);
+  }
+  @media (max-width: 768px) {
+    gap: 24px;
+    h2 {
+      margin: auto;
+    }
   }
 `;
 
@@ -75,6 +76,11 @@ const StyledFlex = styled.div<{ $imagePosition?: "left" | "right" }>`
   align-items: center;
   @media (max-width: 1366px) {
     flex-direction: column;
+    padding-top: 6.61px;
+    gap: 32px;
+  }
+  @media (max-width: 768px) {
+    flex-direction: column;
     padding-top: 22.88px;
     gap: 28px;
   }
@@ -84,6 +90,12 @@ const StyledImageContainer = styled.div`
   border-radius: 20px;
   overflow: hidden;
   @media (max-width: 1366px) {
+    position: relative;
+    width: calc(100vw - 32px);
+    height: 450px;
+    margin: auto;
+  }
+  @media (max-width: 768px) {
     position: relative;
     width: calc(100vw - 32px);
     height: 335px;
@@ -190,6 +202,9 @@ export default function TextWithImage({
             <Desktop>
               <Typography variant="mBodytext">{subtitle}</Typography>
             </Desktop>
+            <Tablet>
+              <Typography variant="mBodytext">{subtitle}</Typography>
+            </Tablet>
             <Mobile>
               <Typography variant="sBodytext">{subtitle}</Typography>
             </Mobile>
@@ -202,6 +217,9 @@ export default function TextWithImage({
                       <Desktop>
                         <Image src="/assets/checkmark.svg" alt="Checkmark" width={28} height={28} />
                       </Desktop>
+                      <Tablet>
+                        <Image src="/assets/checkmark.svg" alt="Checkmark" width={28} height={28} />
+                      </Tablet>
                       <Mobile>
                         <Image src="/assets/checkmark.svg" alt="Checkmark" width={20} height={20} />
                       </Mobile>
@@ -211,6 +229,11 @@ export default function TextWithImage({
                         <Typography variant="mBodytext">{item}</Typography>
                       </ListItemText>
                     </Desktop>
+                    <Tablet>
+                      <ListItemText>
+                        <Typography variant="mBodytext">{item}</Typography>
+                      </ListItemText>
+                    </Tablet>
                     <Mobile>
                       <ListItemText>
                         <Typography variant="sBodytext">{item}</Typography>
@@ -231,6 +254,9 @@ export default function TextWithImage({
                 objectFit="cover"
               />
             </Desktop>
+            <Tablet>
+              <Image src={imageSrc} alt={imageAlt} fill objectFit="cover" />
+            </Tablet>
             <Mobile>
               <Image src={imageSrc} alt={imageAlt} fill objectFit="cover" />
             </Mobile>
