@@ -147,7 +147,7 @@ const StyledUnionContainerBottom = styled.div`
   width: 100%;
   height: 167px;
   z-index: 9;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     height: 22.96px;
     bottom: -21.96px;
   }

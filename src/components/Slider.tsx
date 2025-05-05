@@ -27,7 +27,7 @@ const StyledContainer = styled(motion.div)`
   position: relative;
   transition: background-color 0.6s ease;
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     padding: 73px 0 54px;
   }
 `;
@@ -52,7 +52,7 @@ const StyledBox = styled.div`
   position: relative;
   z-index: 1;
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     gap: 16px;
   }
 `;
@@ -63,7 +63,7 @@ const StyledTitle = styled.div`
   text-transform: uppercase;
   font-feature-settings: "case";
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     width: 100%;
     font-size: 24px;
     max-width: 343px;
@@ -74,7 +74,7 @@ const StyledProducts = styled.div`
   display: flex;
   gap: 20px;
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     margin-bottom: 2px;
   }
 `;
@@ -140,7 +140,7 @@ const NavButton = styled.button`
     width: 24.28px;
     height: 24.28px;
 
-    @media (max-width: 1080px) {
+    @media (max-width: 1366px) {
       width: 15px;
       height: 15px;
     }
@@ -151,7 +151,7 @@ const NavButton = styled.button`
 const PrevButton = styled(NavButton)`
   left: 170px;
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     left: calc(50% - 80px - 1px);
   }
 `;
@@ -159,7 +159,7 @@ const PrevButton = styled(NavButton)`
 const NextButton = styled(NavButton)`
   right: 150px;
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     right: calc(50% - 80px - 33px);
   }
 `;
@@ -176,7 +176,7 @@ const CircleBackground = styled.div`
   background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
   filter: blur(85px);
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     top: 50%;
     width: calc(100% - 32px);
     height: 200px;
@@ -190,7 +190,7 @@ const StyledFruitsContainer = styled.div`
   pointer-events: none;
   top: 107px;
   animation: ${bounceAnimation} 3s ease-in-out infinite;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     z-index: -1;
     top: 0px;
     height: 100vh;
@@ -223,7 +223,7 @@ const BottleImage = styled.div`
     height: 336px !important;
   }
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     &.active img,
     &.active span {
       width: 160px !important;
@@ -244,7 +244,7 @@ const FlavorsDisplay = styled.div`
   z-index: 1;
   font-feature-settings: "case";
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     font-size: 14px;
   }
 `;

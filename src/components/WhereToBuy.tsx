@@ -24,7 +24,7 @@ const StyledContainer = styled.div`
   width: 100%;
   max-width: 1344px;
   margin: auto;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     display: grid;
     grid-template-columns: minmax(300px, 1fr);
     padding: 52px 18px 42px 18px;
@@ -39,7 +39,7 @@ const StyledBio = styled.div`
   gap: 64px;
   padding: 87px 0;
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     padding: 12px 0 0 0;
   }
 `;
@@ -48,7 +48,7 @@ const StyledLocations = styled.div`
   display: flex;
   flex-direction: column;
   gap: 28px;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     text-align: center;
   }
 `;
@@ -58,7 +58,7 @@ const StyledBranches = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 89px;
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     gap: 42px;
     grid-template-columns: 1fr 1fr;
   }
@@ -73,7 +73,7 @@ const StyledBranch1 = styled.div`
   flex-direction: column;
   gap: 22px;
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     gap: 24px;
   }
 `;
@@ -83,7 +83,7 @@ const StyledBranch2 = styled.div`
   flex-direction: column;
   gap: 22px;
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     gap: 24px;
   }
 `;
@@ -93,7 +93,7 @@ const StyledShop = styled.div`
   align-items: center;
   gap: 10px;
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     font-size: 14px;
     line-height: 18px;
   }
@@ -103,7 +103,7 @@ const StyledContact = styled.div`
   display: flex;
   flex-direction: column;
   gap: 28px;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     text-align: center;
   }
 `;
@@ -113,7 +113,7 @@ const StyledContactInfos = styled.div`
   flex-direction: column;
   gap: 12px;
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     gap: 24px;
   }
 `;
@@ -130,7 +130,7 @@ const StyledHenka = styled.div`
   position: relative;
   border-radius: 20px;
   overflow: hidden;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     width: calc(100vw - 36px);
     height: 335px;
     display: flex;

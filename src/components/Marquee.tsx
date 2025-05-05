@@ -19,7 +19,7 @@ const StyledContainer = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     height: 373.98px;
   }
 `;
@@ -31,7 +31,7 @@ const StyledUnionContainer = styled.div`
   width: 100%;
   height: 167px;
   top: -1px;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     height: 42.98px;
   }
 `;
@@ -41,7 +41,7 @@ const StyledBottomUnionContainer = styled.div`
   bottom: 0px;
   width: 100%;
   height: 167px;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     height: 42.98px;
   }
 `;
@@ -57,7 +57,7 @@ const StyledText = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 70px;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     height: auto;
     font-size: 32.09px;
     line-height: 37px;
@@ -71,7 +71,7 @@ const MarqueeItem = styled.div`
   gap: 20px;
   margin-right: 40px; // Slightly reduced margin for more compact layout
   text-transform: uppercase;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     margin-right: 20px;
     gap: 10px;
   }
