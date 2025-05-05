@@ -309,6 +309,9 @@ export default function Hero({
         <Desktop>
           <Image src="/assets/union-1.png" alt="Union" fill />
         </Desktop>
+        <Tablet>
+          <Image src="/assets/union-1.png" alt="Union" fill />
+        </Tablet>
         <Mobile>
           <Image src="/assets/union-1-mobile.png" alt="Union" fill />
         </Mobile>

@@ -24,11 +24,17 @@ const StyledContainer = styled.div`
   width: 100%;
   max-width: 1344px;
   margin: auto;
-  @media (max-width: 1366px) {
+  @media (max-width: 768px) {
     display: grid;
     grid-template-columns: minmax(300px, 1fr);
     padding: 52px 18px 42px 18px;
     gap: 64px;
+  }
+  @media (max-width: 1366px) {
+    display: grid;
+    grid-template-columns: minmax(300px, 1fr);
+    padding: 52px 18px 42px 18px;
+    gap: 32px;
   }
 `;
 

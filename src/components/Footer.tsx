@@ -118,12 +118,18 @@ const Footer = ({ dictionary }: Props) => {
     });
   }, []);
 
+  console.log("Footer Component Rendered"); // Check if the component is rendering
+  console.log("Dictionary Prop:", dictionary); // Inspect the dictionary prop
+
   return (
     <FooterContainer>
       <StyledUnionContainer>
         <Desktop>
           <Image src="/assets/union-2.png" alt="Union" fill />
         </Desktop>
+        <Tablet>
+          <Image src="/assets/union-2.png" alt="Union" fill />
+        </Tablet>
         <Mobile>
           <Image src="/assets/union-2-mobile.png" alt="Union" fill />
         </Mobile>
@@ -171,13 +177,15 @@ const Footer = ({ dictionary }: Props) => {
         <WhiteLine />
         <CopyrightWrapper>
           <Desktop>
-            <Typography variant="sBodytext">{dictionary.copyright}</Typography>
+            <Typography variant="sBodytext">{dictionary?.copyright}</Typography>
           </Desktop>
           <Tablet>
-            <Typography variant="xsBodytext">{dictionary.copyright}</Typography>
+            <Typography variant="xsBodytext">
+              Tablet Copyright: {dictionary?.copyright} {/* Added a prefix for clarity */}
+            </Typography>
           </Tablet>
           <Mobile>
-            <Typography variant="xsBodytext">{dictionary.copyright}</Typography>
+            <Typography variant="xsBodytext">{dictionary?.copyright}</Typography>
           </Mobile>
         </CopyrightWrapper>
       </BottomFooter>

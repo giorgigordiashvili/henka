@@ -2,7 +2,7 @@
 import { getDictionary } from "@/get-dictionary";
 import Image from "next/image";
 import styled, { keyframes } from "styled-components";
-import { Desktop, Mobile } from "./ui/Responsive";
+import { Desktop, Mobile, Tablet } from "./ui/Responsive";
 
 const bounceAnimation = keyframes`
   0%, 100% {
@@ -193,6 +193,9 @@ export default function Fruits({
         <Desktop>
           <Image src="/assets/union-2.png" alt="Union" fill />
         </Desktop>
+        <Tablet>
+          <Image src="/assets/union-2.png" alt="Union" fill />
+        </Tablet>
         <Mobile>
           <Image src="/assets/union-2-mobile.png" alt="Union" fill />
         </Mobile>
@@ -202,6 +205,9 @@ export default function Fruits({
         <Desktop>
           <Image src="/assets/union-3.png" alt="Union" fill />
         </Desktop>
+        <Tablet>
+          <Image src="/assets/union-3.png" alt="Union" fill />
+        </Tablet>
         <Mobile>
           <Image src="/assets/union-3-mobile.png" alt="Union" fill />
         </Mobile>
