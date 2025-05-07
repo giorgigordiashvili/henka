@@ -8,9 +8,12 @@ import Typography from "./Typography";
 const StyledItemsGrid = styled.div`
   padding-top: 50px;
   display: grid;
-  grid-template-columns: 312px 1fr 312px;
+  grid-template-columns: minmax(200px, 312px) 1fr minmax(200px, 312px);
   grid-gap: 32px;
   @media (max-width: 1366px) {
+    padding-top: 35px;
+  }
+  @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
     grid-gap: 45px;
@@ -28,7 +31,7 @@ const StyledReasons = styled.div<{ $fromLeft?: boolean; $scrollRatio?: number }>
   gap: 64px;
   position: relative;
   max-width: 259px;
-  @media (min-width: 1081px) {
+  @media (min-width: 768px) {
     transform: translateX(
       ${(props) =>
         props.$fromLeft
@@ -38,7 +41,7 @@ const StyledReasons = styled.div<{ $fromLeft?: boolean; $scrollRatio?: number }>
     transition: transform 0.05s linear;
   }
 
-  @media (max-width: 1366px) {
+  @media (max-width: 768px) {
     max-width: 343px;
     gap: 32px;
     justify-content: flex-start;
@@ -48,7 +51,7 @@ const StyledReasons = styled.div<{ $fromLeft?: boolean; $scrollRatio?: number }>
   }
 
   /* Make elements visible immediately on mobile without animation */
-  @media (max-width: 1366px) {
+  @media (max-width: 768px) {
     opacity: 1;
   }
 `;
@@ -71,7 +74,7 @@ const StyledReason = styled.div<{
       ? "translateX(calc(-100vw - 1114px / 2))"
       : "translateX(calc(100vw - 1114px / 2))"};
 
-  @media (max-width: 1366px) {
+  @media (max-width: 768px) {
     flex-direction: row;
     gap: 20px;
     text-align: left;
@@ -86,7 +89,7 @@ const StyledReason = styled.div<{
   }
 
   /* Only apply animations on desktop (screens > 1081px) */
-  @media (min-width: 1081px) {
+  @media (min-width: 768px) {
     /* Only make visible and animate when the previous item is complete or it's the first item */
     ${(props) => {
       // The threshold percentage for when this tag should appear
@@ -111,6 +114,7 @@ const StyledImageContainer = styled.div`
   position: relative;
   @media (max-width: 1366px) {
     width: calc(100% - 32px);
+    min-width: 209px;
     height: 459px;
     margin: auto;
     border-radius: 16px;
@@ -254,7 +258,7 @@ export default function TextWithTags({
   useEffect(() => {
     // Check if we're on desktop when component mounts
     const checkIfDesktop = () => {
-      const isDesktopView = window.innerWidth > 1080;
+      const isDesktopView = window.innerWidth > 768;
       setIsDesktop(isDesktopView);
 
       // Preload the image if sticky effect is enabled
@@ -398,6 +402,7 @@ export default function TextWithTags({
     calculateThreshold,
     isDesktop,
     scrollThreshold,
+    preloadFilledImage,
     enableStickyEffect,
     enableSlideAnimation,
     uniqueId,

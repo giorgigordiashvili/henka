@@ -48,7 +48,7 @@ function MenuItem({ size, text, fullWidth, onClick }: Props) {
         <Typography variant="xsBodytext">{text}</Typography>
       </Mobile>
       <Tablet>
-        <Typography variant="mBodytext">{text}</Typography>
+        <Typography variant="xsBodytext">{text}</Typography>
       </Tablet>
     </StyledButton>
   );

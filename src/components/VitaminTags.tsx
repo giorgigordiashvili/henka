@@ -38,8 +38,9 @@ const StyledFirstAsterisk = styled.div`
   top: -11px;
   right: -216px;
   z-index: 2;
-  @media (max-width: 1366px) {
+  @media (max-width: 768px) {
     display: none;
+    right: -80px;
   }
 `;
 
@@ -48,7 +49,7 @@ const StyledSecondAsterisk = styled.div`
   bottom: 0px;
   left: -271px;
   z-index: 2;
-  @media (max-width: 1366px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;

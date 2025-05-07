@@ -7,7 +7,7 @@ import styled, { keyframes } from "styled-components";
 import "swiper/css";
 import "swiper/css/effect-creative";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
-import { Desktop, Mobile } from "./ui/Responsive";
+import { Desktop, Mobile, Tablet } from "./ui/Responsive";
 import Typography from "./ui/Typography";
 
 const bounceAnimation = keyframes`
@@ -28,6 +28,9 @@ const StyledContainer = styled(motion.div)`
   transition: background-color 0.6s ease;
 
   @media (max-width: 1366px) {
+    padding: 73px 0 84px;
+  }
+  @media (max-width: 768px) {
     padding: 73px 0 54px;
   }
 `;
@@ -106,7 +109,7 @@ const SwiperWrapper = styled.div`
   width: 100%;
   max-width: 600px;
   position: relative;
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     max-width: 150%;
     width: 150%;
   }
@@ -140,7 +143,7 @@ const NavButton = styled.button`
     width: 24.28px;
     height: 24.28px;
 
-    @media (max-width: 1366px) {
+    @media (max-width: 768px) {
       width: 15px;
       height: 15px;
     }
@@ -151,7 +154,7 @@ const NavButton = styled.button`
 const PrevButton = styled(NavButton)`
   left: 170px;
 
-  @media (max-width: 1366px) {
+  @media (max-width: 768px) {
     left: calc(50% - 80px - 1px);
   }
 `;
@@ -159,7 +162,7 @@ const PrevButton = styled(NavButton)`
 const NextButton = styled(NavButton)`
   right: 150px;
 
-  @media (max-width: 1366px) {
+  @media (max-width: 768px) {
     right: calc(50% - 80px - 33px);
   }
 `;
@@ -398,6 +401,9 @@ export default function Slider({
             <Desktop>
               <Typography variant="mBodytext">{dictionary.kombucha}</Typography>
             </Desktop>
+            <Tablet>
+              <Typography variant="xsBodytext">{dictionary.kombucha}</Typography>
+            </Tablet>
             <Mobile>
               <Typography variant="xsBodytext">{dictionary.kombucha}</Typography>
             </Mobile>
@@ -409,6 +415,9 @@ export default function Slider({
             <Desktop>
               <Typography variant="mBodytext">{dictionary.water}</Typography>
             </Desktop>
+            <Tablet>
+              <Typography variant="xsBodytext">{dictionary.water}</Typography>
+            </Tablet>
             <Mobile>
               <Typography variant="xsBodytext">{dictionary.water}</Typography>
             </Mobile>
@@ -478,6 +487,11 @@ export default function Slider({
               {currentBottles[activeIndex % currentBottles.length]?.flavor}
             </Typography>
           </Desktop>
+          <Tablet>
+            <Typography variant="mBodytext">
+              {currentBottles[activeIndex % currentBottles.length]?.flavor}
+            </Typography>
+          </Tablet>
           <Mobile>
             <Typography variant="xsBodytext">
               {currentBottles[activeIndex % currentBottles.length]?.flavor}

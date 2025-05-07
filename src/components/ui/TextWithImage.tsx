@@ -29,12 +29,14 @@ const StyledTextContainer = styled.div<{ $imagePosition?: "left" | "right" }>`
   @media (max-width: 1366px) {
     h2 {
       font-feature-settings: "case";
+      max-width: 720px;
     }
-    gap: 11.56px;
-    max-width: calc(100vw - 32px);
+    gap: ${(props) => (props.$imagePosition === "left" ? "20px" : "11.56px")};
+    max-width: calc(100vw - 48px);
   }
   @media (max-width: 768px) {
     gap: 24px;
+    max-width: calc(100vw - 32px);
     h2 {
       margin: auto;
     }
@@ -49,7 +51,7 @@ const StyledList = styled.ul`
   flex-direction: column;
   gap: 20px;
   @media (max-width: 1366px) {
-    margin-top: 0;
+    margin-top: 12px;
   }
 `;
 
@@ -76,7 +78,7 @@ const StyledFlex = styled.div<{ $imagePosition?: "left" | "right" }>`
   align-items: center;
   @media (max-width: 1366px) {
     flex-direction: column;
-    padding-top: 6.61px;
+    padding-top: 53.18px;
     gap: 32px;
   }
   @media (max-width: 768px) {
@@ -91,7 +93,7 @@ const StyledImageContainer = styled.div`
   overflow: hidden;
   @media (max-width: 1366px) {
     position: relative;
-    width: calc(100vw - 32px);
+    width: calc(100vw - 48px);
     height: 450px;
     margin: auto;
   }
@@ -109,6 +111,9 @@ const StyledFirstAsterisk = styled.div`
   left: -156px;
   z-index: 2;
   @media (max-width: 1366px) {
+    left: -80px;
+  }
+  @media (max-width: 768px) {
     display: none;
   }
 `;
@@ -118,7 +123,7 @@ const StyledSecondAsterisk = styled.div`
   bottom: -134px;
   left: -156px;
   z-index: 2;
-  @media (max-width: 1366px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;
@@ -128,7 +133,7 @@ const StyledThirdAsterisk = styled.div`
   bottom: -265px;
   right: -156px;
   z-index: 2;
-  @media (max-width: 1366px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;

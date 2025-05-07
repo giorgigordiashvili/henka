@@ -2,7 +2,7 @@
 import { getDictionary } from "@/get-dictionary";
 import Image from "next/image";
 import styled, { keyframes } from "styled-components";
-import { Desktop, Mobile } from "./ui/Responsive";
+import { Desktop, Mobile, Tablet } from "./ui/Responsive";
 
 const bounceAnimation = keyframes`
   0%, 100% {
@@ -14,14 +14,24 @@ const bounceAnimation = keyframes`
 `;
 
 const DesktopContainer = styled.div`
-  @media (max-width: 1300px) {
+  @media (max-width: 1366px) {
+    display: none;
+  }
+`;
+
+const TabletContainer = styled.div`
+  display: none;
+  @media (max-width: 1366px) {
+    display: block;
+  }
+  @media (max-width: 768px) {
     display: none;
   }
 `;
 
 const MobileContainer = styled.div`
   display: none;
-  @media (max-width: 1300px) {
+  @media (max-width: 768px) {
     display: block;
   }
 `;
@@ -41,7 +51,7 @@ const StyledUnionContainer = styled.div`
   height: 167px;
   z-index: 2;
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1366px) {
     height: 42.98px;
   }
 `;
@@ -56,7 +66,11 @@ const StyledContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 600px;
-  @media (max-width: 1300px) {
+  @media (max-width: 1366px) {
+    padding: 91px 0 48px 0;
+    height: auto;
+  }
+  @media (max-width: 768px) {
     padding: 61px 0 48px 0;
     height: auto;
   }
@@ -72,7 +86,13 @@ const Paragraph = styled.p`
   white-space: nowrap;
   margin: 0;
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1366px) {
+    font-size: 61.65px;
+    line-height: 100%;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 768px) {
     font-size: 38px;
     line-height: 100%;
     white-space: nowrap;
@@ -193,6 +213,9 @@ export default function Fruits({
         <Desktop>
           <Image src="/assets/union-2.png" alt="Union" fill />
         </Desktop>
+        <Tablet>
+          <Image src="/assets/union-2.png" alt="Union" fill />
+        </Tablet>
         <Mobile>
           <Image src="/assets/union-2-mobile.png" alt="Union" fill />
         </Mobile>
@@ -202,6 +225,9 @@ export default function Fruits({
         <Desktop>
           <Image src="/assets/union-3.png" alt="Union" fill />
         </Desktop>
+        <Tablet>
+          <Image src="/assets/union-3.png" alt="Union" fill />
+        </Tablet>
         <Mobile>
           <Image src="/assets/union-3-mobile.png" alt="Union" fill />
         </Mobile>
@@ -242,6 +268,28 @@ export default function Fruits({
             </Row>
           </ThreeRowsContainer>
         </DesktopContainer>
+
+        <TabletContainer>
+          <ThreeRowsContainer>
+            <MobileRow>
+              <GingerImage1 src="/assets/marquee/ginger.png" width={64.62} height={64.62} alt="" />
+              <Paragraph>{fruits1.paragraph}</Paragraph>
+              <PineberryImage1
+                src="/assets/marquee/pineberry.png"
+                width={64.62}
+                height={64.62}
+                alt=""
+              />
+            </MobileRow>
+            <Paragraph>{fruits1.paragraph2}</Paragraph>
+            <MobileRow>
+              <LeafImage1 src="/assets/marquee/leaf.png" width={61.42} height={61.42} alt="" />
+              <Paragraph>{fruits1.paragraph3}</Paragraph>
+              <LeafImage2 src="/assets/marquee/leaf.png" width={61.42} height={61.42} alt="" />
+            </MobileRow>
+            <Paragraph>{fruits1.paragraph4}</Paragraph>
+          </ThreeRowsContainer>
+        </TabletContainer>
 
         <MobileContainer>
           <MobileLayoutContainer>

@@ -19,8 +19,12 @@ const StyledContainer = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
+
   @media (max-width: 1366px) {
-    height: 373.98px;
+    height: 475px;
+  }
+  @media (max-width: 768px) {
+    height: 331px;
   }
 `;
 
@@ -60,14 +64,12 @@ const StyledText = styled.div`
   @media (max-width: 1366px) {
     height: auto;
     font-size: 65.95px;
-    line-height: 37px;
-    gap: 30px;
+    line-height: 100%;
   }
   @media (max-width: 768px) {
     height: auto;
     font-size: 32.09px;
-    line-height: 37px;
-    gap: 30px;
+    line-height: 100%;
   }
 `;
 
@@ -86,7 +88,10 @@ const MarqueeItem = styled.div`
 const StyledMobileGap = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 33.66px;
+  @media (max-width: 768px) {
+    gap: 11.72px;
+  }
 `;
 
 export default function Marquee({
@@ -145,6 +150,9 @@ export default function Marquee({
         <Desktop>
           <Image src="/assets/union-2.png" alt="Union" fill />
         </Desktop>
+        <Tablet>
+          <Image src="/assets/union-2.png" alt="Union" fill />
+        </Tablet>
         <Mobile>
           <Image src="/assets/union-2-mobile.png" alt="Union" fill />
         </Mobile>
@@ -153,6 +161,9 @@ export default function Marquee({
         <Desktop>
           <Image src="/assets/union-1.png" alt="Union" fill />
         </Desktop>
+        <Tablet>
+          <Image src="/assets/union-1.png" alt="Union" fill />
+        </Tablet>
         <Mobile>
           <Image src="/assets/union-1-mobile.png" alt="Union" fill />
         </Mobile>
