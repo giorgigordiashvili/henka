@@ -76,7 +76,7 @@ const StyledFlex = styled.div<{ $imagePosition?: "left" | "right" }>`
   align-items: center;
   @media (max-width: 1366px) {
     flex-direction: column;
-    padding-top: 6.61px;
+    padding-top: 53.18px;
     gap: 32px;
   }
   @media (max-width: 768px) {

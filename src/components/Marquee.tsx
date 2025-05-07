@@ -60,13 +60,13 @@ const StyledText = styled.div`
   @media (max-width: 1366px) {
     height: auto;
     font-size: 65.95px;
-    line-height: 37px;
+    line-height: 100%;
     gap: 30px;
   }
   @media (max-width: 768px) {
     height: auto;
     font-size: 32.09px;
-    line-height: 37px;
+    line-height: 100%;
     gap: 30px;
   }
 `;

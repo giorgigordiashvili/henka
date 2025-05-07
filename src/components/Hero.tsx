@@ -195,7 +195,7 @@ export default function Hero({
             <Tablet>
               <MenuItem
                 fullWidth={false}
-                size="M"
+                size="S"
                 text={dictionary.button}
                 onClick={() => {
                   const element = document.getElementById("aboutUs");
