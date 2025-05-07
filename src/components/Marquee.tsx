@@ -19,8 +19,12 @@ const StyledContainer = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
+
   @media (max-width: 1366px) {
-    height: 373.98px;
+    height: 475px;
+  }
+  @media (max-width: 768px) {
+    height: 331px;
   }
 `;
 
@@ -61,13 +65,11 @@ const StyledText = styled.div`
     height: auto;
     font-size: 65.95px;
     line-height: 100%;
-    gap: 30px;
   }
   @media (max-width: 768px) {
     height: auto;
     font-size: 32.09px;
     line-height: 100%;
-    gap: 30px;
   }
 `;
 
@@ -86,7 +88,10 @@ const MarqueeItem = styled.div`
 const StyledMobileGap = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 33.66px;
+  @media (max-width: 768px) {
+    gap: 11.72px;
+  }
 `;
 
 export default function Marquee({

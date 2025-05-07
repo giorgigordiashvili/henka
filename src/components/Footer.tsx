@@ -16,7 +16,9 @@ type Props = {
 const FooterContainer = styled.div`
   height: 372px;
   background-color: #dc2132;
-
+  @media (max-width: 1366px) {
+    height: auto;
+  }
   @media (max-width: 768px) {
     height: 445px;
   }
@@ -180,9 +182,7 @@ const Footer = ({ dictionary }: Props) => {
             <Typography variant="sBodytext">{dictionary?.copyright}</Typography>
           </Desktop>
           <Tablet>
-            <Typography variant="xsBodytext">
-              Tablet Copyright: {dictionary?.copyright} {/* Added a prefix for clarity */}
-            </Typography>
+            <Typography variant="xsBodytext">{dictionary?.copyright}</Typography>
           </Tablet>
           <Mobile>
             <Typography variant="xsBodytext">{dictionary?.copyright}</Typography>

@@ -11,6 +11,9 @@ const StyledItemsGrid = styled.div`
   grid-template-columns: 312px 1fr 312px;
   grid-gap: 32px;
   @media (max-width: 1366px) {
+    padding-top: 35px;
+  }
+  @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
     grid-gap: 45px;
@@ -38,7 +41,7 @@ const StyledReasons = styled.div<{ $fromLeft?: boolean; $scrollRatio?: number }>
     transition: transform 0.05s linear;
   }
 
-  @media (max-width: 1366px) {
+  @media (max-width: 768px) {
     max-width: 343px;
     gap: 32px;
     justify-content: flex-start;
@@ -48,7 +51,7 @@ const StyledReasons = styled.div<{ $fromLeft?: boolean; $scrollRatio?: number }>
   }
 
   /* Make elements visible immediately on mobile without animation */
-  @media (max-width: 1366px) {
+  @media (max-width: 768px) {
     opacity: 1;
   }
 `;
@@ -71,7 +74,7 @@ const StyledReason = styled.div<{
       ? "translateX(calc(-100vw - 1114px / 2))"
       : "translateX(calc(100vw - 1114px / 2))"};
 
-  @media (max-width: 1366px) {
+  @media (max-width: 768px) {
     flex-direction: row;
     gap: 20px;
     text-align: left;
@@ -86,7 +89,7 @@ const StyledReason = styled.div<{
   }
 
   /* Only apply animations on desktop (screens > 1081px) */
-  @media (min-width: 1081px) {
+  @media (min-width: 768px) {
     /* Only make visible and animate when the previous item is complete or it's the first item */
     ${(props) => {
       // The threshold percentage for when this tag should appear

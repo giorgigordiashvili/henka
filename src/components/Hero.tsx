@@ -66,16 +66,12 @@ const StyledContentContainer = styled.div`
   align-items: center;
   gap: 20px;
   height: calc(100vh - 78px - 167px);
-
+  @media (max-width: 1366px) {
+    grid-template-columns: 352fr 352fr;
+  }
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
-    gap: 23px;
-    height: auto;
-  }
-
-  @media (max-width: 1366px) {
-    grid-template-columns: 352fr 352fr;
     gap: 23px;
     height: auto;
   }
@@ -86,15 +82,15 @@ const StyledTextContainer = styled.div`
   flex-direction: column;
   gap: 20px;
   z-index: 99;
+  @media (max-width: 1366px) {
+    margin: 0 0 0 24px;
+    min-width: 352px;
+    gap: 10px;
+  }
   @media (max-width: 768px) {
     margin: 0 16px;
     padding-top: 25px;
-  }
-
-  @media (max-width: 1366px) {
-    margin: 0 16px;
-    padding-top: 25px;
-    max-width: 352px;
+    min-width: 0;
   }
 `;
 

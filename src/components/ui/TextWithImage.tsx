@@ -29,12 +29,14 @@ const StyledTextContainer = styled.div<{ $imagePosition?: "left" | "right" }>`
   @media (max-width: 1366px) {
     h2 {
       font-feature-settings: "case";
+      max-width: 720px;
     }
     gap: 11.56px;
-    max-width: calc(100vw - 32px);
+    max-width: calc(100vw - 48px);
   }
   @media (max-width: 768px) {
     gap: 24px;
+    max-width: calc(100vw - 32px);
     h2 {
       margin: auto;
     }
@@ -91,7 +93,7 @@ const StyledImageContainer = styled.div`
   overflow: hidden;
   @media (max-width: 1366px) {
     position: relative;
-    width: calc(100vw - 32px);
+    width: calc(100vw - 48px);
     height: 450px;
     margin: auto;
   }
