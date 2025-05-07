@@ -8,7 +8,7 @@ import Typography from "./Typography";
 const StyledItemsGrid = styled.div`
   padding-top: 50px;
   display: grid;
-  grid-template-columns: 312px 1fr 312px;
+  grid-template-columns: minmax(200px, 312px) 1fr minmax(200px, 312px);
   grid-gap: 32px;
   @media (max-width: 1366px) {
     padding-top: 35px;
@@ -31,7 +31,7 @@ const StyledReasons = styled.div<{ $fromLeft?: boolean; $scrollRatio?: number }>
   gap: 64px;
   position: relative;
   max-width: 259px;
-  @media (min-width: 1081px) {
+  @media (min-width: 768px) {
     transform: translateX(
       ${(props) =>
         props.$fromLeft
@@ -114,6 +114,7 @@ const StyledImageContainer = styled.div`
   position: relative;
   @media (max-width: 1366px) {
     width: calc(100% - 32px);
+    min-width: 209px;
     height: 459px;
     margin: auto;
     border-radius: 16px;
@@ -257,7 +258,7 @@ export default function TextWithTags({
   useEffect(() => {
     // Check if we're on desktop when component mounts
     const checkIfDesktop = () => {
-      const isDesktopView = window.innerWidth > 1080;
+      const isDesktopView = window.innerWidth > 768;
       setIsDesktop(isDesktopView);
 
       // Preload the image if sticky effect is enabled
@@ -401,6 +402,7 @@ export default function TextWithTags({
     calculateThreshold,
     isDesktop,
     scrollThreshold,
+    preloadFilledImage,
     enableStickyEffect,
     enableSlideAnimation,
     uniqueId,

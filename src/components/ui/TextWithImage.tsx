@@ -31,7 +31,7 @@ const StyledTextContainer = styled.div<{ $imagePosition?: "left" | "right" }>`
       font-feature-settings: "case";
       max-width: 720px;
     }
-    gap: 11.56px;
+    gap: ${(props) => (props.$imagePosition === "left" ? "20px" : "11.56px")};
     max-width: calc(100vw - 48px);
   }
   @media (max-width: 768px) {
@@ -51,7 +51,7 @@ const StyledList = styled.ul`
   flex-direction: column;
   gap: 20px;
   @media (max-width: 1366px) {
-    margin-top: 0;
+    margin-top: 12px;
   }
 `;
 
@@ -111,6 +111,9 @@ const StyledFirstAsterisk = styled.div`
   left: -156px;
   z-index: 2;
   @media (max-width: 1366px) {
+    left: -80px;
+  }
+  @media (max-width: 768px) {
     display: none;
   }
 `;
@@ -120,7 +123,7 @@ const StyledSecondAsterisk = styled.div`
   bottom: -134px;
   left: -156px;
   z-index: 2;
-  @media (max-width: 1366px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;
@@ -130,7 +133,7 @@ const StyledThirdAsterisk = styled.div`
   bottom: -265px;
   right: -156px;
   z-index: 2;
-  @media (max-width: 1366px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;
