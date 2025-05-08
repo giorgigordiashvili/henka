@@ -6,7 +6,7 @@ import { useCallback } from "react";
 import styled from "styled-components";
 import logoImage from "../../public/assets/logo.png";
 import NavigationLink from "./ui/NavigationLink";
-import { Desktop, Mobile } from "./ui/Responsive";
+import { Desktop, Mobile, Tablet } from "./ui/Responsive";
 import Typography from "./ui/Typography";
 
 type Props = {
@@ -16,7 +16,9 @@ type Props = {
 const FooterContainer = styled.div`
   height: 372px;
   background-color: #dc2132;
-
+  @media (max-width: 1366px) {
+    height: auto;
+  }
   @media (max-width: 768px) {
     height: 445px;
   }
@@ -29,7 +31,7 @@ const StyledUnionContainer = styled.div`
   width: 100%;
   height: 167px;
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     height: 42.98px;
   }
 `;
@@ -40,7 +42,7 @@ const BottomFooter = styled.div`
   display: flex;
   flex-direction: column;
   gap: 36px;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     padding: 52px 0 32px 0;
   }
 `;
@@ -54,7 +56,7 @@ const NavSocialsWrapper = styled.div`
   align-items: center;
   position: relative;
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     flex-direction: column;
     padding-top: 76px;
     gap: 36px;
@@ -67,7 +69,7 @@ const NavigationWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     flex-direction: column;
     gap: 16px;
   }
@@ -93,7 +95,7 @@ const LogoWrapper = styled.div`
   transform: translate(-50%, -50%);
   cursor: pointer;
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     top: 0;
     transform: translate(-50%, -50%);
   }
@@ -118,12 +120,18 @@ const Footer = ({ dictionary }: Props) => {
     });
   }, []);
 
+  console.log("Footer Component Rendered"); // Check if the component is rendering
+  console.log("Dictionary Prop:", dictionary); // Inspect the dictionary prop
+
   return (
     <FooterContainer>
       <StyledUnionContainer>
         <Desktop>
           <Image src="/assets/union-2.png" alt="Union" fill />
         </Desktop>
+        <Tablet>
+          <Image src="/assets/union-2.png" alt="Union" fill />
+        </Tablet>
         <Mobile>
           <Image src="/assets/union-2-mobile.png" alt="Union" fill />
         </Mobile>
@@ -134,6 +142,7 @@ const Footer = ({ dictionary }: Props) => {
             <LinkWrapper>
               <NavigationLink
                 isSmallOnMobile
+                isSmallOnTablet
                 text={dictionary.whereToBuy}
                 href="/"
                 scrollTo="whereToBuy"
@@ -142,6 +151,7 @@ const Footer = ({ dictionary }: Props) => {
             <LinkWrapper>
               <NavigationLink
                 isSmallOnMobile
+                isSmallOnTablet
                 text={dictionary.products}
                 href="/"
                 scrollTo="products"
@@ -150,6 +160,7 @@ const Footer = ({ dictionary }: Props) => {
             <LinkWrapper>
               <NavigationLink
                 isSmallOnMobile
+                isSmallOnTablet
                 text={dictionary.aboutUs}
                 href="/"
                 scrollTo="aboutUs"
@@ -168,10 +179,13 @@ const Footer = ({ dictionary }: Props) => {
         <WhiteLine />
         <CopyrightWrapper>
           <Desktop>
-            <Typography variant="sBodytext">{dictionary.copyright}</Typography>
+            <Typography variant="sBodytext">{dictionary?.copyright}</Typography>
           </Desktop>
+          <Tablet>
+            <Typography variant="xsBodytext">{dictionary?.copyright}</Typography>
+          </Tablet>
           <Mobile>
-            <Typography variant="xsBodytext">{dictionary.copyright}</Typography>
+            <Typography variant="xsBodytext">{dictionary?.copyright}</Typography>
           </Mobile>
         </CopyrightWrapper>
       </BottomFooter>

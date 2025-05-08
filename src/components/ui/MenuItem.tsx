@@ -1,6 +1,6 @@
 "use client";
 import styled from "styled-components";
-import { Desktop, Mobile } from "./Responsive";
+import { Desktop, Mobile, Tablet } from "./Responsive";
 import Typography from "./Typography";
 
 const StyledButton = styled.div<{ size: "S" | "M" }>`
@@ -47,6 +47,9 @@ function MenuItem({ size, text, fullWidth, onClick }: Props) {
       <Mobile>
         <Typography variant="xsBodytext">{text}</Typography>
       </Mobile>
+      <Tablet>
+        <Typography variant="xsBodytext">{text}</Typography>
+      </Tablet>
     </StyledButton>
   );
 }

@@ -15,7 +15,10 @@ const StyledContainer = styled.div`
     font-feature-settings: "case";
     text-align: center;
   }
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
+    padding: 100px 0 55px 0;
+  }
+  @media (max-width: 768px) {
     padding: 62px 0 24px 0;
   }
 `;

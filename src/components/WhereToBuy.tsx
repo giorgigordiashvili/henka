@@ -3,7 +3,7 @@
 import { getDictionary } from "@/get-dictionary";
 import Image from "next/image";
 import styled from "styled-components";
-import { Desktop, Mobile } from "./ui/Responsive";
+import { Desktop, Mobile, Tablet } from "./ui/Responsive";
 import Typography from "./ui/Typography";
 
 type WhereToBuyProps = {
@@ -24,11 +24,17 @@ const StyledContainer = styled.div`
   width: 100%;
   max-width: 1344px;
   margin: auto;
-  @media (max-width: 1080px) {
+  @media (max-width: 768px) {
     display: grid;
     grid-template-columns: minmax(300px, 1fr);
     padding: 52px 18px 42px 18px;
     gap: 64px;
+  }
+  @media (max-width: 1366px) {
+    display: grid;
+    grid-template-columns: minmax(300px, 1fr);
+    padding: 60px 24px 28px 24px;
+    gap: 32px;
   }
 `;
 
@@ -39,7 +45,7 @@ const StyledBio = styled.div`
   gap: 64px;
   padding: 87px 0;
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     padding: 12px 0 0 0;
   }
 `;
@@ -48,7 +54,7 @@ const StyledLocations = styled.div`
   display: flex;
   flex-direction: column;
   gap: 28px;
-  @media (max-width: 1080px) {
+  @media (max-width: 768px) {
     text-align: center;
   }
 `;
@@ -58,7 +64,7 @@ const StyledBranches = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 89px;
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     gap: 42px;
     grid-template-columns: 1fr 1fr;
   }
@@ -73,7 +79,7 @@ const StyledBranch1 = styled.div`
   flex-direction: column;
   gap: 22px;
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     gap: 24px;
   }
 `;
@@ -83,7 +89,7 @@ const StyledBranch2 = styled.div`
   flex-direction: column;
   gap: 22px;
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     gap: 24px;
   }
 `;
@@ -92,8 +98,7 @@ const StyledShop = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     font-size: 14px;
     line-height: 18px;
   }
@@ -103,7 +108,7 @@ const StyledContact = styled.div`
   display: flex;
   flex-direction: column;
   gap: 28px;
-  @media (max-width: 1080px) {
+  @media (max-width: 768px) {
     text-align: center;
   }
 `;
@@ -112,8 +117,7 @@ const StyledContactInfos = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
-
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     gap: 24px;
   }
 `;
@@ -130,7 +134,13 @@ const StyledHenka = styled.div`
   position: relative;
   border-radius: 20px;
   overflow: hidden;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
+    width: calc(100vw - 36px);
+    height: 450px;
+    display: flex;
+    justify-content: center;
+  }
+  @media (max-width: 768px) {
     width: calc(100vw - 36px);
     height: 335px;
     display: flex;
@@ -157,6 +167,9 @@ export default function WhereToBuy({ dictionary }: WhereToBuyProps) {
                   <Desktop>
                     <Typography variant="mBodytext">{dictionary.goodwill}</Typography>
                   </Desktop>
+                  <Tablet>
+                    <Typography variant="mBodytext">{dictionary.goodwill}</Typography>
+                  </Tablet>
                   <Mobile>
                     <Typography variant="xsBodytext">{dictionary.goodwill}</Typography>
                   </Mobile>
@@ -171,6 +184,9 @@ export default function WhereToBuy({ dictionary }: WhereToBuyProps) {
                   <Desktop>
                     <Typography variant="mBodytext">{dictionary.agrohub}</Typography>
                   </Desktop>
+                  <Tablet>
+                    <Typography variant="mBodytext">{dictionary.agrohub}</Typography>
+                  </Tablet>
                   <Mobile>
                     <Typography variant="xsBodytext">{dictionary.agrohub}</Typography>
                   </Mobile>
@@ -185,6 +201,9 @@ export default function WhereToBuy({ dictionary }: WhereToBuyProps) {
                   <Desktop>
                     <Typography variant="mBodytext">{dictionary.europroduct}</Typography>
                   </Desktop>
+                  <Tablet>
+                    <Typography variant="mBodytext">{dictionary.europroduct}</Typography>
+                  </Tablet>
                   <Mobile>
                     <Typography variant="xsBodytext">{dictionary.europroduct}</Typography>
                   </Mobile>
@@ -199,6 +218,9 @@ export default function WhereToBuy({ dictionary }: WhereToBuyProps) {
                   <Desktop>
                     <Typography variant="mBodytext">{dictionary.fresco}</Typography>
                   </Desktop>
+                  <Tablet>
+                    <Typography variant="mBodytext">{dictionary.fresco}</Typography>
+                  </Tablet>
                   <Mobile>
                     <Typography variant="xsBodytext">{dictionary.fresco}</Typography>
                   </Mobile>
@@ -215,6 +237,9 @@ export default function WhereToBuy({ dictionary }: WhereToBuyProps) {
                   <Desktop>
                     <Typography variant="mBodytext">{dictionary.spar}</Typography>
                   </Desktop>
+                  <Tablet>
+                    <Typography variant="mBodytext">{dictionary.spar}</Typography>
+                  </Tablet>
                   <Mobile>
                     <Typography variant="xsBodytext">{dictionary.spar}</Typography>
                   </Mobile>
@@ -229,6 +254,9 @@ export default function WhereToBuy({ dictionary }: WhereToBuyProps) {
                   <Desktop>
                     <Typography variant="mBodytext">{dictionary.universam}</Typography>
                   </Desktop>
+                  <Tablet>
+                    <Typography variant="mBodytext">{dictionary.universam}</Typography>
+                  </Tablet>
                   <Mobile>
                     <Typography variant="xsBodytext">{dictionary.universam}</Typography>
                   </Mobile>
@@ -243,6 +271,9 @@ export default function WhereToBuy({ dictionary }: WhereToBuyProps) {
                   <Desktop>
                     <Typography variant="mBodytext">{dictionary.gulfstore}</Typography>
                   </Desktop>
+                  <Tablet>
+                    <Typography variant="mBodytext">{dictionary.gulfstore}</Typography>
+                  </Tablet>
                   <Mobile>
                     <Typography variant="xsBodytext">{dictionary.gulfstore}</Typography>
                   </Mobile>
@@ -257,6 +288,9 @@ export default function WhereToBuy({ dictionary }: WhereToBuyProps) {
                   <Desktop>
                     <Typography variant="mBodytext">{dictionary.oneprice}</Typography>
                   </Desktop>
+                  <Tablet>
+                    <Typography variant="mBodytext">{dictionary.oneprice}</Typography>
+                  </Tablet>
                   <Mobile>
                     <Typography variant="xsBodytext">{dictionary.oneprice}</Typography>
                   </Mobile>
@@ -272,6 +306,9 @@ export default function WhereToBuy({ dictionary }: WhereToBuyProps) {
                 <Desktop>
                   <Typography variant="mBodytext">{dictionary.mail}</Typography>
                 </Desktop>
+                <Tablet>
+                  <Typography variant="mBodytext">{dictionary.mail}</Typography>
+                </Tablet>
                 <Mobile>
                   <Typography variant="xsBodytext">{dictionary.mail}</Typography>
                 </Mobile>
@@ -281,6 +318,9 @@ export default function WhereToBuy({ dictionary }: WhereToBuyProps) {
                 <Desktop>
                   <Typography variant="mBodytext">{dictionary.location}</Typography>
                 </Desktop>
+                <Tablet>
+                  <Typography variant="mBodytext">{dictionary.location}</Typography>
+                </Tablet>
                 <Mobile>
                   <Typography variant="xsBodytext">{dictionary.location}</Typography>
                 </Mobile>
@@ -290,6 +330,9 @@ export default function WhereToBuy({ dictionary }: WhereToBuyProps) {
                 <Desktop>
                   <Typography variant="mBodytext">{dictionary.number}</Typography>
                 </Desktop>
+                <Tablet>
+                  <Typography variant="mBodytext">{dictionary.number}</Typography>
+                </Tablet>
                 <Mobile>
                   <Typography variant="xsBodytext">{dictionary.number}</Typography>
                 </Mobile>

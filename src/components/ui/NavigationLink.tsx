@@ -2,7 +2,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Typography from "./Typography";
-import { Desktop, Mobile } from "./Responsive";
+import { Desktop, Mobile, Tablet } from "./Responsive";
 
 const StyledLi = styled.li`
   list-style: none;
@@ -28,13 +28,22 @@ const StyledLi = styled.li`
 type Props = {
   text: string;
   isSmallOnMobile?: boolean;
+  isSmallOnTablet?: boolean;
   href: string;
   tabIndex?: number;
   scrollTo?: string;
   onLinkClick?: () => void; // Added callback for mobile menu closing
 };
 
-function NavigationLink({ text, isSmallOnMobile, href, tabIndex, scrollTo, onLinkClick }: Props) {
+function NavigationLink({
+  text,
+  isSmallOnMobile,
+  isSmallOnTablet,
+  href,
+  tabIndex,
+  scrollTo,
+  onLinkClick,
+}: Props) {
   const handleClick = (e: React.MouseEvent) => {
     if (scrollTo) {
       e.preventDefault();
@@ -53,11 +62,14 @@ function NavigationLink({ text, isSmallOnMobile, href, tabIndex, scrollTo, onLin
   return (
     <StyledLi>
       <Link href={href} passHref tabIndex={tabIndex} onClick={handleClick}>
-        {isSmallOnMobile ? (
+        {isSmallOnTablet && isSmallOnMobile ? (
           <>
             <Desktop>
               <Typography variant="mBodytext">{text}</Typography>
             </Desktop>
+            <Tablet>
+              <Typography variant="xsBodytext">{text}</Typography>
+            </Tablet>
             <Mobile>
               <Typography variant="xsBodytext">{text}</Typography>
             </Mobile>

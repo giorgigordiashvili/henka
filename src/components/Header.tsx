@@ -21,7 +21,7 @@ const StyledColor = styled.div<{ $visible: boolean; $sticky: boolean }>`
   width: 100%;
   transform: translateY(${(props) => (props.$sticky && !props.$visible ? "-100%" : "0")});
   transition: transform 0.3s ease-in-out;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     display: flex;
     padding: 12px 16px;
     width: 100%;
@@ -36,7 +36,7 @@ const StyledContainer = styled.div<{ $visible: boolean; $sticky: boolean }>`
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     display: flex;
     width: 100vw;
     max-width: 100%;
@@ -48,7 +48,7 @@ const StyledLinksContainer = styled.nav`
   display: flex;
   gap: 32px;
   align-items: center;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     display: none;
   }
 `;
@@ -75,7 +75,7 @@ const LogoContainer = styled.div`
   display: flex;
   justify-content: center;
   cursor: pointer;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     display: none;
   }
 `;
@@ -84,7 +84,7 @@ const LogoContainerMobile = styled.div`
   display: none;
   justify-content: center;
   cursor: pointer;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     display: flex;
   }
 `;
@@ -92,14 +92,14 @@ const LogoContainerMobile = styled.div`
 const LocaleSwitcherContainer = styled.div`
   display: flex;
   justify-content: flex-end;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     display: none;
   }
 `;
 
 const StyledBurgerContainer = styled.button`
   display: none;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     background: none;
     border: none;
     cursor: pointer;
@@ -112,7 +112,7 @@ const StyledBurgerContainer = styled.button`
 
 const StyledCloseButton = styled.button`
   display: none;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     background: none;
     border: none;
     cursor: pointer;
@@ -149,7 +149,7 @@ const MobileMenu = styled.nav<{ $isOpen: boolean }>`
     visibility 0.3s ease-in-out;
   transform: translateY(${({ $isOpen }) => ($isOpen ? "0" : "-100%")});
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     gap: 35px;
   }
   @media (min-width: 1081px) {
