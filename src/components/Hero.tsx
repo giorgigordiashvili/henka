@@ -4,14 +4,14 @@ import Image from "next/image";
 import styled, { keyframes } from "styled-components";
 import Container from "./ui/Container";
 import MenuItem from "./ui/MenuItem";
-import { Desktop, Mobile } from "./ui/Responsive";
+import { Desktop, Mobile, Tablet } from "./ui/Responsive";
 import Typography from "./ui/Typography";
 
 const StyledContainer = styled.div`
   height: 100vh;
   position: relative;
   margin-top: 142px;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     margin-top: 64px;
     height: auto;
     padding-bottom: 105px;
@@ -23,7 +23,7 @@ const StyledUnionContainer = styled.div`
   bottom: 0px;
   width: 100%;
   height: 167px;
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     height: 42.98px;
   }
 `;
@@ -44,7 +44,13 @@ const StyledFruitsContainer = styled.div`
   height: calc(100vh - 78px - 167px);
   pointer-events: none;
   animation: ${bounceAnimation} 3s ease-in-out infinite;
-  @media (max-width: 1080px) {
+  @media (max-width: 768px) {
+    z-index: 5;
+    height: 100%;
+    width: 100%;
+    left: 0px;
+  }
+  @media (max-width: 1366px) {
     z-index: 5;
     height: 100%;
     width: 100%;
@@ -60,8 +66,10 @@ const StyledContentContainer = styled.div`
   align-items: center;
   gap: 20px;
   height: calc(100vh - 78px - 167px);
-
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
+    grid-template-columns: 352fr 352fr;
+  }
+  @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
     gap: 23px;
@@ -74,10 +82,15 @@ const StyledTextContainer = styled.div`
   flex-direction: column;
   gap: 20px;
   z-index: 99;
-
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
+    margin: 0 0 0 24px;
+    min-width: 352px;
+    gap: 10px;
+  }
+  @media (max-width: 768px) {
     margin: 0 16px;
     padding-top: 25px;
+    min-width: 0;
   }
 `;
 
@@ -91,9 +104,17 @@ const StyledBlurWithBottles = styled.div`
   width: 456px;
   height: 456px;
   position: relative;
-  @media (max-width: 1080px) {
+  @media (max-width: 768px) {
     width: 100vw;
     height: calc((100vw - 32px) / 343 * 389.13);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  @media (max-width: 1366px) {
+    width: 100%;
+    height: 433px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,7 +132,7 @@ const StyledBlur = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     width: 343px;
     height: 343px;
     filter: blur(100px);
@@ -163,6 +184,24 @@ export default function Hero({
               <Typography variant="mBodytext">{dictionary.subtitle}</Typography>
             </Desktop>
 
+            <Tablet>
+              <Typography variant="sBodytext">{dictionary.subtitle}</Typography>
+            </Tablet>
+
+            <Tablet>
+              <MenuItem
+                fullWidth={false}
+                size="S"
+                text={dictionary.button}
+                onClick={() => {
+                  const element = document.getElementById("aboutUs");
+                  if (element) {
+                    element.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+              />
+            </Tablet>
+
             <Desktop>
               <MenuItem
                 fullWidth={false}
@@ -197,6 +236,15 @@ export default function Hero({
                 objectFit="contain"
               />
             </Mobile>
+            <Tablet>
+              <Image
+                style={{ zIndex: 3 }}
+                src="/assets/bottles-1-mobile.png"
+                alt="Bottles"
+                fill
+                objectFit="contain"
+              />
+            </Tablet>
 
             <StyledFruitsContainer>
               <Mobile>
@@ -243,6 +291,9 @@ export default function Hero({
             </StyledTagsContainer>
           </Desktop>
           <StyledFruitsContainer>
+            <Tablet>
+              <Image src="/assets/fruits-1-tablet.png" alt="Fruits" fill objectFit="contain" />
+            </Tablet>
             <Desktop>
               <Image src="/assets/fruits-1.png" alt="Fruits" fill objectFit="contain" />
             </Desktop>
@@ -254,6 +305,9 @@ export default function Hero({
         <Desktop>
           <Image src="/assets/union-1.png" alt="Union" fill />
         </Desktop>
+        <Tablet>
+          <Image src="/assets/union-1.png" alt="Union" fill />
+        </Tablet>
         <Mobile>
           <Image src="/assets/union-1-mobile.png" alt="Union" fill />
         </Mobile>
