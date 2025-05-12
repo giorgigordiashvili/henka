@@ -194,9 +194,9 @@ const StyledFruitsContainer = styled.div`
   top: 107px;
   animation: ${bounceAnimation} 3s ease-in-out infinite;
   @media (max-width: 1366px) {
-    z-index: -1;
-    top: 0px;
-    height: 100vh;
+    z-index: 998;
+    top: 5%;
+    height: 90%;
   }
 `;
 
@@ -286,6 +286,18 @@ const getHueFromRGB = (rgb: string): number => {
   return hue;
 };
 
+interface Bottle {
+  src: string;
+  alt: string;
+  flavor: string;
+  color: string;
+  fruitImage: {
+    desktop: string;
+    tablet: string;
+    mobile: string;
+  };
+}
+
 export default function Slider({
   dictionary,
 }: {
@@ -297,45 +309,75 @@ export default function Slider({
   const [animationDirection, setAnimationDirection] = useState("left");
   const [activeProductType, setActiveProductType] = useState("kombucha");
 
-  const kombuchaBottles = [
+  const kombuchaBottles: Bottle[] = [
     {
       src: "/assets/slider/raspKombucha.png",
       alt: "Raspberry Kombucha",
       flavor: dictionary.bottleTypeRasp,
       color: backgroundColors[0],
+      fruitImage: {
+        desktop: "/assets/fruits/placeholder-raspberry-desktop.png", // User will set correct path
+        tablet: "/assets/fruits/placeholder-raspberry-tablet.png", // User will set correct path
+        mobile: "/assets/fruits/placeholder-raspberry-mobile.png", // User will set correct path
+      },
     },
     {
       src: "/assets/slider/cherryKombucha.png",
       alt: "Cherry Kombucha",
       flavor: dictionary.bottleTypeCherry,
       color: backgroundColors[1],
+      fruitImage: {
+        desktop: "/assets/fruits/placeholder-cherry-desktop.png", // User will set correct path
+        tablet: "/assets/fruits/placeholder-cherry-tablet.png", // User will set correct path
+        mobile: "/assets/fruits/placeholder-cherry-mobile.png", // User will set correct path
+      },
     },
     {
       src: "/assets/slider/gingerKombucha.png",
       alt: "Ginger Kombucha",
       flavor: dictionary.bottleTypeGinger,
       color: backgroundColors[2],
+      fruitImage: {
+        desktop: "/assets/fruits/placeholder-ginger-desktop.png", // User will set correct path
+        tablet: "/assets/fruits/placeholder-ginger-tablet.png", // User will set correct path
+        mobile: "/assets/fruits/placeholder-ginger-mobile.png", // User will set correct path
+      },
     },
     {
       src: "/assets/slider/limeKombucha.png",
       alt: "Blueberry Lime",
       flavor: dictionary.bottleTypeLime,
       color: backgroundColors[3],
+      fruitImage: {
+        desktop: "/assets/fruits/placeholder-lime-desktop.png", // User will set correct path
+        tablet: "/assets/fruits/placeholder-lime-tablet.png", // User will set correct path
+        mobile: "/assets/fruits/placeholder-lime-mobile.png", // User will set correct path
+      },
     },
   ];
 
-  const waterBottles = [
+  const waterBottles: Bottle[] = [
     {
       src: "/assets/slider/cherryWaterKombucha.png",
       alt: "Cherry Water",
       flavor: dictionary.bottleTypeCherryWater,
       color: backgroundColors[5],
+      fruitImage: {
+        desktop: "/assets/fruits/placeholder-cherry-water-desktop.png", // User will set correct path
+        tablet: "/assets/fruits/placeholder-cherry-water-tablet.png", // User will set correct path
+        mobile: "/assets/fruits/placeholder-cherry-water-mobile.png", // User will set correct path
+      },
     },
     {
       src: "/assets/slider/limeWaterKombucha.png",
       alt: "Lime Water",
       flavor: dictionary.bottleTypeLimeWater,
       color: backgroundColors[4],
+      fruitImage: {
+        desktop: "/assets/fruits/placeholder-lime-water-desktop.png", // User will set correct path
+        tablet: "/assets/fruits/placeholder-lime-water-tablet.png", // User will set correct path
+        mobile: "/assets/fruits/placeholder-lime-water-mobile.png", // User will set correct path
+      },
     },
   ];
 
@@ -367,6 +409,9 @@ export default function Slider({
     setBackgroundColor(currentBottles[idx].color);
   }, [activeIndex, activeProductType, currentBottles]);
 
+  const currentBottleData = currentBottles[activeIndex % currentBottles.length];
+  const fruitImageKey = `${currentBottleData?.alt}-${activeProductType}-${activeIndex}`;
+
   return (
     <StyledContainer id="products" style={{ backgroundColor }}>
       <BackgroundLayer
@@ -379,12 +424,37 @@ export default function Slider({
       />
 
       <StyledFruitsContainer>
-        <Desktop>
-          <Image src="/assets/fruits-2.png" alt="Fruits" fill objectFit="contain" />
-        </Desktop>
-        <Mobile>
-          <Image src="/assets/fruits-2-mobile.png" alt="Fruits" fill objectFit="contain" />
-        </Mobile>
+        {currentBottleData && (
+          <>
+            <Desktop>
+              <Image
+                src={currentBottleData.fruitImage.desktop}
+                alt="Fruits"
+                fill
+                objectFit="contain"
+                key={`${fruitImageKey}-desktop`}
+              />
+            </Desktop>
+            <Tablet>
+              <Image
+                src={currentBottleData.fruitImage.tablet}
+                alt="Fruits"
+                fill
+                objectFit="contain"
+                key={`${fruitImageKey}-tablet`}
+              />
+            </Tablet>
+            <Mobile>
+              <Image
+                src={currentBottleData.fruitImage.mobile}
+                alt="Fruits"
+                fill
+                objectFit="contain"
+                key={`${fruitImageKey}-mobile`}
+              />
+            </Mobile>
+          </>
+        )}
       </StyledFruitsContainer>
       <CircleBackground />
 

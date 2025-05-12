@@ -120,9 +120,6 @@ const Footer = ({ dictionary }: Props) => {
     });
   }, []);
 
-  console.log("Footer Component Rendered"); // Check if the component is rendering
-  console.log("Dictionary Prop:", dictionary); // Inspect the dictionary prop
-
   return (
     <FooterContainer>
       <StyledUnionContainer>
