@@ -73,7 +73,12 @@ const StyledReason = styled.div<{
     props.$fromLeft
       ? "translateX(calc(-100vw - 1114px / 2))"
       : "translateX(calc(100vw - 1114px / 2))"};
-
+  @media (max-width: 1080px) {
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
   @media (max-width: 768px) {
     flex-direction: row;
     gap: 20px;
@@ -453,7 +458,15 @@ export default function TextWithTags({
               $scrollRatio={tagsScrollRatio}
             >
               <Image src={tag.iconSrc} width={62} height={62} alt={tag.iconAlt} />
-              <Typography variant="sBodytext">{tag.text}</Typography>
+              <Desktop>
+                <Typography variant="sBodytext">{tag.text}</Typography>
+              </Desktop>
+              <Tablet>
+                <Typography variant="xsBodytext">{tag.text}</Typography>
+              </Tablet>
+              <Mobile>
+                <Typography variant="sBodytext">{tag.text}</Typography>
+              </Mobile>
             </StyledReason>
           ))}
         </StyledReasons>
@@ -497,7 +510,15 @@ export default function TextWithTags({
               $scrollRatio={tagsScrollRatio}
             >
               <Image src={tag.iconSrc} width={62} height={62} alt={tag.iconAlt} />
-              <Typography variant="sBodytext">{tag.text}</Typography>
+              <Desktop>
+                <Typography variant="sBodytext">{tag.text}</Typography>
+              </Desktop>
+              <Tablet>
+                <Typography variant="xsBodytext">{tag.text}</Typography>
+              </Tablet>
+              <Mobile>
+                <Typography variant="sBodytext">{tag.text}</Typography>
+              </Mobile>
             </StyledReason>
           ))}
         </StyledReasons>
