@@ -140,12 +140,12 @@ const NavButton = styled.button`
   }
 
   svg {
-    width: 24.28px;
+    width: 12.14px;
     height: 24.28px;
 
     @media (max-width: 768px) {
-      width: 15px;
-      height: 15px;
+      width: 6px;
+      height: 12px;
     }
   }
 `;
@@ -229,14 +229,26 @@ const BottleImage = styled.div`
   @media (max-width: 1366px) {
     &.active img,
     &.active span {
-      width: 160px !important;
-      height: 443px !important;
+      width: 164px !important;
+      height: 450px !important;
     }
     &.side img,
     &.side span {
-      width: 86px !important;
-      height: 242px !important;
+      width: 120px !important;
+      height: 336px !important;
     }
+
+    @media (max-width: 768px) {
+      &.active img,
+      &.active span {
+        width: 160px !important;
+        height: 443px !important;
+      }
+      &.side img,
+      &.side span {
+        width: 86px !important;
+        height: 242px !important;
+      }
   }
 `;
 
