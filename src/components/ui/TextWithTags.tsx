@@ -73,7 +73,7 @@ const StyledReason = styled.div<{
     props.$fromLeft
       ? "translateX(calc(-100vw - 1114px / 2))"
       : "translateX(calc(100vw - 1114px / 2))"};
-  @media (max-width: 1080px) {
+  @media (max-width: 1366px) {
     img {
       width: 40px;
       height: 40px;

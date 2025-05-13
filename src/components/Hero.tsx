@@ -113,8 +113,8 @@ const StyledBlurWithBottles = styled.div`
     position: relative;
   }
   @media (max-width: 1366px) {
-    width: 100%;
-    height: 433px;
+    width: 352px;
+    height: 433.32px;
     display: flex;
     justify-content: center;
     align-items: center;
