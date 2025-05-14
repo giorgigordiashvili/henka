@@ -4,7 +4,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import TextWithTags, { TagItem } from "./ui/TextWithTags";
 import { H2 } from "./ui/Typography";
-import { Desktop, Tablet, Mobile } from "./ui/Responsive";
+import { Desktop, Tablet } from "./ui/Responsive";
 
 const StyledContainer = styled.div`
   position: relative;
@@ -44,8 +44,7 @@ const StyledFirstAsterisk = styled.div`
     top: 35px;
   }
   @media (max-width: 768px) {
-    right: -12px;
-    top: -780px;
+    display: none;
   }
 `;
 
@@ -129,15 +128,6 @@ export default function VitaminTags({
                 alt="Decoration"
               />
             </Tablet>
-            <Mobile>
-              <Image
-                objectFit="contain"
-                width={60}
-                height={60}
-                src="/assets/asterisk-2.png"
-                alt="Decoration"
-              />
-            </Mobile>
           </StyledFirstAsterisk>
           <StyledSecondAsterisk>
             <Desktop>

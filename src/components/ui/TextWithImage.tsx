@@ -84,7 +84,7 @@ const StyledFlex = styled.div<{ $imagePosition?: "left" | "right" }>`
   }
   @media (max-width: 768px) {
     flex-direction: column;
-    padding-top: 22.88px;
+    padding-top: 30px;
     gap: 28px;
   }
 `;
@@ -92,11 +92,12 @@ const StyledFlex = styled.div<{ $imagePosition?: "left" | "right" }>`
 const StyledImageContainer = styled.div`
   border-radius: 20px;
   overflow: hidden;
+  object-fit: contain;
   @media (max-width: 1366px) {
     position: relative;
     width: calc(100vw - 48px);
-    height: 450px;
     margin: auto;
+    height: 450px;
   }
   @media (max-width: 768px) {
     position: relative;
@@ -128,6 +129,16 @@ const StyledSecondAsterisk = styled.div`
   @media (max-width: 768px) {
     left: 94%;
     bottom: -1250px;
+  }
+`;
+
+const StyledSecondAsterisk2 = styled.div`
+  position: absolute;
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+    right: -12px;
+    top: 0px;
   }
 `;
 
@@ -281,6 +292,18 @@ export default function TextWithImage({
             <Mobile>
               <Typography variant="sBodytext">{subtitle}</Typography>
             </Mobile>
+
+            <StyledSecondAsterisk2>
+              <Mobile>
+                <Image
+                  objectFit="contain"
+                  width={60}
+                  height={60}
+                  src="/assets/asterisk-2.png"
+                  alt="Decoration"
+                />
+              </Mobile>
+            </StyledSecondAsterisk2>
 
             {listItems && listItems.length > 0 && (
               <StyledList>
