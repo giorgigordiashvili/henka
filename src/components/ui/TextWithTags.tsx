@@ -11,7 +11,8 @@ const StyledItemsGrid = styled.div`
   grid-template-columns: minmax(200px, 312px) 1fr minmax(200px, 312px);
   grid-gap: 32px;
   @media (max-width: 1366px) {
-    padding-top: 35px;
+    padding-top: 50px;
+    padding-bottom: 70px;
   }
   @media (max-width: 768px) {
     display: flex;

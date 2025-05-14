@@ -39,6 +39,7 @@ const StyledTextContainer = styled.div<{ $imagePosition?: "left" | "right" }>`
     max-width: calc(100vw - 32px);
     h2 {
       margin: auto;
+      text-align: center;
     }
   }
 `;
@@ -111,10 +112,8 @@ const StyledFirstAsterisk = styled.div`
   left: -156px;
   z-index: 2;
   @media (max-width: 1366px) {
-    left: -80px;
-  }
-  @media (max-width: 768px) {
-    display: none;
+    left: 94%;
+    top: 0;
   }
 `;
 
@@ -123,8 +122,12 @@ const StyledSecondAsterisk = styled.div`
   bottom: -134px;
   left: -156px;
   z-index: 2;
+  @media (max-width: 1366px) {
+    left: -50px;
+  }
   @media (max-width: 768px) {
-    display: none;
+    left: 94%;
+    bottom: -1250px;
   }
 `;
 
@@ -133,8 +136,13 @@ const StyledThirdAsterisk = styled.div`
   bottom: -265px;
   right: -156px;
   z-index: 2;
+  @media (max-width: 1366px) {
+    right: -30px;
+    bottom: -200px;
+  }
   @media (max-width: 768px) {
-    display: none;
+    left: -30px;
+    bottom: -80px;
   }
 `;
 
@@ -174,31 +182,91 @@ export default function TextWithImage({
           {withAsterisks && (
             <>
               <StyledFirstAsterisk>
-                <Image
-                  objectFit="contain"
-                  width={216}
-                  height={216}
-                  src="/assets/asterisk-1.png"
-                  alt="Decoration"
-                />
+                <Desktop>
+                  <Image
+                    objectFit="contain"
+                    width={216}
+                    height={216}
+                    src="/assets/asterisk-1.png"
+                    alt="Decoration"
+                  />
+                </Desktop>
+                <Tablet>
+                  <Image
+                    objectFit="contain"
+                    width={100}
+                    height={100}
+                    src="/assets/asterisk-1.png"
+                    alt="Decoration"
+                  />
+                </Tablet>
+                <Mobile>
+                  <Image
+                    objectFit="contain"
+                    width={60}
+                    height={60}
+                    src="/assets/asterisk-1.png"
+                    alt="Decoration"
+                  />
+                </Mobile>
               </StyledFirstAsterisk>
               <StyledSecondAsterisk>
-                <Image
-                  objectFit="contain"
-                  width={216}
-                  height={216}
-                  src="/assets/asterisk-2.png"
-                  alt="Decoration"
-                />
+                <Desktop>
+                  <Image
+                    objectFit="contain"
+                    width={216}
+                    height={216}
+                    src="/assets/asterisk-2.png"
+                    alt="Decoration"
+                  />
+                </Desktop>
+                <Tablet>
+                  <Image
+                    objectFit="contain"
+                    width={100}
+                    height={100}
+                    src="/assets/asterisk-2.png"
+                    alt="Decoration"
+                  />
+                </Tablet>
+                <Mobile>
+                  <Image
+                    objectFit="contain"
+                    width={60}
+                    height={60}
+                    src="/assets/asterisk-2.png"
+                    alt="Decoration"
+                  />
+                </Mobile>
               </StyledSecondAsterisk>
               <StyledThirdAsterisk>
-                <Image
-                  objectFit="contain"
-                  width={216}
-                  height={216}
-                  src="/assets/asterisk-3.png"
-                  alt="Decoration"
-                />
+                <Desktop>
+                  <Image
+                    objectFit="contain"
+                    width={216}
+                    height={216}
+                    src="/assets/asterisk-3.png"
+                    alt="Decoration"
+                  />
+                </Desktop>
+                <Tablet>
+                  <Image
+                    objectFit="contain"
+                    width={100}
+                    height={90.76}
+                    src="/assets/asterisk-3.png"
+                    alt="Decoration"
+                  />
+                </Tablet>
+                <Mobile>
+                  <Image
+                    objectFit="contain"
+                    width={60}
+                    height={60}
+                    src="/assets/asterisk-3.png"
+                    alt="Decoration"
+                  />
+                </Mobile>
               </StyledThirdAsterisk>
             </>
           )}

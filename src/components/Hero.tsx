@@ -179,6 +179,9 @@ export default function Hero({
         <StyledContentContainer>
           <StyledTextContainer>
             <Typography variant="h1">{dictionary.title}</Typography>
+            <Mobile>
+              <Typography variant="h1">{dictionary.title}</Typography>
+            </Mobile>
 
             <Desktop>
               <Typography variant="mBodytext">{dictionary.subtitle}</Typography>

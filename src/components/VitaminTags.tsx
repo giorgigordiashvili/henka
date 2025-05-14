@@ -4,6 +4,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import TextWithTags, { TagItem } from "./ui/TextWithTags";
 import { H2 } from "./ui/Typography";
+import { Desktop, Tablet, Mobile } from "./ui/Responsive";
 
 const StyledContainer = styled.div`
   position: relative;
@@ -38,9 +39,13 @@ const StyledFirstAsterisk = styled.div`
   top: -11px;
   right: -216px;
   z-index: 2;
+  @media (max-width: 1366px) {
+    right: -32px;
+    top: 35px;
+  }
   @media (max-width: 768px) {
-    display: none;
-    right: -80px;
+    right: -12px;
+    top: -780px;
   }
 `;
 
@@ -49,6 +54,9 @@ const StyledSecondAsterisk = styled.div`
   bottom: 0px;
   left: -271px;
   z-index: 2;
+  @media (max-width: 1366px) {
+    left: -30px;
+  }
   @media (max-width: 768px) {
     display: none;
   }
@@ -103,22 +111,53 @@ export default function VitaminTags({
       <StyledWhite>
         <StyledContainer>
           <StyledFirstAsterisk>
-            <Image
-              objectFit="contain"
-              width={216}
-              height={216}
-              src="/assets/asterisk-2.png"
-              alt="Decoration"
-            />
+            <Desktop>
+              <Image
+                objectFit="contain"
+                width={216}
+                height={216}
+                src="/assets/asterisk-2.png"
+                alt="Decoration"
+              />
+            </Desktop>
+            <Tablet>
+              <Image
+                objectFit="contain"
+                width={100}
+                height={100}
+                src="/assets/asterisk-2.png"
+                alt="Decoration"
+              />
+            </Tablet>
+            <Mobile>
+              <Image
+                objectFit="contain"
+                width={60}
+                height={60}
+                src="/assets/asterisk-2.png"
+                alt="Decoration"
+              />
+            </Mobile>
           </StyledFirstAsterisk>
           <StyledSecondAsterisk>
-            <Image
-              objectFit="contain"
-              width={216}
-              height={216}
-              src="/assets/asterisk-3.png"
-              alt="Decoration"
-            />
+            <Desktop>
+              <Image
+                objectFit="contain"
+                width={216}
+                height={216}
+                src="/assets/asterisk-3.png"
+                alt="Decoration"
+              />
+            </Desktop>
+            <Tablet>
+              <Image
+                objectFit="contain"
+                width={100}
+                height={90.76}
+                src="/assets/asterisk-3.png"
+                alt="Decoration"
+              />
+            </Tablet>
           </StyledSecondAsterisk>
 
           <H2>{dictionary.title}</H2>
