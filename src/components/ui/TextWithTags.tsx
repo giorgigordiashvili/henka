@@ -11,7 +11,8 @@ const StyledItemsGrid = styled.div`
   grid-template-columns: minmax(200px, 312px) 1fr minmax(200px, 312px);
   grid-gap: 32px;
   @media (max-width: 1366px) {
-    padding-top: 35px;
+    padding-top: 50px;
+    padding-bottom: 70px;
   }
   @media (max-width: 768px) {
     display: flex;
@@ -73,7 +74,12 @@ const StyledReason = styled.div<{
     props.$fromLeft
       ? "translateX(calc(-100vw - 1114px / 2))"
       : "translateX(calc(100vw - 1114px / 2))"};
-
+  @media (max-width: 1366px) {
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
   @media (max-width: 768px) {
     flex-direction: row;
     gap: 20px;
@@ -453,7 +459,15 @@ export default function TextWithTags({
               $scrollRatio={tagsScrollRatio}
             >
               <Image src={tag.iconSrc} width={62} height={62} alt={tag.iconAlt} />
-              <Typography variant="sBodytext">{tag.text}</Typography>
+              <Desktop>
+                <Typography variant="sBodytext">{tag.text}</Typography>
+              </Desktop>
+              <Tablet>
+                <Typography variant="xsBodytext">{tag.text}</Typography>
+              </Tablet>
+              <Mobile>
+                <Typography variant="sBodytext">{tag.text}</Typography>
+              </Mobile>
             </StyledReason>
           ))}
         </StyledReasons>
@@ -497,7 +511,15 @@ export default function TextWithTags({
               $scrollRatio={tagsScrollRatio}
             >
               <Image src={tag.iconSrc} width={62} height={62} alt={tag.iconAlt} />
-              <Typography variant="sBodytext">{tag.text}</Typography>
+              <Desktop>
+                <Typography variant="sBodytext">{tag.text}</Typography>
+              </Desktop>
+              <Tablet>
+                <Typography variant="xsBodytext">{tag.text}</Typography>
+              </Tablet>
+              <Mobile>
+                <Typography variant="sBodytext">{tag.text}</Typography>
+              </Mobile>
             </StyledReason>
           ))}
         </StyledReasons>

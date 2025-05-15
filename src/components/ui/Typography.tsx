@@ -9,13 +9,14 @@ const H1 = styled.h1`
   margin: 0px;
   font-feature-settings: "case";
   text-transform: uppercase;
-  @media (max-width: 768px) {
-    font-size: 28px;
-    line-height: 36px;
-  }
+
   @media (max-width: 1366px) {
     font-size: 36px;
     line-height: 48px;
+  }
+  @media (max-width: 768px) {
+    font-size: 28px;
+    line-height: 36px;
   }
 `;
 

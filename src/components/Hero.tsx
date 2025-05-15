@@ -113,8 +113,8 @@ const StyledBlurWithBottles = styled.div`
     position: relative;
   }
   @media (max-width: 1366px) {
-    width: 100%;
-    height: 433px;
+    width: 352px;
+    height: 433.32px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -179,6 +179,9 @@ export default function Hero({
         <StyledContentContainer>
           <StyledTextContainer>
             <Typography variant="h1">{dictionary.title}</Typography>
+            <Mobile>
+              <Typography variant="h1">{dictionary.title}</Typography>
+            </Mobile>
 
             <Desktop>
               <Typography variant="mBodytext">{dictionary.subtitle}</Typography>

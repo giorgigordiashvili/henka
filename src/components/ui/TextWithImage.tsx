@@ -39,6 +39,7 @@ const StyledTextContainer = styled.div<{ $imagePosition?: "left" | "right" }>`
     max-width: calc(100vw - 32px);
     h2 {
       margin: auto;
+      text-align: center;
     }
   }
 `;
@@ -83,7 +84,7 @@ const StyledFlex = styled.div<{ $imagePosition?: "left" | "right" }>`
   }
   @media (max-width: 768px) {
     flex-direction: column;
-    padding-top: 22.88px;
+    padding-top: 30px;
     gap: 28px;
   }
 `;
@@ -91,11 +92,12 @@ const StyledFlex = styled.div<{ $imagePosition?: "left" | "right" }>`
 const StyledImageContainer = styled.div`
   border-radius: 20px;
   overflow: hidden;
+  object-fit: contain;
   @media (max-width: 1366px) {
     position: relative;
     width: calc(100vw - 48px);
-    height: 450px;
     margin: auto;
+    height: 450px;
   }
   @media (max-width: 768px) {
     position: relative;
@@ -111,10 +113,8 @@ const StyledFirstAsterisk = styled.div`
   left: -156px;
   z-index: 2;
   @media (max-width: 1366px) {
-    left: -80px;
-  }
-  @media (max-width: 768px) {
-    display: none;
+    left: 94%;
+    top: 0;
   }
 `;
 
@@ -123,8 +123,22 @@ const StyledSecondAsterisk = styled.div`
   bottom: -134px;
   left: -156px;
   z-index: 2;
+  @media (max-width: 1366px) {
+    left: -50px;
+  }
   @media (max-width: 768px) {
-    display: none;
+    left: 94%;
+    bottom: -1250px;
+  }
+`;
+
+const StyledSecondAsterisk2 = styled.div`
+  position: absolute;
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+    right: -12px;
+    top: 0px;
   }
 `;
 
@@ -133,8 +147,13 @@ const StyledThirdAsterisk = styled.div`
   bottom: -265px;
   right: -156px;
   z-index: 2;
+  @media (max-width: 1366px) {
+    right: -30px;
+    bottom: -200px;
+  }
   @media (max-width: 768px) {
-    display: none;
+    left: -30px;
+    bottom: -80px;
   }
 `;
 
@@ -174,31 +193,91 @@ export default function TextWithImage({
           {withAsterisks && (
             <>
               <StyledFirstAsterisk>
-                <Image
-                  objectFit="contain"
-                  width={216}
-                  height={216}
-                  src="/assets/asterisk-1.png"
-                  alt="Decoration"
-                />
+                <Desktop>
+                  <Image
+                    objectFit="contain"
+                    width={216}
+                    height={216}
+                    src="/assets/asterisk-1.png"
+                    alt="Decoration"
+                  />
+                </Desktop>
+                <Tablet>
+                  <Image
+                    objectFit="contain"
+                    width={100}
+                    height={100}
+                    src="/assets/asterisk-1.png"
+                    alt="Decoration"
+                  />
+                </Tablet>
+                <Mobile>
+                  <Image
+                    objectFit="contain"
+                    width={60}
+                    height={60}
+                    src="/assets/asterisk-1.png"
+                    alt="Decoration"
+                  />
+                </Mobile>
               </StyledFirstAsterisk>
               <StyledSecondAsterisk>
-                <Image
-                  objectFit="contain"
-                  width={216}
-                  height={216}
-                  src="/assets/asterisk-2.png"
-                  alt="Decoration"
-                />
+                <Desktop>
+                  <Image
+                    objectFit="contain"
+                    width={216}
+                    height={216}
+                    src="/assets/asterisk-2.png"
+                    alt="Decoration"
+                  />
+                </Desktop>
+                <Tablet>
+                  <Image
+                    objectFit="contain"
+                    width={100}
+                    height={100}
+                    src="/assets/asterisk-2.png"
+                    alt="Decoration"
+                  />
+                </Tablet>
+                <Mobile>
+                  <Image
+                    objectFit="contain"
+                    width={60}
+                    height={60}
+                    src="/assets/asterisk-2.png"
+                    alt="Decoration"
+                  />
+                </Mobile>
               </StyledSecondAsterisk>
               <StyledThirdAsterisk>
-                <Image
-                  objectFit="contain"
-                  width={216}
-                  height={216}
-                  src="/assets/asterisk-3.png"
-                  alt="Decoration"
-                />
+                <Desktop>
+                  <Image
+                    objectFit="contain"
+                    width={216}
+                    height={216}
+                    src="/assets/asterisk-3.png"
+                    alt="Decoration"
+                  />
+                </Desktop>
+                <Tablet>
+                  <Image
+                    objectFit="contain"
+                    width={100}
+                    height={90.76}
+                    src="/assets/asterisk-3.png"
+                    alt="Decoration"
+                  />
+                </Tablet>
+                <Mobile>
+                  <Image
+                    objectFit="contain"
+                    width={60}
+                    height={60}
+                    src="/assets/asterisk-3.png"
+                    alt="Decoration"
+                  />
+                </Mobile>
               </StyledThirdAsterisk>
             </>
           )}
@@ -213,6 +292,18 @@ export default function TextWithImage({
             <Mobile>
               <Typography variant="sBodytext">{subtitle}</Typography>
             </Mobile>
+
+            <StyledSecondAsterisk2>
+              <Mobile>
+                <Image
+                  objectFit="contain"
+                  width={60}
+                  height={60}
+                  src="/assets/asterisk-2.png"
+                  alt="Decoration"
+                />
+              </Mobile>
+            </StyledSecondAsterisk2>
 
             {listItems && listItems.length > 0 && (
               <StyledList>
