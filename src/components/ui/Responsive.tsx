@@ -8,7 +8,7 @@ type ResponsiveProps = {
 };
 
 const DesktopContainer = styled.div`
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     display: none;
   }
 `;
@@ -25,7 +25,7 @@ const TabletContainer = styled.div`
     display: none;
   }
 
-  @media (min-width: 1367px) {
+  @media (min-width: 1280px) {
     display: none;
   }
 `;

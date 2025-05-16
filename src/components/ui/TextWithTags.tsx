@@ -10,7 +10,7 @@ const StyledItemsGrid = styled.div`
   display: grid;
   grid-template-columns: minmax(200px, 312px) 1fr minmax(200px, 312px);
   grid-gap: 32px;
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     padding-top: 50px;
     padding-bottom: 70px;
   }
@@ -43,7 +43,8 @@ const StyledReasons = styled.div<{ $fromLeft?: boolean; $scrollRatio?: number }>
   }
 
   @media (max-width: 768px) {
-    max-width: 343px;
+    max-width: 90%;
+    margin: auto;
     gap: 32px;
     justify-content: flex-start;
     align-items: flex-start;
@@ -74,7 +75,7 @@ const StyledReason = styled.div<{
     props.$fromLeft
       ? "translateX(calc(-100vw - 1114px / 2))"
       : "translateX(calc(100vw - 1114px / 2))"};
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     img {
       width: 40px;
       height: 40px;
@@ -119,7 +120,7 @@ const StyledImageContainer = styled.div`
   height: 610px;
   position: relative;
 
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     width: calc(100% - 32px);
     min-width: 286px;
     height: 469px;
@@ -144,7 +145,7 @@ const FilledImage = styled(Image)<{ $opacity: number }>`
   opacity: ${(props) => props.$opacity};
 `;
 
-const StickyContainer = styled.div<{ y: number }>`
+const StickyContainer = styled.div<{ y: number; $opacity: number }>`
   width: 280px;
   height: 600px;
   top: calc((100vh - 600px) / 2);
@@ -153,6 +154,7 @@ const StickyContainer = styled.div<{ y: number }>`
   z-index: 99;
   transform: translate(-53%, 0px);
   transition: transform 0.05s linear;
+  opacity: ${(props) => props.$opacity};
 `;
 
 export interface TagItem {
@@ -543,10 +545,10 @@ export default function TextWithTags({
         </StyledReasons>
       </StyledItemsGrid>
 
-      {/* Hide the sticky container when we've reached the threshold or if sticky is disabled */}
-      {!passedThreshold && enableStickyEffect && stickyImageSrc && (
+      {/* Always render the sticky container but control its opacity */}
+      {enableStickyEffect && stickyImageSrc && (
         <Desktop>
-          <StickyContainer y={stickyPosition}>
+          <StickyContainer y={stickyPosition} $opacity={!passedThreshold ? 1 : 0}>
             <Image
               src={stickyImageSrc}
               fill

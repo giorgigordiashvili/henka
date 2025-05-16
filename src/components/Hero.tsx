@@ -11,7 +11,7 @@ const StyledContainer = styled.div`
   height: 100vh;
   position: relative;
   margin-top: 142px;
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     margin-top: 64px;
     height: auto;
     padding-bottom: 105px;
@@ -23,7 +23,7 @@ const StyledUnionContainer = styled.div`
   bottom: -1px;
   width: 100%;
   height: 167px;
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     height: 42.98px;
   }
 `;
@@ -44,17 +44,21 @@ const StyledFruitsContainer = styled.div`
   height: calc(100vh - 78px - 167px);
   pointer-events: none;
   animation: ${bounceAnimation} 3s ease-in-out infinite;
+
   @media (max-width: 768px) {
     z-index: 5;
     height: 100%;
     width: 100%;
     left: 0px;
   }
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     z-index: 5;
     height: 100%;
     width: 100%;
     left: 0px;
+  }
+  @media (max-height: 1000px) and (max-width: 1366px) {
+    height: 150vh;
   }
 `;
 
@@ -66,7 +70,7 @@ const StyledContentContainer = styled.div`
   align-items: center;
   gap: 20px;
   height: calc(100vh - 78px - 167px);
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     grid-template-columns: 352fr 352fr;
     height: auto;
   }
@@ -83,10 +87,30 @@ const StyledTextContainer = styled.div`
   flex-direction: column;
   gap: 20px;
   z-index: 99;
+
   @media (max-width: 1366px) {
+    h1 {
+      font-size: 45px;
+      line-height: 55px;
+    }
+  }
+  @media (max-width: 1279px) {
     margin: 0 0 0 24px;
     min-width: 352px;
     gap: 10px;
+  }
+
+  @media (max-width: 700px) {
+    h1 {
+      font-size: 32px;
+      line-height: 40px;
+    }
+  }
+  @media (max-width: 415px) {
+    h1 {
+      font-size: 28px;
+      line-height: 36px;
+    }
   }
   @media (max-width: 768px) {
     margin: 0 16px;
@@ -113,7 +137,7 @@ const StyledBlurWithBottles = styled.div`
     align-items: center;
     position: relative;
   }
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     width: 352px;
     height: 433.32px;
     display: flex;
@@ -133,7 +157,7 @@ const StyledBlur = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     width: 343px;
     height: 343px;
     filter: blur(100px);

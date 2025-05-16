@@ -19,11 +19,11 @@ const StyledContainer = styled.div`
     text-align: center;
     max-width: 656px;
     margin: auto;
-    @media (max-width: 1366px) {
+    @media (max-width: 1279px) {
       max-width: 343px;
     }
   }
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     padding: 62px 0 14px 0;
   }
 `;
@@ -39,7 +39,7 @@ const StyledFirstAsterisk = styled.div`
   top: -11px;
   right: -216px;
   z-index: 2;
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     right: -32px;
     top: 35px;
   }
@@ -53,7 +53,7 @@ const StyledSecondAsterisk = styled.div`
   bottom: 0px;
   left: -271px;
   z-index: 2;
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     left: -30px;
   }
   @media (max-width: 768px) {
