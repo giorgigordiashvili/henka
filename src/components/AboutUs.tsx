@@ -14,6 +14,7 @@ export default function AboutUs({
       title={dictionary.title}
       subtitle={dictionary.subtitle}
       imageSrc="/assets/about-us.png"
+      tabletImageSrc="/assets/about-us-tablet.png"
       imageAlt="About Us"
       backgroundColor="#fcfcfc"
     />

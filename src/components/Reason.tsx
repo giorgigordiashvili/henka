@@ -84,6 +84,7 @@ export default function Reason({
             middleImageSrc="/assets/why/middle.png"
             middleImageAlt="Middle Image"
             filledImageSrc="/assets/why/sticky-filled.png"
+            filledImageTabletSrc="/assets/why/sticky-filled-tablet.png"
             filledImageMobileSrc="/assets/why/sticky-filled-mobile.png"
             stickyImageSrc="/assets/why/sticky.png"
             enableStickyEffect={enableStickyEffect}

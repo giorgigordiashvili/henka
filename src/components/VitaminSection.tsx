@@ -14,6 +14,7 @@ export default function VitaminSection({
       title={dictionary.title}
       subtitle={dictionary.description}
       imageSrc="/assets/vitamin.png"
+      tabletImageSrc="/assets/vitamin-tablet.png"
       imagePosition="left"
       imageAlt="Vitamin"
       backgroundColor="#fcfcfc"

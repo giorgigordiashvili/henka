@@ -2,9 +2,9 @@
 import { getDictionary } from "@/get-dictionary";
 import Image from "next/image";
 import styled from "styled-components";
+import { Desktop, Tablet } from "./ui/Responsive";
 import TextWithTags, { TagItem } from "./ui/TextWithTags";
 import { H2 } from "./ui/Typography";
-import { Desktop, Tablet } from "./ui/Responsive";
 
 const StyledContainer = styled.div`
   position: relative;
@@ -155,6 +155,7 @@ export default function VitaminTags({
           <TextWithTags
             filledImageSrc="/assets/vitamin-filled.png"
             filledImageMobileSrc="/assets/vitamin-filled-mobile.png"
+            filledImageTabletSrc="/assets/vitamin-filled-tablet.png"
             leftTags={leftTags}
             middleImageSrc="/assets/vitamin-filled.png"
             rightTags={rightTags}
