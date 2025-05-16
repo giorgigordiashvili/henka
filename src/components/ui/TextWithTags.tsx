@@ -128,6 +128,11 @@ const StyledImageContainer = styled.div`
   }
 `;
 
+const StyledImageBackground = styled.div`
+  background: #e7dfee;
+  width: 274px;
+`;
+
 // Added styled component for the filled image without opacity transition
 const FilledImage = styled(Image)<{ $opacity: number }>`
   opacity: ${(props) => props.$opacity};
@@ -485,12 +490,14 @@ export default function TextWithTags({
             />
           </Desktop>
           <Tablet>
-            <Image
-              src={filledImageMobileSrc}
-              fill
-              style={{ objectFit: "cover" }}
-              alt={`${middleImageAlt} Mobile`}
-            />
+            <StyledImageBackground>
+              <Image
+                src={filledImageMobileSrc}
+                fill
+                style={{ objectFit: "cover" }}
+                alt={`${middleImageAlt} Mobile`}
+              />
+            </StyledImageBackground>
           </Tablet>
           <Mobile>
             <Image

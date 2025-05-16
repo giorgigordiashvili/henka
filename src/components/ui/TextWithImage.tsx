@@ -96,7 +96,7 @@ const StyledImageContainer = styled.div`
     position: relative;
     width: calc(100vw - 48px);
     margin: auto;
-    height: 550px;
+    height: 450px;
   }
   @media (max-width: 768px) {
     position: relative;

@@ -154,7 +154,7 @@ export default function VitaminTags({
 
           <TextWithTags
             filledImageSrc="/assets/vitamin-filled.png"
-            filledImageMobileSrc="/assets/vitamin-filled-mobile.png"
+            filledImageMobileSrc="/assets/why/bottleBackground2.png"
             leftTags={leftTags}
             middleImageSrc="/assets/vitamin-filled.png"
             rightTags={rightTags}
