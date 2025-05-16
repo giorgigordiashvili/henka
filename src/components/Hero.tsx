@@ -178,7 +178,12 @@ export default function Hero({
       <Container>
         <StyledContentContainer>
           <StyledTextContainer>
-            <Typography variant="h1">{dictionary.title}</Typography>
+            <Desktop>
+              <Typography variant="h1">{dictionary.title}</Typography>
+            </Desktop>
+            <Tablet>
+              <Typography variant="h1">{dictionary.title}</Typography>
+            </Tablet>
             <Mobile>
               <Typography variant="h1">{dictionary.title}</Typography>
             </Mobile>
@@ -223,35 +228,46 @@ export default function Hero({
           <StyledBlurWithBottles>
             <Desktop>
               <Image
-                style={{ zIndex: 3 }}
                 src="/assets/bottles-1.png"
                 alt="Bottles"
                 fill
-                objectFit="contain"
+                style={{
+                  zIndex: 3,
+                  objectFit: "contain",
+                }}
               />
             </Desktop>
             <Mobile>
               <Image
-                style={{ zIndex: 3 }}
                 src="/assets/bottles-1-mobile.png"
                 alt="Bottles"
                 fill
-                objectFit="contain"
+                style={{
+                  zIndex: 3,
+                  objectFit: "contain",
+                }}
               />
             </Mobile>
             <Tablet>
               <Image
-                style={{ zIndex: 3 }}
                 src="/assets/bottles-1-mobile.png"
                 alt="Bottles"
                 fill
-                objectFit="contain"
+                style={{
+                  zIndex: 3,
+                  objectFit: "contain",
+                }}
               />
             </Tablet>
 
             <StyledFruitsContainer>
               <Mobile>
-                <Image src="/assets/fruits-1-mobile.png" alt="Fruits" fill objectFit="contain" />
+                <Image
+                  src="/assets/fruits-1-mobile.png"
+                  alt="Fruits"
+                  fill
+                  style={{ objectFit: "contain" }}
+                />
               </Mobile>
             </StyledFruitsContainer>
             <StyledBlur />
@@ -295,10 +311,20 @@ export default function Hero({
           </Desktop>
           <StyledFruitsContainer>
             <Tablet>
-              <Image src="/assets/fruits-1-tablet.png" alt="Fruits" fill objectFit="contain" />
+              <Image
+                src="/assets/fruits-1-tablet.png"
+                alt="Fruits"
+                fill
+                style={{ objectFit: "contain" }}
+              />
             </Tablet>
             <Desktop>
-              <Image src="/assets/fruits-1.png" alt="Fruits" fill objectFit="contain" />
+              <Image
+                src="/assets/fruits-1.png"
+                alt="Fruits"
+                fill
+                style={{ objectFit: "contain" }}
+              />
             </Desktop>
           </StyledFruitsContainer>
         </StyledContentContainer>

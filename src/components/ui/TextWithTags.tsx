@@ -125,6 +125,7 @@ const StyledImageContainer = styled.div`
     margin: auto;
     border-radius: 16px;
     overflow: hidden;
+    background: #e7dfee;
   }
 `;
 
@@ -474,12 +475,12 @@ export default function TextWithTags({
         <StyledImageContainer>
           <Desktop>
             {/* Base image that's always displayed */}
-            <Image src={middleImageSrc} fill objectFit="contain" alt={middleImageAlt} />
+            <Image src={middleImageSrc} fill style={{ objectFit: "cover" }} alt={middleImageAlt} />
             {/* Filled image overlaid with dynamic opacity */}
             <FilledImage
               src={filledImageSrc}
               fill
-              objectFit="contain"
+              style={{ objectFit: "cover" }}
               alt={middleImageAlt}
               $opacity={filledImageOpacity}
             />
@@ -488,7 +489,7 @@ export default function TextWithTags({
             <Image
               src={filledImageMobileSrc}
               fill
-              objectFit="cover"
+              style={{ objectFit: "cover" }}
               alt={`${middleImageAlt} Mobile`}
             />
           </Tablet>
@@ -496,7 +497,7 @@ export default function TextWithTags({
             <Image
               src={filledImageMobileSrc}
               fill
-              objectFit="cover"
+              style={{ objectFit: "cover" }}
               alt={`${middleImageAlt} Mobile`}
             />
           </Mobile>
@@ -529,7 +530,12 @@ export default function TextWithTags({
       {!passedThreshold && enableStickyEffect && stickyImageSrc && (
         <Desktop>
           <StickyContainer y={stickyPosition}>
-            <Image src={stickyImageSrc} fill objectFit="contain" alt={`Sticky ${middleImageAlt}`} />
+            <Image
+              src={stickyImageSrc}
+              fill
+              style={{ objectFit: "cover" }}
+              alt={`Sticky ${middleImageAlt}`}
+            />
           </StickyContainer>
         </Desktop>
       )}

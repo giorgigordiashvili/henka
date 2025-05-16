@@ -112,7 +112,7 @@ export default function VitaminTags({
           <StyledFirstAsterisk>
             <Desktop>
               <Image
-                objectFit="contain"
+                style={{ objectFit: "cover" }}
                 width={216}
                 height={216}
                 src="/assets/asterisk-2.png"
@@ -121,7 +121,7 @@ export default function VitaminTags({
             </Desktop>
             <Tablet>
               <Image
-                objectFit="contain"
+                style={{ objectFit: "cover" }}
                 width={100}
                 height={100}
                 src="/assets/asterisk-2.png"
@@ -132,7 +132,7 @@ export default function VitaminTags({
           <StyledSecondAsterisk>
             <Desktop>
               <Image
-                objectFit="contain"
+                style={{ objectFit: "cover" }}
                 width={216}
                 height={216}
                 src="/assets/asterisk-3.png"
@@ -141,7 +141,7 @@ export default function VitaminTags({
             </Desktop>
             <Tablet>
               <Image
-                objectFit="contain"
+                style={{ objectFit: "cover" }}
                 width={100}
                 height={90.76}
                 src="/assets/asterisk-3.png"
