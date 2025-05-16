@@ -127,6 +127,10 @@ const StyledInfo = styled.div`
   display: flex;
   align-items: center;
   gap: 13px;
+  a {
+    color: rgba(92, 14, 21, 1);
+    text-decoration: none;
+  }
 `;
 
 const StyledHenka = styled.div`
@@ -328,15 +332,17 @@ export default function WhereToBuy({ dictionary }: WhereToBuyProps) {
               </StyledInfo>
               <StyledInfo>
                 <Image src="/assets/whereToBuy/phone.svg" alt="phone" width={24} height={24} />
-                <Desktop>
-                  <Typography variant="mBodytext">{dictionary.number}</Typography>
-                </Desktop>
-                <Tablet>
-                  <Typography variant="mBodytext">{dictionary.number}</Typography>
-                </Tablet>
-                <Mobile>
-                  <Typography variant="xsBodytext">{dictionary.number}</Typography>
-                </Mobile>
+                <a href="tel:+995577154501">
+                  <Desktop>
+                    <Typography variant="mBodytext">{dictionary.number}</Typography>
+                  </Desktop>
+                  <Tablet>
+                    <Typography variant="mBodytext">{dictionary.number}</Typography>
+                  </Tablet>
+                  <Mobile>
+                    <Typography variant="xsBodytext">{dictionary.number}</Typography>
+                  </Mobile>
+                </a>
               </StyledInfo>
             </StyledContactInfos>
           </StyledContact>

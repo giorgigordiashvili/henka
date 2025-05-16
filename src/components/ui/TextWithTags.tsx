@@ -43,18 +43,24 @@ const StyledReasons = styled.div<{ $fromLeft?: boolean; $scrollRatio?: number }>
   }
 
   @media (max-width: 768px) {
-    max-width: 90%;
-    margin: auto;
+    max-width: 100%;
+    margin: 0 16px;
     gap: 32px;
     justify-content: flex-start;
     align-items: flex-start;
     text-align: left;
+    /* No transform on the container, just individual items */
     transform: none;
   }
+`;
 
-  /* Make elements visible immediately on mobile without animation */
-  @media (max-width: 768px) {
-    opacity: 1;
+const StyledSecondAsterisk3 = styled.div`
+  position: absolute;
+  bottom: -25px;
+  right: -14px;
+  z-index: 999;
+  @media (min-width: 768px) {
+    display: none;
   }
 `;
 
@@ -85,14 +91,28 @@ const StyledReason = styled.div<{
     flex-direction: row;
     gap: 20px;
     text-align: left;
-    margin-left: 16px;
+    margin-left: 0px;
     justify-content: flex-start;
-    visibility: visible; /* Always visible on mobile */
-    transform: translateX(0); /* No transform on mobile */
+    transform: translateX(100%); /* All tags slide from right on mobile */
     img {
       width: 40px;
       height: 40px;
     }
+    ${(props) => {
+      // Different threshold calculation for left and right tags
+      const threshold = props.$fromLeft
+        ? 10 + props.$index * 7 // Top tags (appear earlier)
+        : 15 + props.$index * 7; // Bottom tags (appear slightly later)
+
+      return (
+        props.$scrollRatio &&
+        props.$scrollRatio > threshold &&
+        css`
+          transform: translateX(0);
+          transition: transform 0.5s ease-out;
+        `
+      );
+    }}
   }
 
   /* Only apply animations on desktop (screens > 1081px) */
@@ -210,6 +230,9 @@ export default function TextWithTags({
 
   // Add state for tag animation based on scroll position
   const [tagsScrollRatio, setTagsScrollRatio] = useState(0);
+  // Add separate state for left and right tags on mobile
+  const [leftTagsScrollRatio, setLeftTagsScrollRatio] = useState(0);
+  const [rightTagsScrollRatio, setRightTagsScrollRatio] = useState(0);
 
   // Compute the filled image opacity based on threshold
   const [filledImageOpacity, setFilledImageOpacity] = useState(0);
@@ -305,8 +328,8 @@ export default function TextWithTags({
       const scrollPosition = window.scrollY;
       const currentThreshold = scrollThreshold;
 
-      // Calculate scroll ratio for tag animation (0-100%) - this happens regardless of sticky effect
-      if (isDesktop && reasonsRef.current && enableSlideAnimation) {
+      // Calculate scroll ratio for tag animation (0-100%)
+      if (reasonsRef.current && enableSlideAnimation) {
         // Get component position data
         const rect = reasonsRef.current.getBoundingClientRect();
         const componentTop = rect.top + window.scrollY;
@@ -317,18 +340,115 @@ export default function TextWithTags({
           scrollPosition >= componentTop - window.innerHeight &&
           scrollPosition <= componentBottom
         ) {
-          // Calculate a percentage (0-100) based on how far we've scrolled into the component
-          // Start animation when component is 100% of viewport height away
-          const startPosition = componentTop - window.innerHeight;
-          const totalScrollDistance = rect.height + window.innerHeight;
-          const currentProgress = scrollPosition - startPosition;
+          // Different calculation approach based on device type
+          if (isDesktop) {
+            // Desktop calculation - similar to before
+            const startPosition = componentTop - window.innerHeight;
+            const totalScrollDistance = rect.height + window.innerHeight;
+            const currentProgress = scrollPosition - startPosition;
 
-          // Calculate percentage (0-100) with a maximum of 100
-          const percentage = Math.min(
-            100,
-            Math.max(0, (currentProgress / totalScrollDistance) * 100)
-          );
-          setTagsScrollRatio(percentage);
+            const percentage = Math.min(
+              100,
+              Math.max(0, (currentProgress / totalScrollDistance) * 100)
+            );
+            setTagsScrollRatio(percentage);
+          } else {
+            // Mobile calculation with separate tracking for top and bottom sections
+            // Calculate how far down the page we've scrolled relative to this component
+            const componentViewportPosition = rect.top;
+            const componentHeight = rect.height;
+
+            // For desktop, keep using the same calculation for both sides
+            setTagsScrollRatio(
+              calculateScrollPercentage(componentViewportPosition, componentHeight)
+            );
+
+            // For mobile, calculate left (top) tags scroll ratio
+            const leftPercentage = calculateScrollPercentage(
+              componentViewportPosition,
+              componentHeight
+            );
+
+            // For right (bottom) tags, we need a completely different approach
+            // We want them to only start animating when they are visible on screen
+
+            // First, find the bottom section's position in the DOM
+            // To do this properly, we need to get the actual DOM element position
+            const bottomSection = document.querySelectorAll(".StyledReasons")[1]; // Second StyledReasons element
+
+            // Get position of the bottom section specifically
+            let bottomTagsPosition;
+            let rightPercentage = 0; // Default to 0 (no animation) until visible
+
+            if (bottomSection) {
+              const bottomRect = bottomSection.getBoundingClientRect();
+              bottomTagsPosition = bottomRect.top;
+
+              // Only start animating if the bottom section is actually in the viewport
+              if (bottomTagsPosition < window.innerHeight * 0.8) {
+                // Calculate how far the bottom section has entered the viewport
+                const visibleAmount = Math.min(
+                  100,
+                  ((window.innerHeight * 0.8 - bottomTagsPosition) / (window.innerHeight * 0.5)) *
+                    100
+                );
+                rightPercentage = Math.max(0, visibleAmount);
+              }
+            } else {
+              // Fallback if we can't find the exact element - estimate based on component height
+              const imageContainerHeight = componentHeight * 0.6; // Image takes about 60% of component height on mobile
+              bottomTagsPosition = componentViewportPosition + imageContainerHeight;
+
+              // Only calculate percentage if the bottom tags would be in view
+              if (bottomTagsPosition < window.innerHeight * 0.8) {
+                rightPercentage = calculateScrollPercentage(bottomTagsPosition, componentHeight);
+              }
+            }
+
+            // Set both values
+            setLeftTagsScrollRatio(leftPercentage);
+            setRightTagsScrollRatio(rightPercentage);
+
+            // Helper function to calculate percentage based on position
+            function calculateScrollPercentage(position: number, height: number) {
+              let percentage;
+
+              if (position > window.innerHeight * 0.7) {
+                // Component is mostly below the viewport - early stage
+                percentage = Math.max(
+                  0,
+                  Math.min(30, ((window.innerHeight - position) / window.innerHeight) * 50)
+                );
+              } else if (position > window.innerHeight * 0.3) {
+                // Component is in the middle of the viewport - middle stage
+                percentage =
+                  30 +
+                  Math.max(
+                    0,
+                    Math.min(
+                      40,
+                      ((window.innerHeight * 0.7 - position) / (window.innerHeight * 0.4)) * 40
+                    )
+                  );
+              } else if (position > -height * 0.6) {
+                // Component is in the upper part of viewport - later stage
+                percentage =
+                  70 +
+                  Math.max(
+                    0,
+                    Math.min(
+                      30,
+                      ((window.innerHeight * 0.3 - position) / (window.innerHeight * 0.3)) * 30
+                    )
+                  );
+              } else {
+                // Component is mostly scrolled out - final stage
+                percentage = 100;
+              }
+
+              return percentage;
+            }
+          }
         }
       }
 
@@ -429,25 +549,26 @@ export default function TextWithTags({
     uniqueId,
   ]);
 
-  // Set up Intersection Observer for animation
+  // Set up Intersection Observer for animation on both mobile and desktop
   useEffect(() => {
-    if (!isDesktop) {
-      // Skip animation setup on mobile
-      setIsInView(true);
-      return;
-    }
+    // Always set up the animation for both desktop and mobile
+    setIsInView(true);
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          observer.unobserve(entry.target);
+    const observerOptions = {
+      threshold: isDesktop ? 0.2 : 0.02, // Very low threshold on mobile to detect earlier
+      rootMargin: isDesktop ? "0px" : "0px 0px -50px 0px", // Start even earlier on mobile
+    };
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsInView(true);
+        // Manually trigger an initial scroll event to calculate positions immediately
+        if (!isDesktop) {
+          window.dispatchEvent(new Event("scroll"));
         }
-      },
-      {
-        threshold: 0.2, // Trigger when at least 20% of the element is visible
+        observer.unobserve(entry.target);
       }
-    );
+    }, observerOptions);
 
     const currentRef = reasonsRef.current;
     if (currentRef) {
@@ -462,7 +583,18 @@ export default function TextWithTags({
   }, [isDesktop]);
 
   return (
-    <div className={className} ref={reasonsRef}>
+    <div style={{ position: "relative" }} className={className} ref={reasonsRef}>
+      <StyledSecondAsterisk3>
+        <Mobile>
+          <Image
+            style={{ objectFit: "contain" }}
+            width={60}
+            height={60}
+            src="/assets/asterisk-2.png"
+            alt="Decoration"
+          />
+        </Mobile>
+      </StyledSecondAsterisk3>
       <StyledItemsGrid>
         <StyledReasons $fromLeft={true} $scrollRatio={tagsScrollRatio}>
           {leftTags.map((tag, index) => (
@@ -471,7 +603,8 @@ export default function TextWithTags({
               $isVisible={isInView}
               $fromLeft={true}
               $index={index}
-              $scrollRatio={tagsScrollRatio}
+              $scrollRatio={isDesktop ? tagsScrollRatio : leftTagsScrollRatio}
+              data-tag-position={index} // Add data attribute to help with debugging
             >
               <Image src={tag.iconSrc} width={62} height={62} alt={tag.iconAlt} />
               <Desktop>
@@ -528,7 +661,12 @@ export default function TextWithTags({
               $isVisible={isInView}
               $fromLeft={false}
               $index={index}
-              $scrollRatio={tagsScrollRatio}
+              $scrollRatio={isDesktop ? tagsScrollRatio : rightTagsScrollRatio}
+              data-tag-position={`right-${index}`} // Add data attribute to help with debugging
+              style={{
+                // Add a small delay to the CSS animation based on index
+                transitionDelay: `${index * 0.05}s`,
+              }}
             >
               <Image src={tag.iconSrc} width={62} height={62} alt={tag.iconAlt} />
               <Desktop>

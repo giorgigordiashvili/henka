@@ -171,9 +171,15 @@ const Footer = ({ dictionary }: Props) => {
             <Image width={60} height={60} src={logoImage} alt="logo" placeholder="blur" />
           </LogoWrapper>
           <SocialsWrapper>
-            <Image src="/assets/footer/tiktok.png" width={28} height={28} alt="TikTok" />
-            <Image src="/assets/footer/instagram.png" width={28} height={28} alt="Instagram" />
-            <Image src="/assets/footer/facebook.png" width={28} height={28} alt="Facebook" />
+            <a href="https://www.tiktok.com/@henka_kombucha">
+              <Image src="/assets/footer/tiktok.png" width={28} height={28} alt="TikTok" />
+            </a>
+            <a href="https://www.instagram.com/henkakombucha/">
+              <Image src="/assets/footer/instagram.png" width={28} height={28} alt="Instagram" />
+            </a>
+            <a href="https://www.facebook.com/henkakombucha/">
+              <Image src="/assets/footer/facebook.png" width={28} height={28} alt="Facebook" />
+            </a>
           </SocialsWrapper>
         </NavSocialsWrapper>
         <WhiteLine />
