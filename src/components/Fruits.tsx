@@ -162,10 +162,10 @@ const LeafImage2 = styled(Image)`
 
 const StyledUnionContainerBottom = styled.div`
   position: absolute;
-  bottom: -167px;
+  bottom: -86.33px;
   left: 0px;
   width: 100%;
-  height: 167px;
+  height: 87.33px;
   z-index: 9;
   @media (max-width: 1366px) {
     height: 22.96px;

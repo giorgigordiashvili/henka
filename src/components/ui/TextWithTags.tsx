@@ -118,7 +118,17 @@ const StyledImageContainer = styled.div`
   width: 426px;
   height: 610px;
   position: relative;
+
   @media (max-width: 1366px) {
+    width: calc(100% - 32px);
+    min-width: 286px;
+    height: 469px;
+    margin: auto;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  @media (max-width: 768px) {
     width: calc(100% - 32px);
     min-width: 209px;
     height: 459px;
@@ -163,6 +173,7 @@ interface TextWithTagsProps {
   enableSlideAnimation?: boolean; // New prop to control slide animation independently
   className?: string;
   uniqueId?: string; // Unique ID for multiple instances
+  filledImageTabletSrc?: string;
 }
 
 export default function TextWithTags({
@@ -177,6 +188,7 @@ export default function TextWithTags({
   enableSlideAnimation = true, // Default to true so slides work regardless of sticky effect
   className,
   uniqueId = "default",
+  filledImageTabletSrc,
 }: TextWithTagsProps) {
   // Add state to track if we've scrolled past the threshold
   const [passedThreshold, setPassedThreshold] = useState(false);
@@ -475,21 +487,26 @@ export default function TextWithTags({
         <StyledImageContainer>
           <Desktop>
             {/* Base image that's always displayed */}
-            <Image src={middleImageSrc} fill style={{ objectFit: "cover" }} alt={middleImageAlt} />
+            <Image
+              src={middleImageSrc}
+              fill
+              style={{ objectFit: "contain" }}
+              alt={middleImageAlt}
+            />
             {/* Filled image overlaid with dynamic opacity */}
             <FilledImage
               src={filledImageSrc}
               fill
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "contain" }}
               alt={middleImageAlt}
               $opacity={filledImageOpacity}
             />
           </Desktop>
           <Tablet>
             <Image
-              src={filledImageMobileSrc}
+              src={filledImageTabletSrc || filledImageSrc}
               fill
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "contain" }}
               alt={`${middleImageAlt} Mobile`}
             />
           </Tablet>
@@ -497,7 +514,7 @@ export default function TextWithTags({
             <Image
               src={filledImageMobileSrc}
               fill
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "contain" }}
               alt={`${middleImageAlt} Mobile`}
             />
           </Mobile>
@@ -533,7 +550,7 @@ export default function TextWithTags({
             <Image
               src={stickyImageSrc}
               fill
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "contain" }}
               alt={`Sticky ${middleImageAlt}`}
             />
           </StickyContainer>

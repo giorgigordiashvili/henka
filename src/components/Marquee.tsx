@@ -30,7 +30,6 @@ const StyledContainer = styled.div`
 
 const StyledUnionContainer = styled.div`
   position: absolute;
-  top: 0px;
   left: 0px;
   width: 100%;
   height: 167px;

@@ -20,7 +20,7 @@ const StyledContainer = styled.div`
 
 const StyledUnionContainer = styled.div`
   position: absolute;
-  bottom: 0px;
+  bottom: -1px;
   width: 100%;
   height: 167px;
   @media (max-width: 1366px) {
@@ -68,6 +68,7 @@ const StyledContentContainer = styled.div`
   height: calc(100vh - 78px - 167px);
   @media (max-width: 1366px) {
     grid-template-columns: 352fr 352fr;
+    height: auto;
   }
   @media (max-width: 768px) {
     display: flex;

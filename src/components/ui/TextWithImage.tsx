@@ -92,6 +92,7 @@ const StyledFlex = styled.div<{ $imagePosition?: "left" | "right" }>`
 const StyledImageContainer = styled.div`
   border-radius: 20px;
   overflow: hidden;
+
   @media (max-width: 1366px) {
     position: relative;
     width: calc(100vw - 48px);
@@ -172,6 +173,7 @@ interface TextWithImageProps {
   className?: string;
   listItems?: string[];
   withAsterisks?: boolean;
+  tabletImageSrc?: string;
 }
 
 export default function TextWithImage({
@@ -187,6 +189,7 @@ export default function TextWithImage({
   className,
   listItems,
   withAsterisks,
+  tabletImageSrc,
 }: TextWithImageProps) {
   return (
     <StyledContainer id={id} $backgroundColor={backgroundColor} className={className}>
@@ -353,7 +356,12 @@ export default function TextWithImage({
               />
             </Desktop>
             <Tablet>
-              <Image src={imageSrc} alt={imageAlt} fill style={{ objectFit: "cover" }} />
+              <Image
+                src={tabletImageSrc || imageSrc}
+                alt={imageAlt}
+                fill
+                style={{ objectFit: "cover" }}
+              />
             </Tablet>
             <Mobile>
               <Image src={imageSrc} alt={imageAlt} fill style={{ objectFit: "cover" }} />
