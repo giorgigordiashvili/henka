@@ -130,7 +130,7 @@ const StyledSecondAsterisk = styled.div`
     left: -50px;
   }
   @media (max-width: 768px) {
-    left: 94%;
+    left: 93%;
     bottom: -1250px;
   }
 `;
@@ -140,7 +140,7 @@ const StyledSecondAsterisk2 = styled.div`
   display: none;
   @media (max-width: 768px) {
     display: block;
-    right: -12px;
+    right: -30px;
     top: 0px;
   }
 `;
