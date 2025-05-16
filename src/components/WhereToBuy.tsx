@@ -341,7 +341,12 @@ export default function WhereToBuy({ dictionary }: WhereToBuyProps) {
           </StyledContact>
         </StyledBio>
         <StyledHenka>
-          <Image objectFit="cover" src="/assets/whereToBuy/henkaImage.png" alt="henka" fill />
+          <Image
+            style={{ objectFit: "cover" }}
+            src="/assets/whereToBuy/henkaImage.png"
+            alt="henka"
+            fill
+          />
         </StyledHenka>
       </StyledContainer>
     </StyledMainContainer>

@@ -443,7 +443,7 @@ export default function Slider({
                 src={currentBottleData.fruitImage.desktop}
                 alt="Fruits"
                 fill
-                objectFit="contain"
+                style={{ objectFit: "contain" }}
                 key={`${fruitImageKey}-desktop`}
               />
             </Desktop>
@@ -452,7 +452,7 @@ export default function Slider({
                 src={currentBottleData.fruitImage.tablet}
                 alt="Fruits"
                 fill
-                objectFit="contain"
+                style={{ objectFit: "contain" }}
                 key={`${fruitImageKey}-tablet`}
               />
             </Tablet>
@@ -461,7 +461,7 @@ export default function Slider({
                 src={currentBottleData.fruitImage.mobile}
                 alt="Fruits"
                 fill
-                objectFit="contain"
+                style={{ objectFit: "contain" }}
                 key={`${fruitImageKey}-mobile`}
               />
             </Mobile>

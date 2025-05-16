@@ -92,12 +92,11 @@ const StyledFlex = styled.div<{ $imagePosition?: "left" | "right" }>`
 const StyledImageContainer = styled.div`
   border-radius: 20px;
   overflow: hidden;
-  object-fit: contain;
   @media (max-width: 1366px) {
     position: relative;
     width: calc(100vw - 48px);
     margin: auto;
-    height: 450px;
+    height: 550px;
   }
   @media (max-width: 768px) {
     position: relative;
@@ -115,6 +114,9 @@ const StyledFirstAsterisk = styled.div`
   @media (max-width: 1366px) {
     left: 94%;
     top: 0;
+  }
+  @media (max-width: 768px) {
+    display: none;
   }
 `;
 
@@ -195,7 +197,7 @@ export default function TextWithImage({
               <StyledFirstAsterisk>
                 <Desktop>
                   <Image
-                    objectFit="contain"
+                    style={{ objectFit: "contain" }}
                     width={216}
                     height={216}
                     src="/assets/asterisk-1.png"
@@ -204,7 +206,7 @@ export default function TextWithImage({
                 </Desktop>
                 <Tablet>
                   <Image
-                    objectFit="contain"
+                    style={{ objectFit: "contain" }}
                     width={100}
                     height={100}
                     src="/assets/asterisk-1.png"
@@ -213,7 +215,7 @@ export default function TextWithImage({
                 </Tablet>
                 <Mobile>
                   <Image
-                    objectFit="contain"
+                    style={{ objectFit: "contain" }}
                     width={60}
                     height={60}
                     src="/assets/asterisk-1.png"
@@ -224,7 +226,7 @@ export default function TextWithImage({
               <StyledSecondAsterisk>
                 <Desktop>
                   <Image
-                    objectFit="contain"
+                    style={{ objectFit: "contain" }}
                     width={216}
                     height={216}
                     src="/assets/asterisk-2.png"
@@ -233,7 +235,7 @@ export default function TextWithImage({
                 </Desktop>
                 <Tablet>
                   <Image
-                    objectFit="contain"
+                    style={{ objectFit: "contain" }}
                     width={100}
                     height={100}
                     src="/assets/asterisk-2.png"
@@ -242,7 +244,7 @@ export default function TextWithImage({
                 </Tablet>
                 <Mobile>
                   <Image
-                    objectFit="contain"
+                    style={{ objectFit: "contain" }}
                     width={60}
                     height={60}
                     src="/assets/asterisk-2.png"
@@ -253,7 +255,7 @@ export default function TextWithImage({
               <StyledThirdAsterisk>
                 <Desktop>
                   <Image
-                    objectFit="contain"
+                    style={{ objectFit: "contain" }}
                     width={216}
                     height={216}
                     src="/assets/asterisk-3.png"
@@ -262,7 +264,7 @@ export default function TextWithImage({
                 </Desktop>
                 <Tablet>
                   <Image
-                    objectFit="contain"
+                    style={{ objectFit: "contain" }}
                     width={100}
                     height={90.76}
                     src="/assets/asterisk-3.png"
@@ -271,7 +273,7 @@ export default function TextWithImage({
                 </Tablet>
                 <Mobile>
                   <Image
-                    objectFit="contain"
+                    style={{ objectFit: "contain" }}
                     width={60}
                     height={60}
                     src="/assets/asterisk-3.png"
@@ -296,7 +298,7 @@ export default function TextWithImage({
             <StyledSecondAsterisk2>
               <Mobile>
                 <Image
-                  objectFit="contain"
+                  style={{ objectFit: "contain" }}
                   width={60}
                   height={60}
                   src="/assets/asterisk-2.png"
@@ -347,14 +349,14 @@ export default function TextWithImage({
                 alt={imageAlt}
                 width={imageWidth}
                 height={imageHeight}
-                objectFit="cover"
+                style={{ objectFit: "cover" }}
               />
             </Desktop>
             <Tablet>
-              <Image src={imageSrc} alt={imageAlt} fill objectFit="cover" />
+              <Image src={imageSrc} alt={imageAlt} fill style={{ objectFit: "cover" }} />
             </Tablet>
             <Mobile>
-              <Image src={imageSrc} alt={imageAlt} fill objectFit="cover" />
+              <Image src={imageSrc} alt={imageAlt} fill style={{ objectFit: "cover" }} />
             </Mobile>
           </StyledImageContainer>
         </StyledFlex>
