@@ -10,7 +10,7 @@ const H1 = styled.h1`
   font-feature-settings: "case";
   text-transform: uppercase;
 
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     font-size: 36px;
     line-height: 48px;
   }
@@ -27,7 +27,7 @@ const H2 = styled.h2`
   margin: 0px;
   font-feature-settings: "case";
   text-transform: uppercase;
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     font-size: 24px;
     line-height: 28px;
   }

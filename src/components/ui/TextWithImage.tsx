@@ -10,7 +10,7 @@ const StyledContainer = styled.div<{ $backgroundColor?: string }>`
   background-color: ${(props) => props.$backgroundColor || "#fcfcfc"};
   height: 650px;
 
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     height: auto;
   }
 `;
@@ -26,7 +26,7 @@ const StyledTextContainer = styled.div<{ $imagePosition?: "left" | "right" }>`
     font-feature-settings: "case";
     max-width: ${(props) => (props.$imagePosition === "left" ? "656px" : "541px")};
   }
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     h2 {
       font-feature-settings: "case";
       max-width: 720px;
@@ -51,7 +51,7 @@ const StyledList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     margin-top: 12px;
   }
 `;
@@ -77,7 +77,7 @@ const StyledFlex = styled.div<{ $imagePosition?: "left" | "right" }>`
   flex-direction: ${(props) => (props.$imagePosition === "left" ? "row-reverse" : "row")};
   gap: ${(props) => (props.$imagePosition === "left" ? "32px" : "147px")};
   align-items: center;
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     flex-direction: column;
     padding-top: 53.18px;
     gap: 32px;
@@ -93,7 +93,7 @@ const StyledImageContainer = styled.div`
   border-radius: 20px;
   overflow: hidden;
 
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     position: relative;
     width: calc(100vw - 48px);
     margin: auto;
@@ -112,7 +112,7 @@ const StyledFirstAsterisk = styled.div`
   top: -134px;
   left: -156px;
   z-index: 2;
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     left: 94%;
     top: 0;
   }
@@ -126,7 +126,7 @@ const StyledSecondAsterisk = styled.div`
   bottom: -134px;
   left: -156px;
   z-index: 2;
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     left: -50px;
   }
   @media (max-width: 768px) {
@@ -150,7 +150,7 @@ const StyledThirdAsterisk = styled.div`
   bottom: -265px;
   right: -156px;
   z-index: 2;
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     right: -30px;
     bottom: -200px;
   }

@@ -16,7 +16,7 @@ type Props = {
 const FooterContainer = styled.div`
   height: 372px;
   background-color: #dc2132;
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     height: auto;
   }
   @media (max-width: 768px) {
@@ -31,7 +31,7 @@ const StyledUnionContainer = styled.div`
   width: 100%;
   height: 167px;
 
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     height: 42.98px;
   }
 `;
@@ -42,7 +42,8 @@ const BottomFooter = styled.div`
   display: flex;
   flex-direction: column;
   gap: 36px;
-  @media (max-width: 1366px) {
+
+  @media (max-width: 1279px) {
     padding: 52px 0 32px 0;
   }
 `;
@@ -55,8 +56,10 @@ const NavSocialsWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   position: relative;
-
   @media (max-width: 1366px) {
+    max-width: 1200px;
+  }
+  @media (max-width: 1279px) {
     flex-direction: column;
     padding-top: 76px;
     gap: 36px;
@@ -69,7 +72,7 @@ const NavigationWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     flex-direction: column;
     gap: 16px;
   }
@@ -95,7 +98,7 @@ const LogoWrapper = styled.div`
   transform: translate(-50%, -50%);
   cursor: pointer;
 
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     top: 0;
     transform: translate(-50%, -50%);
   }

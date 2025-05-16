@@ -14,14 +14,14 @@ const bounceAnimation = keyframes`
 `;
 
 const DesktopContainer = styled.div`
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     display: none;
   }
 `;
 
 const TabletContainer = styled.div`
   display: none;
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     display: block;
   }
   @media (max-width: 768px) {
@@ -51,7 +51,7 @@ const StyledUnionContainer = styled.div`
   height: 167px;
   z-index: 2;
 
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     height: 42.98px;
   }
 `;
@@ -66,7 +66,7 @@ const StyledContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 600px;
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     padding: 91px 0 48px 0;
     height: auto;
   }
@@ -86,7 +86,7 @@ const Paragraph = styled.p`
   white-space: nowrap;
   margin: 0;
 
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     font-size: 61.65px;
     line-height: 100%;
     white-space: nowrap;
@@ -167,7 +167,7 @@ const StyledUnionContainerBottom = styled.div`
   width: 100%;
   height: 87.33px;
   z-index: 9;
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     height: 22.96px;
     bottom: -21.96px;
   }

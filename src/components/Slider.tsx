@@ -27,7 +27,7 @@ const StyledContainer = styled(motion.div)`
   position: relative;
   transition: background-color 0.6s ease;
 
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     padding: 73px 0 84px;
   }
   @media (max-width: 768px) {
@@ -55,7 +55,7 @@ const StyledBox = styled.div`
   position: relative;
   z-index: 1;
 
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     gap: 16px;
   }
 `;
@@ -66,7 +66,7 @@ const StyledTitle = styled.div`
   text-transform: uppercase;
   font-feature-settings: "case";
 
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     width: 100%;
     font-size: 24px;
     max-width: 343px;
@@ -77,7 +77,7 @@ const StyledProducts = styled.div`
   display: flex;
   gap: 20px;
 
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     margin-bottom: 2px;
   }
 `;
@@ -179,7 +179,7 @@ const CircleBackground = styled.div`
   background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
   filter: blur(85px);
 
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     top: 50%;
     width: calc(100% - 32px);
     height: 200px;
@@ -193,10 +193,11 @@ const StyledFruitsContainer = styled.div`
   pointer-events: none;
   top: 107px;
   animation: ${bounceAnimation} 3s ease-in-out infinite;
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     z-index: 998;
-    top: 5%;
-    height: 90%;
+    top: 2%;
+    height: 100%;
+    width: 150%;
   }
 `;
 
@@ -226,7 +227,7 @@ const BottleImage = styled.div`
     height: 336px !important;
   }
 
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     &.active img,
     &.active span {
       width: 164px !important;
@@ -249,6 +250,7 @@ const BottleImage = styled.div`
         width: 86px !important;
         height: 242px !important;
       }
+    }
   }
 `;
 
@@ -259,7 +261,7 @@ const FlavorsDisplay = styled.div`
   z-index: 1;
   font-feature-settings: "case";
 
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     font-size: 14px;
   }
 `;

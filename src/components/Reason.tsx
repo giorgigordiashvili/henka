@@ -15,7 +15,7 @@ const StyledContainer = styled.div`
     font-feature-settings: "case";
     text-align: center;
   }
-  @media (max-width: 1366px) {
+  @media (max-width: 1279px) {
     padding: 100px 0 55px 0;
   }
   @media (max-width: 768px) {

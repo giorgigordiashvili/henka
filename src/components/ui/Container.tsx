@@ -5,6 +5,9 @@ const StyledContainer = styled.div`
   max-width: 1344px;
   margin: auto;
   @media (max-width: 1366px) {
+    max-width: 1200px;
+  }
+  @media (max-width: 1279px) {
     max-width: 100%;
   }
 `;
