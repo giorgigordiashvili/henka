@@ -127,37 +127,31 @@ const MobileRow = styled.div`
 const GingerImage1 = styled(Image)`
   transform: rotate(25.05deg);
   animation: ${bounceAnimation} 3s ease-in-out infinite;
-  animation-delay: 1s;
 `;
 
 const GingerImage2 = styled(Image)`
   transform: rotate(27.01deg);
   animation: ${bounceAnimation} 3s ease-in-out infinite;
-  animation-delay: 1s;
 `;
 
 const PineberryImage1 = styled(Image)`
   transform: rotate(37.55deg);
   animation: ${bounceAnimation} 3s ease-in-out infinite;
-  animation-delay: 1s;
 `;
 
 const PineberryImage2 = styled(Image)`
   transform: rotate(37.55deg);
   animation: ${bounceAnimation} 3s ease-in-out infinite;
-  animation-delay: 1s;
 `;
 
 const LeafImage1 = styled(Image)`
   transform: rotate(265deg);
   animation: ${bounceAnimation} 3s ease-in-out infinite;
-  animation-delay: 1s;
 `;
 
 const LeafImage2 = styled(Image)`
   transform: rotate(0deg);
   animation: ${bounceAnimation} 3s ease-in-out infinite;
-  animation-delay: 1s;
 `;
 
 const StyledUnionContainerBottom = styled.div`

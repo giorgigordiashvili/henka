@@ -57,7 +57,7 @@ const StyledFruitsContainer = styled.div`
     width: 100%;
     left: 0px;
   }
-  @media (max-height: 1000px) and (max-width: 1366px) {
+  @media (max-height: 1000px) and (max-width: 1450px) {
     height: 150vh;
   }
 `;

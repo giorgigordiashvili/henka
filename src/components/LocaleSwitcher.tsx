@@ -27,6 +27,10 @@ const DropdownButton = styled.button`
   &:hover {
     color: rgba(252, 252, 252, 0.7);
   }
+
+  @media (max-width: 768px) {
+    padding: 0px;
+  }
 `;
 
 const DropdownContent = styled.ul<{ $isOpen: boolean }>`
@@ -42,6 +46,10 @@ const DropdownContent = styled.ul<{ $isOpen: boolean }>`
   left: 0;
   margin-top: 8px;
   list-style: none;
+  @media (max-width: 768px) {
+    left: 50%;
+    transform: translateX(-50%);
+  }
 `;
 
 const LocaleItem = styled.li`

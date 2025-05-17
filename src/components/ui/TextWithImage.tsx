@@ -140,7 +140,7 @@ const StyledSecondAsterisk2 = styled.div`
   @media (max-width: 768px) {
     display: block;
     right: -14px;
-    top: 0px;
+    top: -25px;
   }
 `;
 

@@ -56,7 +56,7 @@ const StyledReasons = styled.div<{ $fromLeft?: boolean; $scrollRatio?: number }>
 
 const StyledSecondAsterisk3 = styled.div`
   position: absolute;
-  bottom: -25px;
+  bottom: -15px;
   right: -14px;
   z-index: 999;
   @media (min-width: 768px) {
@@ -175,6 +175,7 @@ const StickyContainer = styled.div<{ y: number; $opacity: number }>`
   transform: translate(-53%, 0px);
   transition: transform 0.05s linear;
   opacity: ${(props) => props.$opacity};
+  pointer-events: ${(props) => (props.$opacity > 0 ? "auto" : "none")};
 `;
 
 export interface TagItem {
