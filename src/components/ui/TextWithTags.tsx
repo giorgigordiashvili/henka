@@ -609,7 +609,9 @@ export default function TextWithTags({
             >
               <Image src={tag.iconSrc} width={62} height={62} alt={tag.iconAlt} />
               <Desktop>
-                <Typography variant="sBodytext">{tag.text}</Typography>
+                <Typography variant="sBodytext" className={index === 2 ? "max-width-150" : ""}>
+                  {tag.text}
+                </Typography>
               </Desktop>
               <Tablet>
                 <Typography variant="xsBodytext">{tag.text}</Typography>

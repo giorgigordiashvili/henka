@@ -11,6 +11,9 @@
   font-weight: 700;
   font-style: normal;
 }
+.max-width-150 {
+  max-width: 170px;
+}
 
 /* Adding smooth scrolling behavior */
 html {
