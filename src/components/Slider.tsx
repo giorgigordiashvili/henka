@@ -3,21 +3,12 @@ import { getDictionary } from "@/get-dictionary";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import "swiper/css";
 import "swiper/css/effect-creative";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { Desktop, Mobile, Tablet } from "./ui/Responsive";
 import Typography from "./ui/Typography";
-
-const bounceAnimation = keyframes`
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-`;
 
 const StyledContainer = styled(motion.div)`
   padding: 140px 0 139px;
@@ -196,12 +187,17 @@ const StyledFruitsContainer = styled.div`
   height: 100%;
   pointer-events: none;
   top: 107px;
-  animation: ${bounceAnimation} 3s ease-in-out infinite;
-  @media (max-width: 1279px) {
+  animation: bounceAnimation 3s ease-in-out infinite;
+  @media (max-width: 768px) {
     z-index: 998;
     top: 20%;
     height: 70%;
     width: 90%;
+  }
+  @media (max-width: 1279px) {
+    z-index: 998;
+    top: 5%;
+    height: 90%;
   }
 `;
 
@@ -286,7 +282,7 @@ const StyledLeafLeftTop = styled.div`
   position: absolute;
   top: 21px;
   left: -12px;
-  animation: ${bounceAnimation} 3s ease-in-out infinite;
+  animation: bounceAnimation 3s ease-in-out infinite;
   @media (min-width: 768px) {
     display: none;
   }
@@ -294,7 +290,7 @@ const StyledLeafLeftTop = styled.div`
 const StyledLeafRightTop = styled.div`
   position: absolute;
   top: 21px;
-  animation: ${bounceAnimation} 3s ease-in-out infinite;
+  animation: bounceAnimation 3s ease-in-out infinite;
   right: -16px;
   @media (min-width: 768px) {
     display: none;
@@ -304,7 +300,7 @@ const StyledLeafLeftBottom = styled.div`
   position: absolute;
   bottom: 2px;
   left: -12px;
-  animation: ${bounceAnimation} 3s ease-in-out infinite;
+  animation: bounceAnimation 3s ease-in-out infinite;
   @media (min-width: 768px) {
     display: none;
   }
@@ -313,7 +309,7 @@ const StyledLeafRightBottom = styled.div`
   position: absolute;
   bottom: 3px;
   right: -16px;
-  animation: ${bounceAnimation} 3s ease-in-out infinite;
+  animation: bounceAnimation 3s ease-in-out infinite;
   @media (min-width: 768px) {
     display: none;
   }
