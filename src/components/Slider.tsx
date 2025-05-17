@@ -138,6 +138,10 @@ const NavButton = styled.button`
   &:focus {
     outline: none;
   }
+  @media (max-width: 768px) {
+    width: 24px;
+    height: 24px;
+  }
 
   svg {
     width: 12.14px;
@@ -155,7 +159,7 @@ const PrevButton = styled(NavButton)`
   left: 170px;
 
   @media (max-width: 768px) {
-    left: calc(50% - 80px - 1px);
+    left: calc(100vw - 160px - 48px);
   }
 `;
 
@@ -163,7 +167,7 @@ const NextButton = styled(NavButton)`
   right: 150px;
 
   @media (max-width: 768px) {
-    right: calc(50% - 80px - 33px);
+    right: calc(100vw - 160px - 48px);
   }
 `;
 
@@ -195,9 +199,9 @@ const StyledFruitsContainer = styled.div`
   animation: ${bounceAnimation} 3s ease-in-out infinite;
   @media (max-width: 1279px) {
     z-index: 998;
-    top: 2%;
-    height: 100%;
-    width: 150%;
+    top: 20%;
+    height: 70%;
+    width: 90%;
   }
 `;
 
@@ -276,6 +280,43 @@ const BackgroundLayer = styled(motion.div)<{ animationDirection: string }>`
   transform-origin: ${(props) => props.animationDirection};
   pointer-events: none;
   backface-visibility: hidden;
+`;
+
+const StyledLeafLeftTop = styled.div`
+  position: absolute;
+  top: 21px;
+  left: -12px;
+  animation: ${bounceAnimation} 3s ease-in-out infinite;
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+const StyledLeafRightTop = styled.div`
+  position: absolute;
+  top: 21px;
+  animation: ${bounceAnimation} 3s ease-in-out infinite;
+  right: -16px;
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+const StyledLeafLeftBottom = styled.div`
+  position: absolute;
+  bottom: 2px;
+  left: -12px;
+  animation: ${bounceAnimation} 3s ease-in-out infinite;
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+const StyledLeafRightBottom = styled.div`
+  position: absolute;
+  bottom: 3px;
+  right: -16px;
+  animation: ${bounceAnimation} 3s ease-in-out infinite;
+  @media (min-width: 768px) {
+    display: none;
+  }
 `;
 
 const getHueFromRGB = (rgb: string): number => {
@@ -436,6 +477,21 @@ export default function Slider({
         style={{ backgroundColor }}
         animationDirection={animationDirection}
       />
+
+      <StyledLeafLeftTop>
+        <Image src="/assets/fruits/leaf-left.png" width={62.69} height={62.69} alt="Leaf" />
+      </StyledLeafLeftTop>
+      <StyledLeafLeftBottom>
+        <Image src="/assets/fruits/leaf-left.png" width={62.69} height={62.69} alt="Leaf" />
+      </StyledLeafLeftBottom>
+
+      <StyledLeafRightTop>
+        <Image src="/assets/fruits/leaf-right.png" width={62.69} height={62.69} alt="Leaf" />
+      </StyledLeafRightTop>
+
+      <StyledLeafRightBottom>
+        <Image src="/assets/fruits/leaf-right.png" width={62.69} height={62.69} alt="Leaf" />
+      </StyledLeafRightBottom>
 
       <StyledFruitsContainer>
         {currentBottleData && (

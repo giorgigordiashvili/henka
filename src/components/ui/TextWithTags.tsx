@@ -93,7 +93,7 @@ const StyledReason = styled.div<{
     text-align: left;
     margin-left: 0px;
     justify-content: flex-start;
-    transform: translateX(100%); /* All tags slide from right on mobile */
+    transform: translateX(150%); /* All tags slide from right on mobile */
     img {
       width: 40px;
       height: 40px;
