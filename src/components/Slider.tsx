@@ -159,7 +159,7 @@ const PrevButton = styled(NavButton)`
   left: 170px;
 
   @media (max-width: 768px) {
-    left: calc(100vw - 160px - 48px);
+    left: calc((150vw - 160px - 48px) / 2);
   }
 `;
 
@@ -167,7 +167,7 @@ const NextButton = styled(NavButton)`
   right: 150px;
 
   @media (max-width: 768px) {
-    right: calc(100vw - 160px - 48px);
+    right: calc((150vw - 160px - 48px) / 2);
   }
 `;
 
