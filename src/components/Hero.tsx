@@ -120,17 +120,18 @@ const StyledBlurWithBottles = styled.div`
   width: 456px;
   height: 456px;
   position: relative;
-  @media (max-width: 768px) {
-    width: 100vw;
-    height: calc((100vw - 32px) / 343 * 389.13);
+
+  @media (max-width: 1279px) {
+    width: 352px;
+    height: 433.32px;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
   }
-  @media (max-width: 1279px) {
-    width: 352px;
-    height: 433.32px;
+  @media (max-width: 768px) {
+    width: 100%;
+    height: calc((100vw - 32px) / 343 * 389.13);
     display: flex;
     justify-content: center;
     align-items: center;
