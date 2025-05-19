@@ -188,16 +188,17 @@ const StyledFruitsContainer = styled.div`
   pointer-events: none;
   top: 107px;
   animation: bounceAnimation 3s ease-in-out infinite;
+
+  @media (max-width: 1279px) {
+    z-index: 998;
+    top: 5%;
+    height: 90%;
+  }
   @media (max-width: 768px) {
     z-index: 998;
     top: 20%;
     height: 70%;
     width: 90%;
-  }
-  @media (max-width: 1279px) {
-    z-index: 998;
-    top: 5%;
-    height: 90%;
   }
 `;
 
