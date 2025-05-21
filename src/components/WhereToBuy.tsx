@@ -140,13 +140,13 @@ const StyledHenka = styled.div`
   border-radius: 20px;
   overflow: hidden;
   @media (max-width: 1279px) {
-    width: calc(100vw - 36px);
+    width: 100%;
     height: 450px;
     display: flex;
     justify-content: center;
   }
   @media (max-width: 768px) {
-    width: calc(100vw - 36px);
+    width: 100%;
     height: 335px;
     display: flex;
     justify-content: center;
