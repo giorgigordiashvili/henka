@@ -368,9 +368,9 @@ export default function Slider({
       flavor: dictionary.bottleTypeRasp,
       color: backgroundColors[0],
       fruitImage: {
-        desktop: "/assets/fruits/placeholder-raspberry-desktop.png", // User will set correct path
-        tablet: "/assets/fruits/placeholder-raspberry-tablet.png", // User will set correct path
-        mobile: "/assets/fruits/placeholder-raspberry-mobile.png", // User will set correct path
+        desktop: "/assets/fruits/placeholder-raspberry-desktop.png",
+        tablet: "/assets/fruits/placeholder-raspberry-tablet.png",
+        mobile: "/assets/fruits/placeholder-raspberry-mobile.png",
       },
     },
     {
@@ -379,9 +379,9 @@ export default function Slider({
       flavor: dictionary.bottleTypeCherry,
       color: backgroundColors[1],
       fruitImage: {
-        desktop: "/assets/fruits/placeholder-cherry-desktop.png", // User will set correct path
-        tablet: "/assets/fruits/placeholder-cherry-tablet.png", // User will set correct path
-        mobile: "/assets/fruits/placeholder-cherry-mobile.png", // User will set correct path
+        desktop: "/assets/fruits/placeholder-cherry-desktop.png",
+        tablet: "/assets/fruits/placeholder-cherry-tablet.png",
+        mobile: "/assets/fruits/placeholder-cherry-mobile.png",
       },
     },
     {
@@ -390,9 +390,9 @@ export default function Slider({
       flavor: dictionary.bottleTypeGinger,
       color: backgroundColors[2],
       fruitImage: {
-        desktop: "/assets/fruits/placeholder-ginger-desktop.png", // User will set correct path
-        tablet: "/assets/fruits/placeholder-ginger-tablet.png", // User will set correct path
-        mobile: "/assets/fruits/placeholder-ginger-mobile.png", // User will set correct path
+        desktop: "/assets/fruits/placeholder-ginger-desktop.png",
+        tablet: "/assets/fruits/placeholder-ginger-tablet.png",
+        mobile: "/assets/fruits/placeholder-ginger-mobile.png",
       },
     },
     {
@@ -401,9 +401,9 @@ export default function Slider({
       flavor: dictionary.bottleTypeLime,
       color: backgroundColors[3],
       fruitImage: {
-        desktop: "/assets/fruits/placeholder-lime-desktop.png", // User will set correct path
-        tablet: "/assets/fruits/placeholder-lime-tablet.png", // User will set correct path
-        mobile: "/assets/fruits/placeholder-lime-mobile.png", // User will set correct path
+        desktop: "/assets/fruits/placeholder-lime-desktop.png",
+        tablet: "/assets/fruits/placeholder-lime-tablet.png",
+        mobile: "/assets/fruits/placeholder-lime-mobile.png",
       },
     },
   ];
@@ -415,9 +415,9 @@ export default function Slider({
       flavor: dictionary.bottleTypeCherryWater,
       color: backgroundColors[5],
       fruitImage: {
-        desktop: "/assets/fruits/placeholder-cherry-water-desktop.png", // User will set correct path
-        tablet: "/assets/fruits/placeholder-cherry-water-tablet.png", // User will set correct path
-        mobile: "/assets/fruits/placeholder-cherry-water-mobile.png", // User will set correct path
+        desktop: "/assets/fruits/placeholder-cherry-water-desktop.png",
+        tablet: "/assets/fruits/placeholder-cherry-water-tablet.png",
+        mobile: "/assets/fruits/placeholder-cherry-water-mobile.png",
       },
     },
     {
@@ -426,23 +426,26 @@ export default function Slider({
       flavor: dictionary.bottleTypeLimeWater,
       color: backgroundColors[4],
       fruitImage: {
-        desktop: "/assets/fruits/placeholder-lime-water-desktop.png", // User will set correct path
-        tablet: "/assets/fruits/placeholder-lime-water-tablet.png", // User will set correct path
-        mobile: "/assets/fruits/placeholder-lime-water-mobile.png", // User will set correct path
+        desktop: "/assets/fruits/placeholder-lime-water-desktop.png",
+        tablet: "/assets/fruits/placeholder-lime-water-tablet.png",
+        mobile: "/assets/fruits/placeholder-lime-water-mobile.png",
       },
     },
   ];
 
   const currentBottles = activeProductType === "kombucha" ? kombuchaBottles : waterBottles;
+
+  // Fix: Create proper slides data for both product types
   const slidesData =
     activeProductType === "kombucha"
-      ? [...kombuchaBottles, ...kombuchaBottles, ...kombuchaBottles]
-      : waterBottles;
+      ? [...kombuchaBottles, ...kombuchaBottles, ...kombuchaBottles] // Loop for kombucha
+      : [...waterBottles, ...waterBottles, ...waterBottles]; // Loop for water too
 
   const handlePrev = () => {
     setAnimationDirection("left");
     swiperRef.current?.swiper.slidePrev();
   };
+
   const handleNext = () => {
     setAnimationDirection("right");
     swiperRef.current?.swiper.slideNext();
@@ -450,9 +453,11 @@ export default function Slider({
 
   const switchProductType = (type: "kombucha" | "water") => {
     setActiveProductType(type);
+    // Fix: Reset to appropriate initial slide for both types
+    const initialSlide = type === "kombucha" ? 1 : 0;
     setTimeout(() => {
-      swiperRef.current?.swiper.slideToLoop(0);
-      setActiveIndex(0);
+      swiperRef.current?.swiper.slideToLoop(initialSlide);
+      setActiveIndex(initialSlide);
     }, 0);
   };
 
@@ -562,6 +567,7 @@ export default function Slider({
         </StyledProducts>
 
         <SwiperWrapper>
+          {/* Fix: Show navigation buttons for water section too */}
           <PrevButton onClick={handlePrev}>
             <svg viewBox="0 0 15 28" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -589,19 +595,23 @@ export default function Slider({
           <StyledSwiper
             ref={swiperRef}
             spaceBetween={10}
+            // Fix: Use consistent slidesPerView for both types
             slidesPerView={activeProductType === "kombucha" ? 3 : 1}
             centeredSlides
             loop
+            // Fix: Ensure touch/swipe gestures are enabled
+            allowTouchMove={true}
+            touchRatio={1}
+            touchAngle={45}
+            grabCursor={true}
             onSlideChange={(s) => setActiveIndex(s.realIndex)}
             initialSlide={activeProductType === "kombucha" ? 1 : 0}
             key={`swiper-${activeProductType}`}
           >
             {slidesData.map((bottle, i) => (
-              <SwiperSlide key={i}>
+              <SwiperSlide key={`${activeProductType}-${i}`}>
                 {({ isActive }) => (
-                  <BottleImage
-                    className={isActive || activeProductType === "water" ? "active" : "side"}
-                  >
+                  <BottleImage className={isActive ? "active" : "side"}>
                     <Image
                       src={bottle.src}
                       alt={bottle.alt}
