@@ -279,6 +279,7 @@ export default function Hero({
             <StyledFruitsContainer>
               <Mobile>
                 <Image
+                  priority={true}
                   src="/assets/fruits-1-mobile.png"
                   alt="Fruits"
                   fill
@@ -328,6 +329,7 @@ export default function Hero({
           <StyledFruitsContainer>
             <Tablet>
               <Image
+                priority={true}
                 src="/assets/fruits-1-tablet.png"
                 alt="Fruits"
                 fill
@@ -336,6 +338,7 @@ export default function Hero({
             </Tablet>
             <Desktop>
               <Image
+                priority={true}
                 src="/assets/fruits-1.png"
                 alt="Fruits"
                 fill
