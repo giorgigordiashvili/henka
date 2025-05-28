@@ -198,7 +198,7 @@ export default function Marquee({
         </Desktop>
 
         <Tablet>
-          <FastMarquee speed={300} gradient={false} direction="left" pauseOnHover={false}>
+          <FastMarquee speed={200} gradient={false} direction="left" pauseOnHover={false}>
             {duplicatedMarqueeOne.map((item, itemIndex) => (
               <MarqueeItem key={`row1-${itemIndex}`}>
                 <span>{item.text}</span>
@@ -207,7 +207,7 @@ export default function Marquee({
             ))}
           </FastMarquee>
 
-          <FastMarquee speed={300} gradient={false} direction="left" pauseOnHover={false}>
+          <FastMarquee speed={200} gradient={false} direction="left" pauseOnHover={false}>
             {duplicatedMarqueeTwo.map((item, itemIndex) => (
               <MarqueeItem key={`row2-${itemIndex}`}>
                 <Image width={84.27} height={84.27} alt={item.alt} src={item.image} />
@@ -216,7 +216,7 @@ export default function Marquee({
             ))}
           </FastMarquee>
 
-          <FastMarquee speed={300} gradient={false} direction="left" pauseOnHover={false}>
+          <FastMarquee speed={200} gradient={false} direction="left" pauseOnHover={false}>
             {duplicatedMarqueeThree.map((item, itemIndex) => (
               <MarqueeItem key={`row3-${itemIndex}`}>
                 <Image width={84.27} height={84.27} alt={item.alt} src={item.image} />
@@ -228,7 +228,7 @@ export default function Marquee({
 
         <Mobile>
           <StyledMobileGap>
-            <FastMarquee speed={300} gradient={false} direction="left" pauseOnHover={false}>
+            <FastMarquee speed={150} gradient={false} direction="left" pauseOnHover={false}>
               {duplicatedMarqueeOne.map((item, itemIndex) => (
                 <MarqueeItem key={`mrow1-${itemIndex}`}>
                   <span>{item.text}</span>
@@ -237,7 +237,7 @@ export default function Marquee({
               ))}
             </FastMarquee>
 
-            <FastMarquee speed={300} gradient={false} direction="left" pauseOnHover={false}>
+            <FastMarquee speed={150} gradient={false} direction="left" pauseOnHover={false}>
               {duplicatedMarqueeTwo.map((item, itemIndex) => (
                 <MarqueeItem key={`mrow2-${itemIndex}`}>
                   <Image width={41} height={41} alt={item.alt} src={item.image} />
@@ -246,7 +246,7 @@ export default function Marquee({
               ))}
             </FastMarquee>
 
-            <FastMarquee speed={300} gradient={false} direction="left" pauseOnHover={false}>
+            <FastMarquee speed={150} gradient={false} direction="left" pauseOnHover={false}>
               {duplicatedMarqueeThree.map((item, itemIndex) => (
                 <MarqueeItem key={`mrow3-${itemIndex}`}>
                   <span>{item.text}</span>
