@@ -1,16 +1,21 @@
-import AboutUs from "@/components/AboutUs";
-import Footer from "@/components/Footer";
-import Fruits from "@/components/Fruits";
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import Marquee from "@/components/Marquee";
-import Reason from "@/components/Reason";
-import Slider from "@/components/Slider";
-import VitaminSection from "@/components/VitaminSection";
-import VitaminTags from "@/components/VitaminTags";
-import WhereToBuy from "@/components/WhereToBuy";
 import { getDictionary } from "@/get-dictionary";
 import { Locale } from "@/i18n-config";
+import dynamic from "next/dynamic";
+
+// Statically import components that are critical for the initial view (above the fold)
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import AboutUs from "@/components/AboutUs";
+import Reason from "@/components/Reason";
+
+// Dynamically import components that can be loaded later
+const Marquee = dynamic(() => import("@/components/Marquee"));
+const VitaminSection = dynamic(() => import("@/components/VitaminSection"));
+const VitaminTags = dynamic(() => import("@/components/VitaminTags"));
+const Fruits = dynamic(() => import("@/components/Fruits"));
+const Slider = dynamic(() => import("@/components/Slider"));
+const WhereToBuy = dynamic(() => import("@/components/WhereToBuy"));
+const Footer = dynamic(() => import("@/components/Footer"));
 
 export default async function IndexPage(props: { params: Promise<{ lang: Locale }> }) {
   const { lang } = await props.params;
